@@ -1,16 +1,14 @@
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
+
+import com.mongodb.ConnectionString;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoClient;
+
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.net.UnknownHostException;
 
 public class HelloWorld extends Application {
 
@@ -20,8 +18,16 @@ public class HelloWorld extends Application {
 
     @Override
     public void start(Stage stage) {
+        String MONGO_URI = "mongodb+srv://WMSProject:grupp19@wmsproject.tlzpnr0.mongodb.net/?retryWrites=true&w=majority";
+        MongoClient mongoClient = MongoClients.create(MONGO_URI);
 
-        MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb+srv://WMSProject:grupp19@wmsproject.tlzpnr0.mongodb.net/?retryWrites=true&w=majority"));
+        try{
+            System.out.println("MongoDB Server is up:- "+mongoClient.getClusterDescription());
+        } catch (Exception e){
+            System.out.println("Failed to connect");
+        }
+
+        System.out.println(mongoClient.getDatabase("WMS").getName());
 
 
         stage.setTitle("WMS");
