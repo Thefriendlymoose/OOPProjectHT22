@@ -27,4 +27,20 @@ public class DataBaseAdapter {
             System.out.println(me);
         }
     }
+
+    public void createTestUser(TestUser testUser){
+        try{
+            MongoCollection<Document> collection = db.getCollection("test");
+            try {
+                InsertOneResult result = collection.insertOne(new Document()
+                        .append("_id", new ObjectId())
+                        .append("name", testUser.getName())
+                        .append("age", testUser.getAge()));
+            } catch (MongoException me){
+                System.out.println(me);
+            }
+        } catch (MongoException me){
+            System.out.println(me);
+        }
+    }
 }

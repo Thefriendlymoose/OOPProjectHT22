@@ -1,22 +1,27 @@
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class HelloWorld extends Application {
+public class WindowTest extends Application {
 
     public static void main(String[] args){
         launch(args);
     }
 
     @Override
-    public void start(Stage stage) {
-        String MONGO_URI = "mongodb+srv://WMSProject:grupp19@wmsproject.tlzpnr0.mongodb.net/?retryWrites=true&w=majority";
-
-
+    public void start(Stage stage) throws Exception {
         stage.setTitle("WMS");
         MenuBar menuBar = new MenuBar();
+        BorderPane borderPane = new BorderPane();
+
         VBox vBox = new VBox(menuBar);
 
         Menu file = new Menu("File");
@@ -43,12 +48,12 @@ public class HelloWorld extends Application {
         menuBar.getMenus().add(view);
         menuBar.getMenus().add(help);
 
-        Scene scene = new Scene(vBox, 640, 480);
+        TestForm testForm = new TestForm();
+
+        borderPane.setTop(vBox);
+        borderPane.setCenter(testForm);
+        Scene scene = new Scene(borderPane, 1920, 1080);
         stage.setScene(scene);
         stage.show();
-
-        DataBaseConnection testConnection = new DataBaseConnection();
-        DataBaseAdapter testInsert = new DataBaseAdapter(testConnection.getDataBase());
-        testInsert.createTestDocument();
     }
 }
