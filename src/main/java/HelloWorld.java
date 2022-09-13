@@ -1,23 +1,8 @@
-
-
-import com.mongodb.*;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.result.InsertOneResult;
-
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.bson.Document;
-import org.bson.types.ObjectId;
-
-import java.util.Arrays;
-
 
 public class HelloWorld extends Application {
 
@@ -62,29 +47,8 @@ public class HelloWorld extends Application {
         stage.setScene(scene);
         stage.show();
 
-        ConnectionString connectionString = new ConnectionString("mongodb+srv://WMS-001:grupp19@wmsproject.tlzpnr0.mongodb.net/?retryWrites=true&w=majority");
-        MongoClientSettings settings = MongoClientSettings.builder()
-                .applyConnectionString(connectionString)
-                .serverApi(ServerApi.builder()
-                        .version(ServerApiVersion.V1)
-                        .build())
-                .build();
-
-
-
-        try (MongoClient mongoClient = MongoClients.create(settings);) {
-            MongoDatabase database = mongoClient.getDatabase("WMS");
-            MongoCollection<Document> collection = database.getCollection("test");
-            System.out.println("Connected");
-            try {
-                InsertOneResult result = collection.insertOne(new Document()
-                        .append("_id", new ObjectId())
-                        .append("name", "james")
-                        .append("age","26"));
-                System.out.println("Success! Inserted document id: " + result.getInsertedId());
-            } catch (MongoException me) {
-                System.err.println("Unable to insert due to an error: " + me);
-            }
-        }
+        DataBaseConnection testConnection = new DataBaseConnection();
+        DataBaseAdapter testInsert = new DataBaseAdapter(testConnection.getDataBase());
+        testInsert.createTestDocument();
     }
 }
