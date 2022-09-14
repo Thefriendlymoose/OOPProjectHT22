@@ -1,3 +1,5 @@
+package model;
+
 public class TestUser {
     private String name;
     private String age;

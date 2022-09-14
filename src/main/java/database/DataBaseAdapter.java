@@ -1,8 +1,16 @@
+package database;
+
+import com.mongodb.DBObject;
 import com.mongodb.MongoException;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.InsertOneResult;
+import model.TestUser;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 public class DataBaseAdapter {
@@ -44,5 +52,25 @@ public class DataBaseAdapter {
         } catch (MongoException me){
             System.out.println(me);
         }
+    }
+
+    public boolean signIn(String username, String password){
+        try {
+            MongoCollection<Document> collection = db.getCollection("test");
+            Bson filter = Filters.in("username", username);
+            FindIterable<Document> documents = collection.find(filter);
+            MongoCursor<Document> cursor = documents.cursor();
+            if(cursor.hasNext()){
+                while(cursor.hasNext()){
+                    Document temp = cursor.next();
+                    if (username.equals(temp.get("username")) && password.equals(temp.get("password"))){
+                        return true;
+                    }
+                }
+            }
+        } catch (MongoException me){
+
+        }
+        return false;
     }
 }

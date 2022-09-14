@@ -1,9 +1,9 @@
 controller\MainMenuController.class
 controller\SignInController.class
-TestUser.class
+model\TestUser.class
 Main.class
 controller\LoginController.class
 controller\TemplateController.class
-DataBaseConnection.class
-DataBaseAdapter.class
+database\DataBaseConnection.class
 controller\MenuController.class
+database\DataBaseAdapter.class
