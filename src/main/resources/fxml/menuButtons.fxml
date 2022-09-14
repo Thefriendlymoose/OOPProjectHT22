@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <GridPane hgap="20.0" maxHeight="550.0" maxWidth="1050.0" style="-fx-background-color: #F9F9F9; -fx-border-color: #5C5C5C; -fx-border-radius: 2;" vgap="20.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
