@@ -22,7 +22,7 @@ public class WindowTest extends Application {
         MenuBar menuBar = new MenuBar();
         BorderPane borderPane = new BorderPane();
 
-        VBox vBox = new VBox(menuBar);
+        HBox hBox = new HBox(menuBar);
 
         Menu file = new Menu("File");
         MenuItem add = new MenuItem("Edit");
@@ -50,7 +50,7 @@ public class WindowTest extends Application {
 
         TestForm testForm = new TestForm();
 
-        borderPane.setTop(vBox);
+        borderPane.setTop(hBox);
         borderPane.setCenter(testForm);
         Scene scene = new Scene(borderPane, 1920, 1080);
         stage.setScene(scene);
