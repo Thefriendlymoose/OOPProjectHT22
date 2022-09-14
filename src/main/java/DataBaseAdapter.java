@@ -6,10 +6,12 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 
 public class DataBaseAdapter {
-    MongoDatabase db;
+    private DataBaseConnection dbc;
+    private MongoDatabase db;
 
-    public DataBaseAdapter(MongoDatabase db){
-        this.db = db;
+    public DataBaseAdapter(DataBaseConnection dbc){
+        this.dbc = dbc;
+        this.db = dbc.getDataBase();
     }
 
     public void createTestDocument(){

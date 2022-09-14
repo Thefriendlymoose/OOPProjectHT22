@@ -5,17 +5,28 @@ import com.mongodb.client.MongoDatabase;
 
 
 public class DataBaseConnection {
-    private String URI = "mongodb+srv://WMS-001:grupp19@wmsproject.tlzpnr0.mongodb.net/?retryWrites=true&w=majority";
-    private MongoClient client;
     private MongoDatabase db;
+    private static DataBaseConnection instance;
 
-    public DataBaseConnection(){
+    private DataBaseConnection(){
         try  {
-            client = MongoClients.create(URI);
+            String URI = "mongodb+srv://WMS-001:grupp19@wmsproject.tlzpnr0.mongodb.net/?retryWrites=true&w=majority";
+            MongoClient client = MongoClients.create(URI);
             db = client.getDatabase("WMS");
         } catch (MongoException me) {
                 System.err.println("Failed Connection due to: " + me);
         }
+    }
+
+    public static DataBaseConnection getInstance(){
+        if(instance == null){
+            synchronized (DataBaseConnection.class){
+                if(instance == null){
+                    instance = new DataBaseConnection();
+                }
+            }
+        }
+        return instance;
     }
 
     public MongoDatabase getDataBase(){

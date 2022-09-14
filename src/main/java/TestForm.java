@@ -14,13 +14,13 @@ public class TestForm extends GridPane {
 
     public TestForm(){
 
-        DataBaseAdapter testAdapter = new DataBaseAdapter(new DataBaseConnection().getDataBase());
+        DataBaseAdapter testAdapter = new DataBaseAdapter(DataBaseConnection.getInstance());
 
         this.setAlignment(Pos.CENTER);
 
         this.setStyle("-fx-border-style: solid inside;"+
                       "-fx-border-width: 2;"+
-                      "-fx-border-color: black");
+                      "-fx-border-color: #000000");
 
         this.setHgap(10);
         this.setVgap(10);
