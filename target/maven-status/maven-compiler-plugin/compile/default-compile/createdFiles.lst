@@ -1,6 +1,9 @@
-TestForm.class
-DataBaseAdapter.class
-WindowTest.class
+Main.class
+controller\LoginController.class
 DataBaseConnection.class
+DataBaseAdapter.class
+TestForm.class
+ButtonGenerator.class
+WindowTemplate.class
+WindowMenu.class
 TestUser.class
-TestForm$1.class
