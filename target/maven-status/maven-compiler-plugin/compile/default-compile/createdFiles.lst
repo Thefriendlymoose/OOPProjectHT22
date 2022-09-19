@@ -1,9 +1,15 @@
 controller\MainMenuController.class
+controller\UserMenuController.class
+controller\ArticleMenuController.class
 controller\SignInController.class
 model\TestUser.class
+controller\CustomerMenuController.class
 Main.class
 controller\LoginController.class
 controller\TemplateController.class
+controller\OrderMenuController.class
 database\DataBaseConnection.class
+model\Article.class
+controller\SiteMenuController.class
 controller\MenuController.class
 database\DataBaseAdapter.class

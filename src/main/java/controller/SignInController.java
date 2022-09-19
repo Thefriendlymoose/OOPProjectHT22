@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import java.util.Objects;
@@ -29,12 +31,18 @@ public class SignInController {
     Label errorLabel;
 
     public void handleBtnSignIn() throws Exception {
-        if (dba.signIn(userNameField.getText(), passWordField.getText())){
-            //Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/mainMenu.fxml")));
-            //Stage window = (Stage) btnSignIn.getScene().getWindow();
-            //window.setScene(new Scene(root));
+        if (userNameField.getText().isEmpty() || passWordField.getText() == ""){
+            errorLabel.setText("Username or password field empty");
+            errorLabel.setTextFill(Color.RED);
+        } else if (dba.signIn(userNameField.getText(), passWordField.getText())){
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/mainMenu.fxml")));
+            Stage window = (Stage) btnSignIn.getScene().getWindow();
+            window.setScene(new Scene(root));
+            errorLabel.setText("Logging in...");
+            errorLabel.setTextFill(Color.GREEN);
         } else {
-            errorLabel.setText("No Such User");
+            errorLabel.setText("Username or password incorrect");
+            errorLabel.setTextFill(Color.RED);
         }
 
 
