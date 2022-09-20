@@ -2,15 +2,15 @@ controller/customerControllers/CustomerMenuController.class
 controller/TemplateController.class
 controller/LoginController.class
 controller/orderControllers/OrderMenuController.class
+controller/orderControllers/OpenOrderController.class
 database/DataBaseConnection.class
 model/pojos/OrderPojo.class
 controller/MenuController.class
+controller/test/TestController.class
 Main.class
-controller/orderControllers/openOrderController.class
 controller/SignInController.class
 model/pojos/ArticlePojo.class
 model/Order.class
-controller/test/testController.class
 model/Order$OrderStatus.class
 controller/articleControllers/ArticleMenuController.class
 controller/siteControllers/SiteMenuController.class

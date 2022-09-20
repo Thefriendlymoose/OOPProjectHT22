@@ -9,9 +9,10 @@ import java.util.List;
 
 public class Order {
 
-//    @BsonProperty("_objectId")
+    @BsonProperty("_objectId")
     private String objectId;
-//    private final org.bson.types.ObjectId ObjectId;
+
+
     private OrderPojo orderPojo;
 
     private ObjectId id;
@@ -20,6 +21,7 @@ public class Order {
 
     private String articleDescription;
 
+//    @BsonProperty(date)
     private LocalDateTime createdDate;
 
     private String status;
@@ -33,7 +35,6 @@ public class Order {
     private Order() {
         
     }
-
     
 
     enum OrderStatus {
