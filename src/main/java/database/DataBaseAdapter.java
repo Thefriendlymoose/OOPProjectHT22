@@ -18,12 +18,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataBaseAdapter {
-    private DataBaseConnection dbc;
     private MongoDatabase db;
 
-    public DataBaseAdapter(DataBaseConnection dbc){
-        this.dbc = dbc;
-        this.db = dbc.getDataBase();
+    private static DataBaseAdapter instance;
+
+    private DataBaseAdapter(){
+        this.db = DataBaseConnection.getDataBase();
+    }
+
+    public static DataBaseAdapter getInstance(){
+        if(instance == null){
+            synchronized (DataBaseAdapter.class){
+                if (instance == null){
+                    instance = new DataBaseAdapter();
+                }
+            }
+        }
+        return instance;
     }
 
     // Temporary just to test to input document into a collection
@@ -103,10 +114,14 @@ public class DataBaseAdapter {
     // testing to create a pojo and retrieve pojo
     public void insertArticlePojo(){
         ArticlePojo test = new ArticlePojo(new ObjectId(), "art123456789", "this is a test article", LocalDateTime.now(), "Active", LocalDateTime.now());
-        dbc.getArticleCollection().insertOne(test);
+        getArticleCollection().insertOne(test);
 
         List<ArticlePojo> temp = new ArrayList<>();
-        dbc.getArticleCollection().find().into(temp);
+        getArticleCollection().find().into(temp);
         System.out.println(temp);
+    }
+
+    private MongoCollection<ArticlePojo> getArticleCollection(){
+        return db.getCollection("articles", ArticlePojo.class);
     }
 }

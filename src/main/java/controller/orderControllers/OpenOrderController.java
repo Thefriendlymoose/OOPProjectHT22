@@ -18,7 +18,7 @@ public class OpenOrderController {
     private Button openButton;
 
     public void openOrder(){
-        DataBaseAdapter dba = new DataBaseAdapter(DataBaseConnection.getInstance());
+        DataBaseAdapter dba = DataBaseAdapter.getInstance();
         if(!searchField.getText().isEmpty()){
             Document doc = dba.findAndOpenOrder(searchField.getText());
             if (doc != null){
