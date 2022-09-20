@@ -15,7 +15,7 @@ public class MainMenuController {
 
 
     public void articleBtnHandler() throws Exception {
-        changeScene("articleMenu", menuArticleButton);
+        changeScene("articleViews/articleMenu", menuArticleButton);
     }
 
     public void orderBtnHandler() throws Exception {

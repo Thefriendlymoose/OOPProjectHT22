@@ -1,5 +1,7 @@
 package controller.articleControllers;
 
+import database.DataBaseAdapter;
+import database.DataBaseConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,5 +32,10 @@ public class ArticleMenuController {
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow() );
         stage.show();
+    }
+
+    public void testPojo(){
+        DataBaseAdapter test = new DataBaseAdapter(DataBaseConnection.getInstance());
+        test.insertArticlePojo();
     }
 }

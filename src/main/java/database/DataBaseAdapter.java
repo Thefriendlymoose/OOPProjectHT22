@@ -1,6 +1,5 @@
 package database;
 
-import com.mongodb.DBObject;
 import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -9,9 +8,14 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.InsertOneResult;
 import model.TestUser;
+import model.pojos.ArticlePojo;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataBaseAdapter {
     private DataBaseConnection dbc;
@@ -77,6 +81,7 @@ public class DataBaseAdapter {
         return false;
     }
 
+
     public Document findAndOpenOrder(String orderNumber){
         try {
             MongoCollection<Document> collection = db.getCollection("orders");
@@ -93,5 +98,15 @@ public class DataBaseAdapter {
 
         }
         return null;
+    }
+
+    // testing to create a pojo and retrieve pojo
+    public void insertArticlePojo(){
+        ArticlePojo test = new ArticlePojo(new ObjectId(), "art123456789", "this is a test article", LocalDateTime.now(), "Active", LocalDateTime.now());
+        dbc.getArticleCollection().insertOne(test);
+
+        List<ArticlePojo> temp = new ArrayList<>();
+        dbc.getArticleCollection().find().into(temp);
+        System.out.println(temp);
     }
 }
