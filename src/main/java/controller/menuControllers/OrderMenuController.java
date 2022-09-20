@@ -18,4 +18,17 @@ public class OrderMenuController {
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }
+
+    public void openButton() throws Exception{
+        System.out.println("OPEN");
+
+    }
+
+    public void createButton() throws Exception{
+        System.out.println("CREATE");
+    }
+
+    public void listButton() throws Exception{
+        System.out.println("LIST");
+    }
 }
