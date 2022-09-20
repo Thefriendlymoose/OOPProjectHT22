@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import org.bson.Document;
 
 
-public class openOrderController {
+public class OpenOrderController {
 
     @FXML
     private TextField searchField;
@@ -18,7 +18,7 @@ public class openOrderController {
     private Button openButton;
 
     public void openOrder(){
-        DataBaseAdapter dba = new DataBaseAdapter(DataBaseConnection.getInstance());
+        DataBaseAdapter dba = DataBaseAdapter.getInstance();
         if(!searchField.getText().isEmpty()){
             Document doc = dba.findAndOpenOrder(searchField.getText());
             if (doc != null){

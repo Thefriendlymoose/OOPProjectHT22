@@ -3,9 +3,7 @@ package database;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import model.pojos.ArticlePojo;
 import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
@@ -44,13 +42,10 @@ public class DataBaseConnection {
         return instance;
     }
 
-    public MongoDatabase getDataBase(){
-        return db;
+    public static MongoDatabase getDataBase(){
+        DataBaseConnection tempInstance = getInstance();
+        return tempInstance.db;
     }
 
-    public MongoCollection<ArticlePojo> getArticleCollection(){
-        MongoCollection<ArticlePojo> collection = getDataBase().getCollection("articles", ArticlePojo.class);
-        return collection;
-    }
 
 }

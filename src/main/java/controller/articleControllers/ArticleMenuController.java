@@ -35,7 +35,7 @@ public class ArticleMenuController {
     }
 
     public void testPojo(){
-        DataBaseAdapter test = new DataBaseAdapter(DataBaseConnection.getInstance());
+        DataBaseAdapter test = DataBaseAdapter.getInstance();
         test.insertArticlePojo();
     }
 }

@@ -18,12 +18,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataBaseAdapter {
-    private DataBaseConnection dbc;
     private MongoDatabase db;
 
-    public DataBaseAdapter(DataBaseConnection dbc){
-        this.dbc = dbc;
-        this.db = dbc.getDataBase();
+    private static DataBaseAdapter instance;
+
+    private DataBaseAdapter(){
+        this.db = DataBaseConnection.getDataBase();
+    }
+
+    // DataBaseAdapter is a singleton to get the instance use getInstance() method,
+    // if no instance created, it will create an instance and return the instance
+    // if instance exists it will return the instance
+    public static DataBaseAdapter getInstance(){
+        if(instance == null){
+            synchronized (DataBaseAdapter.class){
+                if (instance == null){
+                    instance = new DataBaseAdapter();
+                }
+            }
+        }
+        return instance;
     }
 
     // Temporary just to test to input document into a collection
@@ -43,7 +57,7 @@ public class DataBaseAdapter {
         }
     }
 
-    // Temporary just to test to input doucment into collection
+    // Temporary just to test to input document into collection
     public void createTestUser(TestUser testUser){
         try{
             MongoCollection<Document> collection = db.getCollection("test");
@@ -82,6 +96,7 @@ public class DataBaseAdapter {
     }
 
 
+    // just testing to open an order will not be used in the future
     public Document findAndOpenOrder(String orderNumber){
         try {
             MongoCollection<Document> collection = db.getCollection("orders");
@@ -103,10 +118,25 @@ public class DataBaseAdapter {
     // testing to create a pojo and retrieve pojo
     public void insertArticlePojo(){
         ArticlePojo test = new ArticlePojo(new ObjectId(), "art123456789", "this is a test article", LocalDateTime.now(), "Active", LocalDateTime.now());
-        dbc.getArticleCollection().insertOne(test);
+        getArticleCollection().insertOne(test);
 
         List<ArticlePojo> temp = new ArrayList<>();
-        dbc.getArticleCollection().find().into(temp);
+        getArticleCollection().find().into(temp);
         System.out.println(temp);
+    }
+
+
+    //TODO Create getters for all collections, need the POJOs for the other classes
+    // to be created
+    //TODO ArticleCollection getter DONE
+    //TODO UserCollection getter
+    //TODO OrderCollection getter
+    //TODO CustomerCollection getter
+    //TODO SiteCollection getter
+    /*
+    Gets the article collection,
+     */
+    private MongoCollection<ArticlePojo> getArticleCollection(){
+        return db.getCollection("articles", ArticlePojo.class);
     }
 }

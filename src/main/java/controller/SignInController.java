@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import java.util.Objects;
 
 public class SignInController {
-    DataBaseAdapter dba = new DataBaseAdapter(DataBaseConnection.getInstance());
+    DataBaseAdapter dba = DataBaseAdapter.getInstance();
     @FXML
     private Button btnSignIn;
 
