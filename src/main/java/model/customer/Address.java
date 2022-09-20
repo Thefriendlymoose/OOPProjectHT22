@@ -1,35 +1,31 @@
 package model.customer;
 
-public class Address implements IAddress{
-    private String streetName;
-    private String streetNumber;
-    private String zipCode;
-    private String cityName;
+import model.pojos.AddressPojo;
 
-    public Address(String streetName, String streetNumber, String zipCode, String cityName){
-        this.streetName = streetName;
-        this.streetNumber = streetNumber;
-        this.zipCode = zipCode;
-        this.cityName = cityName;
+public class Address implements IAddress{
+    private AddressPojo pojo;
+
+    public Address(AddressPojo addressPojo){
+        pojo = addressPojo;
     }
 
     @Override
     public String getStreetName() {
-        return streetName;
+        return pojo.getStreetName();
     }
 
     @Override
     public String getStreetNumber() {
-        return streetNumber;
+        return pojo.getStreetNumber();
     }
 
     @Override
     public String getZipCode() {
-        return zipCode;
+        return pojo.getZipCode();
     }
 
     @Override
     public String getCityName() {
-        return cityName;
+        return pojo.getCityName();
     }
 }

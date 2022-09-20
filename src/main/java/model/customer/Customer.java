@@ -1,16 +1,18 @@
 package model.customer;
 
+import model.pojos.AddressPojo;
+import model.pojos.ContactsPojo;
+import model.pojos.CustomerPojo;
+
 public class Customer implements ICustomer{
     private IContacts contactDetails;
     private IAddress address;
-    private String customerID;
-    private String name;
+    private CustomerPojo pojo;
 
-    public Customer(IContacts contactDetails, IAddress address, String customerID, String name){
-        this.contactDetails = contactDetails;
-        this.address = address;
-        this.customerID = customerID;
-        this.name = name;
+    public Customer(ContactsPojo contactsPojo, AddressPojo addressPojo, CustomerPojo contactPojo){
+        this.contactDetails = new Contacts(contactsPojo);
+        this.address = new Address(addressPojo);
+        pojo = contactPojo;
     }
 
     @Override
@@ -25,11 +27,11 @@ public class Customer implements ICustomer{
 
     @Override
     public String getCustomerID() {
-        return customerID;
+        return pojo.getCustomerID();
     }
 
     @Override
     public String getName() {
-        return name;
+        return pojo.getCompanyName();
     }
 }

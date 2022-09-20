@@ -1,29 +1,27 @@
 package model.customer;
 
+import model.pojos.ContactsPojo;
+
 public class Contacts implements IContacts{
 
-    private String contactPerson;
-    private String phoneNumber;
-    private String email;
+    private ContactsPojo pojo;
 
-    public Contacts(String contactPerson, String phoneNumber, String email){
-        this.contactPerson = contactPerson;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
+    public Contacts(ContactsPojo contactsPojo){
+        pojo = contactsPojo;
     }
 
     @Override
     public String getContactPerson() {
-        return contactPerson;
+        return pojo.getContactName();
     }
 
     @Override
     public String getPhoneNumber() {
-        return phoneNumber;
+        return pojo.getContactPhone();
     }
 
     @Override
     public String getEmail() {
-        return email;
+        return pojo.getContactEmail();
     }
 }
