@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class MainMenuController {
     @FXML
-    Button menuSiteButton, menuArticleButton, menuCustomerButton, menuUserButton, menuOrderButton;
+    private Button menuSiteButton, menuArticleButton, menuCustomerButton, menuUserButton, menuOrderButton;
 
 
     public void articleBtnHandler() throws Exception {
@@ -19,18 +19,18 @@ public class MainMenuController {
     }
 
     public void orderBtnHandler() throws Exception {
-        changeScene("orderMenu", menuOrderButton);
+        changeScene("orderViews/orderMenu", menuOrderButton);
     }
 
     public void customerBtnHandler() throws Exception {
-        changeScene("customerMenu", menuCustomerButton);
+        changeScene("customerViews/customerMenu", menuCustomerButton);
     }
 
     public void userBtnHandler() throws Exception {
-        changeScene("userMenu", menuUserButton);
+        changeScene("userViews/userMenu", menuUserButton);
     }
     public void siteBtnHandler() throws Exception {
-        changeScene("siteMenu", menuSiteButton);
+        changeScene("siteViews/siteMenu", menuSiteButton);
     }
 
     private void changeScene(String newScene, Button button) throws Exception{

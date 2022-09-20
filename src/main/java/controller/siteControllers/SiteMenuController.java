@@ -1,4 +1,4 @@
-package controller.menuControllers;
+package controller.siteControllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,9 +9,9 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
-public class CustomerMenuController {
+public class SiteMenuController {
     @FXML
-    Button openButton, createButton, listButton, backButton;
+    private Button openButton, createButton, listButton, backButton;
 
     public void backBtnHandler() throws Exception{
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/mainMenu.fxml")));

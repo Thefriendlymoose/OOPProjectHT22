@@ -22,6 +22,7 @@ public class DataBaseAdapter {
         this.db = dbc.getDataBase();
     }
 
+    // Temporary just to test to input document into a collection
     public void createTestDocument(){
         try{
             MongoCollection<Document> collection = db.getCollection("test");
@@ -38,6 +39,7 @@ public class DataBaseAdapter {
         }
     }
 
+    // Temporary just to test to input doucment into collection
     public void createTestUser(TestUser testUser){
         try{
             MongoCollection<Document> collection = db.getCollection("test");
@@ -54,6 +56,7 @@ public class DataBaseAdapter {
         }
     }
 
+    // Temporary scuffed user login
     public boolean signIn(String username, String password){
         try {
             MongoCollection<Document> collection = db.getCollection("test");
@@ -72,5 +75,23 @@ public class DataBaseAdapter {
 
         }
         return false;
+    }
+
+    public Document findAndOpenOrder(String orderNumber){
+        try {
+            MongoCollection<Document> collection = db.getCollection("orders");
+            Bson filter = Filters.in("ordernumber", orderNumber);
+            FindIterable<Document> documents = collection.find(filter);
+            MongoCursor<Document> cursor = documents.cursor();
+
+            if(cursor.hasNext()){
+                return cursor.next();
+            } else {
+                return null;
+            }
+        } catch (MongoException me){
+
+        }
+        return null;
     }
 }

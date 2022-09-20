@@ -1,4 +1,4 @@
-package controller.menuControllers;
+package controller.articleControllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +15,7 @@ import java.util.Objects;
 
 public class ArticleMenuController {
     @FXML
-    Button openButton, createButton, listButton, backButton;
+    private Button openButton, createButton, listButton, backButton;
 
     public void backBtnHandler() throws Exception{
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/mainMenu.fxml")));

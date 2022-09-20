@@ -19,16 +19,16 @@ import java.util.Objects;
 public class SignInController {
     DataBaseAdapter dba = new DataBaseAdapter(DataBaseConnection.getInstance());
     @FXML
-    Button btnSignIn;
+    private Button btnSignIn;
 
     @FXML
-    TextField userNameField;
+    private TextField userNameField;
 
     @FXML
-    PasswordField passWordField;
+    private PasswordField passWordField;
 
     @FXML
-    Label errorLabel;
+    private Label errorLabel;
 
     public void handleBtnSignIn() throws Exception {
         if (userNameField.getText().isEmpty() || passWordField.getText() == ""){

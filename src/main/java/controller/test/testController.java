@@ -7,10 +7,10 @@ import javafx.scene.control.TextField;
 public class testController {
 
     @FXML
-    TextField searchField;
+    private TextField searchField;
 
     @FXML
-    Button openButton;
+    private Button openButton;
 
 
     public void onButtonClick() throws Exception{
