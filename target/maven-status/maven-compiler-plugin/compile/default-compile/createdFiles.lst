@@ -12,6 +12,7 @@ controller\test\testController.class
 controller\customerControllers\CustomerMenuController.class
 controller\siteControllers\SiteMenuController.class
 model\Article.class
+model\pojos\ArticlePojo.class
 controller\userControllers\UserMenuController.class
 controller\MenuController.class
 database\DataBaseAdapter.class
