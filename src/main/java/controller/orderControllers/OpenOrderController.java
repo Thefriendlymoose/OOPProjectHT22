@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import org.bson.Document;
 
 
-public class openOrderController {
+public class OpenOrderController {
 
     @FXML
     private TextField searchField;
