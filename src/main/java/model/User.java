@@ -3,10 +3,8 @@ package model;
 import model.pojos.UserPOJO;
 
 public class User {
-    UserPOJO userInfo = new UserPOJO();
+    UserPOJO userInfo;
     User(UserPOJO userInfo){
         this.userInfo = userInfo;
     }
-
-
 }
