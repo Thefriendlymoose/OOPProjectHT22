@@ -2,29 +2,66 @@ package model.customer;
 
 public class Address implements IAddress{
     private String streetName;
-    private
+    private int streetNumber;
+    private String postalCode;
+    private String cityName;
+    private String country;
+
+    public Address(String streetName, int streetNumber, String postalCode, String cityName, String country){
+        this.streetName = streetName;
+        this.streetNumber = streetNumber;
+        this.postalCode = postalCode;
+        this.cityName = cityName;
+        this.country = country;
+
+    }
     @Override
     public String getStreetName() {
-        return null;
+        return streetName;
     }
 
     @Override
     public int getStreetNumber() {
-        return 0;
+        return streetNumber;
     }
 
     @Override
     public String getPostalCode() {
-        return null;
+        return postalCode;
     }
 
     @Override
     public String getCityName() {
-        return null;
+        return cityName;
     }
 
     @Override
     public String getCountry() {
-        return null;
+        return country;
+    }
+
+    @Override
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
+    }
+
+    @Override
+    public void setStreetNumber(int streetNumber) {
+        this.streetNumber = streetNumber;
+    }
+
+    @Override
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    @Override
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    @Override
+    public void setCountry(String country) {
+        this.country = country;
     }
 }
