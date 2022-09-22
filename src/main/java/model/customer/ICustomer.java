@@ -8,7 +8,7 @@ public interface ICustomer {
     List<ICustomerContact> getContacts();
     IAddress getBillingAddress();
     IAddress getShippingAddress();
-    String getCustomerID();
+    int getCustomerID();
     String getCompanyName();
 
     //setters
