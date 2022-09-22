@@ -1,0 +1,8 @@
+{
+  "userId": 1,
+  "userName": "Olof",
+  "password": "1234",
+  "name": "Olof Persson",
+  "status": true,
+  "permission": ["ORDER", "USER", "SITE", "CUSTOMER", "ARTICLE"]
+}
