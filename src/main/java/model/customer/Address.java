@@ -1,7 +1,5 @@
 package model.customer;
 
-import model.pojos.AddressPojo;
-
 public class Address implements IAddress{
     private AddressPojo pojo;
 

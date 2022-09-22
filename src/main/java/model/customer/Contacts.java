@@ -1,7 +1,5 @@
 package model.customer;
 
-import model.pojos.ContactsPojo;
-
 public class Contacts implements IContacts{
 
     private ContactsPojo pojo;

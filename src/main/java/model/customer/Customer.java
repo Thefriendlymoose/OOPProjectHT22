@@ -1,9 +1,5 @@
 package model.customer;
 
-import model.pojos.AddressPojo;
-import model.pojos.ContactsPojo;
-import model.pojos.CustomerPojo;
-
 public class Customer implements ICustomer{
     private IContacts contactDetails;
     private IAddress address;
@@ -26,12 +22,8 @@ public class Customer implements ICustomer{
     }
 
     @Override
-    public String getCustomerID() {
-        return pojo.getCustomerID();
-    }
+    public String getCustomerID() { return pojo.getCustomerID().toString(); }
 
     @Override
-    public String getName() {
-        return pojo.getCompanyName();
-    }
+    public String getName() { return pojo.getCompanyName(); }
 }
