@@ -1,6 +1,7 @@
 package model.customer;
 
-public interface IContacts {
+public interface ICustomerContact {
+
     String getContactPerson();
     String getPhoneNumber();
     String getEmail();

@@ -1,8 +1,10 @@
 package model.customer;
 
 public interface IAddress {
+
     String getStreetName();
-    String getStreetNumber();
-    String getZipCode();
+    int getStreetNumber();
+    String getPostalCode();
     String getCityName();
+    String getCountry();
 }

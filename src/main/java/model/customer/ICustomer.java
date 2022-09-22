@@ -1,8 +1,12 @@
 package model.customer;
 
+import java.util.List;
+
 public interface ICustomer {
-    IContacts getContacts();
-    IAddress getAddress();
+
+    List<ICustomerContact> getContacts();
+    IAddress getBillingAddress();
+    IAddress getShippingAddress();
     String getCustomerID();
-    String getName();
+    String getCompanyName();
 }
