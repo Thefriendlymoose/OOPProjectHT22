@@ -5,14 +5,14 @@ import java.util.List;
 
 public class Customer implements ICustomer{
 
-    private List<ICustomerContact> customerContacts;
+    private List<ICustomerContact> customerContacts = new ArrayList<>();
     private IAddress billingAddress;
     private IAddress shippingAddress;
     private final int customerId;
     private String companyName;
 
     public Customer(List<ICustomerContact> customerContacts, IAddress billingAddress, IAddress shippingAddress, int customerId, String companyName) {
-        this.customerContacts = customerContacts;
+        this.customerContacts.addAll(customerContacts);
         this.billingAddress = billingAddress;
         this.shippingAddress = shippingAddress;
         this.customerId = customerId;
