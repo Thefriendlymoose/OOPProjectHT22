@@ -13,8 +13,11 @@ public interface ICustomer {
 
     //setters
     void setCompanyName(String companyName);
-    void addCustomerContact(ICustomerContact customerContact);
     void setBillingAddress(IAddress billingAddress);
     void setShippingAddress(IAddress shippingAddress);
+
+    //adding and removing contact info
+    void addCustomerContact(ICustomerContact customerContact);
+    void removeCustomerContact(ICustomerContact customerContact);
 
 }

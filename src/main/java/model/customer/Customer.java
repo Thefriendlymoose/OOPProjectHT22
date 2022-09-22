@@ -39,6 +39,11 @@ public class Customer implements ICustomer{
     }
 
     @Override
+    public void removeCustomerContact(ICustomerContact customerContact) {
+
+    }
+
+    @Override
     public void setBillingAddress(IAddress billingAddress) {
 
     }

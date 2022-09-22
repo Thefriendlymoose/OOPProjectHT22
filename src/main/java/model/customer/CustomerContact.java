@@ -15,4 +15,19 @@ public class CustomerContact implements ICustomerContact{
     public String getEmail() {
         return null;
     }
+
+    @Override
+    public void setContactPerson(String contactPerson) {
+
+    }
+
+    @Override
+    public void setPhoneNumber(String phoneNumber) {
+
+    }
+
+    @Override
+    public void setEmail(String email) {
+
+    }
 }
