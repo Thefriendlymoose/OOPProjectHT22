@@ -13,7 +13,7 @@
 <Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.test.TestController">
     <scene>
         <Scene>
-            <AnchorPane prefHeight="200" prefWidth="200">
+            <AnchorPane stylesheets="@../stylesheet.css" prefHeight="200" prefWidth="200">
             <children>
                <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0">
                   <children>
@@ -30,7 +30,7 @@
                            <Insets bottom="25.0" left="20.0" right="20.0" top="25.0" />
                         </VBox.margin>
                      </TextField>
-                     <Button fx:id="openButton" mnemonicParsing="false" text="Open" />
+                     <Button styleClass="generic-button" fx:id="openButton" mnemonicParsing="false" text="Open" />
                   </children>
                </VBox>
             </children></AnchorPane>
