@@ -35,7 +35,7 @@
                         <Insets bottom="15.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="createButton" maxWidth="150.0" mnemonicParsing="false" style="-fx-background-color: #CBCBCB; -fx-border-color: #5C5C5C; -fx-border-radius: 2; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0.2, 2, 3);" text="Create Article">
+                  <Button onAction="#testPojo" fx:id="createButton" maxWidth="150.0" mnemonicParsing="false" style="-fx-background-color: #CBCBCB; -fx-border-color: #5C5C5C; -fx-border-radius: 2; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0.2, 2, 3);" text="Create Article">
                      <font>
                         <Font size="18.0" />
                      </font>
