@@ -1,4 +1,4 @@
-package controller.persistance;
+package persistance;
 
 import model.Site;
 import model.User;
