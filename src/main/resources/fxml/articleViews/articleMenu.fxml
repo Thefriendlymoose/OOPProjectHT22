@@ -27,7 +27,7 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="openButton" maxWidth="150.0" mnemonicParsing="false" onAction="#openButtonHandler" styleClass="generic-button" text="Open Article">
+                  <Button fx:id="openArticleButton" maxWidth="150.0" mnemonicParsing="false" onAction="#openButtonHandler" styleClass="generic-button" text="Open Article">
                      <font>
                         <Font size="18.0" />
                      </font>
