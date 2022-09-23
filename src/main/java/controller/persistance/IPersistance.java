@@ -1,9 +1,9 @@
 package controller.persistance;
 
-import model.Customer;
 import model.Site;
 import model.User;
 import model.article.Article;
+import model.customer.Customer;
 import model.order.Order;
 
 import java.util.List;
