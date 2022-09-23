@@ -29,7 +29,7 @@ public class TestReadMongoDB {
         Bson filter = Filters.in("ordernumber", "123456");
         FindIterable<Document> documents = collection.find(filter);
         MongoCursor<Document> cursor = documents.cursor();
-            assertTrue("this is a test order".equals(cursor.next().get("description")));
+        assertTrue("this is a test order".equals(cursor.next().get("description")));
 
     }
 
