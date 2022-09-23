@@ -1,6 +1,8 @@
 package model;
 
 
+import model.article.Article;
+
 import java.util.Calendar;
 import java.util.List;
 

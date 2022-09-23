@@ -1,6 +1,6 @@
 package model.pojos;
 
-import model.Article;
+import model.article.Article;
 import org.bson.types.ObjectId;
 
 import java.time.LocalDateTime;
