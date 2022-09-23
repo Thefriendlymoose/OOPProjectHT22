@@ -27,7 +27,7 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="openButton" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="Open User">
+                  <Button onAction="#openButton" fx:id="openButton" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="Open User">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -35,7 +35,7 @@
                         <Insets bottom="15.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="createButton" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="Create User">
+                  <Button onAction="#createButton" fx:id="createButton" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="Create User">
                      <font>
                         <Font size="18.0" />
                      </font>
