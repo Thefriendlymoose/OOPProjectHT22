@@ -9,9 +9,11 @@ public class Customer implements ICustomer{
     private IAddress billingAddress;
     private IAddress shippingAddress;
     private final int customerId;
+    private int companyOrgNumber;
     private String companyName;
 
-    public Customer(List<ICustomerContact> customerContacts, IAddress billingAddress, IAddress shippingAddress, int customerId, String companyName) {
+    public Customer(List<ICustomerContact> customerContacts, IAddress billingAddress, IAddress shippingAddress, int customerId, int companyOrgNumber, String companyName) {
+        this.companyOrgNumber = companyOrgNumber;
         this.customerContacts.addAll(customerContacts);
         this.billingAddress = billingAddress;
         this.shippingAddress = shippingAddress;
@@ -38,6 +40,11 @@ public class Customer implements ICustomer{
     @Override
     public int getCustomerID() {
         return customerId;
+    }
+
+    @Override
+    public int getCompanyOrgNumber() {
+        return companyOrgNumber;
     }
 
     @Override
@@ -68,5 +75,10 @@ public class Customer implements ICustomer{
     @Override
     public void setShippingAddress(IAddress shippingAddress) {
         this.shippingAddress = shippingAddress;
+    }
+
+    @Override
+    public void setCompanyOrgNumber(int companyOrgNumber) {
+        this.companyOrgNumber = companyOrgNumber;
     }
 }

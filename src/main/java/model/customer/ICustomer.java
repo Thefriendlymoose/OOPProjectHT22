@@ -9,12 +9,14 @@ public interface ICustomer {
     IAddress getBillingAddress();
     IAddress getShippingAddress();
     int getCustomerID();
+    int getCompanyOrgNumber();
     String getCompanyName();
 
     //setters
     void setCompanyName(String companyName);
     void setBillingAddress(IAddress billingAddress);
     void setShippingAddress(IAddress shippingAddress);
+    void setCompanyOrgNumber(int companyOrgNumber);
 
     //adding and removing contact info
     void addCustomerContact(ICustomerContact customerContact);
