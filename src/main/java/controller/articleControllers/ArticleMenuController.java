@@ -35,6 +35,14 @@ public class ArticleMenuController {
         stage.show();
     }
 
+    public void createButtonHandler(ActionEvent e) throws IOException {
+        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/articleViews/articleFormModal.fxml")));
+        stage.setTitle("Create Article");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Node)e.getSource()).getScene().getWindow());
+        stage.show();
+    }
+
     public void modalOpenArticleButtonHandler(ActionEvent e) throws IOException {
         Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/articleViews/articleDetailsModal.fxml")));
         stage.setTitle("Article: ");
