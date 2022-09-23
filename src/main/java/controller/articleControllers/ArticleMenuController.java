@@ -34,8 +34,4 @@ public class ArticleMenuController {
         stage.show();
     }
 
-    public void testPojo(){
-        DataBaseAdapter test = DataBaseAdapter.getInstance();
-        test.insertArticlePojo();
-    }
 }

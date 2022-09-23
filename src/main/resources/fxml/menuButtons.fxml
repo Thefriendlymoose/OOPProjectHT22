@@ -23,36 +23,36 @@
         <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
     </padding>
     <children>
-        <Button onAction="#articleBtnHandler" fx:id="menuArticleButton" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" style="-fx-background-color: #CBCBCB; -fx-border-color: #000000; -fx-border-radius: 2;" text="Articles">
+        <Button onAction="#articleBtnHandler" fx:id="menuArticleButton" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="main-menu-button" text="Articles">
             <font>
                 <Font size="24.0" />
             </font></Button>
-        <Button onAction="#orderBtnHandler" fx:id="menuOrderButton" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" style="-fx-background-color: #CBCBCB; -fx-border-color: #000000; -fx-border-radius: 2;" text="Orders" GridPane.columnIndex="1">
+        <Button onAction="#orderBtnHandler" fx:id="menuOrderButton" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="main-menu-button" text="Orders" GridPane.columnIndex="1">
             <font>
                 <Font size="24.0" />
             </font></Button>
 
-        <Button onAction="#customerBtnHandler" fx:id="menuCustomerButton" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" style="-fx-background-color: #CBCBCB; -fx-border-color: #000000; -fx-border-radius: 2;" text="Customers" GridPane.columnIndex="2">
+        <Button onAction="#customerBtnHandler" fx:id="menuCustomerButton" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="main-menu-button" text="Customers" GridPane.columnIndex="2">
             <font>
                 <Font size="24.0" />
             </font></Button>
-        <Button onAction="#userBtnHandler" fx:id="menuUserButton" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" style="-fx-background-color: #CBCBCB; -fx-border-color: #000000; -fx-border-radius: 2;" text="Users" GridPane.columnIndex="3">
+        <Button onAction="#userBtnHandler" fx:id="menuUserButton" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="main-menu-button" text="Users" GridPane.columnIndex="3">
             <font>
                 <Font size="24.0" />
             </font></Button>
-        <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" style="-fx-background-color: #CBCBCB; -fx-border-color: #000000; -fx-border-radius: 2;" text="Analytics" GridPane.rowIndex="1">
+        <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="main-menu-button" text="Analytics" GridPane.rowIndex="1">
             <font>
                 <Font size="24.0" />
             </font></Button>
-        <Button onAction="#siteBtnHandler" fx:id="menuSiteButton" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" style="-fx-background-color: #CBCBCB; -fx-border-color: #000000; -fx-border-radius: 2;" text="Sites" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <Button onAction="#siteBtnHandler" fx:id="menuSiteButton" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="main-menu-button" text="Sites" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <font>
                 <Font size="24.0" />
             </font></Button>
-        <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" style="-fx-background-color: #CBCBCB; -fx-border-color: #000000; -fx-border-radius: 2;" text="Temp" GridPane.columnIndex="2" GridPane.rowIndex="1">
+        <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="main-menu-button" text="Temp" GridPane.columnIndex="2" GridPane.rowIndex="1">
             <font>
                 <Font size="24.0" />
             </font></Button>
-        <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" style="-fx-background-color: #CBCBCB; -fx-border-color: #000000; -fx-border-radius: 2;" text="Temp" GridPane.columnIndex="3" GridPane.rowIndex="1">
+        <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="main-menu-button" text="Temp" GridPane.columnIndex="3" GridPane.rowIndex="1">
             <font>
                 <Font size="24.0" />
             </font></Button>
