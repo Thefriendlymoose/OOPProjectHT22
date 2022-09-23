@@ -4,7 +4,7 @@ public interface IAddress {
 
     //getters
     String getStreetName();
-    int getStreetNumber();
+    String getStreetNumber();
     String getPostalCode();
     String getCityName();
     String getCountry();
@@ -12,7 +12,7 @@ public interface IAddress {
     //setters
 
     void setStreetName(String streetName);
-    void setStreetNumber(int streetNumber);
+    void setStreetNumber(String streetNumber);
     void setPostalCode(String postalCode);
     void setCityName(String cityName);
     void setCountry(String country);

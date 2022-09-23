@@ -2,12 +2,12 @@ package model.customer;
 
 public class Address implements IAddress{
     private String streetName;
-    private int streetNumber;
+    private String streetNumber;
     private String postalCode;
     private String cityName;
     private String country;
 
-    public Address(String streetName, int streetNumber, String postalCode, String cityName, String country){
+    public Address(String streetName, String streetNumber, String postalCode, String cityName, String country){
         this.streetName = streetName;
         this.streetNumber = streetNumber;
         this.postalCode = postalCode;
@@ -21,7 +21,7 @@ public class Address implements IAddress{
     }
 
     @Override
-    public int getStreetNumber() {
+    public String getStreetNumber() {
         return streetNumber;
     }
 
@@ -46,7 +46,7 @@ public class Address implements IAddress{
     }
 
     @Override
-    public void setStreetNumber(int streetNumber) {
+    public void setStreetNumber(String streetNumber) {
         this.streetNumber = streetNumber;
     }
 
