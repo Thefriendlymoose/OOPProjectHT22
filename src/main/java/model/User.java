@@ -1,5 +1,7 @@
 package model;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
 //User(1,"Olofsson","Olof321", "Olof", [USER], true)
