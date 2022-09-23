@@ -23,6 +23,10 @@
     -fx-border-color: #55e8ff;
 }
 
+.locked-form-field:disabled {
+    -fx-opacity: 1.0;
+}
+
 .main-menu-button {
     -fx-background-color: #CBCBCB;
     -fx-border-color: #000000;
@@ -56,4 +60,20 @@
 
 .generic-form-label {
     -fx-font-size: 18px;
+}
+
+.combo-box-base {
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, white;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-background-radius: 3px, 3px, 2px, 1px;
+}
+
+.combo-box-base:disabled {
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, white;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-background-radius: 3px, 3px, 2px, 1px;
+}
+
+.combo-box-base:disabled > * {
+    -fx-opacity: 1.0;
 }
