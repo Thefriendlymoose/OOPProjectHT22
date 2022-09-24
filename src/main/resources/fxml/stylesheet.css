@@ -77,3 +77,9 @@
 .combo-box-base:disabled > * {
     -fx-opacity: 1.0;
 }
+
+.generic-card {
+    -fx-background-color: #dcdcdc;
+    -fx-border-color: #000000;
+    -fx-border-radius: 2;
+}

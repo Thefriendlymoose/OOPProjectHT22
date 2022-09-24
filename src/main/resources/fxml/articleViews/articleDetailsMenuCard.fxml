@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxWidth="600.0" prefHeight="200.0" prefWidth="600.0" styleClass="generic-card" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.articleControllers.ArticleMenuCardController">
+   <children>
+      <VBox layoutX="266.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <Label fx:id="cardNumberLabel" styleClass="generic-form-label" text="Article Number: " />
+            <Label fx:id="cardNameLabel" styleClass="generic-form-label" text="Article Name: " />
+            <Label fx:id="cardDescriptionLabel" styleClass="generic-form-label" text="Article Description: " wrapText="true" />
+            <Button fx:id="cardGoToButton" mnemonicParsing="false" styleClass="generic-button" text="Go To Article" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

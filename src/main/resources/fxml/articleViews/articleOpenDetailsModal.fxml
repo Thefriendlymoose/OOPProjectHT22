@@ -10,10 +10,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-<Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.articleControllers.ArticleMenuController">
+<Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.articleControllers.ArticleOpenDetailsModalController">
     <scene>
         <Scene>
-            <AnchorPane stylesheets="@../stylesheet.css" prefHeight="200" prefWidth="200">
+            <AnchorPane prefHeight="200" prefWidth="200" stylesheets="@../stylesheet.css">
             <children>
                <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0">
                   <children>
@@ -25,12 +25,17 @@
                            <Insets top="25.0" />
                         </VBox.margin>
                      </Label>
-                     <TextField fx:id="modalSearchField">
+                     <TextField fx:id="modalSearchField" promptText="Article Number" styleClass="generic-field">
                         <VBox.margin>
-                           <Insets bottom="25.0" left="20.0" right="20.0" top="25.0" />
+                           <Insets bottom="10.0" left="20.0" right="20.0" top="25.0" />
                         </VBox.margin>
                      </TextField>
-                     <Button onAction="#modalOpenArticleButtonHandler" styleClass="generic-button" fx:id="modalOpenArticleButton" mnemonicParsing="false" text="Open" />
+                     <Label fx:id="warningLabel" maxWidth="180.0" wrapText="true">
+                        <VBox.margin>
+                           <Insets bottom="10.0" />
+                        </VBox.margin>
+                     </Label>
+                     <Button fx:id="modalOpenArticleButton" mnemonicParsing="false" onAction="#modalOpenArticleButtonHandler" styleClass="generic-button" text="Open" />
                   </children>
                </VBox>
             </children></AnchorPane>

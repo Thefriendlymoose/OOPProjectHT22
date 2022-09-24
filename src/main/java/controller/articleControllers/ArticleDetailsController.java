@@ -1,7 +1,12 @@
 package controller.articleControllers;
 
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+import model.article.Article;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
 
@@ -25,20 +30,35 @@ public class ArticleDetailsController {
     @FXML
     Button editButton, closeButton;
 
+
+    private Article art;
+
     @FXML
     public void initialize(){
 
-        // TODO Ask model for data user is asking for and present by populating the fields
+        Platform.runLater(() -> {
+            detailsTitleLabel.setText(detailsTitleLabel.getText() + art.getArticleId());
+            numberTextField.setText(String.valueOf(art.getArticleId()));
+            nameTextField.setText(art.getArticleName());
+            descriptionTextArea.setText(art.getDescription());
+            categoryComboBox.setValue(art.getCategory());
+            statusComboBox.setValue(art.getStatus());
+            categoryComboBox.getItems().setAll(ArticleCategory.values());
+            statusComboBox.getItems().setAll(ArticleStatus.values());
+        });
 
-        detailsTitleLabel.setText(detailsTitleLabel.getText() + "test");
-        numberTextField.setText("123456789");
-        nameTextField.setText("Test Article");
-        descriptionTextArea.setText("This is a test description of the test article, it is 0x0x0");
-        categoryComboBox.setValue(ArticleCategory.Office);
-        statusComboBox.setValue(ArticleStatus.Active);
-        categoryComboBox.getItems().setAll(ArticleCategory.values());
-        statusComboBox.getItems().setAll(ArticleStatus.values());
+    }
 
+    public void setArticle(Article art){
+        this.art = art;
+    }
+
+    public void editHandler() {
+
+    }
+
+    public void closeHandler(ActionEvent e) {
+        ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
     }
 
     //TODO handlers for when user clicks edit and close buttons

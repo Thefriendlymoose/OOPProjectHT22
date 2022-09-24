@@ -1,11 +1,23 @@
 package persistance;
 
+import com.google.gson.Gson;
+import com.mongodb.internal.operation.SyncOperations;
 import model.Site;
 import model.User;
 import model.article.Article;
+import model.article.ArticleCategory;
+import model.article.ArticleStatus;
 import model.customer.Customer;
 import model.order.Order;
 
+import java.io.Reader;
+import java.net.SocketAddress;
+import java.net.SocketOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 // TODO find a way to simplify the interface
@@ -14,6 +26,8 @@ import java.util.List;
 
 public class JSONDao implements IPersistance{
 
+
+
     @Override
     public void save(Customer customer) {
 
@@ -21,6 +35,11 @@ public class JSONDao implements IPersistance{
 
     @Override
     public void save(Article article) {
+        Gson gson = new Gson();
+
+        String json = gson.toJson(article);
+
+        System.out.println(json);
 
     }
 
@@ -71,7 +90,23 @@ public class JSONDao implements IPersistance{
 
     @Override
     public List<Article> loadAllArticles() {
-        return null;
+        List<Article> articles;
+
+        Gson gson = new Gson();
+
+        try {
+            Reader reader = Files.newBufferedReader(Path.of("src/main/resources/article.json"));
+
+            articles = Arrays.asList(gson.fromJson(reader, Article[].class));
+
+            return articles;
+
+        } catch (Exception e){
+            System.out.println(e);
+            return null;
+        }
+
+
     }
 
     @Override
@@ -96,6 +131,10 @@ public class JSONDao implements IPersistance{
 
     @Override
     public Article findOneArticle(int articleId) {
+        if(articleId == 1){
+            Article test = new Article(1, "test article", "hello i am a test artcile", ArticleCategory.Office, ArticleStatus.Active);
+            return test;
+        }
         return null;
     }
 
