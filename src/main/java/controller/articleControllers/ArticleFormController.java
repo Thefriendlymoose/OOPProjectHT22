@@ -1,9 +1,14 @@
 package controller.articleControllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
+
+import java.util.Optional;
 
 public class ArticleFormController {
 
@@ -43,7 +48,17 @@ public class ArticleFormController {
 
     }
 
-    public void onCancel(){
-        // TODO prompt user ask if sure
+    public void onCancel(ActionEvent e){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Look, a Confirmation Dialog");
+        alert.setContentText("Are you ok with this?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.CANCEL){
+            System.out.println("Clicked Cancel");
+        } else {
+            ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+        }
     }
 }

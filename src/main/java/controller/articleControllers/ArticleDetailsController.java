@@ -3,12 +3,16 @@ package controller.articleControllers;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.article.Article;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
+
+import java.io.IOException;
 
 
 public class ArticleDetailsController {
@@ -53,7 +57,19 @@ public class ArticleDetailsController {
         this.art = art;
     }
 
-    public void editHandler() {
+    public void editHandler(ActionEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/articleViews/articleEditFormModal.fxml"));
+        Stage stage = loader.load();
+
+        ArticleEditFormController cont = loader.getController();
+        cont.setArticle(art);
+
+        stage.setTitle("Open Article");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Stage) ((Node)e.getSource()).getScene().getWindow()).getOwner());
+        stage.show();
+
+        ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
 
     }
 

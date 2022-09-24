@@ -1,9 +1,16 @@
 package controller.articleControllers;
 
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+import model.article.Article;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
+
+import java.util.Optional;
 
 public class ArticleEditFormController {
 
@@ -25,17 +32,25 @@ public class ArticleEditFormController {
     @FXML
     Button saveButton, cancelButton;
 
+    private Article art;
 
     @FXML
     public void initialize(){
-        titleLabel.setText("Create Article");
 
-        // TODO: Need the model to autogenerate the article number/ID
-        numberTextField.setText("123451234");
+        Platform.runLater(() -> {
+            titleLabel.setText("Edit Article: " + art.getArticleId());
+            numberTextField.setText(String.valueOf(art.getArticleId()));
+            nameTextField.setText(art.getArticleName());
+            descriptionTextArea.setText(art.getDescription());
+            categoryComboBox.setValue(art.getCategory());
+            statusComboBox.setValue(art.getStatus());
+            categoryComboBox.getItems().setAll(ArticleCategory.values());
+            statusComboBox.getItems().setAll(ArticleStatus.values());
+        });
+    }
 
-        categoryComboBox.getItems().setAll(ArticleCategory.values());
-        statusComboBox.getItems().setAll(ArticleStatus.values());
-
+    public void setArticle(Article art) {
+        this.art = art;
     }
 
     public void onSave(){
@@ -43,7 +58,17 @@ public class ArticleEditFormController {
 
     }
 
-    public void onCancel(){
-        // TODO prompt user ask if sure
+    public void onCancel(ActionEvent e){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("All changes made will be cancelled");
+        alert.setContentText("Are you ok with this?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.CANCEL){
+            System.out.println("Clicked Cancel");
+        } else {
+            ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+        }
     }
 }
