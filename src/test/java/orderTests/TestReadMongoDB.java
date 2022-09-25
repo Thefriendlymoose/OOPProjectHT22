@@ -1,4 +1,4 @@
-package order.tests;
+package orderTests;
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCursor;

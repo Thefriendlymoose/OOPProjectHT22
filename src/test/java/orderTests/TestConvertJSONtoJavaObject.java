@@ -1,7 +1,6 @@
-package order.tests;
+package orderTests;
 
 import com.google.gson.Gson;
-//import org.junit.jupiter.api.Order;
 import model.order.Order;
 import model.order.OrderStatus;
 import org.junit.jupiter.api.Test;
