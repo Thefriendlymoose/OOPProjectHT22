@@ -5,6 +5,7 @@ import model.article.Article;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 public class Order {
     private int userId;
@@ -90,5 +91,32 @@ public class Order {
 
     public void setArticles(List<Article> articles) {
         this.articles = articles;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return userId == order.userId && orderNumber == order.orderNumber && customerId == order.customerId && priority == order.priority && orderStatus == order.orderStatus && Objects.equals(orderDate, order.orderDate) && Objects.equals(deadline, order.deadline) && Objects.equals(articles, order.articles);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, orderNumber, customerId, orderStatus, priority, orderDate, deadline, articles);
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "userId=" + userId +
+                ", orderNumber=" + orderNumber +
+                ", customerId=" + customerId +
+                ", orderStatus=" + orderStatus +
+                ", priority=" + priority +
+                ", orderDate=" + orderDate +
+                ", deadline=" + deadline +
+                ", articles=" + articles +
+                '}';
     }
 }

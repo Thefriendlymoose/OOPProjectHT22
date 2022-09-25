@@ -1,24 +1,24 @@
 {
   "orders": [
     {
-      "objectId": 3281,
-      "orderNumber": 8312,
-      "customerId": 21931,
+      "userId": 11,
+      "orderNumber": 11,
+      "customerId": 11,
       "orderStatus": "ACTIVE",
       "priority": true,
       "orderDate": null,
       "deadline": null,
-      "articles": [null]
+      "articles": []
     },
     {
-      "objectId": 6223,
-      "orderNumber": 3913,
-      "customerId": 1436,
+      "userId": 22,
+      "orderNumber": 22,
+      "customerId": 22,
       "orderStatus": "ACTIVE",
       "priority": true,
       "orderDate": null,
       "deadline": null,
-      "articles": [null]
+      "articles": []
     }
   ]
 }
