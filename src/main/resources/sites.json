@@ -1,0 +1,121 @@
+{
+  "Sites" : [
+    {   "siteId" : 1,
+      "name" : "Göteborg - Hisingen",
+      "address" : {
+        "street" : "Transportgatan 10",
+        "postalCode" : "422 23",
+        "city" : "Hisings backa",
+        "country" : "Sweden"
+      },
+      "maxCap" : 20000,
+      "inventory" : [
+        {
+          "siteArticleId" : 1,
+          "siteId" : 1,
+          "articleId" : 30,
+          "amount" : 5
+        },
+        {
+          "siteArticleId" : 2,
+          "siteId" : 1,
+          "articleId" : 31,
+          "amount" : 3
+        },
+        {
+          "siteArticleId" : 3,
+          "siteId" : 1,
+          "articleId" : 32,
+          "amount" : 55
+        }
+      ],
+      "employees" : [
+        {
+          "employeeId" : 1,
+          "firstName" : "Ulla",
+          "lastName" : "Ullman"
+        },
+        {
+          "employeeId" : 2,
+          "firstName" : "Elof",
+          "lastName" : "Testman"
+        }
+      ]
+    },
+    {   "siteId" : 2,
+      "name" : "Göteborg - Askim",
+      "address" : {
+        "street" : "Datavägen 5",
+        "postalCode" : "436 32",
+        "city" : "Askim",
+        "country" : "Sweden"
+      },
+      "maxCap" : 5000,
+      "inventory" : [
+        {
+          "siteArticleId" : 4,
+          "siteId" : 2,
+          "articleId" : 20,
+          "amount" : 50
+        },
+        {
+          "siteArticleId" : 5,
+          "siteId" : 2,
+          "articleId" : 21,
+          "amount" : 30
+        },
+        {
+          "siteArticleId" : 6,
+          "siteId" : 2,
+          "articleId" : 22,
+          "amount" : 44
+        }
+      ],
+      "employees" : [
+        {
+          "employeeId" : 3,
+          "firstName" : "Per",
+          "lastName" : "Provman"
+        }
+      ]
+    },
+    {   "siteId" : 3,
+      "name" : "Jönköping",
+      "address" : {
+        "street" : "Lagervägen 5",
+        "postalCode" : "555 92",
+        "city" : "Jönköping",
+        "country" : "Sweden"
+      },
+      "maxCap" : 40000,
+      "inventory" : [
+        {
+          "siteArticleId" : 7,
+          "siteId" : 3,
+          "articleId" : 2,
+          "amount" : 15
+        },
+        {
+          "siteArticleId" : 8,
+          "siteId" : 3,
+          "articleId" : 3,
+          "amount" : 13
+        },
+        {
+          "siteArticleId" : 9,
+          "siteId" : 3,
+          "articleId" : 4,
+          "amount" : 15
+        }
+      ],
+      "employees" : [
+        {
+          "employeeId" : 4,
+          "firstName" : "Saleh",
+          "lastName" : "Salah"
+        }
+      ]
+    }
+  ]
+}
+
