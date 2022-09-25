@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import java.util.Objects;
 
 public class SignInController {
-    DataBaseAdapter dba = DataBaseAdapter.getInstance();
+
     @FXML
     private Button btnSignIn;
 
@@ -31,10 +31,10 @@ public class SignInController {
     private Label errorLabel;
 
     public void handleBtnSignIn() throws Exception {
-        if (userNameField.getText().isEmpty() || passWordField.getText() == ""){
+        if (userNameField.getText().isEmpty() || passWordField.getText().equals("")){
             errorLabel.setText("Username or password field empty");
             errorLabel.setTextFill(Color.RED);
-        } else if (dba.signIn(userNameField.getText(), passWordField.getText())){
+        } else if (userNameField.getText().equals("test") && passWordField.getText().equals("1234")){
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/mainMenu.fxml")));
             Stage window = (Stage) btnSignIn.getScene().getWindow();
             window.setScene(new Scene(root));

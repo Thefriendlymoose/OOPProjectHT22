@@ -1,6 +1,6 @@
 package persistance;
 
-import model.Site;
+import model.site.Site;
 import model.User;
 import model.article.Article;
 import model.customer.Customer;

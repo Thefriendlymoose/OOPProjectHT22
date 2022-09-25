@@ -11,7 +11,7 @@ public class User {
     private String userName;
     private String password;
     private String name;
-    private boolean Status;
+    private boolean status;
     private List<Permission> permissions;
 
     public User(int userId, String userName, String password, String name, boolean status, List<Permission> permissions) {
@@ -19,7 +19,7 @@ public class User {
         this.userName = userName;
         this.password = password;
         this.name = name;
-        Status = status;
+        this.status = status;
         this.permissions = permissions;
     }
 
@@ -56,11 +56,11 @@ public class User {
     }
 
     public boolean isStatus() {
-        return Status;
+        return status;
     }
 
     public void setStatus(boolean status) {
-        Status = status;
+        this.status = status;
     }
 
     public List<Permission> getPermissions() {

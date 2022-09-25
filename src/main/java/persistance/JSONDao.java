@@ -1,11 +1,9 @@
 package persistance;
 
 import com.google.gson.Gson;
-import model.Site;
+import model.site.Site;
 import model.User;
 import model.article.Article;
-import model.article.ArticleCategory;
-import model.article.ArticleStatus;
 import model.customer.Customer;
 import model.order.Order;
 
@@ -86,9 +84,9 @@ public class JSONDao implements IPersistance{
         try {
             Reader reader = Files.newBufferedReader(Path.of("src/main/resources/article.json"));
 
-            List<Article> articles = Arrays.asList(gson.fromJson(reader, Article[].class));
+            System.out.println("yo");
 
-            return articles;
+            return Arrays.asList(gson.fromJson(reader, Article[].class));
 
         } catch (Exception e){
             System.out.println(e);
@@ -100,7 +98,16 @@ public class JSONDao implements IPersistance{
 
     @Override
     public List<Site> loadAllSites() {
-        return null;
+        try {
+            Reader reader = Files.newBufferedReader(Path.of("src/main/resources/sites.json"));
+
+            return Arrays.asList(gson.fromJson(reader, Site[].class));
+
+        } catch (Exception e){
+            System.out.println(e);
+            return null;
+        }
+
     }
 
     @Override

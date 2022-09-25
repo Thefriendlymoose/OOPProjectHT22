@@ -1,4 +1,6 @@
-package model;
+package model.site;
+
+import model.User;
 
 import java.util.List;
 
@@ -63,4 +65,14 @@ public class Site {
     public void setEmployees(List<User> employees) {
         this.employees = employees;
     }
+
+    public int getTotalAmountItems(){
+        int sum = 0;
+        for(SiteArticle sa : siteArticles){
+            sum += sa.getAmount();
+        }
+
+        return sum;
+    }
+
 }

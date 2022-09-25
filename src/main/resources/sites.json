@@ -1,0 +1,74 @@
+[
+  {
+    "siteId": 1,
+    "siteName": "Göteborg",
+    "siteAddress": "Arendal",
+    "maxCapacity": 500,
+    "siteArticles": [
+      {
+        "siteArticleId": 1,
+        "article": 1,
+        "site": 1,
+        "amount": 3
+      }
+    ],
+    "employees": [
+      {
+        "userId": 1,
+        "userName": "Olof",
+        "password": "1234",
+        "name": "Olof Persson",
+        "status": true,
+        "permission": ["ORDER", "USER", "SITE", "CUSTOMER", "ARTICLE"]
+      }
+    ]
+  },
+  {
+    "siteId": 2,
+    "siteName": "Stockholm",
+    "siteAddress": "Norvik",
+    "maxCapacity": 600,
+    "siteArticles": [
+      {
+        "siteArticleId": 1,
+        "article": 1,
+        "site": 1,
+        "amount": 3
+      }
+    ],
+    "employees": [
+      {
+        "userId": 1,
+        "userName": "Olof",
+        "password": "1234",
+        "name": "Olof Persson",
+        "status": true,
+        "permissions": ["ORDER", "USER", "SITE", "CUSTOMER", "ARTICLE"]
+      }
+    ]
+  },
+  {
+    "siteId": 3,
+    "siteName": "Malmö",
+    "siteAddress": "Turning torse",
+    "maxCapacity": 700,
+    "siteArticles": [
+      {
+        "siteArticleId": 1,
+        "article": 1,
+        "site": 1,
+        "amount": 3
+      }
+    ],
+    "employees": [
+      {
+        "userId": 1,
+        "userName": "Olof",
+        "password": "1234",
+        "name": "Olof Persson",
+        "status": true,
+        "permissions": ["ORDER", "USER", "SITE", "CUSTOMER", "ARTICLE"]
+      }
+    ]
+  }
+]
