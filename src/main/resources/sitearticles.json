@@ -1,0 +1,32 @@
+[
+    {
+        "SiteId": 1,
+        "ArticleId": 1,
+        "Quantity": 3
+    },
+    {
+        "SiteId": 1,
+        "ArticleId": 2,
+        "Quantity": 10
+    },
+    {
+        "SiteId": 2,
+        "ArticleId": 3,
+        "Quantity": 12
+    },
+    {
+        "SiteId": 3,
+        "ArticleId": 4,
+        "Quantity": 40
+    },
+    {
+        "SiteId": 3,
+        "ArticleId": 5,
+        "Quantity": 15
+    },
+    {
+        "SiteId": 2,
+        "ArticleId": 6,
+        "Quantity": 10
+    }
+]
