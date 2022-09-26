@@ -1,0 +1,27 @@
+[
+  {
+    "SiteUserId": 1,
+    "SiteId": 1,
+    "UserId": 1
+  },
+  {
+    "SiteUserId": 2,
+    "SiteId": 1,
+    "UserId": 2
+  },
+  {
+    "SiteUserId": 3,
+    "SiteId": 2,
+    "UserId": 3
+  },
+  {
+    "SiteUserId": 4,
+    "SiteId": 3,
+    "UserId": 4
+  },
+  {
+    "SiteUserId": 5,
+    "SiteId": 3,
+    "UserId": 5
+  }
+]
