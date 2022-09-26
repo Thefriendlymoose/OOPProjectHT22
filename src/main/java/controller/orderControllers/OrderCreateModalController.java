@@ -1,16 +1,20 @@
 package controller.orderControllers;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.site.Site;
 import persistance.IPersistance;
 import persistance.JSONDao;
 
-import java.util.List;
+import java.io.IOException;
+import java.util.Objects;
 
 public class OrderCreateModalController {
 
@@ -46,5 +50,22 @@ public class OrderCreateModalController {
             System.out.println(current.getSiteName());
         });
     }
+
+    public void onContinue(ActionEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderFormModal.fxml")));
+        Stage stage = loader.load();
+
+        OrderFormModalController cont = loader.getController();
+
+        cont.setSite(current);
+
+        stage.setTitle("Create Article");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Stage) ((Node)e.getSource()).getScene().getWindow()).getOwner());
+        stage.show();
+        ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+    }
+
+
 
 }

@@ -46,7 +46,7 @@
                            <Font size="24.0" />
                         </font>
                      </Label>
-                     <Button fx:id="continueButton" mnemonicParsing="false" text="Continue" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="14" GridPane.rowSpan="2" />
+                     <Button onAction="#onContinue" fx:id="continueButton" mnemonicParsing="false" text="Continue" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="14" GridPane.rowSpan="2" />
                      <ListView fx:id="siteListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="12" />
                   </children>
                   <padding>
