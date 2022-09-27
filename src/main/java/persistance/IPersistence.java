@@ -8,7 +8,7 @@ import model.order.Order;
 
 import java.util.List;
 
-public interface IPersistance {
+public interface IPersistence {
     void save(Customer customer);
     void save(Article article);
     void save(Site site);

@@ -10,7 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.site.Site;
-import persistance.IPersistance;
+import persistance.IPersistence;
 import persistance.JSONDao;
 
 import java.io.IOException;
@@ -25,7 +25,7 @@ public class OrderCreateModalController {
     private ListView<Site> siteListView;
 
     private Site current;
-    private IPersistance jsonDao = new JSONDao();
+    private IPersistence jsonDao = new JSONDao();
 
     public void initialize(){
 
