@@ -34,13 +34,13 @@
                                  <Label styleClass="generic-form-label" text="Order Number" />
                                  <TextField fx:id="numberTextField" disable="true" promptText="Order Number" styleClass="generic-field, locked-form-field" />
                                  <Label styleClass="generic-form-label" text="Priority" />
-                                 <ComboBox fx:id="priorityComboBox" maxWidth="1.7976931348623157E308" promptText="Choose Priority" styleClass="generic-field" />
+                                 <ComboBox fx:id="priorityComboBox" maxWidth="1.7976931348623157E308" onAction="#setPriorityComboBox" promptText="Choose Priority" styleClass="generic-field" />
                                  <Label styleClass="generic-form-label" text="Status" />
-                                 <ComboBox fx:id="statusComboBox" maxWidth="1.7976931348623157E308" promptText="Choose Status" styleClass="generic-field" />
+                                 <ComboBox fx:id="statusComboBox" maxWidth="1.7976931348623157E308" onAction="#setStatusComboBox" promptText="Choose Status" styleClass="generic-field" />
                                  <Label styleClass="generic-form-label" text="Deadline" />
-                                 <DatePicker fx:id="orderDeadlineDatePicker" />
+                                 <DatePicker fx:id="orderDeadlineDatePicker" onAction="#deadlineDatePicker" />
                                  <Label styleClass="generic-form-label" text="Add OrderRows" />
-                                 <Button onAction="#onAddOrderRowButton" fx:id="addOrderRowButton" mnemonicParsing="false" styleClass="generic-button" text="Click to add" />
+                                 <Button fx:id="addOrderRowButton" mnemonicParsing="false" onAction="#onAddOrderRowButton" styleClass="generic-button" text="Click to add" />
                               </children>
                            </VBox>
                            <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="454.0" prefWidth="235.0">
@@ -65,7 +65,7 @@
                                  <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                               </padding>
                            </Button>
-                           <Button onAction="#onCancel" fx:id="cancelButton" mnemonicParsing="false" styleClass="generic-button, form-cancel-button" text="Cancel">
+                           <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancel" styleClass="generic-button, form-cancel-button" text="Cancel">
                               <padding>
                                  <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                               </padding>

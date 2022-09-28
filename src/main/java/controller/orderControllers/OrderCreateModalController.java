@@ -59,7 +59,7 @@ public class OrderCreateModalController {
 
         cont.setSite(current);
 
-        stage.setTitle("Create Article");
+        stage.setTitle("Create Order");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Stage) ((Node)e.getSource()).getScene().getWindow()).getOwner());
         stage.show();

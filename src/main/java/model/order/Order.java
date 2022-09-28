@@ -17,6 +17,8 @@ public class Order {
     private Calendar deadline;
     private List<Article> articles;
 
+    public static int CURRENTORDER = 0; //senare "CurrentOrderNumber = orderList.size + 1;"
+
     public Order(int userId, int orderNumber, int customerId, OrderStatus orderStatus, boolean priority, Calendar orderDate, Calendar deadline, List<Article> articles) {
 
         this.userId = userId;

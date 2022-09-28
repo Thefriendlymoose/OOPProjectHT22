@@ -8,13 +8,18 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.order.DateFactory;
 import model.order.OrderStatus;
 import model.orderV2.OrderRow;
 import model.site.Site;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Objects;
 import java.util.Optional;
+
+import static model.order.Order.CURRENTORDER;
 
 public class OrderFormModalController {
 
@@ -25,13 +30,40 @@ public class OrderFormModalController {
     private TextField numberTextField;
 
     @FXML
-    private ComboBox priorityComboBox;
+    private ComboBox<Boolean> priorityComboBox;
+
+
+    public void setPriorityComboBox(){
+        System.out.println("Priority: "+ priorityComboBox.getValue());
+    }
 
     @FXML
     private ComboBox<OrderStatus> statusComboBox;
 
+    public void setStatusComboBox(){
+        System.out.println("Status: "+ statusComboBox.getValue());
+    }
+
     @FXML
     private DatePicker orderDeadlineDatePicker;
+
+    public void deadlineDatePicker(){
+//        public void deadlineDatePicker(ActionEvent event){
+//        Controller ska anropa detta, men inte utföra. Flyttar sen.
+
+        int year = orderDeadlineDatePicker.getValue().getYear();
+        int month = orderDeadlineDatePicker.getValue().getMonthValue();
+        int day = orderDeadlineDatePicker.getValue().getDayOfMonth();
+        DateFactory dateFactory = new DateFactory();
+
+        GregorianCalendar orderDate = dateFactory.createDate();
+
+        System.out.println("OrderDate: " + orderDate.get(Calendar.YEAR) +"-"+ orderDate.get(Calendar.MONTH) +"-"+orderDate.get(Calendar.DATE) );
+
+        GregorianCalendar deadline = dateFactory.createDeadline(year,month,day);
+
+        System.out.println("Deadline: " + deadline.get(Calendar.YEAR) +"-"+ deadline.get(Calendar.MONTH) +"-"+deadline.get(Calendar.DATE) );
+    }
 
     @FXML
     private Button addOrderRowButton, saveButton, cancelButton;
@@ -68,6 +100,19 @@ public class OrderFormModalController {
         } else {
             ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
         }
+    }
+
+    @FXML
+    public void initialize(){
+
+        Boolean [] priorities = {true,false};
+        priorityComboBox.getItems().addAll(priorities);
+
+        numberTextField.setText(Integer.toString(CURRENTORDER));
+
+//        hard coded, should iterate over all enums in enum class
+        OrderStatus [] orderStatuses = {OrderStatus.ACTIVE,OrderStatus.CANCELED,OrderStatus.FINISHED};
+        statusComboBox.getItems().addAll(orderStatuses);
     }
 
 }
