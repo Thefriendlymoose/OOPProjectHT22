@@ -17,7 +17,7 @@ import java.util.List;
 //  Using the DAO Pattern (Data Access Object)
 
 
-public class JSONDao implements IPersistance{
+public class JSONDao implements IPersistence {
 
     private Gson gson = new Gson();
 
