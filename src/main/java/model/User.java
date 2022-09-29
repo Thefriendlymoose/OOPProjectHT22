@@ -70,4 +70,29 @@ public class User {
     public void setPermissions(List<Permission> permissions) {
         this.permissions = permissions;
     }
+
+    private Boolean allowed(Permission perm){
+        if (this.permissions.contains(Permission.ALL))
+            return true;
+        return  (this.permissions.contains(perm));
+    }
+    public Boolean allowedUser(){
+        return allowed(Permission.USER);
+    }
+    public Boolean allowedCustomer(){
+        return allowed(Permission.CUSTOMER);
+    }
+
+    public Boolean allowedSite(){
+        return allowed(Permission.SITE);
+    }
+
+    public Boolean allowedOrder(){
+        return allowed(Permission.ORDER);
+    }
+    public Boolean allowedArticle(){
+        return allowed(Permission.ARTICLE);
+    }
+
+
 }

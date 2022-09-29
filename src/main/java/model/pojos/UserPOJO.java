@@ -1,11 +1,11 @@
 package model.pojos;
-import model.Roles;
+import model.Role;
 
 public class UserPOJO {
     private String userName;
     private String passWord;
-    private Roles role;
-    public UserPOJO(String userName, String passWord, Roles role) {
+    private Role role;
+    public UserPOJO(String userName, String passWord, Role role) {
         this.userName = userName;
         this.passWord = passWord;
         this.role = role;
@@ -27,11 +27,11 @@ public class UserPOJO {
         this.passWord = passWord;
     }
 
-    public Roles getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(Roles role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 }

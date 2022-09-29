@@ -5,5 +5,6 @@ public enum Permission {
     USER,
     SITE,
     CUSTOMER,
-    ARTICLE
+    ARTICLE,
+    ALL
 }
