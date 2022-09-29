@@ -8,18 +8,18 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.article.Article;
 import model.order.DateFactory;
+import model.order.Order;
 import model.order.OrderStatus;
 import model.orderV2.OrderRow;
 import model.site.Site;
 
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 import static model.order.Order.CURRENTORDER;
+import model.order.DateFactory;
 
 public class OrderFormModalController {
 
@@ -32,6 +32,30 @@ public class OrderFormModalController {
     @FXML
     private ComboBox<Boolean> priorityComboBox;
 
+    private DateFactory dateFactory;
+
+    private List<Article> articles;
+
+    public void saveOrder(){
+
+        int year = orderDeadlineDatePicker.getValue().getYear();
+        int month = orderDeadlineDatePicker.getValue().getMonthValue();
+        int day = orderDeadlineDatePicker.getValue().getDayOfMonth();
+
+        GregorianCalendar deadline = new GregorianCalendar();
+        deadline.set(year,month,day);
+
+//        System.out.println(deadline);
+
+        List<Order> orders = new ArrayList<>();
+        Order tempOrder = new Order(9,9,9, OrderStatus.ACTIVE,true,new GregorianCalendar(),new GregorianCalendar(),articles);
+        orders.add(tempOrder);
+//
+        Order savedOrder = new Order(1337,CURRENTORDER,8888,statusComboBox.getValue(),priorityComboBox.getValue(),new GregorianCalendar(),deadline, articles);
+        orders.add(savedOrder);
+//        System.out.println("Deadline: " + deadline.get(Calendar.YEAR) +"-"+ deadline.get(Calendar.MONTH) +"-"+deadline.get(Calendar.DATE) );
+        System.out.println(orders);
+    }
 
     public void setPriorityComboBox(){
         System.out.println("Priority: "+ priorityComboBox.getValue());
@@ -54,15 +78,16 @@ public class OrderFormModalController {
         int year = orderDeadlineDatePicker.getValue().getYear();
         int month = orderDeadlineDatePicker.getValue().getMonthValue();
         int day = orderDeadlineDatePicker.getValue().getDayOfMonth();
-        DateFactory dateFactory = new DateFactory();
+//        DateFactory dateFactory = new DateFactory();
 
-        GregorianCalendar orderDate = dateFactory.createDate();
+//        GregorianCalendar orderDate = dateFactory.createDate();
 
-        System.out.println("OrderDate: " + orderDate.get(Calendar.YEAR) +"-"+ orderDate.get(Calendar.MONTH) +"-"+orderDate.get(Calendar.DATE) );
+//        System.out.println("OrderDate: " + orderDate.get(Calendar.YEAR) +"-"+ orderDate.get(Calendar.MONTH) +"-"+orderDate.get(Calendar.DATE) );
+        System.out.println("Deadline: " + year +"-"+ month +"-"+ day );
 
-        GregorianCalendar deadline = dateFactory.createDeadline(year,month,day);
+//        dateFactory.createDeadline(year,month,day);
 
-        System.out.println("Deadline: " + deadline.get(Calendar.YEAR) +"-"+ deadline.get(Calendar.MONTH) +"-"+deadline.get(Calendar.DATE) );
+//        System.out.println("Deadline: " + deadline.get(Calendar.YEAR) +"-"+ deadline.get(Calendar.MONTH) +"-"+deadline.get(Calendar.DATE) );
     }
 
     @FXML

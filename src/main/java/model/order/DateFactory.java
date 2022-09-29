@@ -3,7 +3,7 @@ package model.order;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class DateFactory {
+public abstract class DateFactory {
 
     public GregorianCalendar createDate(){
         return new GregorianCalendar();
@@ -17,5 +17,12 @@ public class DateFactory {
         return(dateDeadline);
     }
 
+    public GregorianCalendar createDeadline(int y, int m, int d, GregorianCalendar gc){
+//        GregorianCalendar dateDeadline = new GregorianCalendar();
+
+        gc.set(y,m,d);
+
+        return(gc);
+    }
 
 }
