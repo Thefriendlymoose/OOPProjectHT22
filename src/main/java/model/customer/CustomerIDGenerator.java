@@ -9,6 +9,7 @@ public class CustomerIDGenerator implements IDGenerator<Integer>{
     private Random r = new Random();
     private final Integer MAX = (int) Math.pow(2, 32) - 1;
 
+    // TODO check that ID is unique
     @Override
     public Integer generateID() {
         return r.nextInt(MAX);
