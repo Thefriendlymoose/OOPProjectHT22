@@ -3,7 +3,7 @@ package model.order;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public abstract class DateFactory {
+public class DateFactory {
 
     public GregorianCalendar createDate(){
         return new GregorianCalendar();
