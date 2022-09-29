@@ -9,7 +9,6 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.article.Article;
-import model.order.DateFactory;
 import model.order.Order;
 import model.order.OrderStatus;
 import model.orderV2.OrderRow;
@@ -19,7 +18,6 @@ import java.io.IOException;
 import java.util.*;
 
 import static model.order.Order.CURRENTORDER;
-import model.order.DateFactory;
 
 public class OrderFormModalController {
 
@@ -32,7 +30,7 @@ public class OrderFormModalController {
     @FXML
     private ComboBox<Boolean> priorityComboBox;
 
-    private DateFactory dateFactory;
+//    private DateFactory dateFactory;
 
     private List<Article> articles;
 
@@ -48,10 +46,11 @@ public class OrderFormModalController {
 //        System.out.println(deadline);
 
         List<Order> orders = new ArrayList<>();
-        Order tempOrder = new Order(9,9,9, OrderStatus.ACTIVE,true,new GregorianCalendar(),new GregorianCalendar(),articles);
+        Order tempOrder = new Order(0,0,0, OrderStatus.ACTIVE,true,new GregorianCalendar(),new GregorianCalendar(),articles);
         orders.add(tempOrder);
-//
-        Order savedOrder = new Order(1337,CURRENTORDER,8888,statusComboBox.getValue(),priorityComboBox.getValue(),new GregorianCalendar(),deadline, articles);
+
+
+        Order savedOrder = new Order(1,CURRENTORDER,1,statusComboBox.getValue(),priorityComboBox.getValue(),new GregorianCalendar(),deadline, articles);
         orders.add(savedOrder);
 //        System.out.println("Deadline: " + deadline.get(Calendar.YEAR) +"-"+ deadline.get(Calendar.MONTH) +"-"+deadline.get(Calendar.DATE) );
         System.out.println(orders);
