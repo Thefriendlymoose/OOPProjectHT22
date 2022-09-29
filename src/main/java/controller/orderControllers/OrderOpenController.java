@@ -1,7 +1,6 @@
 package controller.orderControllers;
 
 import database.DataBaseAdapter;
-import database.DataBaseConnection;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -9,7 +8,7 @@ import javafx.stage.Stage;
 import org.bson.Document;
 
 
-public class OpenOrderController {
+public class OrderOpenController {
 
     @FXML
     private TextField searchField;

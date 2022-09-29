@@ -23,16 +23,20 @@ public class OrderMenuController {
     }
 
     public void openButton(ActionEvent e) throws Exception{
-        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/openOrderModal.fxml")));
-        stage.setTitle("My modal window");
+        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderOpenModal.fxml")));
+        stage.setTitle("Open Order");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow() );
         stage.show();
 
     }
 
-    public void createButton() throws Exception{
-        System.out.println("CREATE");
+    public void createButton(ActionEvent e) throws Exception{
+        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderCreateModal.fxml")));
+        stage.setTitle("Create Order: Choose Site");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Node) e.getSource()).getScene().getWindow());
+        stage.show();
     }
 
     public void listButton() throws Exception{

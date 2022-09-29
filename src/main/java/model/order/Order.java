@@ -4,6 +4,7 @@ package model.order;
 import model.article.Article;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,12 +14,13 @@ public class Order {
     private int customerId;
     private OrderStatus orderStatus;
     private boolean priority;
-    private Calendar orderDate;
-    private Calendar deadline;
+    private GregorianCalendar orderDate;
+    private GregorianCalendar deadline;
     private List<Article> articles;
 
-    public Order(int userId, int orderNumber, int customerId, OrderStatus orderStatus, boolean priority, Calendar orderDate, Calendar deadline, List<Article> articles) {
+    public static int CURRENTORDER = 0; //senare "CurrentOrderNumber = orderList.size + 1;"
 
+    public Order(int userId, int orderNumber, int customerId, OrderStatus orderStatus, boolean priority, GregorianCalendar orderDate, GregorianCalendar deadline, List<Article> articles) {
         this.userId = userId;
         this.orderNumber = orderNumber;
         this.customerId = customerId;
@@ -33,65 +35,6 @@ public class Order {
         return userId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public int getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(int orderNumber) {
-        this.orderNumber = orderNumber;
-    }
-
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-
-    public OrderStatus getOrderStatus() {
-        return orderStatus;
-    }
-
-    public void setOrderStatus(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
-    public boolean isPriority() {
-        return priority;
-    }
-
-    public void setPriority(boolean priority) {
-        this.priority = priority;
-    }
-
-    public Calendar getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Calendar orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public Calendar getDeadline() {
-        return deadline;
-    }
-
-    public void setDeadline(Calendar deadline) {
-        this.deadline = deadline;
-    }
-
-    public List<Article> getArticles() {
-        return articles;
-    }
-
-    public void setArticles(List<Article> articles) {
-        this.articles = articles;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -114,8 +57,8 @@ public class Order {
                 ", customerId=" + customerId +
                 ", orderStatus=" + orderStatus +
                 ", priority=" + priority +
-                ", orderDate=" + orderDate +
-                ", deadline=" + deadline +
+                ", orderDate=" + orderDate.get(Calendar.YEAR) + "-" + orderDate.get(Calendar.MONTH) + "-" + orderDate.get(Calendar.DATE)  +
+                ", deadline=" + deadline.get(Calendar.YEAR) + "-" + deadline.get(Calendar.MONTH) + "-" + deadline.get(Calendar.DATE)  +
                 ", articles=" + articles +
                 '}';
     }
