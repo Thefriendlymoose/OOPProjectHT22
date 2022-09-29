@@ -62,6 +62,10 @@ public class Site {
         return employees;
     }
 
+    public void addSiteEmployee(User user){
+        this.employees.add(user);
+    }
+
     public void setEmployees(List<User> employees) {
         this.employees = employees;
     }
