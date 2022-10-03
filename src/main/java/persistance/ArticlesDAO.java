@@ -47,7 +47,10 @@ public final class ArticlesDAO implements IPersistenceNew<Article> {
 
     @Override
     public void Save(Article article) {
-
+        if(!articles.containsKey(article.getArticleId())) {
+            // @todo Borde vara long konsekvent överallt
+            articles.put((long)article.getArticleId(), article);
+        }
     }
 
     @Override
