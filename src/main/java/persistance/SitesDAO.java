@@ -10,12 +10,14 @@ import java.util.List;
 import java.util.Map;
 
 public class SitesDAO implements IPersistenceNew<Site> {
+    private final String sitesFil="";
 
     private Map<Long, Site> sites = new HashMap<>();
     private long nextFreeId =0;
 
     // Skicka in json-filen som argument?
-    // @todo Gör singleton, privat konstruktor
+    // @todo Gör singleton, privat konstruktor?
+    // @todo måste ha referens till ArticlesDAO och UsersDAO?
     private SitesDAO(){
 
     }
