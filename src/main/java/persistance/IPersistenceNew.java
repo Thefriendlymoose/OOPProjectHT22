@@ -6,9 +6,9 @@ import java.util.Map;
 //@todo refaktorisera namnet senare
 
 public interface IPersistenceNew<T> {
-    void Save(T o);
+    void Save(T o); // Svara med boolean?
     List<T> getAll();
-    Map<Long, T> getAllMap();
-    long getNextId(T o);
+    Map<Long, T> getAllMap(); // K,V?
+    long getNextId();
     T findById(long id);
 }
