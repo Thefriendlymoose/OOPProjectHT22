@@ -9,7 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.site.Site;
-import persistance.IPersistance;
+import persistance.IPersistence;
 import persistance.JSONDao;
 
 import java.io.IOException;
@@ -23,7 +23,7 @@ public class SiteMenuController {
     @FXML
     private VBox siteCardHolderVBox;
 
-    private IPersistance testDao = new JSONDao();
+    private IPersistence testDao = new JSONDao();
 
 
     public void initialize() throws IOException {

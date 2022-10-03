@@ -9,16 +9,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.article.Article;
-import model.article.ArticleCategory;
-import persistance.IPersistance;
+import persistance.IPersistence;
 import persistance.JSONDao;
 
 import java.io.IOException;
@@ -32,7 +28,7 @@ public class ArticleMenuController {
     @FXML
     private VBox articlesCardHolder;
 
-    private IPersistance testDao = new JSONDao();
+    private IPersistence testDao = new JSONDao();
 
     public void initialize() throws IOException {
         List<Article> articles = testDao.loadAllArticles();
