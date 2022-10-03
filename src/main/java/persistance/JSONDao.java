@@ -84,8 +84,6 @@ public class JSONDao implements IPersistence {
         try {
             Reader reader = Files.newBufferedReader(Path.of("src/main/resources/article.json"));
 
-            System.out.println("yo");
-
             return Arrays.asList(gson.fromJson(reader, Article[].class));
 
         } catch (Exception e){
