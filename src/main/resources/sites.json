@@ -1,0 +1,20 @@
+[
+  {
+    "siteId": 1,
+    "siteName": "Göteborg",
+    "siteAddress": "Arendal",
+    "maxCapacity": 500
+  },
+  {
+    "siteId": 2,
+    "siteName": "Stockholm",
+    "siteAddress": "Norvik",
+    "maxCapacity": 600
+  },
+  {
+    "siteId": 3,
+    "siteName": "Malmö",
+    "siteAddress": "Turning Torso",
+    "maxCapacity": 700
+  }
+]
