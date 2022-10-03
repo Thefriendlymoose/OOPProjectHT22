@@ -30,9 +30,13 @@ public class OrderFormModalController {
     @FXML
     private ComboBox<Boolean> priorityComboBox;
 
+    private List<Article> articles;
+
+    List<Order> orders = new ArrayList<>();
+//    Order tempOrder = new Order(0,0,0, OrderStatus.ACTIVE,true,new GregorianCalendar(),new GregorianCalendar(),articles);
 //    private DateFactory dateFactory;
 
-    private List<Article> articles;
+
 
     public void saveOrder(){
 
@@ -44,14 +48,12 @@ public class OrderFormModalController {
         deadline.set(year,month,day);
 
 //        System.out.println(deadline);
-
-        List<Order> orders = new ArrayList<>();
-        Order tempOrder = new Order(0,0,0, OrderStatus.ACTIVE,true,new GregorianCalendar(),new GregorianCalendar(),articles);
-        orders.add(tempOrder);
-
+        numberTextField.setText(Integer.toString(orders.size()));
+//        List<Order> orders = new ArrayList<>();
 
         Order savedOrder = new Order(1,CURRENTORDER,1,statusComboBox.getValue(),priorityComboBox.getValue(),new GregorianCalendar(),deadline, articles);
         orders.add(savedOrder);
+        numberTextField.setText(Integer.toString(orders.size()));
 //        System.out.println("Deadline: " + deadline.get(Calendar.YEAR) +"-"+ deadline.get(Calendar.MONTH) +"-"+deadline.get(Calendar.DATE) );
         System.out.println(orders);
     }
@@ -132,7 +134,8 @@ public class OrderFormModalController {
         Boolean [] priorities = {true,false};
         priorityComboBox.getItems().addAll(priorities);
 
-        numberTextField.setText(Integer.toString(CURRENTORDER));
+        numberTextField.setText(Integer.toString(0));
+
 
 //        hard coded, should iterate over all enums in enum class
         OrderStatus [] orderStatuses = {OrderStatus.ACTIVE,OrderStatus.CANCELED,OrderStatus.FINISHED};
