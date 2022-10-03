@@ -97,7 +97,7 @@ public class JSONDao implements IPersistence {
     @Override
     public List<Site> loadAllSites() {
         try {
-            Reader reader = Files.newBufferedReader(Path.of("src/main/resources/sites.json"));
+            Reader reader = Files.newBufferedReader(Path.of("src/main/resources/sites_old.json"));
 
             return Arrays.asList(gson.fromJson(reader, Site[].class));
 
