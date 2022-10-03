@@ -1,0 +1,38 @@
+[
+    {
+        "SiteArticleId": 1,
+        "SiteId": 1,
+        "ArticleId": 1,
+        "Quantity": 3
+    },
+    {
+        "SiteArticleId": 2,
+        "SiteId": 1,
+        "ArticleId": 2,
+        "Quantity": 10
+    },
+    {
+        "SiteArticleId": 3,
+        "SiteId": 2,
+        "ArticleId": 3,
+        "Quantity": 12
+    },
+    {
+        "SiteArticleId": 4,
+        "SiteId": 3,
+        "ArticleId": 4,
+        "Quantity": 40
+    },
+    {
+        "SiteArticleId": 5,
+        "SiteId": 3,
+        "ArticleId": 5,
+        "Quantity": 15
+    },
+    {
+        "SiteArticleId": 6,
+        "SiteId": 2,
+        "ArticleId": 6,
+        "Quantity": 10
+    }
+]

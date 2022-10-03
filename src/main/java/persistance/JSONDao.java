@@ -82,7 +82,7 @@ public class JSONDao implements IPersistence {
     @Override
     public List<Article> loadAllArticles() {
         try {
-            Reader reader = Files.newBufferedReader(Path.of("src/main/resources/article.json"));
+            Reader reader = Files.newBufferedReader(Path.of("src/main/resources/article_old.json"));
 
             System.out.println("yo");
 

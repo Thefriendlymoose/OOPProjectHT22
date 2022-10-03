@@ -11,4 +11,5 @@ public interface IPersistenceNew<T> {
     Map<Long, T> getAllMap(); // K,V?
     long getNextId();
     T findById(long id);
+
 }
