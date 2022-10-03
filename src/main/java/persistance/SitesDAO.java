@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SitesDAO implements IPersistenceNew<Site> {
-    private final String sitesFil="";
+    private final String sitesFile="";
 
     private Map<Long, Site> sites = new HashMap<>();
     private long nextFreeId =0;
