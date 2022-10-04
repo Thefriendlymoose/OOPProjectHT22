@@ -3,16 +3,16 @@ package model.customer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Customer implements ICustomer{
+public class Customer{
 
-    private List<ICustomerContact> customerContacts = new ArrayList<>();
-    private IAddress billingAddress;
-    private IAddress shippingAddress;
-    private final int customerId;
+    private List<CustomerContact> customerContacts = new ArrayList<>();
+    private Address billingAddress;
+    private Address shippingAddress;
+    private final long customerId;
     private int companyOrgNumber;
     private String companyName;
 
-    public Customer(List<ICustomerContact> customerContacts, IAddress billingAddress, IAddress shippingAddress, int customerId, int companyOrgNumber, String companyName) {
+    public Customer(List<CustomerContact> customerContacts, Address billingAddress, Address shippingAddress, long customerId, int companyOrgNumber, String companyName) {
         this.companyOrgNumber = companyOrgNumber;
         this.customerContacts.addAll(customerContacts);
         this.billingAddress = billingAddress;
@@ -22,62 +22,53 @@ public class Customer implements ICustomer{
     }
 
 
-    @Override
-    public List<ICustomerContact> getContacts() {
+    // getters
+    public List<CustomerContact> getContacts() {
         return customerContacts;
     }
 
-    @Override
-    public IAddress getBillingAddress() {
+    public Address getBillingAddress() {
         return billingAddress;
     }
 
-    @Override
-    public IAddress getShippingAddress() {
+    public Address getShippingAddress() {
         return shippingAddress;
     }
 
-    @Override
-    public int getCustomerID() {
+    public long getCustomerID() {
         return customerId;
     }
 
-    @Override
     public int getCompanyOrgNumber() {
         return companyOrgNumber;
     }
 
-    @Override
     public String getCompanyName() {
         return companyName;
     }
 
-    @Override
+    // setters
+
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
 
-    @Override
-    public void addCustomerContact(ICustomerContact customerContact) {
+    public void addCustomerContact(CustomerContact customerContact) {
         customerContacts.add(customerContact);
     }
 
-    @Override
-    public void removeCustomerContact(ICustomerContact customerContact) {
+    public void removeCustomerContact(CustomerContact customerContact) {
         customerContacts.remove(customerContact);
     }
 
-    @Override
-    public void setBillingAddress(IAddress billingAddress) {
+    public void setBillingAddress(Address billingAddress) {
         this.billingAddress = billingAddress;
     }
 
-    @Override
-    public void setShippingAddress(IAddress shippingAddress) {
+    public void setShippingAddress(Address shippingAddress) {
         this.shippingAddress = shippingAddress;
     }
 
-    @Override
     public void setCompanyOrgNumber(int companyOrgNumber) {
         this.companyOrgNumber = companyOrgNumber;
     }

@@ -16,6 +16,7 @@ public class Address{
 
     }
 
+    // getters
     public String getStreetName() {
         return streetName;
     }
@@ -35,6 +36,8 @@ public class Address{
     public String getCountry() {
         return country;
     }
+
+    // setters
 
     public void setStreetName(String streetName) {
         this.streetName = streetName;
