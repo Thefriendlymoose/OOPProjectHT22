@@ -79,6 +79,5 @@ public class ArticleDetailsController {
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
     }
 
-    //TODO handlers for when user clicks edit and close buttons
 
 }

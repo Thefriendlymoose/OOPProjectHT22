@@ -22,7 +22,7 @@ public class SiteDetailsSiteArticleCardController {
 
     public void initialize(){
         Platform.runLater(() -> {
-            cardNameLabel.setText(cardNameLabel.getText() + siteArticle.getArticle());
+            cardNameLabel.setText(cardNameLabel.getText() + siteArticle.getArticle().getArticleName());
             cardAmountLabel.setText(cardAmountLabel.getText() + siteArticle.getAmount());
 
             cardGoToButton.setOnAction(actionEvent -> {

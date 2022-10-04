@@ -13,6 +13,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import model.User;
+import persistence.IPersistence;
+import persistence.UserDAO;
 
 import java.util.Objects;
 
@@ -30,22 +33,36 @@ public class SignInController {
     @FXML
     private Label errorLabel;
 
+    private IPersistence<User> users = UserDAO.getInstance();
+
     public void handleBtnSignIn() throws Exception {
         if (userNameField.getText().isEmpty() || passWordField.getText().equals("")){
             errorLabel.setText("Username or password field empty");
             errorLabel.setTextFill(Color.RED);
-        } else if (userNameField.getText().equals("test") && passWordField.getText().equals("1234")){
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/mainMenu.fxml")));
-            Stage window = (Stage) btnSignIn.getScene().getWindow();
-            window.setScene(new Scene(root));
-            errorLabel.setText("Logging in...");
-            errorLabel.setTextFill(Color.GREEN);
+
+
+
         } else {
-            errorLabel.setText("Username or password incorrect");
-            errorLabel.setTextFill(Color.RED);
+
+            boolean ok = false;
+
+            for (User user : users.getAll()){
+                if (userNameField.getText().equals(user.getUserName()) && passWordField.getText().equals(user.getPassword())){
+                    ok = true;
+                    break;
+                }
+            }
+
+            if (ok){
+                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/mainMenu.fxml")));
+                Stage window = (Stage) btnSignIn.getScene().getWindow();
+                window.setScene(new Scene(root));
+                errorLabel.setText("Logging in...");
+                errorLabel.setTextFill(Color.GREEN);
+            } else {
+                errorLabel.setText("Username or password incorrect");
+                errorLabel.setTextFill(Color.RED);
+            }
         }
-
-
-
     }
 }

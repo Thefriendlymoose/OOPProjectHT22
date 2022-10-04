@@ -6,6 +6,7 @@ import model.article.Article;
 import model.customer.Customer;
 import model.site.Site;
 
+import java.time.LocalDateTime;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -16,14 +17,14 @@ public class Order {
     private Customer customer;
     private OrderStatus orderStatus;
     private boolean priority;
-    private GregorianCalendar orderDate;
-    private GregorianCalendar deadline;
+    private LocalDateTime orderDate;
+    private LocalDateTime deadline;
     private List<OrderRow> orderRows;
     private Site site;
 
     public static int CURRENTORDER = 0; //senare "CurrentOrderNumber = orderList.size + 1;"
 
-    public Order(User user, long orderNumber, Customer customer, OrderStatus orderStatus, boolean priority, GregorianCalendar orderDate, GregorianCalendar deadline, List<OrderRow> orderRows, Site site) {
+    public Order(User user, long orderNumber, Customer customer, OrderStatus orderStatus, boolean priority, LocalDateTime orderDate, LocalDateTime deadline, List<OrderRow> orderRows, Site site) {
         this.user = user;
         this.orderNumber = orderNumber;
         this.customer = customer;
@@ -55,11 +56,11 @@ public class Order {
         return priority;
     }
 
-    public GregorianCalendar getOrderDate() {
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
-    public GregorianCalendar getDeadline() {
+    public LocalDateTime getDeadline() {
         return deadline;
     }
 
