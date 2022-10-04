@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
+<Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+    <scene>
+        <Scene>
+            <AnchorPane prefHeight="600.0" prefWidth="500.0" stylesheets="@../stylesheet.css">
+                <children>
+                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <children>
+                            <Label fx:id="detailsTitleLabel" styleClass="generic-form-label" text="Article: ">
+                                <VBox.margin>
+                                    <Insets bottom="10.0" top="20.0" />
+                                </VBox.margin>
+                            </Label>
+                            <VBox spacing="5.0">
+                                <children>
+                                    <Label fx:id="numberLabel" styleClass="generic-form-label" text="Article Number" />
+                                    <TextField fx:id="numberTextField" disable="true" promptText="Article Number" styleClass="generic-field, locked-form-field" />
+                                    <Label fx:id="nameLabel" styleClass="generic-form-label" text="Article Name" />
+                                    <TextField fx:id="nameTextField" disable="true" promptText="Article Name" styleClass="generic-field, locked-form-field" />
+                                    <Label fx:id="descriptionLabel" styleClass="generic-form-label" text="Description" />
+                                    <TextArea fx:id="descriptionTextArea" disable="true" prefWidth="200.0" promptText="Article Description" styleClass="generic-field, locked-form-field" />
+                                    <Label fx:id="categoryLabel" styleClass="generic-form-label" text="Category" />
+                                    <ComboBox fx:id="categoryComboBox" disable="true" maxWidth="1.7976931348623157E308" promptText="Choose Category" styleClass="generic-field, locked-form-field" />
+                                    <Label fx:id="statusLabel" styleClass="generic-form-label" text="Status" />
+                                    <ComboBox fx:id="statusComboBox" disable="true" maxWidth="1.7976931348623157E308" promptText="Choose Status" styleClass="generic-field, locked-form-field" />
+                                </children>
+                                <VBox.margin>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+                                </VBox.margin>
+                            </VBox>
+                            <HBox alignment="CENTER" spacing="20.0">
+                                <children>
+                                    <Button  fx:id="editButton" mnemonicParsing="false" styleClass="generic-button" text="Edit">
+                                        <padding>
+                                            <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                                        </padding>
+                                    </Button>
+                                    <Button  fx:id="closeButton" mnemonicParsing="false" styleClass="generic-button" text="Close">
+                                        <padding>
+                                            <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                                        </padding>
+                                    </Button>
+                                </children>
+                                <VBox.margin>
+                                    <Insets bottom="20.0" top="20.0" />
+                                </VBox.margin>
+                            </HBox>
+                        </children>
+                    </VBox>
+                </children></AnchorPane>
+        </Scene>
+    </scene>
+</Stage>

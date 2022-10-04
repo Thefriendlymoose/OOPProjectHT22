@@ -45,13 +45,11 @@ public class UserMenuController {
         window.setScene(new Scene(root));
     }
     public void createButton(ActionEvent e) throws Exception{
-        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/userViews/CreateUserMenu.fxml")));
-        stage.setTitle("My modal window");
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(((Node)e.getSource()).getScene().getWindow() );
-        stage.show();
-
-    }
+            Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/userViews/createUserMenu.fxml")));
+            stage.setTitle("My modal window");
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(((Node)e.getSource()).getScene().getWindow() );
+            stage.show();}
 
     public void openButton(ActionEvent e) throws Exception{
         Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/userViews/openUser.fxml")));

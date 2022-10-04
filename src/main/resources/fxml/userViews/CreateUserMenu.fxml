@@ -13,9 +13,9 @@
 <Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.userControllers.OpenUserController">
     <scene>
         <Scene>
-            <AnchorPane stylesheets="@../stylesheet.css" prefHeight="400" prefWidth="200">
+            <AnchorPane stylesheets="@../stylesheet.css" prefHeight="600" prefWidth="600">
                 <children>
-                    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0">
+                    <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="100.0">
                         <children>
                             <Label text="Username">
                                 <font>
@@ -37,7 +37,17 @@
                                     <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                                 </VBox.margin>
                             </TextField>
-                            <Label text="Name">
+                            <Label text="First Name">
+                                <font>
+                                    <Font size="15.0" />
+                                </font>
+                            </Label>
+                            <TextField fx:id="">
+                                <VBox.margin>
+                                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                                </VBox.margin>
+                            </TextField>
+                            <Label text="Last Name">
                                 <font>
                                     <Font size="15.0" />
                                 </font>
