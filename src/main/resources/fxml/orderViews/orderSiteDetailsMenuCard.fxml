@@ -9,9 +9,9 @@
    <children>
       <VBox layoutX="266.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <Label fx:id="cardNumberLabel" styleClass="generic-form-label" text="Site Name: " />
-            <Label fx:id="cardNameLabel" styleClass="generic-form-label" text="Number of Articles: " />
-            <Label fx:id="cardDescriptionLabel" styleClass="generic-form-label" text="Number of Orders: " wrapText="true" />
+            <Label fx:id="cardSiteNameLabel" styleClass="generic-form-label" text="Site Name: " />
+            <Label fx:id="cardNumberArticlesLabel" styleClass="generic-form-label" text="Number of Articles: " />
+            <Label fx:id="cardNumberEmployeesLabel" styleClass="generic-form-label" text="Number of Employees: " wrapText="true" />
             <Button fx:id="cardGoToButton" mnemonicParsing="false" styleClass="generic-button" text="Go To Site???" />
          </children>
       </VBox>
