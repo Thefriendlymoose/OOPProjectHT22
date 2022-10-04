@@ -10,11 +10,11 @@ import com.google.gson.Gson;
 import model.article.Article;
 
 public final class ArticlesDAO implements IPersistenceNew<Article> {
-    private static ArticlesDAO instance=null;
+    private static ArticlesDAO instance;
     private final String articlesFile="src/main/resources/articles.json";
-    private Map<Long, Article> articles=new HashMap<>();
+    private Map<Long, Article> articles = new HashMap<>();
     private Gson gson = new Gson();
-    private long nextFreeId=0;
+    private long nextFreeId = 0;
 
     private ArticlesDAO() {
         try {
@@ -25,10 +25,9 @@ public final class ArticlesDAO implements IPersistenceNew<Article> {
                         aj.getCategory(), aj.getStatus());
                 articles.put( Long.valueOf(article.getArticleId()), article);
             }
-            if(articles.size()>0) {
-                nextFreeId=Collections.max(articles.keySet());
+            if(articles.size() > 0) {
+                nextFreeId = Collections.max(articles.keySet()) + 1;
             }
-            nextFreeId++;
         } catch (Exception e){
             System.out.println(e);
         }
@@ -46,14 +45,13 @@ public final class ArticlesDAO implements IPersistenceNew<Article> {
     }
 
     @Override
-    public void Save(Article article) {
+    public void save(Article article) {
 
     }
 
     @Override
     public List<Article> getAll() {
-        List<Article> articlesList = new ArrayList<>(this.articles.values());
-        return articlesList;
+        return new ArrayList<>(this.articles.values());
     }
 
     @Override

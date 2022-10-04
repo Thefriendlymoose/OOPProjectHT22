@@ -23,7 +23,7 @@ public class SitesDAO implements IPersistenceNew<Site> {
     }
 
     @Override
-    public void Save(Site site) {
+    public void save(Site site) {
 
     }
 

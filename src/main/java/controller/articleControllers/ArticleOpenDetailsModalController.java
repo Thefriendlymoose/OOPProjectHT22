@@ -9,7 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.article.Article;
+import persistance.ArticlesDAO;
 import persistance.IPersistence;
+import persistance.IPersistenceNew;
 import persistance.JSONDao;
 
 import java.io.IOException;
@@ -23,14 +25,14 @@ public class ArticleOpenDetailsModalController {
     @FXML
     private Label warningLabel;
 
-    private IPersistence testDao = new JSONDao();
+    private IPersistenceNew<Article> testDao = ArticlesDAO.getInstance();
     public void modalOpenArticleButtonHandler(ActionEvent e) throws IOException {
-        int id;
+        long id;
 
         try {
-            id = Integer.parseInt(modalSearchField.getText());
+            id = Long.parseLong(modalSearchField.getText());
 
-            Article testArt = testDao.findOneArticle(id);
+            Article testArt = testDao.findById(id);
 
             if(testArt == null){
                 warningLabel.setText("Can't find article");

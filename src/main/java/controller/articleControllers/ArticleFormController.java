@@ -7,6 +7,8 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
+import model.article.ArticlesFacade;
+import persistance.ArticlesDAO;
 
 import java.util.Optional;
 
@@ -30,21 +32,23 @@ public class ArticleFormController {
     @FXML
     Button saveButton, cancelButton;
 
+    private ArticlesFacade facade = new ArticlesFacade();
 
     @FXML
     public void initialize(){
         titleLabel.setText("Create Article");
 
         // TODO: Need the model to autogenerate the article number/ID
-        numberTextField.setText("123451234");
+        numberTextField.setText(String.valueOf(facade.getNextId()));
 
-        categoryComboBox.getItems().setAll(ArticleCategory.values());
-        statusComboBox.getItems().setAll(ArticleStatus.values());
+        categoryComboBox.getItems().setAll(facade.getCategories());
+        statusComboBox.getItems().setAll(facade.getStatuses());
 
     }
 
     public void onSave(){
         // TODO: Need to check all fields, then create new object from data?
+
 
     }
 

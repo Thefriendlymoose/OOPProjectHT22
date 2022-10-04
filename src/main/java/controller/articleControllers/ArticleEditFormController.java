@@ -42,10 +42,10 @@ public class ArticleEditFormController {
             numberTextField.setText(String.valueOf(art.getArticleId()));
             nameTextField.setText(art.getArticleName());
             descriptionTextArea.setText(art.getDescription());
-            categoryComboBox.setValue(art.getCategory());
-            statusComboBox.setValue(art.getStatus());
             categoryComboBox.getItems().setAll(ArticleCategory.values());
             statusComboBox.getItems().setAll(ArticleStatus.values());
+            categoryComboBox.setValue(art.getCategory());
+            statusComboBox.setValue(art.getStatus());
         });
     }
 
