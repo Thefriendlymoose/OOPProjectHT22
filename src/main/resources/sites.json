@@ -3,18 +3,42 @@
     "siteId": 1,
     "siteName": "Göteborg",
     "siteAddress": "Arendal",
-    "maxCapacity": 500
+    "maxCapacity": 500,
+    "siteArticles": [
+      {
+        "SiteId": 1,
+        "ArticleId": 1,
+        "Quantity": 3
+      }
+    ],
+    "siteUsers": [1]
   },
   {
     "siteId": 2,
     "siteName": "Stockholm",
     "siteAddress": "Norvik",
-    "maxCapacity": 600
+    "maxCapacity": 600,
+    "siteArticles": [
+      {
+        "SiteId": 2,
+        "ArticleId": 6,
+        "Quantity": 9
+      }
+    ],
+    "siteUsers": [2]
   },
   {
     "siteId": 3,
     "siteName": "Malmö",
     "siteAddress": "Turning Torso",
-    "maxCapacity": 700
+    "maxCapacity": 700,
+    "siteArticles": [
+      {
+        "SiteId": 3,
+        "ArticleId": 6,
+        "Quantity": 9
+      }
+    ],
+    "siteUsers": [3]
   }
 ]

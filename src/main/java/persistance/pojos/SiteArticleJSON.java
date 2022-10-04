@@ -1,21 +1,11 @@
-package persistance;
+package persistance.pojos;
 
 public class SiteArticleJSON {
-    private int siteArticleId;
     private int articleId;
-    private int siteId;
     private int amount;
 
     public SiteArticleJSON() {
 
-    }
-
-    public int getSiteArticleId() {
-        return siteArticleId;
-    }
-
-    public void setSiteArticleId(int siteArticleId) {
-        this.siteArticleId = siteArticleId;
     }
 
     public int getArticleId() {
@@ -24,14 +14,6 @@ public class SiteArticleJSON {
 
     public void setArticle(int articleId) {
         this.articleId = articleId;
-    }
-
-    public int getSite() {
-        return siteId;
-    }
-
-    public void setSite(int site) {
-        this.siteId = site;
     }
 
     public int getAmount() {

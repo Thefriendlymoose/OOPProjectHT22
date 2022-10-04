@@ -1,5 +1,5 @@
-[{
-  "Customers" : [{
+[
+  {
     "customerId" : 69420,
     "companyName" : "Foo Bar and Sons",
     "companyOrgNumber" : 55603434,
@@ -26,5 +26,5 @@
       "phone" : "+46 420 69 69",
       "email" : "bossman@foo.com"
     }]
-  }]
-}]
+  }
+]

@@ -7,14 +7,14 @@ import java.util.List;
 //User(1,"Olofsson","Olof321", "Olof", [USER], true)
 public class User {
 
-    private int userId;
+    private long userId;
     private String userName;
     private String password;
     private String name;
     private boolean status;
     private List<Permission> permissions;
 
-    public User(int userId, String userName, String password, String name, boolean status, List<Permission> permissions) {
+    public User(long userId, String userName, String password, String name, boolean status, List<Permission> permissions) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
@@ -23,11 +23,11 @@ public class User {
         this.permissions = permissions;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 

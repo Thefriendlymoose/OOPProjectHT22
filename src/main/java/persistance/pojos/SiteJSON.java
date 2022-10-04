@@ -1,4 +1,4 @@
-package persistance;
+package persistance.pojos;
 
 import model.User;
 
@@ -6,20 +6,23 @@ import java.util.List;
 
 public class SiteJSON {
 
-    private int siteId;
+    private long siteId;
     private String siteName;
     private String siteAddress;
     private int maxCapacity;
+    private List<SiteArticleJSON> siteArticles;
+    private List<Long> siteUsers;
+
 
     /* Tom konstruktor eftersom den ändå inte körs */
     public SiteJSON(){
 
     }
-    public int getSiteId() {
+    public long getSiteId() {
         return siteId;
     }
 
-    public void setSiteId(int siteId) {
+    public void setSiteId(long siteId) {
         this.siteId = siteId;
     }
 
@@ -47,6 +50,19 @@ public class SiteJSON {
         return maxCapacity;
     }
 
+    public List<SiteArticleJSON> getSiteArticles() {
+        return siteArticles;
+    }
 
+    public void setSiteArticles(List<SiteArticleJSON> siteArticles) {
+        this.siteArticles = siteArticles;
+    }
 
+    public List<Long> getSiteUsers() {
+        return siteUsers;
+    }
+
+    public void setSiteUsers(List<Long> siteUsers) {
+        this.siteUsers = siteUsers;
+    }
 }

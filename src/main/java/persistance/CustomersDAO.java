@@ -7,12 +7,13 @@ import java.nio.file.Path;
 import java.util.*;
 import model.customer.Customer;
 
-import model.customer.ICustomerContact;
+import model.customer.CustomerContact;
+import persistance.pojos.CustomerJSON;
 
 public final class CustomersDAO implements IPersistenceNew<Customer> {
-    private static CustomersDAO instance=null;
-    private final String customersFile="src/main/resources/customers.json";
-    private Map<Long, Customer> customers=new HashMap<>();
+    private static CustomersDAO instance = null;
+    private final String customersFile = "src/main/resources/customers.json";
+    private Map<Long, Customer> customers = new HashMap<>();
     private Gson gson = new Gson();
     private long nextFreeId=0;
 
@@ -21,17 +22,16 @@ public final class CustomersDAO implements IPersistenceNew<Customer> {
             Reader reader = Files.newBufferedReader(Path.of(customersFile));
             List<CustomerJSON> customerJSONS = Arrays.asList(gson.fromJson(reader, CustomerJSON[].class));
             for(CustomerJSON cj : customerJSONS) {
-                List<ICustomerContact> customerContacts = Arrays.asList(cj.customerContacts);
+                List<CustomerContact> customerContacts = Arrays.asList(cj.getCustomerContacts());
 
 
-                Customer customer =new Customer(customerContacts, cj.billingAddress, cj.shippingAddress,
-                        cj.customerId, cj.companyOrgNumber, cj.companyName);
-                customers.put( Long.valueOf(cj.customerId), customer);
+                Customer customer = new Customer(customerContacts, cj.getBillingAddress(), cj.getShippingAddress(),
+                        cj.getCustomerId(), cj.getCompanyOrgNumber(), cj.getCompanyName());
+                customers.put(cj.getCustomerId(), customer);
             }
-            if(customers.size()>0) {
-                nextFreeId= Collections.max(customers.keySet());
+            if(customers.size() > 0) {
+                nextFreeId= Collections.max(customers.keySet()) + 1;
             }
-            nextFreeId++;
         } catch (Exception e){
             System.out.println(e);
         }
@@ -49,17 +49,17 @@ public final class CustomersDAO implements IPersistenceNew<Customer> {
     }
 
     @Override
-    public void Save(Customer customer) {
-        Long key = Long.valueOf(customer.getCustomerID());
+    public void save(Customer customer) {
+        Long key = (long) customer.getCustomerID();
         if(!customers.containsKey(key)) {
             customers.put(key, customer);
         }
     }
 
+
     @Override
     public List<Customer> getAll() {
-        List<Customer> customersList = new ArrayList<>(this.customers.values());
-        return customersList;
+        return new ArrayList<>(this.customers.values());
     }
 
     @Override

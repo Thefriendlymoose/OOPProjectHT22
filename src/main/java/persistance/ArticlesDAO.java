@@ -3,11 +3,11 @@ package persistance;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.text.Collator;
 import java.util.*;
 
 import com.google.gson.Gson;
 import model.article.Article;
+import persistance.pojos.ArticleJSON;
 
 public final class ArticlesDAO implements IPersistenceNew<Article> {
     private static ArticlesDAO instance;

@@ -10,8 +10,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.article.Article;
 import model.order.Order;
+import model.order.OrderRow;
 import model.order.OrderStatus;
-import model.orderV2.OrderRow;
 import model.site.Site;
 
 import java.io.IOException;

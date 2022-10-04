@@ -6,14 +6,14 @@ import java.util.List;
 
 public class Site {
 
-    private int siteId;
+    private long siteId;
     private String siteName;
     private String siteAddress;
     private final int maxCapacity;
     private List<SiteArticle> siteArticles;
     private List<User> employees;
 
-    public Site(int siteId, String siteName, String siteAddress, int maxCapacity, List<SiteArticle> siteArticles, List<User> employees) {
+    public Site(long siteId, String siteName, String siteAddress, int maxCapacity, List<SiteArticle> siteArticles, List<User> employees) {
         this.siteId = siteId;
         this.siteName = siteName;
         this.siteAddress = siteAddress;
@@ -22,11 +22,11 @@ public class Site {
         this.employees = employees;
     }
 
-    public int getSiteId() {
+    public long getSiteId() {
         return siteId;
     }
 
-    public void setSiteId(int siteId) {
+    public void setSiteId(long siteId) {
         this.siteId = siteId;
     }
 

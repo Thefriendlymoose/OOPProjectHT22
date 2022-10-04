@@ -1,4 +1,4 @@
-package persistance;
+package persistance.pojos;
 
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;

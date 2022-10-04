@@ -1,6 +1,6 @@
 package model.customer;
 
-public class CustomerContact implements ICustomerContact{
+public class CustomerContact {
 
     private String contactPerson;
     private String phoneNumber;
@@ -12,33 +12,26 @@ public class CustomerContact implements ICustomerContact{
         this.email = email;
     }
 
-
-    @Override
     public String getContactPerson() {
         return contactPerson;
     }
 
-    @Override
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    @Override
     public String getEmail() {
         return email;
     }
 
-    @Override
     public void setContactPerson(String contactPerson) {
         this.contactPerson = contactPerson;
     }
 
-    @Override
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    @Override
     public void setEmail(String email) {
         this.email = email;
     }

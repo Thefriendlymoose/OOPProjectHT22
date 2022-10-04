@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Order {
     private User user;
-    private int orderNumber;
+    private long orderNumber;
     private Customer customer;
     private OrderStatus orderStatus;
     private boolean priority;
@@ -23,7 +23,7 @@ public class Order {
 
     public static int CURRENTORDER = 0; //senare "CurrentOrderNumber = orderList.size + 1;"
 
-    public Order(User user, int orderNumber, Customer customer, OrderStatus orderStatus, boolean priority, GregorianCalendar orderDate, GregorianCalendar deadline, List<OrderRow> orderRows, Site site) {
+    public Order(User user, long orderNumber, Customer customer, OrderStatus orderStatus, boolean priority, GregorianCalendar orderDate, GregorianCalendar deadline, List<OrderRow> orderRows, Site site) {
         this.user = user;
         this.orderNumber = orderNumber;
         this.customer = customer;
@@ -39,5 +39,35 @@ public class Order {
         return user;
     }
 
+    public long getOrderNumber() {
+        return orderNumber;
+    }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public boolean isPriority() {
+        return priority;
+    }
+
+    public GregorianCalendar getOrderDate() {
+        return orderDate;
+    }
+
+    public GregorianCalendar getDeadline() {
+        return deadline;
+    }
+
+    public List<OrderRow> getOrderRows() {
+        return orderRows;
+    }
+
+    public Site getSite() {
+        return site;
+    }
 }
