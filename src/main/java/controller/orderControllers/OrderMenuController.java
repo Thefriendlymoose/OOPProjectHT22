@@ -11,9 +11,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.order.Order;
 import model.site.Site;
-import persistance.IPersistence;
-import persistance.JSONDao;
+import persistance.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -27,10 +27,10 @@ public class OrderMenuController {
     private VBox siteCardHolder;
 
 
-    private IPersistence testDao = new JSONDao();
+    private IPersistenceNew<Site> testDao = SitesDAO.getInstance();
 
     public  void initialize() throws IOException {
-        List<Site> sites = testDao.loadAllSites();
+        List<Site> sites = testDao.getAll();
 
         for (Site site : sites){
             FXMLLoader cardLoader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderSiteDetailsMenuCard.fxml")));
