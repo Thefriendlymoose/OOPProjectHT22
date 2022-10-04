@@ -8,8 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -23,8 +23,8 @@ public class CustomerMenuController {
         window.setScene(new Scene(root));
     }
 
-    public void createButtonHandler(ActionEvent e) throws IOException {
-        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/customerViews/customerCreateModal.fxml")));
+    public void createBtnHandler(ActionEvent e) throws IOException{
+        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/customerViews/customerCreate.fxml")));
         stage.setTitle("Create Customer");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
