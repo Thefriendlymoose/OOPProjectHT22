@@ -23,6 +23,9 @@ public class OrderFormOrderRowModalController {
 
     public void initialize(){
         Platform.runLater(() -> {
+
+            siteArtListView.getItems().addAll(siteArticles);
+
             siteArtListView.setCellFactory(param -> new ListCell<SiteArticle>(){
                 @Override
                 protected void updateItem(SiteArticle s, boolean empty){
@@ -31,7 +34,7 @@ public class OrderFormOrderRowModalController {
                     if(empty || s == null || s.getArticle() == null){
                         setText(null);
                     } else {
-                        setText(s.getArticle().getArticleName() + "----- Amount: " + s.getAmount());
+                        setText(s.getArticle().getArticleName() + " ----- Amount: " + s.getAmount());
                     }
                 }
             });

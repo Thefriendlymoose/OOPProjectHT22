@@ -75,4 +75,15 @@ public class Site {
         return sum;
     }
 
+    @Override
+    public String toString() {
+        return "Site{" +
+                "siteId=" + siteId +
+                ", siteName='" + siteName + '\'' +
+                ", siteAddress='" + siteAddress + '\'' +
+                ", maxCapacity=" + maxCapacity +
+                ", siteArticles=" + siteArticles +
+                ", employees=" + employees +
+                '}';
+    }
 }

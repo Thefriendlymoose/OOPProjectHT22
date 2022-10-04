@@ -10,7 +10,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 public class OrderJSON {
-    private int orderNumber;
+    private long orderNumber;
     private long user;
     private long customer;
     private OrderStatus orderStatus;
@@ -20,11 +20,11 @@ public class OrderJSON {
     private List<OrderRowJSON> orderRows;
     private long site;
 
-    public int getOrderNumber() {
+    public long getOrderNumber() {
         return orderNumber;
     }
 
-    public void setOrderNumber(int orderNumber) {
+    public void setOrderNumber(long orderNumber) {
         this.orderNumber = orderNumber;
     }
 

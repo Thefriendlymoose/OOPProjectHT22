@@ -11,13 +11,19 @@ public class SiteArticle {
         this.amount = amount;
     }
 
-
     public Article getArticle() {
         return article;
     }
 
-
     public int getAmount() {
         return amount;
+    }
+
+    @Override
+    public String toString() {
+        return "SiteArticle{" +
+                "article=" + article +
+                ", amount=" + amount +
+                '}';
     }
 }
