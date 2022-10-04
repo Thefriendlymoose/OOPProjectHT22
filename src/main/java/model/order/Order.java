@@ -2,6 +2,7 @@ package model.order;
 
 
 import model.article.Article;
+import model.site.Site;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -17,6 +18,8 @@ public class Order {
     private GregorianCalendar orderDate;
     private GregorianCalendar deadline;
     private List<Article> articles;
+
+    private Site site;
 
     public static int CURRENTORDER = 0; //senare "CurrentOrderNumber = orderList.size + 1;"
 
