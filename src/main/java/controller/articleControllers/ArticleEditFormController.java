@@ -18,7 +18,7 @@ public class ArticleEditFormController {
     Label titleLabel;
 
     @FXML
-    TextField numberTextField, nameTextField;
+    TextField numberTextField, nameTextField, costTextField, sellPriceTextField;
 
     @FXML
     TextArea descriptionTextArea;
@@ -46,6 +46,8 @@ public class ArticleEditFormController {
             statusComboBox.getItems().setAll(ArticleStatus.values());
             categoryComboBox.setValue(art.getCategory());
             statusComboBox.setValue(art.getStatus());
+            costTextField.setText(String.valueOf(art.getCost()));
+            sellPriceTextField.setText(String.valueOf(art.getSellPrice()));
         });
     }
 

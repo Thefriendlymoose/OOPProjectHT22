@@ -9,7 +9,7 @@ public class ArticlesFacade {
 
     private IPersistenceNew<Article> dao;
 
-    private void ArticleFacade(){
+    public ArticlesFacade(){
         this.dao = ArticlesDAO.getInstance();
     }
 

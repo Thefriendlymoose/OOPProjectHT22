@@ -19,7 +19,7 @@ public class ArticleFormController {
     Label titleLabel;
 
     @FXML
-    TextField numberTextField, nameTextField;
+    TextField numberTextField, nameTextField, costTextField, sellPriceTextField;
 
     @FXML
     TextArea descriptionTextArea;

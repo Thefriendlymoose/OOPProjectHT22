@@ -15,10 +15,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.article.Article;
 import model.article.ArticlesFacade;
-import persistance.ArticlesDAO;
-import persistance.IPersistence;
-import persistance.IPersistenceNew;
-import persistance.JSONDao;
 
 import java.io.IOException;
 import java.util.List;

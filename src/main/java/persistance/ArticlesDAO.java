@@ -21,9 +21,10 @@ public final class ArticlesDAO implements IPersistenceNew<Article> {
             Reader reader = Files.newBufferedReader(Path.of(articlesFile));
             List<ArticleJSON> articleJSONS = Arrays.asList(gson.fromJson(reader, ArticleJSON[].class));
             for(ArticleJSON aj : articleJSONS) {
-                Article article =new Article(aj.getArticleId(), aj.getArticleName(), aj.getDescription(),
-                        aj.getCategory(), aj.getStatus());
-                articles.put( Long.valueOf(article.getArticleId()), article);
+                Article article = new Article(aj.getArticleId(), aj.getArticleName(), aj.getDescription(),
+                        aj.getCategory(), aj.getStatus(), aj.getCost(), aj.getSellPrice());
+
+                articles.put(article.getArticleId(), article);
             }
             if(articles.size() > 0) {
                 nextFreeId = Collections.max(articles.keySet()) + 1;

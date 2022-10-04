@@ -5,16 +5,18 @@ import model.article.ArticleStatus;
 
 public class ArticleJSON {
 
-    private int articleId;
+    private long articleId;
     private String articleName;
     private String description;
     private ArticleCategory category;
     private ArticleStatus status;
+    private float cost;
+    private float sellPrice;
 
     public ArticleJSON(){
     }
 
-    public int getArticleId() {
+    public long getArticleId() {
         return articleId;
     }
 
@@ -54,4 +56,19 @@ public class ArticleJSON {
         this.status = status;
     }
 
+    public float getCost() {
+        return cost;
+    }
+
+    public void setCost(float cost) {
+        this.cost = cost;
+    }
+
+    public float getSellPrice() {
+        return sellPrice;
+    }
+
+    public void setSellPrice(float sellPrice) {
+        this.sellPrice = sellPrice;
+    }
 }
