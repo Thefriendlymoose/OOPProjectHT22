@@ -7,14 +7,44 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.site.Site;
+import persistance.IPersistence;
+import persistance.JSONDao;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 public class OrderMenuController {
     @FXML
     private Button openButton, createButton, listButton, backButton;
+
+    @FXML
+    private VBox siteCardHolder;
+
+
+    private IPersistence testDao = new JSONDao();
+
+    public  void initialize() throws IOException {
+        List<Site> sites = testDao.loadAllSites();
+
+        for (Site site : sites){
+            FXMLLoader cardLoader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderSiteDetailsMenuCard.fxml")));
+
+            AnchorPane pane = cardLoader.load();
+            OrderSiteMenuCardController cont =  cardLoader.getController();
+
+            cont.setCard(site);
+
+            siteCardHolder.getChildren().add(pane);
+
+        }
+
+    }
 
     public void backBtnHandler() throws Exception{
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/mainMenu.fxml")));
@@ -39,7 +69,13 @@ public class OrderMenuController {
         stage.show();
     }
 
+
+
     public void listButton() throws Exception{
         System.out.println("LIST");
     }
+
+
+
+
 }

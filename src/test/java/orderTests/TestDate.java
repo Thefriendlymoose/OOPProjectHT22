@@ -10,18 +10,18 @@ import java.util.GregorianCalendar;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import model.order.DateFactory;
 
 public class TestDate {
 
     @Test
     public void testCreateDateNow(){
 
-//        DatePicker dp = new DatePicker();
-//        DateFactory dateFactory = new DateFactory();
+        DateFactory dateFactory = new DateFactory();
 
-//        Calendar timeNow = dateFactory.createDate();
-//        Calendar anotherTimeNow = dateFactory.createDate();
-//        Calendar timeFuture = dateFactory.createDeadline(1,1,1);
+        Calendar timeNow = dateFactory.createDate();
+
+        Calendar timeFuture = dateFactory.createDeadline(1,1,1);
 //        System.out.println(timeNow.get(Calendar.YEAR) +"-"+ timeNow.get(Calendar.MONTH) +"-"+ timeNow.get(Calendar.DATE));
 //        System.out.println(timeFuture.get(Calendar.YEAR) +"-"+ timeFuture.get(Calendar.MONTH) +"-"+ timeFuture.get(Calendar.DATE));
 

@@ -48,7 +48,6 @@ public class ArticleMenuController {
             articlesCardHolder.getChildren().add(pane);
         }
 
-
     }
 
     public void backBtnHandler() throws Exception{
