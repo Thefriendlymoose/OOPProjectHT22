@@ -17,7 +17,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 public class TestJSON {
 
-    @Test
+/*    @Test
     public void testConvertFromJavaToJSON(){
         Order orderTest1 = new Order(1,1,1, OrderStatus.ACTIVE,true,null,null,null);
         Gson gson = new Gson();
@@ -35,7 +35,7 @@ public class TestJSON {
 
         assertTrue(originalOrder.equals(convertedOrder));
         System.out.println("igor");
-    }
+    }*/
 
     @Test
     public void readFromFile(){
@@ -73,6 +73,7 @@ public class TestJSON {
         }
         assertTrue(originalString.equals(fileContents));
     }
+/*
     @Test
     public void ordersDBJSONToClass(){
         Gson gson = new Gson();
@@ -91,8 +92,9 @@ public class TestJSON {
         assertTrue(orders.getOrders().get(0).getUserId() == 11);
 
     }
+*/
 
-    @Test
+/*    @Test
     public void writeToFile() throws IOException {
 
         Gson gsonReader = new Gson();
@@ -137,7 +139,7 @@ public class TestJSON {
         assertTrue(Files.exists(pathToDB));
         assertTrue(orders.getOrders().get(0).getUserId()==11 && orders.getOrders().get(1).getUserId()==22 && orders.getOrders().get(2).getUserId()==33);
         Files.delete(pathToDB);
-    }
+    }*/
 
     @Test
     public void editFromFile(){

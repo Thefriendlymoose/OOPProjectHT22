@@ -4,11 +4,11 @@ import model.article.Article;
 
 public class SiteArticle {
     private int siteArticleId;
-    private int article;
-    private int site;
+    private Article article;
+    private Site site;
     private int amount;
 
-    public SiteArticle(int siteArticleId, int article, int site, int amount) {
+    public SiteArticle(int siteArticleId, Article article, Site site, int amount) {
         this.siteArticleId = siteArticleId;
         this.article = article;
         this.site = site;
@@ -19,31 +19,15 @@ public class SiteArticle {
         return siteArticleId;
     }
 
-    public void setSiteArticleId(int siteArticleId) {
-        this.siteArticleId = siteArticleId;
-    }
-
-    public int getArticle() {
+    public Article getArticle() {
         return article;
     }
 
-    public void setArticle(int article) {
-        this.article = article;
-    }
-
-    public int getSite() {
+    public Site getSite() {
         return site;
-    }
-
-    public void setSite(int site) {
-        this.site = site;
     }
 
     public int getAmount() {
         return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
     }
 }

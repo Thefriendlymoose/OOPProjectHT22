@@ -47,7 +47,6 @@ public class OrderCreateModalController {
 
         siteListView.getSelectionModel().selectedItemProperty().addListener((observableValue, site, t1) -> {
             current = siteListView.getSelectionModel().getSelectedItem();
-            System.out.println(current.getSiteName());
         });
     }
 

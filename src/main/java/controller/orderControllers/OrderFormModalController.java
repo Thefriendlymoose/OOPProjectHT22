@@ -36,27 +36,28 @@ public class OrderFormModalController {
 //    Order tempOrder = new Order(0,0,0, OrderStatus.ACTIVE,true,new GregorianCalendar(),new GregorianCalendar(),articles);
 //    private DateFactory dateFactory;
 
+    private Site site;
 
+    private ObservableList<OrderRow> addedRows;
 
-    public void saveOrder(){
-
-        int year = orderDeadlineDatePicker.getValue().getYear();
-        int month = orderDeadlineDatePicker.getValue().getMonthValue();
-        int day = orderDeadlineDatePicker.getValue().getDayOfMonth();
-
-        GregorianCalendar deadline = new GregorianCalendar();
-        deadline.set(year,month,day);
-
-//        System.out.println(deadline);
-        numberTextField.setText(Integer.toString(orders.size()));
-//        List<Order> orders = new ArrayList<>();
-
-        Order savedOrder = new Order(1,CURRENTORDER,1,statusComboBox.getValue(),priorityComboBox.getValue(),new GregorianCalendar(),deadline, articles);
-        orders.add(savedOrder);
-        numberTextField.setText(Integer.toString(orders.size()));
-//        System.out.println("Deadline: " + deadline.get(Calendar.YEAR) +"-"+ deadline.get(Calendar.MONTH) +"-"+deadline.get(Calendar.DATE) );
-        System.out.println(orders);
+    public void setSite(Site site){
+        this.site = site;
     }
+    @FXML
+    public void initialize(){
+
+        Boolean [] priorities = {true,false};
+        priorityComboBox.getItems().addAll(priorities);
+
+        numberTextField.setText(Integer.toString(0));
+
+
+//        hard coded, should iterate over all enums in enum class
+        OrderStatus [] orderStatuses = {OrderStatus.ACTIVE,OrderStatus.CANCELED,OrderStatus.FINISHED};
+        statusComboBox.getItems().addAll(orderStatuses);
+    }
+
+    public void saveOrder(){}
 
     public void setPriorityComboBox(){
         System.out.println("Priority: "+ priorityComboBox.getValue());
@@ -98,16 +99,18 @@ public class OrderFormModalController {
     private TableView<OrderRow> addedOrderRowTableView;
 
 
-    private Site site;
-    private ObservableList<OrderRow> addedRows;
 
 
-    public void setSite(Site site){
-        this.site = site;
-    }
+
+
 
     public void onAddOrderRowButton(ActionEvent e) throws IOException {
-        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderFormOrderRowModal.fxml")));
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderFormOrderRowModal.fxml")));
+        Stage stage = loader.load();
+
+        OrderFormOrderRowModalController controller = loader.getController();
+        controller.setSiteArticles(site.getSiteArticles());
+
         stage.setTitle("Choose Article");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow() );
@@ -128,18 +131,6 @@ public class OrderFormModalController {
         }
     }
 
-    @FXML
-    public void initialize(){
 
-        Boolean [] priorities = {true,false};
-        priorityComboBox.getItems().addAll(priorities);
-
-        numberTextField.setText(Integer.toString(0));
-
-
-//        hard coded, should iterate over all enums in enum class
-        OrderStatus [] orderStatuses = {OrderStatus.ACTIVE,OrderStatus.CANCELED,OrderStatus.FINISHED};
-        statusComboBox.getItems().addAll(orderStatuses);
-    }
 
 }
