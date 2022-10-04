@@ -37,5 +37,4 @@ public class ArticlesFacade {
         return ArticleStatus.values();
     }
 
-
 }

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.article.Article;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
 import model.article.ArticlesFacade;
@@ -49,6 +50,9 @@ public class ArticleFormController {
     public void onSave(){
         // TODO: Need to check all fields, then create new object from data?
 
+        if (nameTextField.getText().isEmpty() || nameTextField.getText().isEmpty() || descriptionTextArea.getText().isEmpty() || categoryComboBox.getValue() == null || statusComboBox.getValue() == null){
+
+        }
 
     }
 
