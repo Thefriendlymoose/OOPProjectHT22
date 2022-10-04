@@ -1,4 +1,4 @@
-package persistance;
+package persistence;
 
 // @todo justera importer när klasserna flyttas till ett paket per
 // funktionellt paket i applikationen
@@ -7,8 +7,8 @@ import model.User;
 import model.article.Article;
 import model.site.Site;
 import model.site.SiteArticle;
-import persistance.pojos.SiteArticleJSON;
-import persistance.pojos.SiteJSON;
+import persistence.pojos.SiteArticleJSON;
+import persistence.pojos.SiteJSON;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -16,7 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
-public final class SitesDAO implements IPersistenceNew<Site> {
+public final class SitesDAO implements IPersistence<Site> {
 
     private static SitesDAO instance;
     private final String sitesFile="src/main/resources/sites.json";

@@ -1,8 +1,8 @@
-package persistance;
+package persistence;
 
 import com.google.gson.Gson;
 import model.User;
-import persistance.pojos.UserJSON;
+import persistence.pojos.UserJSON;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
-public class UserDAO implements IPersistenceNew<User>{
+public class UserDAO implements IPersistence<User> {
 
     private static UserDAO instance;
 

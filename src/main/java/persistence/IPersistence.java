@@ -1,11 +1,11 @@
-package persistance;
+package persistence;
 
 import java.util.List;
 import java.util.Map;
 
 //@todo refaktorisera namnet senare
 
-public interface IPersistenceNew<T> {
+public interface IPersistence<T> {
     void save(T o); // Svara med boolean?
     List<T> getAll();
     Map<Long, T> getAllMap(); // K,V?

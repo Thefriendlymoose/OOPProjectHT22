@@ -1,4 +1,4 @@
-package persistance.pojos;
+package persistence.pojos;
 
 public class CustomerContactJSON {
     private String contactName;

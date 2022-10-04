@@ -1,4 +1,4 @@
-package persistance;
+package persistence;
 
 import java.io.Reader;
 import java.nio.file.Files;
@@ -7,9 +7,9 @@ import java.util.*;
 
 import com.google.gson.Gson;
 import model.article.Article;
-import persistance.pojos.ArticleJSON;
+import persistence.pojos.ArticleJSON;
 
-public final class ArticlesDAO implements IPersistenceNew<Article> {
+public final class ArticlesDAO implements IPersistence<Article> {
     private static ArticlesDAO instance;
     private final String articlesFile="src/main/resources/articles.json";
     private Map<Long, Article> articles = new HashMap<>();

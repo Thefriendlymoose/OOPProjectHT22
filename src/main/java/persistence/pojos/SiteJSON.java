@@ -1,6 +1,4 @@
-package persistance.pojos;
-
-import model.User;
+package persistence.pojos;
 
 import java.util.List;
 

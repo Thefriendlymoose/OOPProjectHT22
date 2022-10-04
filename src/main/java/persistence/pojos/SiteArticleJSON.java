@@ -1,4 +1,4 @@
-package persistance.pojos;
+package persistence.pojos;
 
 public class SiteArticleJSON {
     private long articleId;

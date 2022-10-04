@@ -9,8 +9,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.site.Site;
-import persistance.IPersistence;
-import persistance.JSONDao;
+import persistence.IPersistence;
+import persistence.SitesDAO;
 
 import java.io.IOException;
 import java.util.List;
@@ -23,11 +23,11 @@ public class SiteMenuController {
     @FXML
     private VBox siteCardHolderVBox;
 
-    private IPersistence testDao = new JSONDao();
+    private IPersistence<Site> testDao = SitesDAO.getInstance();
 
 
     public void initialize() throws IOException {
-        List<Site> sites = testDao.loadAllSites();
+        List<Site> sites = testDao.getAll();
 
         for (Site site : sites){
             FXMLLoader siteLoader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/siteViews/siteMenuSiteCard.fxml")));

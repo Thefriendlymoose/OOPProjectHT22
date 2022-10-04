@@ -1,13 +1,13 @@
 package model.article;
 
-import persistance.ArticlesDAO;
-import persistance.IPersistenceNew;
+import persistence.ArticlesDAO;
+import persistence.IPersistence;
 
 import java.util.List;
 
 public class ArticlesFacade {
 
-    private IPersistenceNew<Article> dao;
+    private IPersistence<Article> dao;
 
     public ArticlesFacade(){
         this.dao = ArticlesDAO.getInstance();

@@ -1,4 +1,4 @@
-package persistance;
+package persistence;
 
 import com.google.gson.Gson;
 import java.io.Reader;
@@ -8,9 +8,9 @@ import java.util.*;
 import model.customer.Customer;
 
 import model.customer.CustomerContact;
-import persistance.pojos.CustomerJSON;
+import persistence.pojos.CustomerJSON;
 
-public final class CustomersDAO implements IPersistenceNew<Customer> {
+public final class CustomersDAO implements IPersistence<Customer> {
     private static CustomersDAO instance = null;
     private final String customersFile = "src/main/resources/customers.json";
     private Map<Long, Customer> customers = new HashMap<>();

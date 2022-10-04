@@ -1,4 +1,4 @@
-package persistance.pojos;
+package persistence.pojos;
 
 import model.customer.Address;
 import model.customer.CustomerContact;

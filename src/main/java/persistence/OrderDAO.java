@@ -1,4 +1,4 @@
-package persistance;
+package persistence;
 
 //import model.Order;
 
@@ -9,15 +9,15 @@ import model.customer.Customer;
 import model.order.Order;
 import model.order.OrderRow;
 import model.site.Site;
-import persistance.pojos.OrderJSON;
-import persistance.pojos.OrderRowJSON;
+import persistence.pojos.OrderJSON;
+import persistence.pojos.OrderRowJSON;
 
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
-public final class OrderDAO implements IPersistenceNew<Order>{
+public final class OrderDAO implements IPersistence<Order> {
 
     private static OrderDAO instance;
     private final String file = "src/main/resources/order.json";

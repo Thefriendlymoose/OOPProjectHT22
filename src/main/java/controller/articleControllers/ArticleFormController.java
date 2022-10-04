@@ -5,11 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import model.article.Article;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
 import model.article.ArticlesFacade;
-import persistance.ArticlesDAO;
 
 import java.util.Optional;
 

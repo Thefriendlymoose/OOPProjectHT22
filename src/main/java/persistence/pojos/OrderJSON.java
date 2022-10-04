@@ -1,10 +1,6 @@
-package persistance.pojos;
+package persistence.pojos;
 
-import model.User;
-import model.customer.Customer;
-import model.order.OrderRow;
 import model.order.OrderStatus;
-import model.site.Site;
 
 import java.util.GregorianCalendar;
 import java.util.List;

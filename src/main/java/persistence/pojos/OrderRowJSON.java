@@ -1,4 +1,4 @@
-package persistance.pojos;
+package persistence.pojos;
 
 public class OrderRowJSON {
     private long article;

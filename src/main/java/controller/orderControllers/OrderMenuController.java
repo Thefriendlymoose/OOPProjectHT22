@@ -11,9 +11,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.order.Order;
 import model.site.Site;
-import persistance.*;
+import persistence.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -27,7 +26,7 @@ public class OrderMenuController {
     private VBox siteCardHolder;
 
 
-    private IPersistenceNew<Site> testDao = SitesDAO.getInstance();
+    private IPersistence<Site> testDao = SitesDAO.getInstance();
 
     public  void initialize() throws IOException {
         List<Site> sites = testDao.getAll();

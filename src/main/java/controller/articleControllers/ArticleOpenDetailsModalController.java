@@ -9,10 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.article.Article;
-import persistance.ArticlesDAO;
-import persistance.IPersistence;
-import persistance.IPersistenceNew;
-import persistance.JSONDao;
+import persistence.ArticlesDAO;
+import persistence.IPersistence;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -25,7 +23,7 @@ public class ArticleOpenDetailsModalController {
     @FXML
     private Label warningLabel;
 
-    private IPersistenceNew<Article> testDao = ArticlesDAO.getInstance();
+    private IPersistence<Article> testDao = ArticlesDAO.getInstance();
     public void modalOpenArticleButtonHandler(ActionEvent e) throws IOException {
         long id;
 
