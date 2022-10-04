@@ -2,21 +2,25 @@ package model.article;
 
 public class Article {
 
-    private final int articleId;
+    private final long articleId;
     private String articleName;
     private String description;
     private ArticleCategory category;
     private ArticleStatus status;
+    private float cost;
+    private float sellPrice;
 
-    public Article(int articleId, String articleName, String description, ArticleCategory category, ArticleStatus status) {
+    public Article(long articleId, String articleName, String description, ArticleCategory category, ArticleStatus status, float cost, float sellPrice) {
         this.articleId = articleId;
         this.articleName = articleName;
         this.description = description;
         this.category = category;
         this.status = status;
+        this.cost = cost;
+        this.sellPrice = sellPrice;
     }
 
-    public int getArticleId() {
+    public long getArticleId() {
         return articleId;
     }
 
@@ -34,6 +38,14 @@ public class Article {
 
     public ArticleStatus getStatus() {
         return status;
+    }
+
+    public float getCost() {
+        return cost;
+    }
+
+    public float getSellPrice() {
+        return sellPrice;
     }
 
     @Override

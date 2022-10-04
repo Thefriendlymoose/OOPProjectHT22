@@ -8,6 +8,7 @@ public interface ICustomerContact {
     String getEmail();
 
     //setters
+
     void setContactPerson(String contactPerson);
     void setPhoneNumber(String phoneNumber);
     void setEmail(String email);

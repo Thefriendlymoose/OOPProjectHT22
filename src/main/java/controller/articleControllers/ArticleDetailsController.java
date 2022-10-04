@@ -20,7 +20,7 @@ public class ArticleDetailsController {
     Label detailsTitleLabel, numberLabel, nameLabel, descriptionLabel, categoryLabel, statusLabel;
 
     @FXML
-    TextField numberTextField, nameTextField;
+    TextField numberTextField, nameTextField, costTextField, sellPriceTextField;
 
     @FXML
     TextArea descriptionTextArea;
@@ -49,6 +49,8 @@ public class ArticleDetailsController {
             statusComboBox.setValue(art.getStatus());
             categoryComboBox.getItems().setAll(ArticleCategory.values());
             statusComboBox.getItems().setAll(ArticleStatus.values());
+            costTextField.setText(String.valueOf(art.getCost()));
+            sellPriceTextField.setText(String.valueOf(art.getSellPrice()));
         });
 
     }

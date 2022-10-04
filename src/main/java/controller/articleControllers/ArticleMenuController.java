@@ -14,8 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.article.Article;
-import persistance.IPersistence;
-import persistance.JSONDao;
+import model.article.ArticlesFacade;
 
 import java.io.IOException;
 import java.util.List;
@@ -28,10 +27,10 @@ public class ArticleMenuController {
     @FXML
     private VBox articlesCardHolder;
 
-    private IPersistence testDao = new JSONDao();
+    private ArticlesFacade facade = new ArticlesFacade();
 
     public void initialize() throws IOException {
-        List<Article> articles = testDao.loadAllArticles();
+        List<Article> articles = facade.getAll();
         ObservableList<Article> arts = FXCollections.observableArrayList(articles);
 
         for (Article art : articles){
@@ -44,7 +43,6 @@ public class ArticleMenuController {
 
             articlesCardHolder.getChildren().add(pane);
         }
-
 
     }
 

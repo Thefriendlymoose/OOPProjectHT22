@@ -1,11 +1,11 @@
-package model;
+package persistence.pojos;
 
-import com.google.gson.Gson;
+import model.Permission;
 
 import java.util.List;
 
 //User(1,"Olofsson","Olof321", "Olof", [USER], true)
-public class User {
+public class UserJSON {
 
     private long userId;
     private String userName;
@@ -14,13 +14,8 @@ public class User {
     private boolean status;
     private List<Permission> permissions;
 
-    public User(long userId, String userName, String password, String name, boolean status, List<Permission> permissions) {
-        this.userId = userId;
-        this.userName = userName;
-        this.password = password;
-        this.name = name;
-        this.status = status;
-        this.permissions = permissions;
+    public UserJSON() {
+
     }
 
     public long getUserId() {
@@ -69,29 +64,6 @@ public class User {
 
     public void setPermissions(List<Permission> permissions) {
         this.permissions = permissions;
-    }
-
-    private Boolean allowed(Permission perm){
-        if (this.permissions.contains(Permission.ALL))
-            return true;
-        return  (this.permissions.contains(perm));
-    }
-    public Boolean allowedUser(){
-        return allowed(Permission.USER);
-    }
-    public Boolean allowedCustomer(){
-        return allowed(Permission.CUSTOMER);
-    }
-
-    public Boolean allowedSite(){
-        return allowed(Permission.SITE);
-    }
-
-    public Boolean allowedOrder(){
-        return allowed(Permission.ORDER);
-    }
-    public Boolean allowedArticle(){
-        return allowed(Permission.ARTICLE);
     }
 
 

@@ -6,22 +6,11 @@
     "maxCapacity": 500,
     "siteArticles": [
       {
-        "siteArticleId": 1,
-        "article": 1,
-        "site": 1,
+        "articleId": 1,
         "amount": 3
       }
     ],
-    "employees": [
-      {
-        "userId": 1,
-        "userName": "Olof",
-        "password": "1234",
-        "name": "Olof Persson",
-        "status": true,
-        "permission": ["ORDER", "USER", "SITE", "CUSTOMER", "ARTICLE"]
-      }
-    ]
+    "siteUsers": [1]
   },
   {
     "siteId": 2,
@@ -30,45 +19,23 @@
     "maxCapacity": 600,
     "siteArticles": [
       {
-        "siteArticleId": 1,
-        "article": 1,
-        "site": 1,
-        "amount": 3
+        "articleId": 6,
+        "amount": 9
       }
     ],
-    "employees": [
-      {
-        "userId": 1,
-        "userName": "Olof",
-        "password": "1234",
-        "name": "Olof Persson",
-        "status": true,
-        "permissions": ["ORDER", "USER", "SITE", "CUSTOMER", "ARTICLE"]
-      }
-    ]
+    "siteUsers": [2]
   },
   {
     "siteId": 3,
     "siteName": "Malmö",
-    "siteAddress": "Turning torse",
+    "siteAddress": "Turning Torso",
     "maxCapacity": 700,
     "siteArticles": [
       {
-        "siteArticleId": 1,
-        "article": 1,
-        "site": 1,
-        "amount": 3
+        "articleId": 6,
+        "amount": 9
       }
     ],
-    "employees": [
-      {
-        "userId": 1,
-        "userName": "Olof",
-        "password": "1234",
-        "name": "Olof Persson",
-        "status": true,
-        "permissions": ["ORDER", "USER", "SITE", "CUSTOMER", "ARTICLE"]
-      }
-    ]
+    "siteUsers": [3]
   }
 ]

@@ -3,6 +3,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import persistence.*;
 
 
 public class Main extends Application {
@@ -12,6 +13,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+
+        System.out.println(OrderDAO.getInstance().getAll());
+        System.out.println(CustomersDAO.getInstance().getAll());
+        System.out.println(ArticlesDAO.getInstance().getAll());
+        System.out.println(SitesDAO.getInstance().getAll());
+        System.out.println(UserDAO.getInstance().getAll());
+
         Parent root = FXMLLoader.load(getClass().getResource("fxml/template.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("WMS");

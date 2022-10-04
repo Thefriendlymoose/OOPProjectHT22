@@ -1,0 +1,18 @@
+[
+  {
+    "orderNumber": 1,
+    "user": 1,
+    "customer": 1,
+    "orderStatus": "ACTIVE",
+    "priority": true,
+    "orderDate": null,
+    "deadline": null,
+    "orderRows": [
+      {
+        "article": 1,
+        "amount": 2
+      }
+    ],
+    "site": 2
+  }
+]

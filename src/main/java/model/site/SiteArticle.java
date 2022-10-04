@@ -3,47 +3,27 @@ package model.site;
 import model.article.Article;
 
 public class SiteArticle {
-    private int siteArticleId;
-    private int article;
-    private int site;
+    private Article article;
     private int amount;
 
-    public SiteArticle(int siteArticleId, int article, int site, int amount) {
-        this.siteArticleId = siteArticleId;
+    public SiteArticle(Article article, int amount) {
         this.article = article;
-        this.site = site;
         this.amount = amount;
     }
 
-    public int getSiteArticleId() {
-        return siteArticleId;
-    }
-
-    public void setSiteArticleId(int siteArticleId) {
-        this.siteArticleId = siteArticleId;
-    }
-
-    public int getArticle() {
+    public Article getArticle() {
         return article;
-    }
-
-    public void setArticle(int article) {
-        this.article = article;
-    }
-
-    public int getSite() {
-        return site;
-    }
-
-    public void setSite(int site) {
-        this.site = site;
     }
 
     public int getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    @Override
+    public String toString() {
+        return "SiteArticle{" +
+                "article=" + article +
+                ", amount=" + amount +
+                '}';
     }
 }

@@ -10,8 +10,8 @@ import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.site.Site;
-import persistance.IPersistence;
-import persistance.JSONDao;
+import persistence.IPersistence;
+import persistence.SitesDAO;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -25,11 +25,11 @@ public class OrderCreateModalController {
     private ListView<Site> siteListView;
 
     private Site current;
-    private IPersistence jsonDao = new JSONDao();
+    private IPersistence<Site> jsonDao = SitesDAO.getInstance();
 
     public void initialize(){
 
-        siteListView.getItems().addAll(jsonDao.loadAllSites());
+        siteListView.getItems().addAll(jsonDao.getAll());
 
         siteListView.setCellFactory(param -> new ListCell<Site>(){
             @Override
@@ -47,7 +47,6 @@ public class OrderCreateModalController {
 
         siteListView.getSelectionModel().selectedItemProperty().addListener((observableValue, site, t1) -> {
             current = siteListView.getSelectionModel().getSelectedItem();
-            System.out.println(current.getSiteName());
         });
     }
 

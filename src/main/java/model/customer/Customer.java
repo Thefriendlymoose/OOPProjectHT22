@@ -12,16 +12,6 @@ public class Customer implements ICustomer{
     private int companyOrgNumber;
     private String companyName;
 
-    public Customer(int customerId){
-        this.customerId = customerId;
-    }
-
-    public Customer(int customerId, int companyOrgNumber, String companyName){
-        this.customerId = customerId;
-        this.companyOrgNumber = companyOrgNumber;
-        this.companyName = companyName;
-    }
-
     public Customer(List<ICustomerContact> customerContacts, IAddress billingAddress, IAddress shippingAddress, int customerId, int companyOrgNumber, String companyName) {
         this.companyOrgNumber = companyOrgNumber;
         this.customerContacts.addAll(customerContacts);
