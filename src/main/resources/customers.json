@@ -1,7 +1,8 @@
-{
+[{
   "Customers" : [{
     "customerId" : 69420,
     "companyName" : "Foo Bar and Sons",
+    "companyOrgNumber" : 55603434,
     "billingAddress" : {
       "streetName" : "Foo street",
       "streetNumber" : 69,
@@ -16,7 +17,7 @@
       "city" : "Götelaborg",
       "country" : "Inte sverige ;)"
     },
-    "customerContatcs" : [{
+    "customerContacts" : [{
       "contactName" : "Hans Mohr",
       "phone" : "+46 123 45 67",
       "email" : "hansmohr@yahoo.se"
@@ -26,4 +27,4 @@
       "email" : "bossman@foo.com"
     }]
   }]
-}
+}]
