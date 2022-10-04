@@ -15,6 +15,8 @@ public final class CustomersDAO implements IPersistence<Customer> {
     private final String customersFile = "src/main/resources/customers.json";
     private Map<Long, Customer> customers = new HashMap<>();
     private Gson gson = new Gson();
+
+    // refactor. Use strategy pattern maybe?
     private long nextFreeId=0;
 
     private CustomersDAO() {
@@ -50,7 +52,7 @@ public final class CustomersDAO implements IPersistence<Customer> {
 
     @Override
     public void save(Customer customer) {
-        Long key = (long) customer.getCustomerID();
+        Long key = customer.getCustomerID();
         if(!customers.containsKey(key)) {
             customers.put(key, customer);
         }
