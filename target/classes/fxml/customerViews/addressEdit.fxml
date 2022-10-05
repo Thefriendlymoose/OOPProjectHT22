@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.stage.Stage?>
+
+<Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customerControllers.AddressCreateController">
+   <scene>
+      <Scene>
+         <root>
+            <AnchorPane maxHeight="445.0" maxWidth="244.0" minHeight="364.0" minWidth="244.0" prefHeight="445.0" prefWidth="244.0">
+               <children>
+                  <Label layoutX="25.0" layoutY="23.0" text="Street Name" />
+                  <TextField fx:id="streetNameField" layoutX="25.0" layoutY="42.0" />
+                  <Label layoutX="25.0" layoutY="90.0" text="Street Number" />
+                  <TextField fx:id="streetNumberField" layoutX="25.0" layoutY="109.0" />
+                  <Label layoutX="25.0" layoutY="157.0" text="Postal Code" />
+                  <TextField fx:id="postalCodeField" layoutX="25.0" layoutY="176.0" />
+                  <Label layoutX="25.0" layoutY="223.0" text="City" />
+                  <TextField fx:id="cityField" layoutX="25.0" layoutY="242.0" />
+                  <Button onAction="#saveBtnHandler" layoutX="20.0" layoutY="376.0" mnemonicParsing="false" text="Save Address" />
+                  <Button onAction="#cancelBtnHandler" layoutX="130.0" layoutY="376.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="95.0" text="Cancel" />
+                  <Label layoutX="25.0" layoutY="283.0" text="Country" />
+                  <TextField layoutX="25.0" layoutY="302.0" />
+               </children>
+            </AnchorPane>
+         </root>
+      </Scene>
+   </scene>
+</Stage>

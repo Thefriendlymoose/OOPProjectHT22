@@ -8,7 +8,7 @@ public class Customer{
     private List<CustomerContact> customerContacts = new ArrayList<>();
     private Address billingAddress;
     private Address shippingAddress;
-    private final long customerId;
+    private long customerId;
     private int companyOrgNumber;
     private String companyName;
 
@@ -29,6 +29,8 @@ public class Customer{
     public Customer(long customerId){
         this.customerId = customerId;
     }
+
+    public Customer(){};
 
 
     // getters
