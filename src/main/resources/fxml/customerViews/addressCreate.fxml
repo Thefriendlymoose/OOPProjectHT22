@@ -7,12 +7,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.stage.Stage?>
 
-
-<Stage fx:controller="controller.customerControllers.AddressCreateController" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customerControllers.AddressCreateController">
    <scene>
       <Scene>
          <root>
-            <AnchorPane maxHeight="364.0" maxWidth="244.0" minHeight="364.0" minWidth="244.0" prefHeight="364.0" prefWidth="244.0">
+            <AnchorPane maxHeight="445.0" maxWidth="244.0" minHeight="364.0" minWidth="244.0" prefHeight="445.0" prefWidth="244.0">
                <children>
                   <Label layoutX="25.0" layoutY="23.0" text="Street Name" />
                   <TextField layoutX="25.0" layoutY="42.0" />
@@ -20,10 +19,12 @@
                   <TextField layoutX="25.0" layoutY="109.0" />
                   <Label layoutX="25.0" layoutY="157.0" text="Postal Code" />
                   <TextField layoutX="25.0" layoutY="176.0" />
-                  <Label layoutX="25.0" layoutY="225.0" text="Country" />
-                  <TextField layoutX="25.0" layoutY="244.0" />
-                  <Button layoutX="20.0" layoutY="310.0" mnemonicParsing="false" text="Save Address" />
-                  <Button layoutX="130.0" layoutY="310.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="95.0" text="Cancel" />
+                  <Label layoutX="25.0" layoutY="223.0" text="City" />
+                  <TextField layoutX="25.0" layoutY="242.0" />
+                  <Button layoutX="20.0" layoutY="376.0" mnemonicParsing="false" text="Save Address" />
+                  <Button layoutX="130.0" layoutY="376.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="95.0" text="Cancel" />
+                  <Label layoutX="25.0" layoutY="283.0" text="Country" />
+                  <TextField layoutX="25.0" layoutY="302.0" />
                </children>
             </AnchorPane>
          </root>

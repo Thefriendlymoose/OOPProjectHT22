@@ -2,6 +2,7 @@ controller\articleControllers\ArticleMenuController.class
 controller\test\TestController.class
 controller\orderControllers\OrderCreateModalController.class
 controller\siteControllers\SiteDetailsUserCardController.class
+controller\customerControllers\AddressCreateController.class
 controller\siteControllers\SiteDetailsSiteArticleCardController.class
 controller\SignInController.class
 persistence\pojos\OrderRowJSON.class
@@ -58,11 +59,11 @@ model\order\Order.class
 persistence\OrderDAO.class
 controller\userControllers\CreateUserController.class
 model\article\Article.class
+controller\customerControllers\ContactCreateController.class
 model\site\SiteArticle.class
 persistence\pojos\SiteArticleJSON.class
 controller\orderControllers\OrderCreateModalController$1.class
 persistence\pojos\CustomerJSON.class
-controller\customerControllers\addressCreateController.class
 controller\articleControllers\ArticleOpenDetailsModalController.class
 persistence\ArticlesDAO.class
 persistence\IPersistence.class

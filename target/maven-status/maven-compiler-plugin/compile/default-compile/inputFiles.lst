@@ -27,6 +27,7 @@ C:\javadev\OOPProjectHT22\src\main\java\model\order\DateFactory.java
 C:\javadev\OOPProjectHT22\src\main\java\persistence\ArticlesDAO.java
 C:\javadev\OOPProjectHT22\src\main\java\database\DataBaseAdapter.java
 C:\javadev\OOPProjectHT22\src\main\java\persistence\IPersistence.java
+C:\javadev\OOPProjectHT22\src\main\java\controller\customerControllers\ContactCreateController.java
 C:\javadev\OOPProjectHT22\src\main\java\model\customer\Address.java
 C:\javadev\OOPProjectHT22\src\main\java\controller\articleControllers\ArticleFormController.java
 C:\javadev\OOPProjectHT22\src\main\java\model\customer\CustomerContact.java
@@ -61,7 +62,7 @@ C:\javadev\OOPProjectHT22\src\main\java\persistence\SitesDAO.java
 C:\javadev\OOPProjectHT22\src\main\java\controller\customerControllers\CustomerMenuController.java
 C:\javadev\OOPProjectHT22\src\main\java\controller\userControllers\UserMenuController.java
 C:\javadev\OOPProjectHT22\src\main\java\model\Role.java
-C:\javadev\OOPProjectHT22\src\main\java\controller\customerControllers\addressCreateController.java
+C:\javadev\OOPProjectHT22\src\main\java\controller\customerControllers\AddressCreateController.java
 C:\javadev\OOPProjectHT22\src\main\java\controller\userControllers\OpenUserController.java
 C:\javadev\OOPProjectHT22\src\main\java\model\customer\Customer.java
 C:\javadev\OOPProjectHT22\src\main\java\persistence\CustomersDAO.java
