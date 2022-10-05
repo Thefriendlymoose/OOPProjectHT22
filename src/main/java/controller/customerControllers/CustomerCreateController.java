@@ -26,7 +26,15 @@ public class CustomerCreateController {
 
     public void addShippingAddressHandler(ActionEvent e) throws IOException {
         Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/customerViews/addressCreate.fxml")));
-        stage.setTitle("Create Address");
+        stage.setTitle("Create Shipping Address");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Node)e.getSource()).getScene().getWindow());
+        stage.show();
+    }
+
+    public void addBillingAddressHandler(ActionEvent e) throws IOException{
+        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/customerViews/addressCreate.fxml")));
+        stage.setTitle("Create Billing Address");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
         stage.show();

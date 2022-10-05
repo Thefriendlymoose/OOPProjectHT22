@@ -24,7 +24,7 @@
                <Button onAction="#addShippingAddressHandler" layoutX="15.0" layoutY="270.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="166.0" text="Add Shipping Address" />
                <Label layoutX="17.0" layoutY="315.0" text="Billing Address" />
                <TextFlow layoutX="18.0" layoutY="334.0" prefHeight="100.0" prefWidth="261.0" />
-               <Button layoutX="18.0" layoutY="434.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="166.0" text="Add Billing Address" />
+               <Button onAction="#addBillingAddressHandler" layoutX="18.0" layoutY="434.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="166.0" text="Add Billing Address" />
                <Button layoutX="15.0" layoutY="596.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="201.0" text="Add Contact" />
                <ScrollPane layoutX="15.0" layoutY="492.0" prefHeight="95.0" prefWidth="200.0">
                   <content>

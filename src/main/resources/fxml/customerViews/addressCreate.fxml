@@ -8,7 +8,7 @@
 <?import javafx.stage.Stage?>
 
 
-<Stage fx:controller="controller.customerControllers.addressCreateController" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<Stage fx:controller="controller.customerControllers.AddressCreateController" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <scene>
       <Scene>
          <root>

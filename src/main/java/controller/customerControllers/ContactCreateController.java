@@ -1,4 +1,4 @@
 package controller.customerControllers;
 
-public class addressCreateController {
+public class ContactCreateController {
 }
