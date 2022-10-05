@@ -34,7 +34,7 @@
                                  <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                               </padding>
                            </Button>
-                           <Button fx:id="cancelButton" mnemonicParsing="false" styleClass="generic-button, form-cancel-button" text="Cancel">
+                           <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelBtnHandler" styleClass="generic-button, form-cancel-button" text="Cancel">
                               <padding>
                                  <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
                               </padding>

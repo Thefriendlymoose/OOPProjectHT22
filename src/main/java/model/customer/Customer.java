@@ -21,6 +21,13 @@ public class Customer{
         this.companyName = companyName;
     }
 
+    public Customer(long customerId, int companyOrgNumber){
+        this.customerId = customerId;
+        this.companyOrgNumber = companyOrgNumber;
+    }
+
+
+    // getters
     public List<CustomerContact> getContacts() {
         return customerContacts;
     }
@@ -44,6 +51,8 @@ public class Customer{
     public String getCompanyName() {
         return companyName;
     }
+
+    // setters
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;

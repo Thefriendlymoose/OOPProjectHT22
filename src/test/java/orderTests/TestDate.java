@@ -1,34 +1,26 @@
 package orderTests;
 
-import javafx.scene.control.DatePicker;
-import model.order.DateFactory;
 import org.junit.jupiter.api.Test;
-
-import java.util.Calendar;
-
-import java.util.GregorianCalendar;
-
+import java.time.LocalDateTime;
+import java.util.concurrent.ThreadLocalRandom;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import model.order.DateFactory;
 
 public class TestDate {
 
+//    deadline.compareTo(orderDate) så
+//    deadline <  orderDate -> -1
+//    deadline >= orderDate -> 1
+    public boolean isValidDeadline(LocalDateTime orderDate, LocalDateTime deadline){
+        return 1 >= deadline.compareTo(orderDate);
+    }
     @Test
-    public void testCreateDateNow(){
+    public void testValidDeadline(){
+        int randomNum = ThreadLocalRandom.current().nextInt(-5, 5);
+        System.out.println(randomNum);
+        LocalDateTime orderDate = LocalDateTime.now();
 
-        DateFactory dateFactory = new DateFactory();
-
-        Calendar timeNow = dateFactory.createDate();
-
-        Calendar timeFuture = dateFactory.createDeadline(1,1,1);
-//        System.out.println(timeNow.get(Calendar.YEAR) +"-"+ timeNow.get(Calendar.MONTH) +"-"+ timeNow.get(Calendar.DATE));
-//        System.out.println(timeFuture.get(Calendar.YEAR) +"-"+ timeFuture.get(Calendar.MONTH) +"-"+ timeFuture.get(Calendar.DATE));
-
-
-//        System.out.println(dp.getValue().toString());
-//      incomplete, fix later
-//        assertTrue(timeNow.equals(anotherTimeNow));
+        LocalDateTime deadline = LocalDateTime.now().plusDays(randomNum);
+        assertTrue(isValidDeadline(orderDate,deadline));
     }
 
 
