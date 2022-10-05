@@ -40,7 +40,6 @@ public class OrderMenuController {
             cont.setCard(site);
 
             siteCardHolder.getChildren().add(pane);
-
         }
 
     }

@@ -62,11 +62,11 @@
                                     <Font size="15.0" />
                                 </font>
                             </Label>
-                            <TextField fx:id="">
+                            <choicebox fx:id="">
                                 <VBox.margin>
                                     <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                                 </VBox.margin>
-                            </TextField>
+                            </choicebox>
                             <Button styleClass="generic-button" fx:id="openButton"  mnemonicParsing="false" text="Create" />
                         </children>
                     </VBox>
