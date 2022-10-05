@@ -9,8 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
+<?import javafx.stage.Stage?>
 
-<Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.userControllers.OpenUserController">
+<Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.userControllers.CreateUserController">
     <scene>
         <Scene>
             <AnchorPane stylesheets="@../stylesheet.css" prefHeight="600" prefWidth="600">
@@ -62,11 +63,6 @@
                                     <Font size="15.0" />
                                 </font>
                             </Label>
-                            <choicebox fx:id="">
-                                <VBox.margin>
-                                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-                                </VBox.margin>
-                            </choicebox>
                             <Button styleClass="generic-button" fx:id="openButton"  mnemonicParsing="false" text="Create" />
                         </children>
                     </VBox>
