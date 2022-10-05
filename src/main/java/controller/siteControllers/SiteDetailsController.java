@@ -1,7 +1,9 @@
 package controller.siteControllers;
 
 
+import controller.articleControllers.ArticleEditFormController;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +31,7 @@ public class SiteDetailsController {
     private TextArea siteAddressTextArea;
 
     @FXML
-    private Button editButton, closeButton;
+    private Button editButton, closeButton, addStockButton, addEmployeeButton;
 
     @FXML
     private VBox stockVBox, employeeVBox;
@@ -58,6 +60,7 @@ public class SiteDetailsController {
 
                 SiteDetailsUserCardController controller = loader.getController();
                 controller.setUser(user);
+                controller.setSite(site);
 
                 employeeVBox.getChildren().add(pane);
             }
@@ -88,7 +91,16 @@ public class SiteDetailsController {
     }
 
     public void editHandler(ActionEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/siteDetailsEditModal.fxml"));
+        Stage stage = loader.load();
 
+        SiteDetailsEditController cont = loader.getController();
+        cont.setSite(site);
+
+        stage.setTitle("Edit Site");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Node)e.getSource()).getScene().getWindow());
+        stage.show();
 
     }
 
@@ -96,5 +108,28 @@ public class SiteDetailsController {
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
     }
 
+    public void onStockAdd(ActionEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/siteDetailsSiteArticleAddModal.fxml"));
+        Stage stage = loader.load();
+        siteDetailsSiteArticleAddModalController controller = loader.getController();
+        controller.setSite(site);
+
+        stage.setTitle("Add Stock Item");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Node)e.getSource()).getScene().getWindow());
+        stage.show();
+    }
+
+    public void onEmployeeAdd(ActionEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/siteDetailsUserAddModal.fxml"));
+        Stage stage = loader.load();
+        siteDetailsUserAddModalController controller = loader.getController();
+        controller.setSite(site);
+
+        stage.setTitle("Add Employee");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Node)e.getSource()).getScene().getWindow());
+        stage.show();
+    }
 
 }
