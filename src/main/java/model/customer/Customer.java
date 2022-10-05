@@ -26,6 +26,10 @@ public class Customer{
         this.companyOrgNumber = companyOrgNumber;
     }
 
+    public Customer(long customerId){
+        this.customerId = customerId;
+    }
+
 
     // getters
     public List<CustomerContact> getContacts() {

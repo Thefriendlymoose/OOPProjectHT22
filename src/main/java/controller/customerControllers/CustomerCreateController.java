@@ -16,16 +16,11 @@ import java.util.Objects;
 public class CustomerCreateController {
 
     @FXML
-    Label titleLabel;
-
-    @FXML
     TextField companyNameField, companyOrgNrField;
 
-    @FXML
-    Button saveButton, cancelButton, editShippingAddress, editBillingAddress, editContacts;
 
     public void addShippingAddressHandler(ActionEvent e) throws IOException {
-        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/customerViews/addressCreate.fxml")));
+        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/customerViews/addressEdit.fxml")));
         stage.setTitle("Create Shipping Address");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
@@ -33,7 +28,7 @@ public class CustomerCreateController {
     }
 
     public void addBillingAddressHandler(ActionEvent e) throws IOException{
-        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/customerViews/addressCreate.fxml")));
+        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/customerViews/addressEdit.fxml")));
         stage.setTitle("Create Billing Address");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
@@ -41,10 +36,13 @@ public class CustomerCreateController {
     }
 
     public void addContactHandler(ActionEvent e) throws IOException{
-        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/customerViews/contactCreate.fxml")));
+        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/customerViews/contactEdit.fxml")));
         stage.setTitle("Add Contact");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
         stage.show();
+    }
+
+    public void saveBtnHandler(ActionEvent e) {
     }
 }

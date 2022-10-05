@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class CustomerMenuController {
+
     @FXML
     private Button openButton, createButton, listButton, backButton;
 
@@ -24,7 +25,7 @@ public class CustomerMenuController {
     }
 
     public void createBtnHandler(ActionEvent e) throws IOException{
-        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/customerViews/customerCreate.fxml")));
+        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/customerViews/customerEdit.fxml")));
         stage.setTitle("Create Customer");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());

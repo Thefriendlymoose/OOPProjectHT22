@@ -16,6 +16,8 @@ public class Address{
 
     }
 
+    public Address(){};
+
     // getters
     public String getStreetName() {
         return streetName;
