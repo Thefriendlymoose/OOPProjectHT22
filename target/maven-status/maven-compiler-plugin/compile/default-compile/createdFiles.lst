@@ -62,6 +62,7 @@ model\site\SiteArticle.class
 persistence\pojos\SiteArticleJSON.class
 controller\orderControllers\OrderCreateModalController$1.class
 persistence\pojos\CustomerJSON.class
+controller\customerControllers\addressCreateController.class
 controller\articleControllers\ArticleOpenDetailsModalController.class
 persistence\ArticlesDAO.class
 persistence\IPersistence.class
