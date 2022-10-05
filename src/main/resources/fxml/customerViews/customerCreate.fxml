@@ -3,7 +3,7 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.TextFlow?>
@@ -12,21 +12,26 @@
 <Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customerControllers.CustomerCreateController">
     <scene>
         <Scene>
-            <AnchorPane prefHeight="585.0" prefWidth="319.0">
+            <AnchorPane prefHeight="696.0" prefWidth="309.0">
             <children>
                <Label layoutX="14.0" layoutY="14.0" text="Company Name" />
-               <TextField layoutX="14.0" layoutY="33.0" />
+               <TextField layoutX="14.0" layoutY="33.0" prefHeight="27.0" prefWidth="263.0" />
                <Label layoutX="14.0" layoutY="80.0" text="Organizational Number" />
-               <TextField layoutX="14.0" layoutY="99.0" />
-               <Spinner layoutX="14.0" layoutY="163.0" />
-               <Label layoutX="14.0" layoutY="144.0" text="Contact information" />
-               <Button layoutX="14.0" layoutY="197.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="164.0" text="Add Contact" />
-               <Label layoutX="14.0" layoutY="243.0" text="Shipping Address" />
-               <TextFlow layoutX="15.0" layoutY="262.0" prefHeight="100.0" prefWidth="256.0" />
-               <Button layoutX="15.0" layoutY="362.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="166.0" text="Add Shipping Address" />
-               <Label layoutX="14.0" layoutY="409.0" text="Billing Address" />
-               <TextFlow layoutX="15.0" layoutY="428.0" prefHeight="100.0" prefWidth="256.0" />
-               <Button layoutX="15.0" layoutY="528.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="166.0" text="Add Shipping Address" />
+               <TextField layoutX="14.0" layoutY="99.0" prefHeight="27.0" prefWidth="264.0" />
+               <Label layoutX="21.0" layoutY="473.0" text="Contact information" />
+               <Label layoutX="14.0" layoutY="151.0" text="Shipping Address" />
+               <TextFlow layoutX="15.0" layoutY="170.0" prefHeight="100.0" prefWidth="253.0" />
+               <Button layoutX="15.0" layoutY="270.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="166.0" text="Add Shipping Address" />
+               <Label layoutX="17.0" layoutY="315.0" text="Billing Address" />
+               <TextFlow layoutX="18.0" layoutY="334.0" prefHeight="100.0" prefWidth="261.0" />
+               <Button layoutX="18.0" layoutY="434.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="166.0" text="Add Billing Address" />
+               <Button layoutX="15.0" layoutY="596.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="201.0" text="Add Contact" />
+               <ScrollPane layoutX="15.0" layoutY="492.0" prefHeight="95.0" prefWidth="200.0">
+                  <content>
+                     <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                  </content>
+               </ScrollPane>
+               <Button layoutX="249.0" layoutY="649.0" mnemonicParsing="false" text="Save" />
             </children></AnchorPane>
         </Scene>
     </scene>
