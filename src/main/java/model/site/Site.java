@@ -75,15 +75,23 @@ public class Site {
         return sum;
     }
 
-    @Override
-    public String toString() {
-        return "Site{" +
-                "siteId=" + siteId +
-                ", siteName='" + siteName + '\'' +
-                ", siteAddress='" + siteAddress + '\'' +
-                ", maxCapacity=" + maxCapacity +
-                ", siteArticles=" + siteArticles +
-                ", employees=" + employees +
-                '}';
+    public boolean isOverCapacity(SiteArticle sa, int added){
+        return (getTotalAmountItems() + added - sa.getAmount()) > maxCapacity;
+    }
+
+    public void addEmployee(User user){
+        employees.add(user);
+    }
+
+    public void removeEmployee(User user){
+        employees.remove(user);
+    }
+
+    public void addSiteArticle(SiteArticle sa){
+        siteArticles.add(sa);
+    }
+
+    public void removeSiteArticles(SiteArticle sa){
+        siteArticles.remove(sa);
     }
 }

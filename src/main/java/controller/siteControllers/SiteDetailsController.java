@@ -74,6 +74,7 @@ public class SiteDetailsController {
 
                 SiteDetailsSiteArticleCardController controller = loader.getController();
                 controller.setSiteArticle(sa);
+                controller.setSite(site);
 
                 stockVBox.getChildren().add(pane);
             }
