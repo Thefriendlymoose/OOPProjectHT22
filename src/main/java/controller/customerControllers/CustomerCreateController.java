@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class CustomerCreateController {
@@ -23,7 +24,7 @@ public class CustomerCreateController {
     @FXML
     Button saveButton, cancelButton, editShippingAddress, editBillingAddress, editContacts;
 
-    public void addShippingAddressHandler(ActionEvent e) {
+    public void addShippingAddressHandler(ActionEvent e) throws IOException {
         Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/customerViews/addressCreate.fxml")));
         stage.setTitle("Create Address");
         stage.initModality(Modality.WINDOW_MODAL);
