@@ -15,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.article.Article;
+import model.order.OrderRow;
 import model.site.SiteArticle;
 
 import java.util.List;
@@ -29,24 +30,11 @@ public class OrderFormOrderRowModalController {
     @FXML
     private ListView<SiteArticle> siteArtListView;
 
-//    @FXML TableView<SiteArticle> siteTableView;
-//
-//    @FXML TableColumn<SiteArticle, String> articleColumn;
-//
-//    @FXML TableColumn<SiteArticle, Integer> amountColumn;
-
     private List<SiteArticle> siteArticles;
 
     private SiteArticle current;
 
-
-//    public void initialize(){
-//        Platform.runLater(() ->
-//
-//            siteTableView.getItems().addAll(siteArticles));
-//
-//
-//    }
+    private ObservableList<OrderRow> observableOrderRows;
 
     public void initialize(){
 
@@ -61,7 +49,7 @@ public class OrderFormOrderRowModalController {
                     if(empty || s == null || s.getArticle() == null){
                         setText(null);
                     } else {
-                        setText(s.getArticle().getArticleName() + ", " + s.getAmount() + "x");
+                        setText(s.getArticle().getArticleName() + "\\n " + s.getAmount() + "x");
                     }
                 }
             });
@@ -88,8 +76,12 @@ public class OrderFormOrderRowModalController {
         this.siteArticles = siteArticles;
     }
 
-    public void onAddArticleButton(){
+    public void setObservableOrderRows(ObservableList<OrderRow> oro){
+        this.observableOrderRows = oro;
+    }
 
+    public void onAddArticleButton(){
+        observableOrderRows.add(new OrderRow(current.getArticle(), 5));
     }
 
 }

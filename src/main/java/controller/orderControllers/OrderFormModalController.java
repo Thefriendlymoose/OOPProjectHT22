@@ -1,5 +1,8 @@
 package controller.orderControllers;
 
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +16,7 @@ import model.order.Order;
 import model.order.OrderRow;
 import model.order.OrderStatus;
 import model.site.Site;
+import model.site.SiteArticle;
 
 import java.io.IOException;
 import java.util.*;
@@ -24,17 +28,23 @@ public class OrderFormModalController {
 
     @FXML
     private Label titleLabel;
-
     @FXML
     private TextField numberTextField;
-
     @FXML
     private ComboBox<Boolean> priorityComboBox;
+    @FXML
+    private ComboBox<OrderStatus> statusComboBox;
+    @FXML
+    private DatePicker orderDeadlineDatePicker;
+    @FXML
+    private Button addOrderRowButton, saveButton, cancelButton;
+
+    @FXML
+    private ListView<OrderRow> orderRowListView;
 
     private List<Article> articles;
 
     List<Order> orders = new ArrayList<>();
-
 
     private Site site;
 
@@ -45,6 +55,21 @@ public class OrderFormModalController {
     }
     @FXML
     public void initialize(){
+        addedRows = FXCollections.observableArrayList();
+
+        orderRowListView.setItems(addedRows);
+        orderRowListView.setCellFactory(param -> new ListCell<OrderRow>(){
+            @Override
+            protected void updateItem(OrderRow s, boolean empty){
+                super.updateItem(s, empty);
+
+                if(empty || s == null || s.getArticle() == null){
+                    setText(null);
+                } else {
+                    setText(s.getArticle().getArticleName() + "\\n " + s.getAmount() + "x");
+                }
+            }
+        });
 
         Boolean [] priorities = {true,false};
         priorityComboBox.getItems().addAll(priorities);
@@ -61,15 +86,11 @@ public class OrderFormModalController {
         System.out.println("Priority: "+ priorityComboBox.getValue());
     }
 
-    @FXML
-    private ComboBox<OrderStatus> statusComboBox;
 
     public void setStatusComboBox(){
         System.out.println("Status: "+ statusComboBox.getValue());
     }
 
-    @FXML
-    private DatePicker orderDeadlineDatePicker;
 
     public void deadlineDatePicker(){
 //        public void deadlineDatePicker(ActionEvent event){
@@ -83,31 +104,19 @@ public class OrderFormModalController {
 
     }
 
-    @FXML
-    private Button addOrderRowButton, saveButton, cancelButton;
-
-    @FXML
-    private TableView<OrderRow> addedOrderRowTableView;
-
     public void onAddOrderRowButton(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderFormOrderRowModal.fxml")));
         Stage stage = loader.load();
 
-//      TODO, if (!isEmpty){...} och lägg in try catch NullPointerException
+        OrderFormOrderRowModalController controller = loader.getController();
+        controller.setSiteArticles(site.getSiteArticles());
+        controller.setObservableOrderRows(addedRows);
 
-        if(statusComboBox.getValue().equals(ACTIVE) || statusComboBox.getValue().equals(CANCELED) || statusComboBox.getValue().equals(FINISHED) ) {
-            System.out.println("När det är valid");
+        stage.setTitle("Choose Article");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Node) e.getSource()).getScene().getWindow());
+        stage.show();
 
-            OrderFormOrderRowModalController controller = loader.getController();
-            controller.setSiteArticles(site.getSiteArticles());
-
-            stage.setTitle("Choose Article");
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(((Node) e.getSource()).getScene().getWindow());
-            stage.show();
-        } else {
-            System.out.println("Lol ej valid");
-        }
     }
 
     public void onCancel(ActionEvent e){
