@@ -11,62 +11,46 @@
 <?import javafx.stage.Stage?>
 <?import javafx.stage.Stage?>
 
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
 <Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.userControllers.CreateUserController">
     <scene>
         <Scene>
-            <AnchorPane stylesheets="@../stylesheet.css" prefHeight="600" prefWidth="600">
-                <children>
-                    <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="100.0">
-                        <children>
-                            <Label text="Username">
-                                <font>
-                                    <Font size="15.0" />
-                                </font>
-                            </Label>
-                            <TextField fx:id="searchField">
-                                <VBox.margin>
-                                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-                                </VBox.margin>
-                            </TextField>
-                            <Label text="Password">
-                                <font>
-                                    <Font size="15.0" />
-                                </font>
-                            </Label>
-                            <TextField fx:id="">
-                                <VBox.margin>
-                                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-                                </VBox.margin>
-                            </TextField>
-                            <Label text="First Name">
-                                <font>
-                                    <Font size="15.0" />
-                                </font>
-                            </Label>
-                            <TextField fx:id="">
-                                <VBox.margin>
-                                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-                                </VBox.margin>
-                            </TextField>
-                            <Label text="Last Name">
-                                <font>
-                                    <Font size="15.0" />
-                                </font>
-                            </Label>
-                            <TextField fx:id="">
-                                <VBox.margin>
-                                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-                                </VBox.margin>
-                            </TextField>
-                            <Label text="Permissions">
-                                <font>
-                                    <Font size="15.0" />
-                                </font>
-                            </Label>
-                            <Button styleClass="generic-button" fx:id="openButton"  mnemonicParsing="false" text="Create" />
-                        </children>
-                    </VBox>
-                </children></AnchorPane>
+            <GridPane hgap="5.0" vgap="5.0" stylesheets="@../stylesheet.css" prefHeight="600" prefWidth="600">
+                <VBox spacing="5.0">
+                    <children>
+                        <Label fx:id="numberLabel" styleClass="generic-form-label" text="Article Number" />
+                        <TextField fx:id="numberTextField" disable="true" promptText="Article Number" styleClass="generic-field" />
+                        <HBox spacing="30">
+                            <Label fx:id="" styleClass="generic-form-label" text="First Name" />
+                            <Label fx:id="" styleClass="generic-form-label" text="Last Name" />
+                        </HBox>
+                        <HBox spacing="5">
+                            <TextField fx:id="nameTxtField" disable="true" promptText="Article Name" styleClass="generic-field, locked-form-field" />
+                            <TextField fx:id="nameTxtFied" disable="true" promptText="Article Name" styleClass="generic-field, locked-form-field" />
+                        </HBox>
+                        <Label fx:id="" styleClass="generic-form-label" text="Article Name" />
+                        <TextField fx:id="" disable="true" promptText="Article Name" styleClass="generic-field, locked-form-field" />
+                        <Label fx:id="nameLabel" styleClass="generic-form-label" text="Article Name" />
+                        <TextField fx:id="nameTextField" disable="true" promptText="Article Name" styleClass="generic-field, locked-form-field" />
+                        <Label fx:id="" styleClass="generic-form-label" text="Article Name" />
+                        <TextField fx:id="" disable="true" promptText="Article Name" styleClass="generic-field, locked-form-field" />
+                        <Label fx:id="" styleClass="generic-form-label" text="Status" />
+                        <ComboBox fx:id="" disable="true" maxWidth="1.7976931348623157E308" promptText="Choose Status" styleClass="generic-field, locked-form-field" />
+                        <Label fx:id="" styleClass="generic-form-label" text="Role" />
+                        <ComboBox fx:id="" disable="true" maxWidth="1.7976931348623157E308" promptText="Choose Role" styleClass="generic-field" />
+
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+                    </VBox.margin>
+                </VBox>
+
+            </GridPane>
+
         </Scene>
     </scene>
 </Stage>
