@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestDate {
 
-
 //    deadline.compareTo(orderDate) så
 //    deadline <  orderDate -> -1
 //    deadline >= orderDate -> 1

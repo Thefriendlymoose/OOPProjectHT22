@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.util.*;
 
 import static model.order.Order.CURRENTORDER;
+import static model.order.OrderStatus.*;
 
 public class OrderFormModalController {
 
@@ -50,7 +51,7 @@ public class OrderFormModalController {
 
         numberTextField.setText(Integer.toString(0));
 
-        OrderStatus [] orderStatuses = {OrderStatus.ACTIVE,OrderStatus.CANCELED,OrderStatus.FINISHED};
+        OrderStatus [] orderStatuses = {ACTIVE,OrderStatus.CANCELED,OrderStatus.FINISHED};
         statusComboBox.getItems().addAll(orderStatuses);
     }
 
@@ -88,23 +89,25 @@ public class OrderFormModalController {
     @FXML
     private TableView<OrderRow> addedOrderRowTableView;
 
-
-
-
-
-
-
     public void onAddOrderRowButton(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderFormOrderRowModal.fxml")));
         Stage stage = loader.load();
 
-        OrderFormOrderRowModalController controller = loader.getController();
-        controller.setSiteArticles(site.getSiteArticles());
+//      TODO, if (!isEmpty){...} och lägg in try catch NullPointerException
 
-        stage.setTitle("Choose Article");
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(((Node)e.getSource()).getScene().getWindow() );
-        stage.show();
+        if(statusComboBox.getValue().equals(ACTIVE) || statusComboBox.getValue().equals(CANCELED) || statusComboBox.getValue().equals(FINISHED) ) {
+            System.out.println("När det är valid");
+
+            OrderFormOrderRowModalController controller = loader.getController();
+            controller.setSiteArticles(site.getSiteArticles());
+
+            stage.setTitle("Choose Article");
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(((Node) e.getSource()).getScene().getWindow());
+            stage.show();
+        } else {
+            System.out.println("Lol ej valid");
+        }
     }
 
     public void onCancel(ActionEvent e){
