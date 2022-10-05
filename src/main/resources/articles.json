@@ -6,7 +6,10 @@
     "category": "Lighting",
     "status": "Active",
     "cost": 25,
-    "sellPrice": 50
+    "sellPrice": 50,
+    "createdBy": 3,
+    "createdOn": "2022-10-04T21:24:53.000029800",
+    "lastEdited": "2022-10-04T21:24:53.000029800"
   },
   {
     "articleId": 2,
@@ -15,7 +18,10 @@
     "category": "Beds",
     "status": "Active",
     "cost": 25,
-    "sellPrice": 50
+    "sellPrice": 50,
+    "createdBy": 2,
+    "createdOn": "2022-10-04T21:24:53.000029800",
+    "lastEdited": "2022-10-04T21:24:53.000029800"
   },
   {
     "articleId": 3,
@@ -24,7 +30,10 @@
     "category": "Lighting",
     "status": "Active",
     "cost": 25,
-    "sellPrice": 50
+    "sellPrice": 50,
+    "createdBy": 4,
+    "createdOn": "2022-10-04T21:24:53.000029800",
+    "lastEdited": "2022-10-04T21:24:53.000029800"
   },
   {
     "articleId": 4,
@@ -33,7 +42,10 @@
     "category": "Lighting",
     "status": "Active",
     "cost": 25,
-    "sellPrice": 50
+    "sellPrice": 50,
+    "createdBy": 3,
+    "createdOn": "2022-10-04T21:24:53.000029800",
+    "lastEdited": "2022-10-04T21:24:53.000029800"
   },
   {
     "articleId": 5,
@@ -42,7 +54,10 @@
     "category": "Storage",
     "status": "Active",
     "cost": 25,
-    "sellPrice": 50
+    "sellPrice": 50,
+    "createdBy": 1,
+    "createdOn": "2022-10-04T21:24:53.000029800",
+    "lastEdited": "2022-10-04T21:24:53.000029800"
   },
   {
     "articleId": 6,
@@ -51,6 +66,10 @@
     "category": "Kitchen",
     "status": "Active",
     "cost": 25,
-    "sellPrice": 50
+    "sellPrice": 50,
+    "createdBy": 2,
+    "createdOn": "2022-10-04T21:24:53.000029800",
+    "lastEdited": "2022-10-04T21:24:53.000029800"
+
   }
 ]

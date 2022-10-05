@@ -5,10 +5,13 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.article.Article;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
 import model.article.ArticlesFacade;
 
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Optional;
 
 public class ArticleFormController {
@@ -31,7 +34,7 @@ public class ArticleFormController {
     @FXML
     Button saveButton, cancelButton;
 
-    private ArticlesFacade facade = new ArticlesFacade();
+    private final ArticlesFacade facade = new ArticlesFacade();
 
     @FXML
     public void initialize(){
@@ -45,11 +48,19 @@ public class ArticleFormController {
 
     }
 
-    public void onSave(){
+    public void onSave(ActionEvent e){
         // TODO: Need to check all fields, then create new object from data?
 
         if (nameTextField.getText().isEmpty() || nameTextField.getText().isEmpty() || descriptionTextArea.getText().isEmpty() || categoryComboBox.getValue() == null || statusComboBox.getValue() == null){
 
+        } else {
+            Article art = new Article(facade.getNextId(), nameTextField.getText(), descriptionTextArea.getText(), categoryComboBox.getValue(),
+                                      statusComboBox.getValue(), Float.parseFloat(costTextField.getText()), Float.parseFloat(sellPriceTextField.getText()),
+                                        null , LocalDateTime.now(), LocalDateTime.now());
+
+            facade.saveArticle(art);
+
+            ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
         }
 
     }
