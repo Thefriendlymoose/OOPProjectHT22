@@ -1,6 +1,10 @@
 package controller.orderControllers;
 
 import javafx.application.Platform;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,7 +12,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.article.Article;
 import model.site.SiteArticle;
 
 import java.util.List;
@@ -23,13 +29,28 @@ public class OrderFormOrderRowModalController {
     @FXML
     private ListView<SiteArticle> siteArtListView;
 
+//    @FXML TableView<SiteArticle> siteTableView;
+//
+//    @FXML TableColumn<SiteArticle, String> articleColumn;
+//
+//    @FXML TableColumn<SiteArticle, Integer> amountColumn;
+
     private List<SiteArticle> siteArticles;
 
     private SiteArticle current;
 
-    public void initialize(){
-        Platform.runLater(() -> {
 
+//    public void initialize(){
+//        Platform.runLater(() ->
+//
+//            siteTableView.getItems().addAll(siteArticles));
+//
+//
+//    }
+
+    public void initialize(){
+
+        Platform.runLater(() -> {
             siteArtListView.getItems().addAll(siteArticles);
 
             siteArtListView.setCellFactory(param -> new ListCell<SiteArticle>(){
@@ -40,7 +61,7 @@ public class OrderFormOrderRowModalController {
                     if(empty || s == null || s.getArticle() == null){
                         setText(null);
                     } else {
-                        setText(s.getArticle().getArticleName() + " ----- Amount: " + s.getAmount());
+                        setText(s.getArticle().getArticleName() + ", " + s.getAmount() + "x");
                     }
                 }
             });
