@@ -33,8 +33,7 @@ public class OrderFormModalController {
     private List<Article> articles;
 
     List<Order> orders = new ArrayList<>();
-//    Order tempOrder = new Order(0,0,0, OrderStatus.ACTIVE,true,new GregorianCalendar(),new GregorianCalendar(),articles);
-//    private DateFactory dateFactory;
+
 
     private Site site;
 
@@ -51,8 +50,6 @@ public class OrderFormModalController {
 
         numberTextField.setText(Integer.toString(0));
 
-
-//        hard coded, should iterate over all enums in enum class
         OrderStatus [] orderStatuses = {OrderStatus.ACTIVE,OrderStatus.CANCELED,OrderStatus.FINISHED};
         statusComboBox.getItems().addAll(orderStatuses);
     }
@@ -80,16 +77,9 @@ public class OrderFormModalController {
         int year = orderDeadlineDatePicker.getValue().getYear();
         int month = orderDeadlineDatePicker.getValue().getMonthValue();
         int day = orderDeadlineDatePicker.getValue().getDayOfMonth();
-//        DateFactory dateFactory = new DateFactory();
 
-//        GregorianCalendar orderDate = dateFactory.createDate();
-
-//        System.out.println("OrderDate: " + orderDate.get(Calendar.YEAR) +"-"+ orderDate.get(Calendar.MONTH) +"-"+orderDate.get(Calendar.DATE) );
         System.out.println("Deadline: " + year +"-"+ month +"-"+ day );
 
-//        dateFactory.createDeadline(year,month,day);
-
-//        System.out.println("Deadline: " + deadline.get(Calendar.YEAR) +"-"+ deadline.get(Calendar.MONTH) +"-"+deadline.get(Calendar.DATE) );
     }
 
     @FXML
