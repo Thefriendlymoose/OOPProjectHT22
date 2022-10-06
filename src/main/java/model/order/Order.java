@@ -2,12 +2,10 @@ package model.order;
 
 
 import model.User;
-import model.article.Article;
 import model.customer.Customer;
 import model.site.Site;
 
 import java.time.LocalDateTime;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 

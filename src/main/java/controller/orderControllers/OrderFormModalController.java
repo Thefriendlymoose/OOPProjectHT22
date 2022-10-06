@@ -12,16 +12,20 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.article.Article;
+import model.order.DateFactory;
 import model.order.Order;
 import model.order.OrderRow;
 import model.order.OrderStatus;
 import model.site.Site;
+import persistence.OrderDAO;
 import model.site.SiteArticle;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.*;
 
-import static model.order.Order.CURRENTORDER;
+
+
 import static model.order.OrderStatus.*;
 
 public class OrderFormModalController {
@@ -71,7 +75,7 @@ public class OrderFormModalController {
         Boolean [] priorities = {true,false};
         priorityComboBox.getItems().addAll(priorities);
 
-        numberTextField.setText(Integer.toString(0));
+        numberTextField.setText(Integer.toString((int) OrderDAO.getInstance().getNextId()));
 
         OrderStatus [] orderStatuses = {ACTIVE,OrderStatus.CANCELED,OrderStatus.FINISHED};
         statusComboBox.getItems().addAll(orderStatuses);
@@ -90,15 +94,17 @@ public class OrderFormModalController {
 
 
     public void deadlineDatePicker(){
-//        public void deadlineDatePicker(ActionEvent event){
-//        Controller ska anropa detta, men inte utföra. Flyttar sen.
+        DateFactory df = new DateFactory();
 
-        int year = orderDeadlineDatePicker.getValue().getYear();
-        int month = orderDeadlineDatePicker.getValue().getMonthValue();
         int day = orderDeadlineDatePicker.getValue().getDayOfMonth();
+        int month = orderDeadlineDatePicker.getValue().getMonthValue();
+        int year = orderDeadlineDatePicker.getValue().getYear();
 
-        System.out.println("Deadline: " + year +"-"+ month +"-"+ day );
+        LocalDateTime deadline = df.createDeadline(day,month,year);
 
+        if(df.isValidDeadline(deadline)){
+            System.out.println("Deadline: " + deadline.getDayOfMonth() + "-"+ deadline.getMonthValue() + "-" + deadline.getYear());
+        }
     }
 
     public void onAddOrderRowButton(ActionEvent e) throws IOException {

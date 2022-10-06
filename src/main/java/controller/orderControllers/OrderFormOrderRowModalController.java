@@ -36,6 +36,7 @@ public class OrderFormOrderRowModalController {
 
     private ObservableList<OrderRow> observableOrderRows;
 
+
     public void initialize(){
 
         Platform.runLater(() -> {
