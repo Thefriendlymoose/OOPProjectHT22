@@ -16,6 +16,8 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
+       // System.out.println(Integer.parseInt("hi"));
+
         System.out.println(OrderDAO.getInstance().getAll());
         System.out.println(CustomersDAO.getInstance().getAll());
         System.out.println(ArticlesDAO.getInstance().getAll());
