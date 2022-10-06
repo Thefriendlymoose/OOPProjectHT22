@@ -29,24 +29,10 @@ public class OrderFormOrderRowModalController {
     @FXML
     private ListView<SiteArticle> siteArtListView;
 
-//    @FXML TableView<SiteArticle> siteTableView;
-//
-//    @FXML TableColumn<SiteArticle, String> articleColumn;
-//
-//    @FXML TableColumn<SiteArticle, Integer> amountColumn;
-
     private List<SiteArticle> siteArticles;
 
     private SiteArticle current;
 
-
-//    public void initialize(){
-//        Platform.runLater(() ->
-//
-//            siteTableView.getItems().addAll(siteArticles));
-//
-//
-//    }
 
     public void initialize(){
 
