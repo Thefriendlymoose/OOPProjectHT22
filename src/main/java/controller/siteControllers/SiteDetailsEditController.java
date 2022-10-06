@@ -9,8 +9,9 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.site.Site;
+import persistence.OrderDAO;
+import persistence.SitesDAO;
 
-import java.io.IOException;
 import java.util.Optional;
 
 public class SiteDetailsEditController {
@@ -34,7 +35,7 @@ public class SiteDetailsEditController {
     public void initialize(){
         Platform.runLater(() -> {
 
-            numberTextField.setText(String.valueOf(site.getSiteId()));
+            numberTextField.setText(Integer.toString((int) SitesDAO.getInstance().getNextId()));
             nameTextField.setText(site.getSiteName());
             maxCapacityTextField.setText(String.valueOf(site.getMaxCapacity()));
             maxCapacityTextField.setDisable(true);
