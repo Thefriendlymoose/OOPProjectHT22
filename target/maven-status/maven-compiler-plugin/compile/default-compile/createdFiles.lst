@@ -11,6 +11,7 @@ model\User.class
 controller\siteControllers\SiteMenuController.class
 persistence\pojos\AddressJSON.class
 persistence\pojos\ArticleJSON.class
+model\customer\CustomerEditor.class
 model\article\ArticleStatus.class
 controller\customerControllers\CustomerCreateController.class
 model\pojos\OrderPojo.class

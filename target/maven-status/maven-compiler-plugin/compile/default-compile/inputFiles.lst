@@ -42,6 +42,7 @@ C:\javadev\OOPProjectHT22\src\main\java\controller\siteControllers\SiteDetailsUs
 C:\javadev\OOPProjectHT22\src\main\java\persistence\pojos\SiteJSON.java
 C:\javadev\OOPProjectHT22\src\main\java\controller\siteControllers\SiteDetailsSiteArticleModalController.java
 C:\javadev\OOPProjectHT22\src\main\java\controller\siteControllers\SiteDetailsEditController.java
+C:\javadev\OOPProjectHT22\src\main\java\model\customer\CustomerEditor.java
 C:\javadev\OOPProjectHT22\src\main\java\persistence\pojos\CustomerJSON.java
 C:\javadev\OOPProjectHT22\src\main\java\model\order\DBJOrders.java
 C:\javadev\OOPProjectHT22\src\main\java\controller\orderControllers\OrderSiteMenuCardController.java

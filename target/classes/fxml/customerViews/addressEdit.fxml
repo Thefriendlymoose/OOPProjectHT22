@@ -22,9 +22,9 @@
                   <Label layoutX="25.0" layoutY="223.0" text="City" />
                   <TextField fx:id="cityField" layoutX="25.0" layoutY="242.0" />
                   <Button onAction="#saveBtnHandler" layoutX="20.0" layoutY="376.0" mnemonicParsing="false" text="Save Address" />
-                  <Button onAction="#cancelBtnHandler" layoutX="130.0" layoutY="376.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="95.0" text="Cancel" />
+                  <Button  onAction="#cancelBtnHandler" layoutX="130.0" layoutY="376.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="95.0" text="Cancel" />
                   <Label layoutX="25.0" layoutY="283.0" text="Country" />
-                  <TextField layoutX="25.0" layoutY="302.0" />
+                  <TextField fx:id="countryField" layoutX="25.0" layoutY="302.0" />
                </children>
             </AnchorPane>
          </root>

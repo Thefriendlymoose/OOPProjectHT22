@@ -1,37 +1,61 @@
 package controller.customerControllers;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.customer.CustomerEditor;
 
 import java.io.IOException;
 import java.util.Objects;
 
 public class CustomerCreateController {
 
+    public Label shippingAddressFlow;
+    public Label billingAddressFlow;
+
+    private CustomerEditor editor = new CustomerEditor();
+
     @FXML
     TextField companyNameField, companyOrgNrField;
 
+    public void initialize(){
+        Platform.runLater(() -> {
+            editor.newCustomer();
+            update();
+        });
+    }
+
+    public void update(){
+        shippingAddressFlow.setText(editor.getShippingAddress().toString());
+        billingAddressFlow.setText(editor.getBillingAddress().toString());
+    }
+
 
     public void addShippingAddressHandler(ActionEvent e) throws IOException {
-        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/customerViews/addressEdit.fxml")));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/customerViews/addressEdit.fxml"));
+        Stage stage = loader.load();
         stage.setTitle("Create Shipping Address");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
+        AddressCreateController cont = loader.getController();
+        cont.setAddress(editor.getShippingAddress());
         stage.show();
     }
 
     public void addBillingAddressHandler(ActionEvent e) throws IOException{
-        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/customerViews/addressEdit.fxml")));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/customerViews/addressEdit.fxml"));
+        Stage stage = loader.load();
         stage.setTitle("Create Billing Address");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
+        AddressCreateController cont = loader.getController();
+        cont.setAddress(editor.getBillingAddress());
         stage.show();
     }
 
@@ -44,5 +68,6 @@ public class CustomerCreateController {
     }
 
     public void saveBtnHandler(ActionEvent e) {
+
     }
 }
