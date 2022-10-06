@@ -1,5 +1,6 @@
 package orderTests;
 
+import model.order.DateFactory;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.util.concurrent.ThreadLocalRandom;
@@ -15,6 +16,7 @@ public class TestDate {
     }
     @Test
     public void testValidDeadline(){
+
         int randomNum = ThreadLocalRandom.current().nextInt(-5, 5);
         System.out.println(randomNum);
         LocalDateTime orderDate = LocalDateTime.now();
@@ -23,5 +25,18 @@ public class TestDate {
         assertTrue(isValidDeadline(orderDate,deadline));
     }
 
+
+    @Test
+    public void testValidDeadlineDateFactory(){
+
+        DateFactory df = new DateFactory();
+
+        int randomNum = ThreadLocalRandom.current().nextInt(-5, 5);
+        System.out.println(randomNum);
+        LocalDateTime orderDate = df.getOrderDate();
+
+        LocalDateTime deadline = LocalDateTime.now().plusDays(randomNum);
+        assertTrue(isValidDeadline(orderDate,deadline));
+    }
 
 }

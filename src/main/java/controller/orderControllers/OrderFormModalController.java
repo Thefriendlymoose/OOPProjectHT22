@@ -9,15 +9,19 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.article.Article;
+import model.order.DateFactory;
 import model.order.Order;
 import model.order.OrderRow;
 import model.order.OrderStatus;
 import model.site.Site;
+import persistence.OrderDAO;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.*;
 
-import static model.order.Order.CURRENTORDER;
+
+
 import static model.order.OrderStatus.*;
 
 public class OrderFormModalController {
@@ -49,7 +53,7 @@ public class OrderFormModalController {
         Boolean [] priorities = {true,false};
         priorityComboBox.getItems().addAll(priorities);
 
-        numberTextField.setText(Integer.toString(0));
+        numberTextField.setText(Integer.toString((int) OrderDAO.getInstance().getNextId()));
 
         OrderStatus [] orderStatuses = {ACTIVE,OrderStatus.CANCELED,OrderStatus.FINISHED};
         statusComboBox.getItems().addAll(orderStatuses);
@@ -72,15 +76,17 @@ public class OrderFormModalController {
     private DatePicker orderDeadlineDatePicker;
 
     public void deadlineDatePicker(){
-//        public void deadlineDatePicker(ActionEvent event){
-//        Controller ska anropa detta, men inte utföra. Flyttar sen.
+        DateFactory df = new DateFactory();
 
-        int year = orderDeadlineDatePicker.getValue().getYear();
-        int month = orderDeadlineDatePicker.getValue().getMonthValue();
         int day = orderDeadlineDatePicker.getValue().getDayOfMonth();
+        int month = orderDeadlineDatePicker.getValue().getMonthValue();
+        int year = orderDeadlineDatePicker.getValue().getYear();
 
-        System.out.println("Deadline: " + year +"-"+ month +"-"+ day );
+        LocalDateTime deadline = df.createDeadline(day,month,year);
 
+        if(df.isValidDeadline(deadline)){
+            System.out.println("Deadline: " + deadline.getDayOfMonth() + "-"+ deadline.getMonthValue() + "-" + deadline.getYear());
+        }
     }
 
     @FXML
@@ -96,7 +102,7 @@ public class OrderFormModalController {
 //      TODO, if (!isEmpty){...} och lägg in try catch NullPointerException
 
         if(statusComboBox.getValue().equals(ACTIVE) || statusComboBox.getValue().equals(CANCELED) || statusComboBox.getValue().equals(FINISHED) ) {
-            System.out.println("När det är valid");
+            System.out.println("Valid statusComboBox");
 
             OrderFormOrderRowModalController controller = loader.getController();
             controller.setSiteArticles(site.getSiteArticles());
@@ -106,7 +112,7 @@ public class OrderFormModalController {
             stage.initOwner(((Node) e.getSource()).getScene().getWindow());
             stage.show();
         } else {
-            System.out.println("Lol ej valid");
+            System.out.println("ej valid");
         }
     }
 

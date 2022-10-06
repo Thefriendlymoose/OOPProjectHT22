@@ -2,12 +2,10 @@ package model.order;
 
 
 import model.User;
-import model.article.Article;
 import model.customer.Customer;
 import model.site.Site;
 
 import java.time.LocalDateTime;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 
@@ -70,6 +68,22 @@ public class Order {
 
     public Site getSite() {
         return site;
+    }
+
+    public LocalDateTime isValidDeadline(int d, int m, int y){
+        LocalDateTime orderDate = LocalDateTime.now();
+
+        d -= orderDate.getDayOfMonth();
+        m -= orderDate.getMonthValue();
+        y -= orderDate.getYear();
+
+        LocalDateTime deadline = LocalDateTime.now().plusDays(d).plusMonths(m).plusYears(y);
+        if (1 >= deadline.compareTo(orderDate)){
+            return deadline;
+        }
+
+//        return 1 >= deadline.compareTo(orderDate);
+        return orderDate;
     }
 
 }
