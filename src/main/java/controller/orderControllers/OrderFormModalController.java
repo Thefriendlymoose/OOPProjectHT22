@@ -38,16 +38,13 @@ public class OrderFormModalController {
     private DatePicker orderDeadlineDatePicker;
     @FXML
     private Button addOrderRowButton, saveButton, cancelButton;
-
     @FXML
     private ListView<OrderRow> orderRowListView;
 
     private List<Article> articles;
 
     List<Order> orders = new ArrayList<>();
-
     private Site site;
-
     private ObservableList<OrderRow> addedRows;
 
     public void setSite(Site site){

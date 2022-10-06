@@ -1,11 +1,12 @@
 package controller.orderControllers;
 
-import database.DataBaseAdapter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.bson.Document;
+import model.order.Order;
+import persistence.IPersistence;
+import persistence.OrderDAO;
 
 
 public class OrderOpenController {
@@ -17,18 +18,20 @@ public class OrderOpenController {
     private Button openButton;
 
     public void openOrder(){
-        DataBaseAdapter dba = DataBaseAdapter.getInstance();
+        IPersistence<Order> orders = OrderDAO.getInstance();
         if(!searchField.getText().isEmpty()){
-            Document doc = dba.findAndOpenOrder(searchField.getText());
-            if (doc != null){
-                System.out.println(doc.get("ordernumber") + " - " + doc.get("description"));
-                Stage stage = (Stage) openButton.getScene().getWindow();
-                stage.close();
-            } else {
+            try {
+                Long id = Long.parseLong(searchField.getText());
+                if(orders.getAllMap().containsKey(id)){
 
+                } else {
+                    System.out.println("Order does not exist");
+                }
+            } catch (NumberFormatException error){
+                System.out.println("Number error");
             }
         } else {
-
+            System.out.println("Field Empty");
         }
 
     }
