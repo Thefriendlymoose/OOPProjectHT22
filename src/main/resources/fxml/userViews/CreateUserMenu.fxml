@@ -19,37 +19,38 @@
 <Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.userControllers.CreateUserController">
     <scene>
         <Scene>
-            <GridPane hgap="5.0" vgap="5.0" stylesheets="@../stylesheet.css" prefHeight="600" prefWidth="600">
-                <VBox spacing="5.0">
+            <AnchorPane prefHeight="700.0" prefWidth="500.0" stylesheets="@../stylesheet.css">
+                <children>
+                <VBox alignment="TOP_CENTER" spacing="5.0">
                     <children>
-                        <Label fx:id="numberLabel" styleClass="generic-form-label" text="Article Number" />
-                        <TextField fx:id="numberTextField" disable="true" promptText="Article Number" styleClass="generic-field" />
-                        <HBox spacing="30">
-                            <Label fx:id="" styleClass="generic-form-label" text="First Name" />
-                            <Label fx:id="" styleClass="generic-form-label" text="Last Name" />
+                        <Label fx:id="userIDLabel" styleClass="generic-form-label" text="UserID:" />
+                        <TextField fx:id="userIDTextField" disable="true" promptText="UserID" styleClass="generic-field, locked-form-field"  />
+                        <HBox alignment="CENTER_LEFT" spacing="20">
+                            <Label fx:id="firstNameLabel" styleClass="generic-form-label" text="First Name" />
+                            <Label fx:id="lastNameLabel" styleClass="generic-form-label" text="Last Name" />
                         </HBox>
                         <HBox spacing="5">
-                            <TextField fx:id="nameTxtField" disable="true" promptText="Article Name" styleClass="generic-field, locked-form-field" />
-                            <TextField fx:id="nameTxtFied" disable="true" promptText="Article Name" styleClass="generic-field, locked-form-field" />
+                            <TextField fx:id="firstNameField"  promptText="First Name" styleClass="generic-field, locked-form-field" />
+                            <TextField fx:id="lastNameField"  promptText="Last Name" styleClass="generic-field, locked-form-field" />
                         </HBox>
-                        <Label fx:id="" styleClass="generic-form-label" text="Article Name" />
-                        <TextField fx:id="" disable="true" promptText="Article Name" styleClass="generic-field, locked-form-field" />
-                        <Label fx:id="nameLabel" styleClass="generic-form-label" text="Article Name" />
-                        <TextField fx:id="nameTextField" disable="true" promptText="Article Name" styleClass="generic-field, locked-form-field" />
-                        <Label fx:id="" styleClass="generic-form-label" text="Article Name" />
-                        <TextField fx:id="" disable="true" promptText="Article Name" styleClass="generic-field, locked-form-field" />
-                        <Label fx:id="" styleClass="generic-form-label" text="Status" />
-                        <ComboBox fx:id="" disable="true" maxWidth="1.7976931348623157E308" promptText="Choose Status" styleClass="generic-field, locked-form-field" />
-                        <Label fx:id="" styleClass="generic-form-label" text="Role" />
-                        <ComboBox fx:id="" disable="true" maxWidth="1.7976931348623157E308" promptText="Choose Role" styleClass="generic-field" />
-
+                        <Label fx:id="userNameLabel" styleClass="generic-form-label" text="UserName" />
+                        <TextField fx:id="userNameField"  promptText="UserName" styleClass="generic-field, locked-form-field" />
+                        <Label fx:id="passwordLabel" styleClass="generic-form-label" text="Password" />
+                        <TextField fx:id="passwordField"  promptText="Password" styleClass="generic-field, locked-form-field" />
+                        <Label fx:id="StatusLabel" styleClass="generic-form-label" text="Status" />
+                        <ComboBox fx:id="statusBox" maxWidth="1.7976931348623157E308" promptText="Choose Status" styleClass="generic-field, locked-form-field" />
+                        <Label fx:id="roleLabel" styleClass="generic-form-label" text="Role" />
+                        <ComboBox fx:id="roleBox"  maxWidth="1.7976931348623157E308" promptText="Choose Role" styleClass="generic-field, locked-form-field" />
+                        <Label styleClass="generic-form-label" text="Role Description" />
+                        <TextArea fx:id="descriptionTextArea" disable="true" promptText="Role Description" prefWidth="200.0" styleClass="generic-field" />
                     </children>
                     <VBox.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
                     </VBox.margin>
                 </VBox>
+                </children>
 
-            </GridPane>
+            </AnchorPane>
 
         </Scene>
     </scene>
