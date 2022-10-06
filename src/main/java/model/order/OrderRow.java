@@ -18,4 +18,5 @@ public class OrderRow {
     public int getAmount() {
         return amount;
     }
+
 }

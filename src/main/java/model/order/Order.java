@@ -72,4 +72,20 @@ public class Order {
         return site;
     }
 
+    public float getTotalCost(){
+        float sum = 0;
+        for (OrderRow or : orderRows){
+            sum += or.getArticle().getCost() * or.getAmount();
+        }
+        return sum;
+    }
+
+    public float getTotalRevenue(){
+        float sum = 0;
+        for (OrderRow or : orderRows){
+            sum += or.getArticle().getSellPrice() * or.getAmount();
+        }
+        return sum;
+    }
+
 }
