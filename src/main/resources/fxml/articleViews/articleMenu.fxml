@@ -44,14 +44,6 @@
                         <Insets bottom="15.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="listButton" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="Article List">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="100.0" />
-                     </VBox.margin>
-                  </Button>
                   <Button fx:id="backButton" maxWidth="150.0" mnemonicParsing="false" onAction="#backBtnHandler" styleClass="generic-button" text="Back">
                      <font>
                         <Font size="18.0" />
