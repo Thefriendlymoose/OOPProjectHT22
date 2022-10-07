@@ -20,7 +20,6 @@ public class Order {
     private List<OrderRow> orderRows;
     private Site site;
 
-    public static int CURRENTORDER = 0; //senare "CurrentOrderNumber = orderList.size + 1;"
 
     public Order(User user, long orderNumber, Customer customer, OrderStatus orderStatus, boolean priority, LocalDateTime orderDate, LocalDateTime deadline, List<OrderRow> orderRows, Site site) {
         this.user = user;
