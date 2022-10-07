@@ -21,7 +21,7 @@ import java.util.Objects;
 
 public class SiteMenuController {
     @FXML
-    private Button openButton, createButton, listButton, backButton;
+    private Button openButton, createButton, backButton;
 
     @FXML
     private VBox siteCardHolderVBox;
@@ -43,7 +43,7 @@ public class SiteMenuController {
     }
 
     public void createButton(ActionEvent e) throws Exception{
-        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/siteViews/siteDetailsEditModal.fxml")));
+        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/siteViews/siteCreateModal.fxml")));
         stage.setTitle("Create Site");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node) e.getSource()).getScene().getWindow());
@@ -54,5 +54,13 @@ public class SiteMenuController {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/mainMenu.fxml")));
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
+    }
+
+    public void onOpen(ActionEvent e) throws IOException {
+        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/siteViews/siteOpenDetailsModal.fxml")));
+        stage.setTitle("Open Site");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Node) e.getSource()).getScene().getWindow());
+        stage.show();
     }
 }

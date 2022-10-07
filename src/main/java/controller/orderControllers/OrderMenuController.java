@@ -3,14 +3,21 @@ package controller.orderControllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.order.Order;
+import model.order.Orders;
 import model.site.Site;
 import persistence.*;
 
@@ -23,24 +30,36 @@ public class OrderMenuController {
     private Button openButton, createButton, listButton, backButton;
 
     @FXML
-    private VBox siteCardHolder;
+    private TabPane tabPane;
 
 
     private IPersistence<Site> testDao = SitesDAO.getInstance();
+    private Orders orders = new Orders();
 
     public  void initialize() throws IOException {
         List<Site> sites = testDao.getAll();
 
         for (Site site : sites){
-            FXMLLoader cardLoader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderSiteDetailsMenuCard.fxml")));
+            Tab tab = new Tab();
+            tab.setText(site.getSiteName());
+            FlowPane fp = new FlowPane();
+            fp.setPadding(new Insets(10,10,10,10));
+            fp.setHgap(10);
+            fp.setVgap(10);
+            tab.setContent(fp);
 
-            AnchorPane pane = cardLoader.load();
-            OrderSiteMenuCardController cont =  cardLoader.getController();
+            for (Order order : orders.getOrdersBySite(site)){
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderMenuTabCard.fxml"));
+                AnchorPane pane = loader.load();
+                OrderMenuTabCardController controller = loader.getController();
+                controller.setOrder(order);
+                controller.setSite(site);
 
-            cont.setCard(site);
+                fp.getChildren().add(pane);
 
-            siteCardHolder.getChildren().add(pane);
+            }
 
+            tabPane.getTabs().add(tab);
         }
 
     }

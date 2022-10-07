@@ -85,4 +85,12 @@ public class Order {
         return sum;
     }
 
+    public int getTotalAmount(){
+        int sum = 0;
+        for (OrderRow or : orderRows){
+            sum += or.getAmount();
+        }
+        return sum;
+    }
+
 }

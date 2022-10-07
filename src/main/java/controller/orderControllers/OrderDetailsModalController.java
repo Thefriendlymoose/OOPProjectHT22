@@ -3,15 +3,20 @@ package controller.orderControllers;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
 import model.order.Order;
 import model.order.OrderRow;
 import model.order.OrderStatus;
+import model.site.Site;
 import model.site.SiteArticle;
+
+import java.io.IOException;
 
 public class OrderDetailsModalController {
 
@@ -30,8 +35,14 @@ public class OrderDetailsModalController {
 
     private Order order;
 
+    private Site site;
+
     public void setOrder(Order order){
         this.order = order;
+    }
+
+    public void setSite(Site site){
+        this.site = site;
     }
 
     public void initialize(){
@@ -73,7 +84,20 @@ public class OrderDetailsModalController {
         });
     }
 
-    public void onEdit(ActionEvent e){
+    public void onEdit(ActionEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderEditModal.fxml"));
+        Stage stage = loader.load();
+        OrderEditModalController controller = loader.getController();
+
+        controller.setOrder(order);
+        controller.setSite(site);
+
+        stage.setTitle("Edit Order");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Stage) ((Node)e.getSource()).getScene().getWindow()).getOwner());
+        stage.show();
+
+        ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
 
     }
 
