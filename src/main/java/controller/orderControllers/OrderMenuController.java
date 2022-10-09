@@ -32,7 +32,7 @@ public class OrderMenuController {
 
 
     private IPersistence<Site> testDao = SitesDAO.getInstance();
-    private Orders orders = new Orders();
+    private Orders orders = new Orders(OrderDAO.getInstance().getAllMap());
 
     public  void initialize() throws IOException {
         List<Site> sites = testDao.getAll();

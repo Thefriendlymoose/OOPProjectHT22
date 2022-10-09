@@ -91,5 +91,13 @@ public class    User {
         return allowed(Permission.ARTICLE);
     }
 
+    public boolean isPasswordCorrect(User user){
+        return user.getPassword().equals(this.password);
+    }
+
+    public boolean hasPermission(Permission permission){
+        return permissions.contains(permission);
+    }
+
 
 }
