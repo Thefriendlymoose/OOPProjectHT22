@@ -10,8 +10,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.article.Article;
 import model.article.ArticlesFacade;
-import persistence.ArticlesDAO;
-import persistence.IPersistence;
 
 import java.io.IOException;
 import java.util.Objects;

@@ -11,7 +11,6 @@ import model.article.ArticlesFacade;
 import model.site.Site;
 import model.site.SiteArticle;
 
-import java.util.List;
 import java.util.Optional;
 
 public class siteDetailsSiteArticleAddModalController {

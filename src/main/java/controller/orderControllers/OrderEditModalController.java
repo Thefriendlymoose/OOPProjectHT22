@@ -10,18 +10,14 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.article.Article;
 import model.order.DateFactory;
 import model.order.Order;
 import model.order.OrderRow;
 import model.order.OrderStatus;
 import model.site.Site;
-import persistence.OrderDAO;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 

@@ -1,9 +1,6 @@
 package controller.siteControllers;
 
-
-import controller.articleControllers.ArticleEditFormController;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

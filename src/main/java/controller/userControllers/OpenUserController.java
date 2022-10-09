@@ -1,7 +1,6 @@
 package controller.userControllers;
 
 import database.DataBaseAdapter;
-import database.DataBaseConnection;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;

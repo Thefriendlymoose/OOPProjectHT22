@@ -1,7 +1,5 @@
 package controller.orderControllers;
 
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,7 +16,6 @@ import model.order.OrderRow;
 import model.order.OrderStatus;
 import model.site.Site;
 import persistence.OrderDAO;
-import model.site.SiteArticle;
 
 import java.io.IOException;
 import java.time.LocalDateTime;

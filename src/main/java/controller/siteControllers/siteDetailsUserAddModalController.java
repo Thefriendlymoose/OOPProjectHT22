@@ -7,10 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.User;
-import model.article.Article;
-import model.article.ArticlesFacade;
 import model.site.Site;
-import model.site.SiteArticle;
 import persistence.UserDAO;
 
 import java.util.Optional;

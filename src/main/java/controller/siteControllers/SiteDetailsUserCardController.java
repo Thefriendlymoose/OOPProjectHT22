@@ -2,16 +2,13 @@ package controller.siteControllers;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 import model.User;
 import model.site.Site;
 
-import java.awt.event.ActionEvent;
 import java.util.Optional;
 
 

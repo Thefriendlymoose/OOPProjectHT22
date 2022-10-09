@@ -8,13 +8,10 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.article.ArticleCategory;
-import model.article.ArticleStatus;
 import model.order.Order;
 import model.order.OrderRow;
 import model.order.OrderStatus;
 import model.site.Site;
-import model.site.SiteArticle;
 
 import java.io.IOException;
 
