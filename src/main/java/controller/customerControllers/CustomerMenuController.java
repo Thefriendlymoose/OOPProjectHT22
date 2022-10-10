@@ -33,7 +33,7 @@ public class CustomerMenuController {
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
         CustomerEditController cont = loader.getController();
 
-        //TODO change this nonsense
+        //TODO change this nonsense or maybe not?
         CustomerEditor editor = new CustomerEditor();
         editor.registerObserver(cont);
         cont.setEditor(editor);
