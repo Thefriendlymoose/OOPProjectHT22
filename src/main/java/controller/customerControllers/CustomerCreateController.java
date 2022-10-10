@@ -19,21 +19,15 @@ public class CustomerCreateController {
     public Label shippingAddressFlow;
     public Label billingAddressFlow;
 
-    private CustomerEditor editor = new CustomerEditor();
+    private CustomerEditor editor;
 
     @FXML
     TextField companyNameField, companyOrgNrField;
 
-    public void initialize(){
-        Platform.runLater(() -> {
-            editor.newCustomer();
-            update();
-        });
-    }
+    public void initialize(){}
 
-    public void update(){
-        shippingAddressFlow.setText(editor.getShippingAddress().toString());
-        billingAddressFlow.setText(editor.getBillingAddress().toString());
+    public void setEditor(CustomerEditor editor){
+        this.editor = editor;
     }
 
 
