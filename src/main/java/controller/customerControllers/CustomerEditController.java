@@ -9,12 +9,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.customer.Customer;
 import model.customer.CustomerEditor;
+import model.customer.Observer;
 
 import java.io.IOException;
 import java.util.Objects;
 
-public class CustomerEditController {
+public class CustomerEditController implements Observer {
 
     public Label shippingAddressFlow;
     public Label billingAddressFlow;
@@ -24,7 +26,14 @@ public class CustomerEditController {
     @FXML
     TextField companyNameField, companyOrgNrField;
 
-    public void initialize(){}
+    public void initialize(){
+        Platform.runLater(() -> {
+            Customer c = editor.getCustomer();
+            companyNameField.setText(c.getCompanyName());
+            companyOrgNrField.setText(Long.toString(c.getCompanyOrgNumber()));
+            update();
+        });
+    }
 
     public void setEditor(CustomerEditor editor){
         this.editor = editor;
@@ -65,5 +74,12 @@ public class CustomerEditController {
 
     public void saveBtnHandler(ActionEvent e) {
 
+    }
+
+    @Override
+    public void update() {
+        Customer c = editor.getCustomer();
+        billingAddressFlow.setText(c.getBillingAddress().toString());
+        shippingAddressFlow.setText(c.getShippingAddress().toString());
     }
 }

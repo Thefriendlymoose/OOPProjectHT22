@@ -47,6 +47,7 @@ public class CustomerEditor implements Observable{
 
     public void setAddress(Address address){
         strategy.setAddress(address);
+        notifyObservers();
     }
 
 

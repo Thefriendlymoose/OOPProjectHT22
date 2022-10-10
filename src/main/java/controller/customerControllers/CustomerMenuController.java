@@ -35,6 +35,7 @@ public class CustomerMenuController {
 
         //TODO change this nonsense
         CustomerEditor editor = new CustomerEditor();
+        editor.registerObserver(cont);
         cont.setEditor(editor);
         stage.show();
     }
