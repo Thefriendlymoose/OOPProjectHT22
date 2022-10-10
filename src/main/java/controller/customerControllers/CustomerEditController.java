@@ -73,7 +73,7 @@ public class CustomerEditController implements Observer {
     }
 
     public void saveBtnHandler(ActionEvent e) {
-
+        editor.unregisterObserver(this);
     }
 
     @Override
