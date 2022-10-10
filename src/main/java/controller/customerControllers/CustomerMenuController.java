@@ -31,11 +31,10 @@ public class CustomerMenuController {
         stage.setTitle("Create Customer");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
-        CustomerCreateController cont = loader.getController();
+        CustomerEditController cont = loader.getController();
 
         //TODO change this nonsense
         CustomerEditor editor = new CustomerEditor();
-        editor.newCustomer();
         cont.setEditor(editor);
         stage.show();
     }

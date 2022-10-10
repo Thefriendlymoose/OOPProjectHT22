@@ -8,6 +8,16 @@ public class CustomerEditor {
     private Customer customer;
     private IPersistence<Customer> dao = CustomersDAO.getInstance();
 
+    public CustomerEditor(){
+        customer = new Customer(dao.getNextId());
+        customer.setBillingAddress(new Address());
+        customer.setShippingAddress(new Address());
+
+    }
+
+    public CustomerEditor(Customer customer){
+        this.customer = customer;
+    }
 
     public Customer getCustomer() {
         return customer;
@@ -17,10 +27,11 @@ public class CustomerEditor {
         this.customer = customer;
     }
 
-    public void newCustomer(){
-        customer = new Customer(dao.getNextId());
-        customer.setBillingAddress(new Address());
-        customer.setShippingAddress(new Address());
+    public void setShippingAddress(Address address){
+        customer.setShippingAddress(address);
+    }
+    public void setBillingAddress(Address address){
+        customer.setBillingAddress(address);
     }
 
     public Address getShippingAddress(){ return customer.getShippingAddress(); }
