@@ -3,20 +3,34 @@ package model.customer;
 import persistence.CustomersDAO;
 import persistence.IPersistence;
 
-public class CustomerEditor {
+import java.util.ArrayList;
+import java.util.List;
+
+public class CustomerEditor implements Observable{
 
     private Customer customer;
     private IPersistence<Customer> dao = CustomersDAO.getInstance();
+    private AddressStrategy strategy;
+    private List<Observer> observers = new ArrayList<>();
 
     public CustomerEditor(){
         customer = new Customer(dao.getNextId());
         customer.setBillingAddress(new Address());
         customer.setShippingAddress(new Address());
+        strategy = new ShippingAddressStrategy(customer);
 
     }
 
     public CustomerEditor(Customer customer){
         this.customer = customer;
+    }
+
+    public void setBillingStrategy(){
+        strategy = new BillingAddressStrategy(customer);
+    }
+
+    public void setShippingStrategy(){
+        strategy = new ShippingAddressStrategy(customer);
     }
 
     public Customer getCustomer() {
@@ -27,13 +41,33 @@ public class CustomerEditor {
         this.customer = customer;
     }
 
-    public void setShippingAddress(Address address){
-        customer.setShippingAddress(address);
-    }
-    public void setBillingAddress(Address address){
-        customer.setBillingAddress(address);
-    }
-
     public Address getShippingAddress(){ return customer.getShippingAddress(); }
     public Address getBillingAddress(){ return customer.getBillingAddress(); }
+
+    public void setAddress(Address address){
+        strategy.setAddress(address);
+    }
+
+
+    @Override
+    public void registerObserver(Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void unregisterObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public void unregisterAll() {
+        observers = new ArrayList<>();
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer o : observers){
+            o.update();
+        }
+    }
 }
