@@ -26,7 +26,7 @@ public class CustomerMenuController {
     }
 
     public void createBtnHandler(ActionEvent e) throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/customerViews/addressEdit.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/customerViews/customerEdit.fxml"));
         Stage stage = loader.load();
         stage.setTitle("Create Customer");
         stage.initModality(Modality.WINDOW_MODAL);

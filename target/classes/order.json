@@ -5,8 +5,8 @@
     "customer": 1,
     "orderStatus": "ACTIVE",
     "priority": true,
-    "orderDate": null,
-    "deadline": null,
+    "orderDate": "2022-10-04T21:24:53.000029800",
+    "deadline": "2022-10-04T21:24:53.000029800",
     "orderRows": [
       {
         "article": 1,

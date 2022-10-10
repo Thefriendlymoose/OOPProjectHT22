@@ -10,7 +10,7 @@ public class BillingAddressStrategy implements AddressStrategy{
     }
     @Override
     public void setAddress(Address address) {
-
+        customer.setBillingAddress(address);
     }
 
     @Override
