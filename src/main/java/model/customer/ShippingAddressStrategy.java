@@ -12,4 +12,9 @@ public class ShippingAddressStrategy implements AddressStrategy{
     public void setAddress(Address address) {
         customer.setShippingAddress(address);
     }
+
+    @Override
+    public Address getAddress() {
+        return customer.getShippingAddress();
+    }
 }

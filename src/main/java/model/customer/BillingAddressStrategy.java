@@ -12,4 +12,9 @@ public class BillingAddressStrategy implements AddressStrategy{
     public void setAddress(Address address) {
 
     }
+
+    @Override
+    public Address getAddress() {
+        return customer.getBillingAddress();
+    }
 }

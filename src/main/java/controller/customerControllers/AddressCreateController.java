@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.customer.Address;
+import model.customer.CustomerEditor;
 
 public class AddressCreateController {
 
@@ -14,10 +15,11 @@ public class AddressCreateController {
     public TextField postalCodeField;
     public TextField cityField;
     public TextField countryField;
-    private Address address;
+    private CustomerEditor editor;
 
     public void initialize(){
         Platform.runLater(() -> {
+            Address address = editor.getAddress();
             streetNameField.setText(address.getStreetName());
             streetNumberField.setText(address.getStreetNumber());
             postalCodeField.setText(address.getPostalCode());
@@ -27,14 +29,16 @@ public class AddressCreateController {
     }
 
 
-    public void setAddress(Address address){ this.address = address; }
+    public void setEditor(CustomerEditor editor){ this.editor = editor; }
 
     public void saveBtnHandler(ActionEvent actionEvent) {
+        Address address = new Address();
         address.setCountry(countryField.getText());
         address.setCityName(cityField.getText());
         address.setPostalCode(postalCodeField.getText());
         address.setStreetNumber(streetNumberField.getText());
         address.setStreetName(streetNameField.getText());
+        editor.setAddress(address);
 
         ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
 

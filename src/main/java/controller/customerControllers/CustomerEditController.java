@@ -38,7 +38,8 @@ public class CustomerEditController {
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
         AddressCreateController cont = loader.getController();
-        cont.setAddress(editor.getShippingAddress());
+        editor.setShippingStrategy();
+        cont.setEditor(editor);
         stage.show();
     }
 
@@ -49,7 +50,8 @@ public class CustomerEditController {
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
         AddressCreateController cont = loader.getController();
-        cont.setAddress(editor.getBillingAddress());
+        editor.setBillingStrategy();
+        cont.setEditor(editor);
         stage.show();
     }
 

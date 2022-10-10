@@ -41,8 +41,9 @@ public class CustomerEditor implements Observable{
         this.customer = customer;
     }
 
-    public Address getShippingAddress(){ return customer.getShippingAddress(); }
-    public Address getBillingAddress(){ return customer.getBillingAddress(); }
+    public Address getAddress(){
+        return strategy.getAddress();
+    }
 
     public void setAddress(Address address){
         strategy.setAddress(address);
