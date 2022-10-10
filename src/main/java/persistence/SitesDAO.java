@@ -57,6 +57,10 @@ public final class SitesDAO implements IPersistence<Site> {
                                      siteArticles, siteUsers);
 
                 sites.put(site.getSiteId(), site);
+
+                if (sites.size() > 0 ){
+                    nextFreeId = Collections.max(sites.keySet()) + 1;
+                }
             }
 
         } catch (IOException e) {

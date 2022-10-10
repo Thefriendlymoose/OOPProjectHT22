@@ -10,4 +10,13 @@ public class OrderRow {
         this.article = article;
         this.amount = amount;
     }
+
+    public Article getArticle() {
+        return article;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
 }

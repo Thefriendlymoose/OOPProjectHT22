@@ -2,7 +2,7 @@ package model;
 
 import java.util.List;
 
-public class User {
+public class    User {
 
     private long userId;
     private String userName;

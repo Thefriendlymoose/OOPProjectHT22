@@ -1,6 +1,7 @@
 package model.site;
 
 import model.User;
+import model.article.Article;
 
 import java.util.List;
 
@@ -79,6 +80,10 @@ public class Site {
         return (getTotalAmountItems() + added - sa.getAmount()) > maxCapacity;
     }
 
+    public boolean checkIfOverCapacity(int amount){
+        return getTotalAmountItems() + amount > maxCapacity;
+    }
+
     public void addEmployee(User user){
         employees.add(user);
     }
@@ -93,5 +98,18 @@ public class Site {
 
     public void removeSiteArticles(SiteArticle sa){
         siteArticles.remove(sa);
+    }
+
+    public boolean checkEmployeeInSite(User user){
+        return employees.contains(user);
+    }
+
+    public boolean checkArticleInSite(Article article){
+        for (SiteArticle sa : siteArticles){
+            if (sa.getArticle().equals(article)){
+                return true;
+            }
+        }
+        return false;
     }
 }

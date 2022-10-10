@@ -56,7 +56,7 @@ public class ArticleMenuController {
         Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/articleViews/articleOpenDetailsModal.fxml")));
         stage.setTitle("Open Article");
         stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(((Node)e.getSource()).getScene().getWindow() );
+        stage.initOwner(((Node)e.getSource()).getScene().getWindow());
         stage.show();
     }
 

@@ -2,12 +2,10 @@ package model.order;
 
 
 import model.User;
-import model.article.Article;
 import model.customer.Customer;
 import model.site.Site;
 
 import java.time.LocalDateTime;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 
@@ -22,7 +20,6 @@ public class Order {
     private List<OrderRow> orderRows;
     private Site site;
 
-    public static int CURRENTORDER = 0; //senare "CurrentOrderNumber = orderList.size + 1;"
 
     public Order(User user, long orderNumber, Customer customer, OrderStatus orderStatus, boolean priority, LocalDateTime orderDate, LocalDateTime deadline, List<OrderRow> orderRows, Site site) {
         this.user = user;
@@ -70,6 +67,22 @@ public class Order {
 
     public Site getSite() {
         return site;
+    }
+
+    public float getTotalCost(){
+        float sum = 0;
+        for (OrderRow or : orderRows){
+            sum += or.getArticle().getCost() * or.getAmount();
+        }
+        return sum;
+    }
+
+    public float getTotalRevenue(){
+        float sum = 0;
+        for (OrderRow or : orderRows){
+            sum += or.getArticle().getSellPrice() * or.getAmount();
+        }
+        return sum;
     }
 
 }
