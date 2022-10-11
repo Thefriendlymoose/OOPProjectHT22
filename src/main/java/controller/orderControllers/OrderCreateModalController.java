@@ -32,6 +32,7 @@ public class OrderCreateModalController {
     private Sites sites;
     private IPersistence<Site> jsonDao = SitesDAO.getInstance();
 
+
     public void initialize(){
 
         siteListView.getItems().addAll(jsonDao.getAll());
@@ -68,7 +69,6 @@ public class OrderCreateModalController {
         stage.show();
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
 
-        sites.updateSite();
         orders.updateOrder();
     }
 

@@ -10,12 +10,15 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.article.Article;
+import model.customer.Customer;
 import model.order.DateFactory;
 import model.order.Order;
 import model.order.OrderRow;
 import model.order.OrderStatus;
 import model.site.Site;
 import model.site.Sites;
+import persistence.CustomersDAO;
+import persistence.IPersistence;
 import persistence.OrderDAO;
 
 import java.io.IOException;
@@ -37,6 +40,8 @@ public class OrderFormModalController {
     @FXML
     private ComboBox<OrderStatus> statusComboBox;
     @FXML
+    private ComboBox<Customer> customerComboBox;
+    @FXML
     private DatePicker orderDeadlineDatePicker;
     @FXML
     private Button addOrderRowButton, saveButton, cancelButton;
@@ -53,10 +58,11 @@ public class OrderFormModalController {
     public void setSite(Site site){
         this.site = site;
     }
+
+    private IPersistence<Customer> customers = CustomersDAO.getInstance();
     @FXML
     public void initialize(){
         addedRows = FXCollections.observableArrayList();
-
         orderRowListView.setItems(addedRows);
         orderRowListView.setCellFactory(param -> new ListCell<OrderRow>(){
             @Override
@@ -78,6 +84,8 @@ public class OrderFormModalController {
 
         OrderStatus [] orderStatuses = {ACTIVE,OrderStatus.CANCELED,OrderStatus.FINISHED};
         statusComboBox.getItems().addAll(orderStatuses);
+
+        customerComboBox.getItems().addAll(customers.getAll());
     }
 
     public void saveOrder(){}
@@ -91,6 +99,9 @@ public class OrderFormModalController {
         System.out.println("Status: "+ statusComboBox.getValue());
     }
 
+    public void setCustomerComboBox(){
+        System.out.println("Customer: "+ customerComboBox.getValue());
+    }
 
     public void deadlineDatePicker(){
         DateFactory df = new DateFactory();

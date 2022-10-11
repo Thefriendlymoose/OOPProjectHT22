@@ -10,9 +10,12 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.customer.Customer;
 import model.order.*;
 import model.site.Site;
 import model.site.Sites;
+import persistence.CustomersDAO;
+import persistence.IPersistence;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -32,11 +35,15 @@ public class OrderEditModalController {
     @FXML
     private ComboBox<OrderStatus> statusComboBox;
     @FXML
+    private ComboBox<Customer> customerComboBox;
+    @FXML
     private DatePicker orderDeadlineDatePicker;
     @FXML
     private Button addOrderRowButton, saveButton, cancelButton;
     @FXML
     private ListView<OrderRow> orderRowListView;
+
+    private IPersistence<Customer> dao = CustomersDAO.getInstance();
 
     private Order order;
     private Orders orders;
@@ -58,6 +65,7 @@ public class OrderEditModalController {
             numberTextField.setText(Long.toString(order.getOrderNumber()));
             priorityComboBox.setValue(order.isPriority());
             statusComboBox.setValue(order.getOrderStatus());
+            customerComboBox.setValue(order.getCustomer());
 
             addedRows = FXCollections.observableArrayList(order.getOrderRows());
 
@@ -96,6 +104,10 @@ public class OrderEditModalController {
 
     public void setStatusComboBox(){
         System.out.println("Status: "+ statusComboBox.getValue());
+    }
+
+    public void setCustomerComboBox(){
+        System.out.println("Customer: "+ customerComboBox.getValue());
     }
 
 
@@ -139,7 +151,6 @@ public class OrderEditModalController {
             System.out.println("Clicked Cancel");
         } else {
             ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
-            sites.updateSite();
             orders.updateOrder();
         }
     }

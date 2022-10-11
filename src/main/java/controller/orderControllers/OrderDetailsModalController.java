@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.customer.Customer;
 import model.order.Order;
 import model.order.OrderRow;
 import model.order.OrderStatus;
@@ -32,11 +33,13 @@ public class OrderDetailsModalController {
     @FXML
     private ListView<OrderRow> orderRowListView;
 
+    @FXML
+    private ComboBox<Customer> customerComboBox;
+
     private Order order;
 
     private Site site;
     private Orders orders;
-    private Sites sites;
 
     public void setOrder(Order order){
         this.order = order;
@@ -68,6 +71,10 @@ public class OrderDetailsModalController {
             orderRowListView.getItems().addAll(order.getOrderRows());
             orderRowListView.setDisable(true);
             orderRowListView.getStyleClass().add("locked-form-field");
+
+            customerComboBox.getItems().addAll(order.getCustomer());
+            customerComboBox.setDisable(true);
+            customerComboBox.getStyleClass().add("locked-form-field");
 
             orderRowListView.setCellFactory(param -> new ListCell<OrderRow>(){
                 @Override
@@ -108,8 +115,5 @@ public class OrderDetailsModalController {
 
     public void setOrders(Orders orders){this.orders = orders;}
 
-    public void setSites(Sites sites) {
-        this.sites = sites;
-    }
 }
 

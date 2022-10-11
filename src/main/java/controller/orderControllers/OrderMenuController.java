@@ -38,7 +38,7 @@ public class OrderMenuController implements Observer {
         orders.registerObserver(this);
         loadTabs();
 
-        List<Site> sites = testDao.getAll();
+//        List<Site> sites = testDao.getAll();
 
 //        for (Site site : sites){
 //            Tab tab = new Tab();
@@ -67,6 +67,7 @@ public class OrderMenuController implements Observer {
 
     private void loadTabs() throws IOException{
         List<Site> sites = testDao.getAll();
+            tabPane.getTabs().clear();
 
         for (Site site : sites){
             Tab tab = new Tab();
@@ -85,7 +86,6 @@ public class OrderMenuController implements Observer {
                 controller.setOrder(order);
                 controller.setOrders(orders);
                 controller.setSite(site);
-//                controller.setSites(sites);
                 fp.getChildren().add(pane);
 
             }

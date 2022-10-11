@@ -65,7 +65,7 @@ public class OrderMenuTabCardController {
                     controller.setOrder(order);
                     controller.setOrders(orders);
                     controller.setSite(site);
-                    controller.setSites(sites);
+//                    controller.setSites(sites);
                     stage.setTitle("Order: " + order.getOrderNumber());
                     stage.initModality(Modality.WINDOW_MODAL);
                     stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());

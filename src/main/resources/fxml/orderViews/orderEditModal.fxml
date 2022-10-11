@@ -35,6 +35,8 @@
                                  <ComboBox fx:id="priorityComboBox" maxWidth="1.7976931348623157E308" onAction="#setPriorityComboBox" promptText="Choose Priority" styleClass="generic-field" />
                                  <Label styleClass="generic-form-label" text="Status" />
                                  <ComboBox fx:id="statusComboBox" maxWidth="1.7976931348623157E308" onAction="#setStatusComboBox" promptText="Choose Status" styleClass="generic-field" />
+                                 <Label styleClass="generic-form-label" text="Customer" />
+                                 <ComboBox fx:id="customerComboBox" maxWidth="1.7976931348623157E308" onAction="#setCustomerComboBox" promptText="Choose Status" styleClass="generic-field" />
                                  <Label styleClass="generic-form-label" text="Deadline" />
                                  <DatePicker fx:id="orderDeadlineDatePicker" onAction="#deadlineDatePicker" />
                                  <Label styleClass="generic-form-label" text="Add OrderRows" />
