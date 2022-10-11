@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.order.Order;
+import model.order.Orders;
 import model.site.Site;
 
 import java.io.IOException;
@@ -26,10 +27,12 @@ public class OrderMenuTabCardController {
     private Order order;
 
     private Site site;
+    private Orders orders;
 
     public void setOrder(Order order){
         this.order = order;
     }
+    public void setOrders(Orders orders){this.orders = orders;}
 
     public void setSite(Site site){
         this.site = site;
@@ -56,13 +59,12 @@ public class OrderMenuTabCardController {
 
                     OrderDetailsModalController controller = loader.getController();
                     controller.setOrder(order);
+                    controller.setOrders(orders);
                     controller.setSite(site);
-
                     stage.setTitle("Order: " + order.getOrderNumber());
                     stage.initModality(Modality.WINDOW_MODAL);
                     stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
                     stage.show();
-
                 }
             });
         });

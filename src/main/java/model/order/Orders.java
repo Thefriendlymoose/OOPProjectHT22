@@ -1,5 +1,7 @@
 package model.order;
 
+import model.observer.Observable;
+import model.observer.Observer;
 import model.site.Site;
 import persistence.OrderDAO;
 
@@ -7,10 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Orders {
+public class Orders implements Observable {
 
     private Map<Long, Order> orders;
 
+    private List<Observer> observers;
 
     public Orders(Map<Long, Order> orders){
         this.orders = orders;
@@ -54,4 +57,25 @@ public class Orders {
         return getRevenuePerOrderStatus(status) - getCostPerOrderStatus(status);
     }
 
+    @Override
+    public void registerObserver(Observer o) {observers.add(o);
+
+    }
+
+    @Override
+    public void unregisterObserver(Observer o) { observers.remove(o);
+
+    }
+
+    @Override
+    public void unregisterAll() { observers = new ArrayList<>();
+
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer o : observers){
+            o.update();
+        }
+    }
 }
