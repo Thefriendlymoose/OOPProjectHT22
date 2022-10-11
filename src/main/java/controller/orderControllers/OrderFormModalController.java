@@ -15,6 +15,7 @@ import model.order.Order;
 import model.order.OrderRow;
 import model.order.OrderStatus;
 import model.site.Site;
+import model.site.Sites;
 import persistence.OrderDAO;
 
 import java.io.IOException;
@@ -42,10 +43,11 @@ public class OrderFormModalController {
     @FXML
     private ListView<OrderRow> orderRowListView;
 
-    private List<Article> articles;
+//    private List<Article> articles;
 
-    List<Order> orders = new ArrayList<>();
+//    List<Order> orders = new ArrayList<>();
     private Site site;
+    private Sites sites;
     private ObservableList<OrderRow> addedRows;
 
     public void setSite(Site site){
@@ -133,6 +135,8 @@ public class OrderFormModalController {
         }
     }
 
-
+    public void setSites(Sites sites) {
+        this.sites = sites;
+    }
 
 }

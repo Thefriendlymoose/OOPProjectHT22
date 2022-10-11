@@ -9,7 +9,9 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.order.Orders;
 import model.site.Site;
+import model.site.Sites;
 import persistence.IPersistence;
 import persistence.SitesDAO;
 
@@ -24,7 +26,10 @@ public class OrderCreateModalController {
     @FXML
     private ListView<Site> siteListView;
 
+    private Orders orders;
+
     private Site current;
+    private Sites sites;
     private IPersistence<Site> jsonDao = SitesDAO.getInstance();
 
     public void initialize(){
@@ -55,7 +60,6 @@ public class OrderCreateModalController {
         Stage stage = loader.load();
 
         OrderFormModalController cont = loader.getController();
-
         cont.setSite(current);
 
         stage.setTitle("Create Order");
@@ -63,8 +67,17 @@ public class OrderCreateModalController {
         stage.initOwner(((Stage) ((Node)e.getSource()).getScene().getWindow()).getOwner());
         stage.show();
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+
+        sites.updateSite();
+        orders.updateOrder();
     }
 
+    public void setOrders(Orders orders){
+        this.orders = orders;
+    }
 
+    public void setSites(Sites sites){
+        this.sites = sites;
+    }
 
 }

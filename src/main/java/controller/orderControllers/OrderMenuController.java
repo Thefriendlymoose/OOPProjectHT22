@@ -35,34 +35,34 @@ public class OrderMenuController implements Observer {
     private Orders orders = new Orders(OrderDAO.getInstance().getAllMap());
 
     public void initialize() throws IOException {
-//        orders.registerObserver(this);
-//        loadTabs();
+        orders.registerObserver(this);
+        loadTabs();
 
         List<Site> sites = testDao.getAll();
 
-        for (Site site : sites){
-            Tab tab = new Tab();
-            tab.setText(site.getSiteName());
-            FlowPane fp = new FlowPane();
-            fp.setPadding(new Insets(10,10,10,10));
-            fp.setHgap(10);
-            fp.setVgap(10);
-            tab.setContent(fp);
-
-            for (Order order : orders.getOrdersBySite(site)){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderMenuTabCard.fxml"));
-                AnchorPane pane = loader.load();
-
-                OrderMenuTabCardController controller = loader.getController();
-                controller.setOrder(order);
-                controller.setSite(site);
-
-                fp.getChildren().add(pane);
-
-            }
-
-            tabPane.getTabs().add(tab);
-        }
+//        for (Site site : sites){
+//            Tab tab = new Tab();
+//            tab.setText(site.getSiteName());
+//            FlowPane fp = new FlowPane();
+//            fp.setPadding(new Insets(10,10,10,10));
+//            fp.setHgap(10);
+//            fp.setVgap(10);
+//            tab.setContent(fp);
+//
+//            for (Order order : orders.getOrdersBySite(site)){
+//                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderMenuTabCard.fxml"));
+//                AnchorPane pane = loader.load();
+//
+//                OrderMenuTabCardController controller = loader.getController();
+//                controller.setOrder(order);
+//                controller.setSite(site);
+//
+//                fp.getChildren().add(pane);
+//
+//            }
+//
+//            tabPane.getTabs().add(tab);
+//        }
     }
 
     private void loadTabs() throws IOException{
@@ -83,8 +83,9 @@ public class OrderMenuController implements Observer {
 
                 OrderMenuTabCardController controller = loader.getController();
                 controller.setOrder(order);
+                controller.setOrders(orders);
                 controller.setSite(site);
-
+//                controller.setSites(sites);
                 fp.getChildren().add(pane);
 
             }

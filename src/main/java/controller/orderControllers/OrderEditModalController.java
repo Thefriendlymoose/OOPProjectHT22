@@ -10,11 +10,9 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.order.DateFactory;
-import model.order.Order;
-import model.order.OrderRow;
-import model.order.OrderStatus;
+import model.order.*;
 import model.site.Site;
+import model.site.Sites;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -41,7 +39,9 @@ public class OrderEditModalController {
     private ListView<OrderRow> orderRowListView;
 
     private Order order;
+    private Orders orders;
     private Site site;
+    private Sites sites;
     private ObservableList<OrderRow> addedRows;
 
     public void setOrder(Order order){
@@ -139,9 +139,17 @@ public class OrderEditModalController {
             System.out.println("Clicked Cancel");
         } else {
             ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+            sites.updateSite();
+            orders.updateOrder();
         }
     }
 
+    public void setSites(Sites sites) {
+        this.sites = sites;
+    }
 
+    public void setOrders(Orders orders) {
+        this.orders = orders;
+    }
 
 }

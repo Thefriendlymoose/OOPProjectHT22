@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import model.order.Order;
 import model.order.Orders;
 import model.site.Site;
+import model.site.Sites;
 
 import java.io.IOException;
 
@@ -28,6 +29,7 @@ public class OrderMenuTabCardController {
 
     private Site site;
     private Orders orders;
+    private Sites sites;
 
     public void setOrder(Order order){
         this.order = order;
@@ -37,6 +39,8 @@ public class OrderMenuTabCardController {
     public void setSite(Site site){
         this.site = site;
     }
+
+    public void setSites(Sites site){this.sites = sites;}
 
     public void initialize(){
         Platform.runLater(() -> {
@@ -61,6 +65,7 @@ public class OrderMenuTabCardController {
                     controller.setOrder(order);
                     controller.setOrders(orders);
                     controller.setSite(site);
+                    controller.setSites(sites);
                     stage.setTitle("Order: " + order.getOrderNumber());
                     stage.initModality(Modality.WINDOW_MODAL);
                     stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
@@ -69,6 +74,4 @@ public class OrderMenuTabCardController {
             });
         });
     }
-
-
 }

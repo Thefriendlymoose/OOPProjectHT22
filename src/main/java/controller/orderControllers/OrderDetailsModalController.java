@@ -13,6 +13,7 @@ import model.order.OrderRow;
 import model.order.OrderStatus;
 import model.order.Orders;
 import model.site.Site;
+import model.site.Sites;
 
 import java.io.IOException;
 
@@ -35,6 +36,7 @@ public class OrderDetailsModalController {
 
     private Site site;
     private Orders orders;
+    private Sites sites;
 
     public void setOrder(Order order){
         this.order = order;
@@ -105,4 +107,9 @@ public class OrderDetailsModalController {
     }
 
     public void setOrders(Orders orders){this.orders = orders;}
+
+    public void setSites(Sites sites) {
+        this.sites = sites;
+    }
 }
+
