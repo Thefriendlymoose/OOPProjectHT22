@@ -1,5 +1,7 @@
 package controller.articleControllers;
 
+import controller.interfaces.ISubMenu;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.WMS;
 import model.article.Article;
 import model.article.Articles;
 import model.article.ArticlesFacade;
@@ -23,18 +26,27 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-public class ArticleMenuController implements Observer {
+public class ArticleMenuController implements Observer, ISubMenu {
     @FXML
     private Button openArticleButton, createButton, listButton, backButton;
 
     @FXML
     private VBox articlesCardHolder;
 
-    private Articles articles = new Articles(ArticlesDAO.getInstance().getAllMap());
+    private Articles articles;
+    private WMS wms;
 
-    public void initialize() throws IOException {
-        articles.registerObserver(this);
-        loadCards();
+    public void initialize() {
+
+        Platform.runLater(() -> {
+            this.articles = wms.getArticles();
+            articles.registerObserver(this);
+            try {
+                loadCards();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
     }
 
@@ -90,5 +102,10 @@ public class ArticleMenuController implements Observer {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void setWMS(WMS wms) {
+        this.wms = wms;
     }
 }

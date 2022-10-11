@@ -1,5 +1,6 @@
 package controller.customerControllers;
 
+import controller.interfaces.ISubMenu;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,15 +10,17 @@ import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import model.WMS;
 import model.customer.CustomerEditor;
 
 import java.io.IOException;
 import java.util.Objects;
 
-public class CustomerMenuController {
+public class CustomerMenuController implements ISubMenu {
 
     @FXML
     private Button openButton, createButton, listButton, backButton;
+    private WMS wms;
 
     public void backBtnHandler() throws Exception{
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/mainMenu.fxml")));
@@ -38,5 +41,10 @@ public class CustomerMenuController {
         editor.registerObserver(cont);
         cont.setEditor(editor);
         stage.show();
+    }
+
+    @Override
+    public void setWMS(WMS wms) {
+        this.wms = wms;
     }
 }
