@@ -22,6 +22,7 @@ public class SaveFields implements ICommand {
             field.setEditable(false);
         }
         controller.editSaveButton.setText("Edit");
+        controller.cancelButton.setVisible(false);
         controller.setCommand(new SetEditable(controller));
 
     }

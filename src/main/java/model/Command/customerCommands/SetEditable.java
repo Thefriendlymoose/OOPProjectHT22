@@ -21,6 +21,7 @@ public class SetEditable implements ICommand {
             f.setEditable(true);
         }
         controller.editSaveButton.setText("Save");
+        controller.cancelButton.setVisible(true);
         controller.setCommand(new SaveFields(controller));
     }
 }
