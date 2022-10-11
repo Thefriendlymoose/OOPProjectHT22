@@ -2,16 +2,14 @@ package controller.siteControllers;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 import model.User;
 import model.site.Site;
+import model.site.Sites;
 
-import java.awt.event.ActionEvent;
 import java.util.Optional;
 
 
@@ -25,6 +23,7 @@ public class SiteDetailsUserCardController {
 
     private User user;
     private Site site;
+    private Sites sites;
 
     @FXML
     public void initialize(){
@@ -46,6 +45,7 @@ public class SiteDetailsUserCardController {
                     System.out.println("Clicked Cancel");
                 } else {
                     site.removeEmployee(user);
+                    sites.updateSite();
                 }
             });
 
@@ -60,4 +60,7 @@ public class SiteDetailsUserCardController {
         this.site = site;
     }
 
+    public void setSites(Sites sites) {
+        this.sites = sites;
+    }
 }

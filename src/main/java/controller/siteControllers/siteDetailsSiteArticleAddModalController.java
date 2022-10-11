@@ -10,8 +10,8 @@ import model.article.Article;
 import model.article.ArticlesFacade;
 import model.site.Site;
 import model.site.SiteArticle;
+import model.site.Sites;
 
-import java.util.List;
 import java.util.Optional;
 
 public class siteDetailsSiteArticleAddModalController {
@@ -28,6 +28,7 @@ public class siteDetailsSiteArticleAddModalController {
     private Article current;
 
     private Site site;
+    private Sites sites;
 
     public void setSite(Site site){
         this.site = site;
@@ -66,6 +67,7 @@ public class siteDetailsSiteArticleAddModalController {
                 } else {
                     site.addSiteArticle(new SiteArticle(current, amount));
                     ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+                    sites.updateSite();
                 }
             } catch (NumberFormatException error){
                 System.out.println("error number");
@@ -88,6 +90,7 @@ public class siteDetailsSiteArticleAddModalController {
     }
 
 
-
-
+    public void setSites(Sites sites) {
+        this.sites = sites;
+    }
 }

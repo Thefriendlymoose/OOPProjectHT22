@@ -10,14 +10,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-<Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.test.TestController">
+<Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.siteControllers.SiteOpenDetailsController">
     <scene>
         <Scene>
-            <AnchorPane stylesheets="@../stylesheet.css" prefHeight="200" prefWidth="200">
+            <AnchorPane prefHeight="200" prefWidth="200" stylesheets="@../stylesheet.css">
             <children>
                <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0">
                   <children>
-                     <Label text="Open">
+                     <Label text="Open Site">
                         <font>
                            <Font size="24.0" />
                         </font>
@@ -25,12 +25,17 @@
                            <Insets top="25.0" />
                         </VBox.margin>
                      </Label>
-                     <TextField fx:id="searchField">
+                     <TextField fx:id="modalSearchField" promptText="Site Number" styleClass="generic-field">
                         <VBox.margin>
-                           <Insets bottom="25.0" left="20.0" right="20.0" top="25.0" />
+                           <Insets bottom="10.0" left="20.0" right="20.0" top="25.0" />
                         </VBox.margin>
                      </TextField>
-                     <Button styleClass="generic-button" fx:id="openButton" mnemonicParsing="false" text="Open" />
+                     <Label fx:id="warningLabel" maxWidth="180.0" wrapText="true">
+                        <VBox.margin>
+                           <Insets bottom="10.0" />
+                        </VBox.margin>
+                     </Label>
+                     <Button fx:id="openButton" mnemonicParsing="false" onAction="#onOpen" styleClass="generic-button" text="Open" />
                   </children>
                </VBox>
             </children></AnchorPane>

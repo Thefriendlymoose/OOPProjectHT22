@@ -7,10 +7,8 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.User;
-import model.article.Article;
-import model.article.ArticlesFacade;
 import model.site.Site;
-import model.site.SiteArticle;
+import model.site.Sites;
 import persistence.UserDAO;
 
 import java.util.Optional;
@@ -26,6 +24,7 @@ public class siteDetailsUserAddModalController {
     private User current;
 
     private Site site;
+    private Sites sites;
 
     public void setSite(Site site){
         this.site = site;
@@ -61,6 +60,7 @@ public class siteDetailsUserAddModalController {
         } else {
             site.addEmployee(current);
             ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+            sites.updateSite();
         }
     }
 
@@ -79,6 +79,7 @@ public class siteDetailsUserAddModalController {
     }
 
 
-
-
+    public void setSites(Sites sites) {
+        this.sites = sites;
+    }
 }

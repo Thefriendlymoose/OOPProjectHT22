@@ -3,12 +3,12 @@ package controller.siteControllers;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.site.Site;
 import model.site.SiteArticle;
+import model.site.Sites;
 
 import java.util.Optional;
 
@@ -22,6 +22,7 @@ public class SiteDetailsSiteArticleEditModalController {
 
     private SiteArticle sa;
     private Site site;
+    private Sites sites;
 
     public void setSiteArticle(SiteArticle sa){
         this.sa = sa;
@@ -61,14 +62,18 @@ public class SiteDetailsSiteArticleEditModalController {
             if (site.isOverCapacity(sa, amount)){
                 System.out.println("Over Capacity");
             } else {
-                sa.setAmount(amount);
-
+                site.editSiteArticle(sa, amount);
                 ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+                sites.updateSite();
             }
 
         } catch (NumberFormatException error){
             System.out.println("Error only numbers accepted");
         }
 
+    }
+
+    public void setSites(Sites sites) {
+        this.sites = sites;
     }
 }

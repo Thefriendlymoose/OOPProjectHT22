@@ -11,6 +11,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.site.Site;
 import model.site.SiteArticle;
+import model.site.Sites;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -25,6 +26,7 @@ public class SiteDetailsSiteArticleModalController {
 
     private SiteArticle sa;
     private Site site;
+    private Sites sites;
 
     public void initialize(){
         Platform.runLater(() -> {
@@ -58,6 +60,7 @@ public class SiteDetailsSiteArticleModalController {
         SiteDetailsSiteArticleEditModalController controller = loader.getController();
         controller.setSiteArticle(sa);
         controller.setSite(site);
+        controller.setSites(sites);
 
         stage.setTitle("Stock: " + sa.getArticle().getArticleName());
         stage.initModality(Modality.WINDOW_MODAL);
@@ -68,4 +71,7 @@ public class SiteDetailsSiteArticleModalController {
     }
 
 
+    public void setSites(Sites sites) {
+        this.sites = sites;
+    }
 }

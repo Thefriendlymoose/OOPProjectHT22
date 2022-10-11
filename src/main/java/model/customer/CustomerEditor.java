@@ -1,12 +1,14 @@
 package model.customer;
 
+import model.observer.Observable;
+import model.observer.Observer;
 import persistence.CustomersDAO;
 import persistence.IPersistence;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerEditor implements Observable{
+public class CustomerEditor implements Observable {
 
     private Customer customer;
     private IPersistence<Customer> dao = CustomersDAO.getInstance();

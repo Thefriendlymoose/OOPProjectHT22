@@ -1,4 +1,4 @@
-package controller.articleControllers;
+package controller.siteControllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,43 +8,37 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.article.Article;
-import model.article.Articles;
-import model.article.ArticlesFacade;
+import model.site.Site;
+import model.site.Sites;
+import persistence.SitesDAO;
 
 import java.io.IOException;
 import java.util.Objects;
 
-public class ArticleOpenDetailsModalController {
-
+public class SiteOpenDetailsController {
     @FXML
     private TextField modalSearchField;
 
     @FXML
     private Label warningLabel;
+    private Sites sites;
 
-    private Articles arts;
-
-    public void setArticles(Articles arts){
-        this.arts = arts;
-    }
-    public void modalOpenArticleButtonHandler(ActionEvent e) throws IOException {
+    public void onOpen(ActionEvent e) throws IOException {
 
         try {
 
-            Article testArt = arts.findById(Long.parseLong(modalSearchField.getText()));
+            Site site = SitesDAO.getInstance().findById(Long.parseLong(modalSearchField.getText()));
 
-            if(testArt == null){
+            if(site == null){
                 warningLabel.setText("Can't find article");
             } else {
-                FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/articleViews/articleDetailsModal.fxml")));
+                FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/siteViews/siteDetailsModal.fxml")));
                 Stage stage = loader.load();
 
-                ArticleDetailsController cont = loader.getController();
-                cont.setArticle(testArt);
-                cont.setArticles(arts);
+                SiteDetailsController cont = loader.getController();
+                cont.setSite(site);
 
-                stage.setTitle("Article: " + testArt.getArticleId());
+                stage.setTitle("Site: " + site.getSiteId());
                 stage.initModality(Modality.WINDOW_MODAL);
                 stage.initOwner(((Stage) ((Node)e.getSource()).getScene().getWindow()).getOwner());
                 stage.show();
@@ -55,4 +49,9 @@ public class ArticleOpenDetailsModalController {
             warningLabel.setText("Article ID needs to only contain numbers");
         }
     }
+
+    public void setSites(Sites sites) {
+        this.sites = sites;
+    }
 }
+

@@ -14,36 +14,44 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.article.Article;
+import model.article.Articles;
 import model.article.ArticlesFacade;
+import model.observer.Observer;
+import persistence.ArticlesDAO;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-public class ArticleMenuController {
+public class ArticleMenuController implements Observer {
     @FXML
     private Button openArticleButton, createButton, listButton, backButton;
 
     @FXML
     private VBox articlesCardHolder;
 
-    private ArticlesFacade facade = new ArticlesFacade();
+    private Articles articles = new Articles(ArticlesDAO.getInstance().getAllMap());
 
     public void initialize() throws IOException {
-        List<Article> articles = facade.getAll();
-        ObservableList<Article> arts = FXCollections.observableArrayList(articles);
+        articles.registerObserver(this);
+        loadCards();
 
-        for (Article art : articles){
+    }
+
+    private void loadCards() throws IOException {
+        List<Article> arts = articles.getInList();
+        articlesCardHolder.getChildren().clear();
+        for (Article art : arts){
             FXMLLoader cardLoader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/articleViews/articleDetailsMenuCard.fxml")));
 
             AnchorPane pane = cardLoader.load();
             ArticleMenuCardController cont =  cardLoader.getController();
 
-            cont.setCard(art);
+            cont.setArticle(art);
+            cont.setArticles(articles);
 
             articlesCardHolder.getChildren().add(pane);
         }
-
     }
 
     public void backBtnHandler() throws Exception{
@@ -53,7 +61,10 @@ public class ArticleMenuController {
     }
 
     public void openButtonHandler(ActionEvent e) throws IOException {
-        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/articleViews/articleOpenDetailsModal.fxml")));
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/articleViews/articleOpenDetailsModal.fxml")));
+        Stage stage = loader.load();
+        ArticleOpenDetailsModalController controller = loader.getController();
+        controller.setArticles(articles);
         stage.setTitle("Open Article");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
@@ -61,7 +72,10 @@ public class ArticleMenuController {
     }
 
     public void createButtonHandler(ActionEvent e) throws IOException {
-        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/articleViews/articleFormModal.fxml")));
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/articleViews/articleFormModal.fxml")));
+        Stage stage = loader.load();
+        ArticleFormController controller = loader.getController();
+        controller.setArticles(articles);
         stage.setTitle("Create Article");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
@@ -69,5 +83,12 @@ public class ArticleMenuController {
     }
 
 
-
+    @Override
+    public void update() {
+        try {
+            loadCards();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

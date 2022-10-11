@@ -1,5 +1,6 @@
 package controller.orderControllers;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,23 +10,20 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.article.Article;
 import model.order.DateFactory;
 import model.order.Order;
 import model.order.OrderRow;
 import model.order.OrderStatus;
 import model.site.Site;
-import persistence.OrderDAO;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Objects;
+import java.util.Optional;
 
+import static model.order.OrderStatus.ACTIVE;
 
-
-import static model.order.OrderStatus.*;
-
-public class OrderFormModalController {
+public class OrderEditModalController {
 
     @FXML
     private Label titleLabel;
@@ -42,40 +40,51 @@ public class OrderFormModalController {
     @FXML
     private ListView<OrderRow> orderRowListView;
 
-    private List<Article> articles;
-
-    List<Order> orders = new ArrayList<>();
+    private Order order;
     private Site site;
     private ObservableList<OrderRow> addedRows;
+
+    public void setOrder(Order order){
+        this.order = order;
+    }
 
     public void setSite(Site site){
         this.site = site;
     }
+
     @FXML
     public void initialize(){
-        addedRows = FXCollections.observableArrayList();
+        Platform.runLater(() -> {
+            numberTextField.setText(Long.toString(order.getOrderNumber()));
+            priorityComboBox.setValue(order.isPriority());
+            statusComboBox.setValue(order.getOrderStatus());
 
-        orderRowListView.setItems(addedRows);
-        orderRowListView.setCellFactory(param -> new ListCell<OrderRow>(){
-            @Override
-            protected void updateItem(OrderRow s, boolean empty){
-                super.updateItem(s, empty);
+            addedRows = FXCollections.observableArrayList(order.getOrderRows());
 
-                if(empty || s == null || s.getArticle() == null){
-                    setText(null);
-                } else {
-                    setText(s.getArticle().getArticleName() + "\\n " + s.getAmount() + "x");
+            orderRowListView.setItems(addedRows);
+            orderRowListView.setCellFactory(param -> new ListCell<OrderRow>(){
+                @Override
+                protected void updateItem(OrderRow s, boolean empty){
+                    super.updateItem(s, empty);
+
+                    if(empty || s == null || s.getArticle() == null){
+                        setText(null);
+                    } else {
+                        setText(s.getArticle().getArticleName() + "\\n " + s.getAmount() + "x");
+                    }
                 }
-            }
+            });
+
+            Boolean [] priorities = {true,false};
+            priorityComboBox.getItems().addAll(priorities);
+
+
+            OrderStatus [] orderStatuses = {ACTIVE,OrderStatus.CANCELED,OrderStatus.FINISHED};
+            statusComboBox.getItems().addAll(orderStatuses);
+
+            orderDeadlineDatePicker.setValue(order.getDeadline().toLocalDate());
+
         });
-
-        Boolean [] priorities = {true,false};
-        priorityComboBox.getItems().addAll(priorities);
-
-        numberTextField.setText(Integer.toString((int) OrderDAO.getInstance().getNextId()));
-
-        OrderStatus [] orderStatuses = {ACTIVE,OrderStatus.CANCELED,OrderStatus.FINISHED};
-        statusComboBox.getItems().addAll(orderStatuses);
     }
 
     public void saveOrder(){}

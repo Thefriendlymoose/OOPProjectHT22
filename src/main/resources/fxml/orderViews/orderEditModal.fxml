@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.orderControllers.OrderFormModalController">
+<Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.orderControllers.OrderEditModalController">
     <scene>
         <Scene>
             <AnchorPane prefHeight="600.0" prefWidth="600.0" stylesheets="@../stylesheet.css">

@@ -22,14 +22,9 @@ public final class SitesDAO implements IPersistence<Site> {
     private final String sitesFile="src/main/resources/sites.json";
     private Map<Long, Site> sites;
     private long nextFreeId =0;
-
     private Gson gson = new Gson();
-
     private Map<Long, User> users;
     private Map<Long, Article> articles;
-
-
-
 
     private SitesDAO(){
         this.sites  = new HashMap<>();
