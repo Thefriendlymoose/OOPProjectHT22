@@ -10,7 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import model.User;
+import model.user.User;
 import persistence.IPersistence;
 import persistence.UserDAO;
 

@@ -1,7 +1,7 @@
 package model.Authentication;
 
-import model.Permission;
-import model.User;
+import model.user.Permission;
+import model.user.User;
 
 public class CachedUser {
 

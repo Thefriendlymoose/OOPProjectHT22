@@ -1,6 +1,6 @@
 package model.site;
 
-import model.User;
+import model.user.User;
 import model.article.Article;
 import model.observer.Observable;
 import model.observer.Observer;

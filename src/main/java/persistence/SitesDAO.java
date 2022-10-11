@@ -3,7 +3,7 @@ package persistence;
 // @todo justera importer när klasserna flyttas till ett paket per
 // funktionellt paket i applikationen
 import com.google.gson.Gson;
-import model.User;
+import model.user.User;
 import model.article.Article;
 import model.site.Site;
 import model.site.SiteArticle;

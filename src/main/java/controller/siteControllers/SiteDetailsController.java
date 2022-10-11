@@ -10,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.User;
+import model.user.User;
 import model.observer.Observer;
 import model.site.Site;
 import model.site.SiteArticle;

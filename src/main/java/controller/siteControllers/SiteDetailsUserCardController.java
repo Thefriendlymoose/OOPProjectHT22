@@ -6,7 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import model.User;
+import model.user.User;
 import model.site.Site;
 import model.site.Sites;
 

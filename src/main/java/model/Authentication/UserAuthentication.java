@@ -1,7 +1,6 @@
 package model.Authentication;
 
-import model.Permission;
-import model.User;
+import model.user.User;
 
 import java.util.Map;
 

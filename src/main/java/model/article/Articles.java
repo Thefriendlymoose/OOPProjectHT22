@@ -1,8 +1,5 @@
 package model.article;
 
-import model.Authentication.CachedUser;
-import model.Authentication.UserAuthentication;
-import model.Permission;
 import model.observer.Observable;
 import model.observer.Observer;
 

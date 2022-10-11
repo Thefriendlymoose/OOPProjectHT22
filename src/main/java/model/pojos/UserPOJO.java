@@ -1,5 +1,5 @@
 package model.pojos;
-import model.Role;
+import model.user.Role;
 
 public class UserPOJO {
     private String userName;
