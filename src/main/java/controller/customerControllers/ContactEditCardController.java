@@ -3,8 +3,8 @@ package controller.customerControllers;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import model.Command.ICommand;
-import model.Command.customerCommands.SetEditable;
+import model.command.ICommand;
+import model.command.customerCommands.SetEditable;
 import model.customer.CustomerContact;
 
 import java.util.ArrayList;
@@ -17,6 +17,7 @@ public class ContactEditCardController {
     public Button editSaveButton;
     public Button cancelButton;
     private ICommand command;
+    private CustomerContact contact;
 
     ContactEditCardController(){
         command = new SetEditable(this);
@@ -26,18 +27,18 @@ public class ContactEditCardController {
         this.command = command;
     }
 
-    public void setFields(CustomerContact contact){
-        name.setText(contact.getContactPerson());
-        number.setText(contact.getPhoneNumber());
-        email.setText(contact.getEmail());
+    public void setCustomerContact(CustomerContact contact){
+        this.contact = contact;
     }
 
     public CustomerContact getCustomerContact(){
-        CustomerContact c = new CustomerContact();
-        c.setEmail(email.getText());
-        c.setContactPerson(name.getText());
-        c.setPhoneNumber(number.getText());
-        return c;
+        return contact;
+    }
+
+    private void returnToSavedState(){
+        name.setText(contact.getContactPerson());
+        number.setText(contact.getPhoneNumber());
+        email.setText(contact.getEmail());
     }
 
     public List<TextField> getTextFields(){
@@ -53,5 +54,9 @@ public class ContactEditCardController {
     }
 
     public void cancelHandler(ActionEvent actionEvent) {
+        command = new SetEditable(this);
+        editSaveButton.setText("Edit");
+        cancelButton.setVisible(false);
+        returnToSavedState();
     }
 }

@@ -35,6 +35,7 @@ model\customer\BillingAddressStrategy.class
 model\Role.class
 controller\orderControllers\OrderEditModalController.class
 model\Permission.class
+model\Command\ICommand.class
 database\DataBaseConnection.class
 model\customer\Address.class
 model\order\OrderStatus.class
@@ -43,6 +44,7 @@ model\pojos\ArticlePojo.class
 controller\siteControllers\SiteDetailsController.class
 controller\orderControllers\OrderDetailsModalController.class
 persistence\pojos\SiteJSON.class
+model\Command\customerCommands\SaveFields.class
 model\pojos\UserPOJO.class
 persistence\UserDAO.class
 model\Authentication\CachedUser.class
@@ -51,6 +53,7 @@ controller\userControllers\OpenUserController.class
 persistence\SitesDAO.class
 controller\orderControllers\OrderOpenController.class
 controller\articleControllers\ArticleMenuCardController$1.class
+controller\customerControllers\ContactEditCardController.class
 controller\siteControllers\siteDetailsSiteArticleAddModalController$1.class
 controller\TemplateController.class
 model\customer\Customer.class
@@ -80,6 +83,7 @@ controller\articleControllers\ArticleMenuCardController.class
 model\site\Site.class
 controller\MenuController.class
 model\order\Order.class
+model\Command\customerCommands\SetEditable.class
 model\customer\AddressStrategy.class
 persistence\OrderDAO.class
 controller\userControllers\CreateUserController.class

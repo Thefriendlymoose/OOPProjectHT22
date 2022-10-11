@@ -1,4 +1,4 @@
-package model.Command;
+package model.command;
 
 public interface ICommand {
 
