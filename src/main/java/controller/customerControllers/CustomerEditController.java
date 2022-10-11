@@ -81,8 +81,11 @@ public class CustomerEditController implements Observer {
         Stage stage = loader.load();
         stage.setTitle("Edit Contacts");
 
-        //stage.initModality(Modality.WINDOW_MODAL);
+        stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
+        ContactEditorController cont = loader.getController();
+        editor.registerObserver(cont);
+        cont.setEditor(editor);
         stage.show();
     }
 
