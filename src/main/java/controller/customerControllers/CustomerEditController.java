@@ -11,7 +11,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.customer.Customer;
 import model.customer.CustomerEditor;
-import model.customer.Observer;
+import model.observer.Observer;
 
 import java.io.IOException;
 import java.util.Objects;

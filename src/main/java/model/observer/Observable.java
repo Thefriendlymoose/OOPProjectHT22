@@ -1,5 +1,9 @@
 package model.observer;
 
 public interface Observable {
-    void update(Event eventType);
+
+    void registerObserver(Observer o);
+    void unregisterObserver(Observer o);
+    void unregisterAll();
+    void notifyObservers();
 }
