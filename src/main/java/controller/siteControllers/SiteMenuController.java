@@ -11,7 +11,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.observer.Observer;
 import model.site.Site;
+import model.site.Sites;
 import persistence.IPersistence;
 import persistence.SitesDAO;
 
@@ -19,31 +21,40 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-public class SiteMenuController {
+public class SiteMenuController implements Observer {
     @FXML
     private Button openButton, createButton, backButton;
 
     @FXML
     private VBox siteCardHolderVBox;
 
-    private IPersistence<Site> testDao = SitesDAO.getInstance();
+    private Sites sites;
 
     public void initialize() throws IOException {
-        List<Site> sites = testDao.getAll();
+        sites = new Sites(SitesDAO.getInstance().getAllMap());
+        sites.registerObserver(this);
+        loadCards();
+    }
 
-        for (Site site : sites){
+    private void loadCards() throws IOException {
+        siteCardHolderVBox.getChildren().clear();
+        for (Site site : sites.getInList()){
             FXMLLoader siteLoader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/siteViews/siteMenuSiteCard.fxml")));
             AnchorPane pane = siteLoader.load();
             SiteMenuSiteCardController controller = siteLoader.getController();
 
             controller.setSite(site);
+            controller.setSites(sites);
 
             siteCardHolderVBox.getChildren().add(pane);
         }
     }
 
     public void createButton(ActionEvent e) throws Exception{
-        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/siteViews/siteCreateModal.fxml")));
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/siteViews/siteCreateModal.fxml")));
+        Stage stage = loader.load();
+        SiteCreateController controller = loader.getController();
+        controller.setSites(sites);
         stage.setTitle("Create Site");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node) e.getSource()).getScene().getWindow());
@@ -57,10 +68,22 @@ public class SiteMenuController {
     }
 
     public void onOpen(ActionEvent e) throws IOException {
-        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/siteViews/siteOpenDetailsModal.fxml")));
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/siteViews/siteOpenDetailsModal.fxml")));
+        Stage stage = loader.load();
+        SiteOpenDetailsController controller = loader.getController();
+        controller.setSites(sites);
         stage.setTitle("Open Site");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node) e.getSource()).getScene().getWindow());
         stage.show();
+    }
+
+    @Override
+    public void update() {
+        try {
+            loadCards();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

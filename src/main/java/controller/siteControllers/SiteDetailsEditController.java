@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.site.Site;
+import model.site.Sites;
 import persistence.SitesDAO;
 
 import java.util.Optional;
@@ -24,6 +25,7 @@ public class SiteDetailsEditController {
 
 
     private Site site;
+    private Sites sites;
 
     public void setSite(Site site){
         this.site = site;
@@ -45,6 +47,7 @@ public class SiteDetailsEditController {
         site.setSiteName(nameTextField.getText());
         site.setSiteAddress(siteAddressTextArea.getText());
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+        sites.updateSite();
     }
     public void onCancel(ActionEvent e){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -58,5 +61,9 @@ public class SiteDetailsEditController {
         } else {
             ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
         }
+    }
+
+    public void setSites(Sites sites) {
+        this.sites = sites;
     }
 }

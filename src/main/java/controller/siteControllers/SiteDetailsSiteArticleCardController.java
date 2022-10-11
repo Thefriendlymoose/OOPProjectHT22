@@ -12,6 +12,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.site.Site;
 import model.site.SiteArticle;
+import model.site.Sites;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -27,6 +28,7 @@ public class SiteDetailsSiteArticleCardController {
 
     private SiteArticle siteArticle;
     private Site site;
+    private Sites sites;
 
     public void setSiteArticle(SiteArticle siteArticle){
         this.siteArticle = siteArticle;
@@ -52,6 +54,7 @@ public class SiteDetailsSiteArticleCardController {
                 SiteDetailsSiteArticleModalController controller = loader.getController();
                 controller.setSiteArticle(siteArticle);
                 controller.setSite(site);
+                controller.setSites(sites);
 
                 stage.setTitle("Stock: " + siteArticle.getArticle().getArticleName());
                 stage.initModality(Modality.WINDOW_MODAL);
@@ -71,9 +74,13 @@ public class SiteDetailsSiteArticleCardController {
                     System.out.println("Clicked Cancel");
                 } else {
                     site.removeSiteArticles(siteArticle);
+                    sites.updateSite();
                 }
             });
         });
     }
 
+    public void setSites(Sites sites) {
+        this.sites = sites;
+    }
 }
