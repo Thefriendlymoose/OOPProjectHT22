@@ -62,7 +62,7 @@ public class SiteDetailsSiteArticleEditModalController {
             if (site.isOverCapacity(sa, amount)){
                 System.out.println("Over Capacity");
             } else {
-                sa.setAmount(amount);
+                site.editSiteArticle(sa, amount);
                 ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
                 sites.updateSite();
             }
