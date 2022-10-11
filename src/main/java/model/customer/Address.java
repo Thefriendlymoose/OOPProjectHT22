@@ -16,6 +16,8 @@ public class Address{
 
     }
 
+    public Address(){};
+
     // getters
     public String getStreetName() {
         return streetName;
@@ -57,5 +59,14 @@ public class Address{
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    @Override
+    public String toString(){
+        return "Street Name: " + streetName +
+                "\nStreet Number: " + streetNumber +
+                "\nPostal Code: " + postalCode +
+                "\nCity: " + cityName +
+                "\nCountry: " + country;
     }
 }

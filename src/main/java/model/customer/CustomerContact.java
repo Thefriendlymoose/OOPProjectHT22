@@ -12,6 +12,8 @@ public class CustomerContact {
         this.email = email;
     }
 
+    public CustomerContact(){};
+
     // getters
     public String getContactPerson() {
         return contactPerson;

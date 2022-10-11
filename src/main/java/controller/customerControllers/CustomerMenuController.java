@@ -9,11 +9,13 @@ import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import model.customer.CustomerEditor;
 
 import java.io.IOException;
 import java.util.Objects;
 
 public class CustomerMenuController {
+
     @FXML
     private Button openButton, createButton, listButton, backButton;
 
@@ -24,10 +26,17 @@ public class CustomerMenuController {
     }
 
     public void createBtnHandler(ActionEvent e) throws IOException{
-        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/customerViews/customerCreate.fxml")));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/customerViews/customerEdit.fxml"));
+        Stage stage = loader.load();
         stage.setTitle("Create Customer");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
+        CustomerEditController cont = loader.getController();
+
+        //TODO change this nonsense or maybe not?
+        CustomerEditor editor = new CustomerEditor();
+        editor.registerObserver(cont);
+        cont.setEditor(editor);
         stage.show();
     }
 }
