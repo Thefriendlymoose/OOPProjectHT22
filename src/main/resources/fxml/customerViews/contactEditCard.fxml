@@ -6,23 +6,24 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="76.0" prefWidth="254.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customerControllers.ContactEditCard">
+<?import javafx.scene.control.TextField?>
+<AnchorPane prefHeight="76.0" prefWidth="254.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customerControllers.ContactEditCardController">
    <children>
-      <Label layoutY="27.0" prefHeight="13.0" prefWidth="158.0" text="ContactName">
+      <TextField fx:id="name" layoutY="27.0" prefHeight="13.0" prefWidth="158.0" text="ContactName" editable="false">
          <font>
             <Font size="14.0" />
          </font>
-      </Label>
-      <Label layoutY="7.0" prefHeight="20.0" prefWidth="152.0" text="ContactNumber">
+      </TextField>
+      <TextField fx:id="number" layoutY="7.0" prefHeight="20.0" prefWidth="152.0" text="ContactNumber" editable="false">
          <font>
             <Font size="14.0" />
          </font>
-      </Label>
-      <Label layoutY="49.0" prefHeight="19.0" prefWidth="152.0" text="ContactEmail">
+      </TextField>
+      <TextField fx:id="email" layoutY="49.0" prefHeight="19.0" prefWidth="152.0" text="ContactEmail" editable="false">
          <font>
             <Font size="14.0" />
          </font>
-      </Label>
-      <Button layoutX="166.0" layoutY="10.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="80.0" text="Edit" />
+      </TextField>
+      <Button fx:id="editSaveButton" onAction="#editContactHandler" layoutX="166.0" layoutY="10.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="80.0" text="Edit" />
    </children>
 </AnchorPane>
