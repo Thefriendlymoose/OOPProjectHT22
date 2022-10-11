@@ -2,10 +2,13 @@ package model.site;
 
 import model.User;
 import model.article.Article;
+import model.observer.Observable;
+import model.observer.Observer;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Site {
+public class Site implements Observable {
 
     private long siteId;
     private String siteName;
@@ -14,6 +17,8 @@ public class Site {
     private List<SiteArticle> siteArticles;
     private List<User> employees;
 
+    private List<Observer> observers;
+
     public Site(long siteId, String siteName, String siteAddress, int maxCapacity, List<SiteArticle> siteArticles, List<User> employees) {
         this.siteId = siteId;
         this.siteName = siteName;
@@ -21,6 +26,8 @@ public class Site {
         this.maxCapacity = maxCapacity;
         this.siteArticles = siteArticles;
         this.employees = employees;
+
+        observers = new ArrayList<>();
     }
 
     public long getSiteId() {
@@ -86,18 +93,27 @@ public class Site {
 
     public void addEmployee(User user){
         employees.add(user);
+        notifyObservers();
     }
 
     public void removeEmployee(User user){
         employees.remove(user);
+        notifyObservers();
     }
 
     public void addSiteArticle(SiteArticle sa){
         siteArticles.add(sa);
+        notifyObservers();
     }
 
     public void removeSiteArticles(SiteArticle sa){
         siteArticles.remove(sa);
+        notifyObservers();
+    }
+
+    public void editSiteArticle(SiteArticle sa, int amount){
+        sa.setAmount(amount);
+        notifyObservers();
     }
 
     public boolean checkEmployeeInSite(User user){
@@ -111,5 +127,27 @@ public class Site {
             }
         }
         return false;
+    }
+
+    @Override
+    public void registerObserver(Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void unregisterObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public void unregisterAll() {
+        observers = new ArrayList<>();
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer o : observers){
+            o.update();
+        }
     }
 }

@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.User;
+import model.observer.Observer;
 import model.site.Site;
 import model.site.SiteArticle;
 import model.site.Sites;
@@ -18,7 +19,7 @@ import model.site.Sites;
 import java.io.IOException;
 
 
-public class SiteDetailsController {
+public class SiteDetailsController implements Observer {
     @FXML
     private Label detailsTitleLabel;
 
@@ -42,50 +43,61 @@ public class SiteDetailsController {
     public void initialize(){
 
         Platform.runLater(() -> {
+            site.registerObserver(this);
+
             detailsTitleLabel.setText(detailsTitleLabel.getText() + site.getSiteId());
             numberTextField.setText(String.valueOf(site.getSiteId()));
             nameTextField.setText(site.getSiteName());
             siteAddressTextArea.setText(site.getSiteAddress());
             maxCapacityTextField.setText(String.valueOf(site.getMaxCapacity()));
 
-            for(User user : site.getEmployees()){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/siteDetailsUserCard.fxml"));
-                AnchorPane pane = null;
-                try {
-                    pane = loader.load();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-
-                SiteDetailsUserCardController controller = loader.getController();
-                controller.setUser(user);
-                controller.setSite(site);
-                controller.setSites(sites);
-
-                employeeVBox.getChildren().add(pane);
-            }
-
-            for(SiteArticle sa : site.getSiteArticles()){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/siteDetailsSiteArticleCard.fxml"));
-                AnchorPane pane = null;
-
-                try {
-                    pane = loader.load();
-                } catch(IOException e){
-                    throw new RuntimeException(e);
-                }
-
-                SiteDetailsSiteArticleCardController controller = loader.getController();
-                controller.setSiteArticle(sa);
-                controller.setSite(site);
-                controller.setSites(sites);
-
-                stockVBox.getChildren().add(pane);
-            }
+            loadSiteEmployeeCards();
+            loadSiteArticleCards();
 
         });
 
     }
+
+    private void loadSiteEmployeeCards(){
+        employeeVBox.getChildren().clear();
+        for(User user : site.getEmployees()){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/siteDetailsUserCard.fxml"));
+            AnchorPane pane = null;
+            try {
+                pane = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            SiteDetailsUserCardController controller = loader.getController();
+            controller.setUser(user);
+            controller.setSite(site);
+            controller.setSites(sites);
+
+            employeeVBox.getChildren().add(pane);
+        }
+    }
+    private void loadSiteArticleCards(){
+        stockVBox.getChildren().clear();
+        for(SiteArticle sa : site.getSiteArticles()){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/siteDetailsSiteArticleCard.fxml"));
+            AnchorPane pane = null;
+
+            try {
+                pane = loader.load();
+            } catch(IOException e){
+                throw new RuntimeException(e);
+            }
+
+            SiteDetailsSiteArticleCardController controller = loader.getController();
+            controller.setSiteArticle(sa);
+            controller.setSite(site);
+            controller.setSites(sites);
+
+            stockVBox.getChildren().add(pane);
+        }
+    }
+
 
     public void setSite(Site site){
         this.site = site;
@@ -142,5 +154,11 @@ public class SiteDetailsController {
 
     public void setSites(Sites sites) {
         this.sites = sites;
+    }
+
+    @Override
+    public void update() {
+        loadSiteArticleCards();
+        loadSiteEmployeeCards();
     }
 }
