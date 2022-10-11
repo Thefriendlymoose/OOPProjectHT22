@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import model.User;
 import model.site.Site;
 import model.site.SiteArticle;
+import model.site.Sites;
 import persistence.SitesDAO;
 
 import java.io.IOException;
@@ -26,6 +27,7 @@ public class SiteCreateController {
 
     @FXML
     private Button saveButton, cancelButton;
+    private Sites sites;
 
     public void initialize(){
         numberTextField.setText(Long.toString(SitesDAO.getInstance().getNextId()));
@@ -33,14 +35,15 @@ public class SiteCreateController {
 
     public void onSave(ActionEvent e) throws IOException {
         System.out.println("Clicked save");
-        Site newSite = new Site(SitesDAO.getInstance().getNextId(), nameTextField.getText(), siteAddressTextArea.getText(),Integer.parseInt(maxCapacityTextField.getText()), new ArrayList<SiteArticle>(), new ArrayList<User>());
+        Site newSite = new Site(sites.getNextId(), nameTextField.getText(), siteAddressTextArea.getText(),Integer.parseInt(maxCapacityTextField.getText()), new ArrayList<SiteArticle>(), new ArrayList<User>());
 
-        SitesDAO.getInstance().save(newSite);
+        sites.addSite(newSite);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/siteDetailsModal.fxml"));
         Stage stage = loader.load();
         SiteDetailsController controller = loader.getController();
         controller.setSite(newSite);
+        controller.setSites(sites);
 
         stage.setTitle("Site: " + newSite.getSiteId());
         stage.initModality(Modality.WINDOW_MODAL);
@@ -61,5 +64,9 @@ public class SiteCreateController {
         } else {
             ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
         }
+    }
+
+    public void setSites(Sites sites) {
+        this.sites = sites;
     }
 }

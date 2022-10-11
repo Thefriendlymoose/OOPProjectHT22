@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.site.Site;
+import model.site.Sites;
 
 import java.io.IOException;
 
@@ -22,6 +23,7 @@ public class SiteMenuSiteCardController {
 
     @FXML
     private Button cardGoToButton;
+    private Sites sites;
 
 
     public void initialize(){
@@ -32,17 +34,18 @@ public class SiteMenuSiteCardController {
 
             cardGoToButton.setOnAction(actionEvent -> {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/siteDetailsModal.fxml"));
-                System.out.println("before load");
+
                 Stage stage = null;
                 try {
                     stage = loader.load();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-                System.out.println("after Load");
+
 
                 SiteDetailsController controller = loader.getController();
                 controller.setSite(site);
+                controller.setSites(sites);
 
                 stage.setTitle("Site: " + site.getSiteId());
                 stage.initModality(Modality.WINDOW_MODAL);
@@ -60,4 +63,7 @@ public class SiteMenuSiteCardController {
     }
 
 
+    public void setSites(Sites sites) {
+        this.sites = sites;
+    }
 }

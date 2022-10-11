@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import model.User;
 import model.site.Site;
 import model.site.SiteArticle;
+import model.site.Sites;
 
 import java.io.IOException;
 
@@ -34,6 +35,7 @@ public class SiteDetailsController {
     private VBox stockVBox, employeeVBox;
 
     private Site site;
+    private Sites sites;
 
 
     @FXML
@@ -58,6 +60,7 @@ public class SiteDetailsController {
                 SiteDetailsUserCardController controller = loader.getController();
                 controller.setUser(user);
                 controller.setSite(site);
+                controller.setSites(sites);
 
                 employeeVBox.getChildren().add(pane);
             }
@@ -75,6 +78,7 @@ public class SiteDetailsController {
                 SiteDetailsSiteArticleCardController controller = loader.getController();
                 controller.setSiteArticle(sa);
                 controller.setSite(site);
+                controller.setSites(sites);
 
                 stockVBox.getChildren().add(pane);
             }
@@ -93,6 +97,7 @@ public class SiteDetailsController {
 
         SiteDetailsEditController cont = loader.getController();
         cont.setSite(site);
+        cont.setSites(sites);
 
         stage.setTitle("Edit Site");
         stage.initModality(Modality.WINDOW_MODAL);
@@ -103,6 +108,7 @@ public class SiteDetailsController {
 
     public void closeHandler(ActionEvent e) {
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+        sites.updateSite();
     }
 
     public void onStockAdd(ActionEvent e) throws IOException {
@@ -110,6 +116,8 @@ public class SiteDetailsController {
         Stage stage = loader.load();
         siteDetailsSiteArticleAddModalController controller = loader.getController();
         controller.setSite(site);
+        controller.setSites(sites);
+
 
         stage.setTitle("Add Stock Item");
         stage.initModality(Modality.WINDOW_MODAL);
@@ -122,6 +130,9 @@ public class SiteDetailsController {
         Stage stage = loader.load();
         siteDetailsUserAddModalController controller = loader.getController();
         controller.setSite(site);
+        controller.setSites(sites);
+
+        sites.updateSite();
 
         stage.setTitle("Add Employee");
         stage.initModality(Modality.WINDOW_MODAL);
@@ -129,4 +140,7 @@ public class SiteDetailsController {
         stage.show();
     }
 
+    public void setSites(Sites sites) {
+        this.sites = sites;
+    }
 }

@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.site.Site;
+import model.site.Sites;
 import persistence.SitesDAO;
 
 import java.io.IOException;
@@ -20,6 +21,7 @@ public class SiteOpenDetailsController {
 
     @FXML
     private Label warningLabel;
+    private Sites sites;
 
     public void onOpen(ActionEvent e) throws IOException {
 
@@ -46,6 +48,10 @@ public class SiteOpenDetailsController {
         } catch (NumberFormatException error){
             warningLabel.setText("Article ID needs to only contain numbers");
         }
+    }
+
+    public void setSites(Sites sites) {
+        this.sites = sites;
     }
 }
 
