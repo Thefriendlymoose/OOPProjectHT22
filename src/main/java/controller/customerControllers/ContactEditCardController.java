@@ -16,6 +16,7 @@ public class ContactEditCardController {
     public TextField email;
     public Button editSaveButton;
     public Button cancelButton;
+
     private ICommand command;
     private CustomerContact contact;
 
