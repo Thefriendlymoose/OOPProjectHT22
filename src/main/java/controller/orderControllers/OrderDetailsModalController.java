@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import model.order.Order;
 import model.order.OrderRow;
 import model.order.OrderStatus;
+import model.order.Orders;
 import model.site.Site;
 
 import java.io.IOException;
@@ -33,6 +34,7 @@ public class OrderDetailsModalController {
     private Order order;
 
     private Site site;
+    private Orders orders;
 
     public void setOrder(Order order){
         this.order = order;
@@ -102,4 +104,5 @@ public class OrderDetailsModalController {
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
     }
 
+    public void setOrders(Orders orders){this.orders = orders;}
 }
