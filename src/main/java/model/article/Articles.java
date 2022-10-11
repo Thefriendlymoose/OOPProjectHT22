@@ -1,5 +1,9 @@
 package model.article;
 
+import model.Authentication.CachedUser;
+import model.Authentication.UserAuthentication;
+import model.Permission;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -7,9 +11,13 @@ import java.util.Map;
 public class Articles {
 
     private Map<Long, Article> articles;
+    private CachedUser user;
 
-    public Articles(Map<Long, Article> articles) {
+
+
+    public Articles(Map<Long, Article> articles, CachedUser user) {
         this.articles = articles;
+        this.user = user;
     }
 
     public Article getArticleById(long id){

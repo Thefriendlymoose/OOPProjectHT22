@@ -27,10 +27,6 @@ public class UserAuthentication {
         }
     }
 
-    public boolean hasPermission(User user, Permission permission){
-        return user.hasPermission(permission);
-    }
-
     public AuthenticationStatus logOut(){
         if (currentUser == null) {
             return AuthenticationStatus.NO_CURRENT_USER;
@@ -38,5 +34,9 @@ public class UserAuthentication {
             currentUser = null;
             return AuthenticationStatus.SUCCESS;
         }
+    }
+
+    public CachedUser getCachedUser(){
+        return new CachedUser(currentUser);
     }
 }
