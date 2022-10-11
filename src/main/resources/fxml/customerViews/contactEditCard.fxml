@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="76.0" prefWidth="254.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customerControllers.ContactEditCard">
+   <children>
+      <Label layoutY="27.0" prefHeight="13.0" prefWidth="158.0" text="ContactName">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutY="7.0" prefHeight="20.0" prefWidth="152.0" text="ContactNumber">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutY="49.0" prefHeight="19.0" prefWidth="152.0" text="ContactEmail">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="166.0" layoutY="10.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="80.0" text="Edit" />
+   </children>
+</AnchorPane>
