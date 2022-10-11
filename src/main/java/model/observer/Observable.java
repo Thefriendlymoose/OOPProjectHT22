@@ -1,5 +1,5 @@
 package model.observer;
 
-public interface Listener {
+public interface Observable {
     void update(Event eventType);
 }

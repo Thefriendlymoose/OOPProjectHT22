@@ -2,7 +2,7 @@ package model.observer;
 
 //just an example
 
-public class ConcreteSubscriber implements Listener{
+public class ConcreteSubscriber implements Observable{
 
     private String window;
 
@@ -13,6 +13,7 @@ public class ConcreteSubscriber implements Listener{
     @Override
     public void update(Event eventType) {
         // Actually send the push notification to username
-        System.out.println("Notifying regarding" + eventType);
+        System.out.println("Notifying regarding " + toString() + eventType);
     }
+
 }
