@@ -1,41 +1,45 @@
 package model.Authentication;
 
+
 import model.user.User;
 
-import java.util.Map;
+import java.util.List;
 
 public class UserAuthentication {
-    private Map<Long, User> users;
-    private User currentUser;
 
-    public UserAuthentication(Map<Long, User> users){
-        this.users = users;
-    }
+    private Session session;
 
-    public AuthenticationStatus logIn(User user){
-        if (currentUser == null){
-            if (!users.containsKey(user.getUserId())){
-                return AuthenticationStatus.USER_NOT_FOUND;
-            } else if (users.get(user.getUserId()).isPasswordCorrect(user)){
-                currentUser = user;
-                return AuthenticationStatus.SUCCESS;
+    public AuthenticationStatus logIn(String userName, String passWord, List<User> users){
+        User user = null;
+        for (User u : users){
+            if (u.getUserName().equals(userName)){
+                user = u;
             }
+        }
+
+        if (session != null){
+            return AuthenticationStatus.ALREADY_USER_LOGGED_IN;
+        } else if (user == null){
+            return AuthenticationStatus.USER_NOT_FOUND;
+        } else if (!user.getPassword().equals(passWord)){
             return AuthenticationStatus.INCORRECT_PASSWORD;
         } else {
-            return AuthenticationStatus.ALREADY_USER_LOGGED_IN;
-        }
-    }
-
-    public AuthenticationStatus logOut(){
-        if (currentUser == null) {
-            return AuthenticationStatus.NO_CURRENT_USER;
-        } else {
-            currentUser = null;
+            this.session = new Session(user);
             return AuthenticationStatus.SUCCESS;
         }
     }
 
-    public CachedUser getCachedUser(){
-        return new CachedUser(currentUser);
+    public AuthenticationStatus logOut(){
+        if (session == null){
+            return AuthenticationStatus.NO_CURRENT_USER;
+        } else {
+            session = null;
+            return AuthenticationStatus.SUCCESS;
+        }
     }
+
+    public Session getSession(){
+        return session;
+    }
+
 }

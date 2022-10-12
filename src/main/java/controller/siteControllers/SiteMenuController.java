@@ -1,6 +1,7 @@
 package controller.siteControllers;
 
 import controller.MainMenuController;
+import controller.dpi.DependencyInjection;
 import controller.interfaces.ISubMenu;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -70,10 +71,7 @@ public class SiteMenuController implements Observer, ISubMenu {
     }
 
     public void backBtnHandler() throws Exception{
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/mainMenu.fxml")));
-        Parent root = loader.load();
-        MainMenuController controller = loader.getController();
-        controller.setWMS(wms);
+        Parent root = DependencyInjection.load("fxml/mainMenu.fxml");
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }

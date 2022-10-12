@@ -1,13 +1,16 @@
 package controller;
 
 import controller.interfaces.ISubMenu;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import model.Authentication.Session;
 import model.WMS;
+import model.user.Permission;
 
 import java.util.Objects;
 
@@ -16,6 +19,36 @@ public class MainMenuController {
     private Button menuSiteButton, menuArticleButton, menuCustomerButton, menuUserButton, menuOrderButton;
     private WMS wms;
 
+    public MainMenuController(WMS wms) {
+        this.wms = wms;
+    }
+
+
+    public void initialize(){
+        Platform.runLater(() -> {
+            Session session = wms.getSession();
+
+            if (!session.hasAccess(Permission.SITE)){
+                menuSiteButton.setDisable(true);
+            }
+
+            if (!session.hasAccess(Permission.ARTICLE)){
+                menuArticleButton.setDisable(true);
+            }
+
+            if (!session.hasAccess(Permission.CUSTOMER)){
+                menuCustomerButton.setDisable(true);
+            }
+
+            if (!session.hasAccess(Permission.ORDER)){
+                menuOrderButton.setDisable(true);
+            }
+
+            if (!session.hasAccess(Permission.USER)){
+                menuUserButton.setDisable(true);
+            }
+        });
+    }
 
     public void articleBtnHandler() throws Exception {
         changeScene("articleViews/articleMenu", menuArticleButton);
@@ -46,7 +79,4 @@ public class MainMenuController {
         window.setScene(new Scene(root));
     }
 
-    public void setWMS(WMS wms) {
-        this.wms = wms;
-    }
 }

@@ -1,5 +1,6 @@
 package model;
 
+import model.Authentication.Session;
 import model.article.Articles;
 import model.order.Orders;
 import model.site.Sites;
@@ -8,6 +9,8 @@ public class WMS {
     private Articles articles;
     private Orders orders;
     private Sites sites;
+
+    private Session session;
 
     public WMS(Articles articles, Orders orders, Sites sites) {
         this.articles = articles;
@@ -28,4 +31,11 @@ public class WMS {
     }
 
 
+    public void setSession(Session session) {
+        this.session = session;
+    }
+
+    public Session getSession() {
+        return session;
+    }
 }

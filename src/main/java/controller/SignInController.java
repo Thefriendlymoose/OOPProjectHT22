@@ -1,5 +1,6 @@
 package controller;
 
+import controller.dpi.DependencyInjection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +11,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.Authentication.AuthenticationStatus;
+import model.Authentication.UserAuthentication;
 import model.WMS;
 import model.user.User;
 import persistence.IPersistence;
@@ -34,28 +37,23 @@ public class SignInController {
     private IPersistence<User> users = UserDAO.getInstance();
     private WMS wms;
 
+    public SignInController(WMS wms) {
+        this.wms = wms;
+    }
+
 
     public void handleBtnSignIn() throws Exception {
         if (userNameField.getText().isEmpty() || passWordField.getText().equals("")){
             errorLabel.setText("Username or password field empty");
             errorLabel.setTextFill(Color.RED);
         } else {
+            UserAuthentication uAuth = new UserAuthentication();
+            AuthenticationStatus status = uAuth.logIn(userNameField.getText(), passWordField.getText(), users.getAll());
 
-            boolean ok = false;
+            if (status == AuthenticationStatus.SUCCESS){
+                wms.setSession(uAuth.getSession());
 
-            for (User user : users.getAll()){
-                if (userNameField.getText().equals(user.getUserName()) && passWordField.getText().equals(user.getPassword())){
-                    ok = true;
-                    break;
-                }
-            }
-
-            if (ok){
-                FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../fxml/mainMenu.fxml")));
-                Parent root = loader.load();
-
-                MainMenuController controller = loader.getController();
-                controller.setWMS(wms);
+                Parent root = DependencyInjection.load("fxml/mainMenu.fxml");
 
                 Stage window = (Stage) btnSignIn.getScene().getWindow();
                 window.setScene(new Scene(root));
@@ -68,7 +66,5 @@ public class SignInController {
         }
     }
 
-    public void setWMS(WMS wms) {
-        this.wms = wms;
-    }
+
 }
