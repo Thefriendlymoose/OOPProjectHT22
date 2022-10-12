@@ -10,7 +10,6 @@ model\order\Orders.class
 persistence\pojos\OrderRowJSON.class
 controller\siteControllers\SiteOpenDetailsController.class
 controller\siteControllers\SiteMenuSiteCardController.class
-controller\customerControllers\ContactEditController.class
 model\User.class
 controller\siteControllers\SiteMenuController.class
 model\Authentication\AuthenticationStatus.class
@@ -89,6 +88,7 @@ controller\userControllers\CreateUserController.class
 controller\siteControllers\siteDetailsSiteArticleAddModalController.class
 model\article\Article.class
 controller\siteControllers\SiteDetailsSiteArticleModalController.class
+controller\customerControllers\ContactCreateController.class
 model\article\Articles.class
 model\site\SiteArticle.class
 model\observer\Observable.class

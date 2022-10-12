@@ -4,9 +4,11 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.customer.CustomerContact;
 import model.customer.CustomerEditor;
@@ -33,7 +35,16 @@ public class ContactEditorController implements Observer {
         this.editor = editor;
     }
 
-    public void addContactHandler(ActionEvent actionEvent) {
+    public void addContactHandler(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/customerViews/contactCreate.fxml"));
+        Stage stage = loader.load();
+        ContactCreateController cont = loader.getController();
+        cont.setEditor(editor);
+
+        stage.setTitle("Create new customer contact");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
+        stage.show();
     }
 
     public void saveHandler(ActionEvent actionEvent) {
@@ -61,6 +72,7 @@ public class ContactEditorController implements Observer {
             AnchorPane ap = loader.load();
             ContactEditCardController cont = loader.getController();
             cont.setCustomerContact(c);
+            cont.setEditor(editor);
             contactBox.getChildren().add(ap);
         }
     }

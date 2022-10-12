@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import model.customer.CustomerContact;
 import model.customer.CustomerEditor;
 
-public class ContactEditController {
+public class ContactCreateController {
 
     private CustomerEditor editor;
 
@@ -24,6 +24,7 @@ public class ContactEditController {
         newContact.setContactPerson(nameField.getText());
         newContact.setPhoneNumber(phoneField.getText());
         newContact.setEmail(emailField.getText());
+        editor.addContact(newContact);
         ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
     }
 

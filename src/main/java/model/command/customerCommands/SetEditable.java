@@ -14,6 +14,7 @@ public class SetEditable implements ICommand {
     public SetEditable(ContactEditCardController controller){
         this.controller = controller;
     }
+
     @Override
     public void execute() {
         List<TextField> fieldList = controller.getTextFields();

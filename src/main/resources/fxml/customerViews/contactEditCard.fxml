@@ -27,8 +27,8 @@
             </TextField>
          </children>
       </VBox>
-      <Button layoutX="166.0" layoutY="10.0" mnemonicParsing="false" onAction="#editContactHandler" prefHeight="94.0" prefWidth="80.0" text="Edit" />
-      <Button fx:id="cancelButton" layoutX="254.0" layoutY="59.0" mnemonicParsing="false" onAction="#cancelHandler" prefHeight="46.0" prefWidth="80.0" text="Cancel" visible="true" />
-      <Button layoutX="254.0" layoutY="12.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="80.0" text="Delete" />
+      <Button fx:id="editSaveButton" layoutX="166.0" layoutY="10.0" mnemonicParsing="false" onAction="#editContactHandler" prefHeight="94.0" prefWidth="80.0" text="Edit" />
+      <Button fx:id="cancelButton" layoutX="254.0" layoutY="59.0" mnemonicParsing="false" onAction="#cancelHandler" prefHeight="46.0" prefWidth="80.0" text="Cancel" visible="false" />
+      <Button onAction="#deleteContactHandler" layoutX="254.0" layoutY="12.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="80.0" text="Delete" />
    </children>
 </AnchorPane>
