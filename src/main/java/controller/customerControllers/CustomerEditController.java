@@ -90,7 +90,10 @@ public class CustomerEditController implements Observer {
     }
 
     public void saveBtnHandler(ActionEvent e) {
+        editor.save();
         editor.unregisterObserver(this);
+
+        ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
     }
 
     @Override

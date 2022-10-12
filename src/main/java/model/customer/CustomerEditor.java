@@ -66,6 +66,11 @@ public class CustomerEditor implements Observable {
         return customer.getContacts();
     }
 
+    public void save(){
+        dao.save(customer);
+        notifyObservers();
+    }
+
 
     @Override
     public void registerObserver(Observer o) {
