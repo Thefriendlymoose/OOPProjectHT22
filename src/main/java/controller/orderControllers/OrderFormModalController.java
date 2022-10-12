@@ -117,7 +117,7 @@ public class OrderFormModalController {
         }
     }
 
-    public void onAddOrderRowButton1(ActionEvent e) throws IOException {
+    public void onAddOrderRowButtonOld(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderFormOrderRowModal.fxml")));
         Stage stage = loader.load();
 
