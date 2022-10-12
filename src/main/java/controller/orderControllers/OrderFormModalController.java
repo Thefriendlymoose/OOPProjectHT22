@@ -131,6 +131,21 @@ public class OrderFormModalController {
         stage.show();
     }
 
+    public void onAddOrderRowButtonNew(ActionEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/orderDetailsAddModal.fxml"));
+        Stage stage = loader.load();
+        OrderEditModalController controller = loader.getController();
+        controller.setSite(site);
+        controller.setSites(sites);
+        controller.setSiteArticles(site.getSiteArticles());
+
+
+        stage.setTitle("Add Stock Item");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Node)e.getSource()).getScene().getWindow());
+        stage.show();
+    }
+
     public void onCancel(ActionEvent e){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");

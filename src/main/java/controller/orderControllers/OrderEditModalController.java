@@ -1,5 +1,6 @@
 package controller.orderControllers;
 
+import controller.siteControllers.siteDetailsSiteArticleAddModalController;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,12 +14,14 @@ import javafx.stage.Stage;
 import model.customer.Customer;
 import model.order.*;
 import model.site.Site;
+import model.site.SiteArticle;
 import model.site.Sites;
 import persistence.CustomersDAO;
 import persistence.IPersistence;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -50,6 +53,7 @@ public class OrderEditModalController {
     private Site site;
     private Sites sites;
     private ObservableList<OrderRow> addedRows;
+    private List<SiteArticle> siteArticles;
 
     public void setOrder(Order order){
         this.order = order;
@@ -139,6 +143,21 @@ public class OrderEditModalController {
         stage.show();
     }
 
+    public void onAddOrderRowButtonNew(ActionEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/orderDetailsAddModal.fxml"));
+        Stage stage = loader.load();
+        OrderEditModalController controller = loader.getController();
+        controller.setSite(site);
+        controller.setSites(sites);
+        controller.setSiteArticles(site.getSiteArticles());
+
+
+        stage.setTitle("Add Stock Item");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Node)e.getSource()).getScene().getWindow());
+        stage.show();
+    }
+
     public void onCancel(ActionEvent e){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
@@ -156,6 +175,9 @@ public class OrderEditModalController {
 
     public void setSites(Sites sites) {
         this.sites = sites;
+    }
+    public void setSiteArticles(List<SiteArticle> siteArticles){
+        this.siteArticles = siteArticles;
     }
 
     public void setOrders(Orders orders) {
