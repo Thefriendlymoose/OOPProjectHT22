@@ -1,5 +1,6 @@
 package controller.customerControllers;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -22,6 +23,12 @@ public class ContactEditCardController {
 
     ContactEditCardController(){
         command = new SetEditable(this);
+    }
+
+    public void initialize(){
+        Platform.runLater(() -> {
+            returnToSavedState();
+        });
     }
 
     public void setCommand(ICommand command){
