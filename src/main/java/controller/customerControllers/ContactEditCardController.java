@@ -7,21 +7,25 @@ import javafx.scene.control.TextField;
 import model.command.ICommand;
 import model.command.customerCommands.SetEditable;
 import model.customer.CustomerContact;
+import model.customer.CustomerEditor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ContactEditCardController {
+
     public TextField name;
     public TextField number;
     public TextField email;
     public Button editSaveButton;
     public Button cancelButton;
 
+
+    private CustomerEditor editor;
     private ICommand command;
     private CustomerContact contact;
 
-    ContactEditCardController(){
+    public ContactEditCardController(){
         command = new SetEditable(this);
     }
 
@@ -29,6 +33,10 @@ public class ContactEditCardController {
         Platform.runLater(() -> {
             returnToSavedState();
         });
+    }
+
+    public void setEditor(CustomerEditor editor){
+        this.editor = editor;
     }
 
     public void setCommand(ICommand command){
@@ -66,5 +74,9 @@ public class ContactEditCardController {
         editSaveButton.setText("Edit");
         cancelButton.setVisible(false);
         returnToSavedState();
+    }
+
+    public void deleteContactHandler(ActionEvent actionEvent) {
+        editor.removeContact(contact);
     }
 }

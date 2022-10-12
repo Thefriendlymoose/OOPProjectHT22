@@ -10,7 +10,6 @@ model\order\Orders.class
 persistence\pojos\OrderRowJSON.class
 controller\siteControllers\SiteOpenDetailsController.class
 controller\siteControllers\SiteMenuSiteCardController.class
-controller\customerControllers\ContactEditController.class
 model\User.class
 controller\siteControllers\SiteMenuController.class
 model\Authentication\AuthenticationStatus.class
@@ -20,6 +19,7 @@ model\customer\CustomerEditor.class
 controller\siteControllers\SiteCreateController.class
 model\article\ArticleStatus.class
 controller\orderControllers\OrderMenuTabCardController.class
+model\command\ICommand.class
 model\customer\ShippingAddressStrategy.class
 model\pojos\OrderPojo.class
 controller\orderControllers\OrderMenuTabCardController$1.class
@@ -35,7 +35,6 @@ model\customer\BillingAddressStrategy.class
 model\Role.class
 controller\orderControllers\OrderEditModalController.class
 model\Permission.class
-model\Command\ICommand.class
 database\DataBaseConnection.class
 model\customer\Address.class
 model\order\OrderStatus.class
@@ -44,7 +43,6 @@ model\pojos\ArticlePojo.class
 controller\siteControllers\SiteDetailsController.class
 controller\orderControllers\OrderDetailsModalController.class
 persistence\pojos\SiteJSON.class
-model\Command\customerCommands\SaveFields.class
 model\pojos\UserPOJO.class
 persistence\UserDAO.class
 model\Authentication\CachedUser.class
@@ -55,11 +53,11 @@ controller\orderControllers\OrderOpenController.class
 controller\articleControllers\ArticleMenuCardController$1.class
 controller\customerControllers\ContactEditCardController.class
 controller\siteControllers\siteDetailsSiteArticleAddModalController$1.class
-controller\TemplateController.class
 model\customer\Customer.class
 controller\orderControllers\OrderEditModalController$1.class
 model\order\DBJOrders.class
 controller\siteControllers\siteDetailsUserAddModalController$1.class
+model\command\customerCommands\SaveFields.class
 model\customer\CustomerContact.class
 controller\customerControllers\CustomerEditController.class
 persistence\pojos\OrderJSON.class
@@ -79,17 +77,18 @@ controller\userControllers\UserMenuController.class
 controller\siteControllers\SiteDetailsEditController.class
 model\site\Sites.class
 model\Category.class
+model\command\customerCommands\SetEditable.class
 controller\articleControllers\ArticleMenuCardController.class
 model\site\Site.class
 controller\MenuController.class
 model\order\Order.class
-model\Command\customerCommands\SetEditable.class
 model\customer\AddressStrategy.class
 persistence\OrderDAO.class
 controller\userControllers\CreateUserController.class
 controller\siteControllers\siteDetailsSiteArticleAddModalController.class
 model\article\Article.class
 controller\siteControllers\SiteDetailsSiteArticleModalController.class
+controller\customerControllers\ContactCreateController.class
 model\article\Articles.class
 model\site\SiteArticle.class
 model\observer\Observable.class
@@ -106,3 +105,4 @@ controller\orderControllers\OrderFormOrderRowModalController.class
 persistence\pojos\UserJSON.class
 database\DataBaseAdapter.class
 controller\orderControllers\OrderFormModalController$1.class
+controller\customerControllers\ContactEditorController.class

@@ -57,8 +57,18 @@ public class CustomerEditor implements Observable {
         notifyObservers();
     }
 
+    public void removeContact(CustomerContact contact){
+        customer.removeCustomerContact(contact);
+        notifyObservers();
+    }
+
     public List<CustomerContact> getContacts(){
         return customer.getContacts();
+    }
+
+    public void save(){
+        dao.save(customer);
+        notifyObservers();
     }
 
 
