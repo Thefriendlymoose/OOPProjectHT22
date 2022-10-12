@@ -77,11 +77,15 @@ public class CustomerEditController implements Observer {
 
     public void addContactHandler(ActionEvent e) throws IOException{
         //Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/customerViews/contactEdit.fxml")));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/customerViews/contactEdit.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/customerViews/contactEditorView.fxml"));
         Stage stage = loader.load();
-        stage.setTitle("Add Contact");
+        stage.setTitle("Edit Contacts");
+
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
+        ContactEditorController cont = loader.getController();
+        editor.registerObserver(cont);
+        cont.setEditor(editor);
         stage.show();
     }
 
