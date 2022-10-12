@@ -8,7 +8,7 @@ import model.User;
 public class UserMenuCardController {
 
     @FXML
-    private Label cardUserNameLabel, cardPasswordLabel, cardNameLabel;
+    private Label cardPremissionLabel, cardUserIDLabel, cardNameLabel;
 
     private User user;
 
@@ -18,9 +18,9 @@ public class UserMenuCardController {
 
     public void initialize(){
         Platform.runLater(() -> {
-            cardUserNameLabel.setText(cardUserNameLabel.getText() + user.getUserName());
-            cardPasswordLabel.setText(cardPasswordLabel.getText() + user.getPassword());
+            cardUserIDLabel.setText(cardUserIDLabel.getText() + user.getUserId());
             cardNameLabel.setText(cardNameLabel.getText() + user.getName());
+            cardPremissionLabel.setText(cardPremissionLabel.getText() + user.getPermissions());
 
         });
     }

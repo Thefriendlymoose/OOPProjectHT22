@@ -26,7 +26,6 @@ public class UserMenuController {
 
     @FXML
     private VBox userCardHolder;
-    /*
 
 
     private IPersistence<User> testDao = UserDAO.getInstance();
@@ -47,7 +46,7 @@ public class UserMenuController {
 
     }
 
-     */
+
 
 
 
