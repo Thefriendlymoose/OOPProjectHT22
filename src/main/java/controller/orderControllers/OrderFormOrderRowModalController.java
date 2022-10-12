@@ -72,8 +72,9 @@ public class OrderFormOrderRowModalController {
         this.observableOrderRows = oro;
     }
 
+
     public void onAddArticleButton(){
-        observableOrderRows.add(new OrderRow(current.getArticle(), 5));
+        observableOrderRows.add(new OrderRow(current.getArticle(), current.getAmount()));
     }
 
 

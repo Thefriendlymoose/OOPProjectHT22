@@ -137,7 +137,6 @@ public class OrderEditModalController {
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node) e.getSource()).getScene().getWindow());
         stage.show();
-
     }
 
     public void onCancel(ActionEvent e){
