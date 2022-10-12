@@ -16,9 +16,9 @@
 <Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.orderControllers.OrderDetailsAddModalController">
     <scene>
         <Scene>
-            <AnchorPane prefHeight="200" prefWidth="200" stylesheets="@../stylesheet.css">
+            <AnchorPane prefHeight="300" prefWidth="300" stylesheets="@../stylesheet.css">
                 <children>
-                    <VBox prefWidth="200.0">
+                    <VBox prefHeight="364.0" prefWidth="300.0">
                         <children>
                             <Label styleClass="generic-form-label" text="Choose Article">
                                 <font>
