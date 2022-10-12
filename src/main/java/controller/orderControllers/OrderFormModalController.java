@@ -117,7 +117,7 @@ public class OrderFormModalController {
         }
     }
 
-    public void onAddOrderRowButton(ActionEvent e) throws IOException {
+    public void onAddOrderRowButton1(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderFormOrderRowModal.fxml")));
         Stage stage = loader.load();
 
@@ -131,16 +131,18 @@ public class OrderFormModalController {
         stage.show();
     }
 
-    public void onAddOrderRowButtonNew(ActionEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/orderDetailsAddModal.fxml"));
+//    denna
+
+    public void onAddOrderRowButton(ActionEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderDetailsAddModal.fxml"));
         Stage stage = loader.load();
-        OrderEditModalController controller = loader.getController();
+        OrderDetailsAddModalController controller = loader.getController();
         controller.setSite(site);
         controller.setSites(sites);
-        controller.setSiteArticles(site.getSiteArticles());
+//        controller.setSiteArticles(site.getSiteArticles());
 
 
-        stage.setTitle("Add Stock Item");
+        stage.setTitle("Choose Article and Amount");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
         stage.show();

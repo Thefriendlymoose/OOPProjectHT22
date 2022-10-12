@@ -144,7 +144,7 @@ public class OrderEditModalController {
     }
 
     public void onAddOrderRowButtonNew(ActionEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/orderDetailsAddModal.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderDetailsAddModal.fxml"));
         Stage stage = loader.load();
         OrderEditModalController controller = loader.getController();
         controller.setSite(site);

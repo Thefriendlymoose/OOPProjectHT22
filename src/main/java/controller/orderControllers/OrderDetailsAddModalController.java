@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.article.ArticlesFacade;
 import model.order.OrderRow;
+import model.order.Orders;
 import model.site.Site;
 import model.site.SiteArticle;
 import model.site.Sites;
@@ -98,5 +99,15 @@ public class OrderDetailsAddModalController {
             ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
         }
     }
+    public void setSites(Sites sites) {
+        this.sites = sites;
+    }
 
+    public void setSite(Site site) {
+        this.site = site;
+    }
+
+//    public void setSiteArticles(SiteArticle siteArticles){
+//        this.siteArticles = siteArticles;
+//    }
 }
