@@ -69,6 +69,42 @@ public class Order {
         return site;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setOrderNumber(long orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public void setPriority(boolean priority) {
+        this.priority = priority;
+    }
+
+    public void setOrderDate(LocalDateTime orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public void setDeadline(LocalDateTime deadline) {
+        this.deadline = deadline;
+    }
+
+    public void setOrderRows(List<OrderRow> orderRows) {
+        this.orderRows = orderRows;
+    }
+
+    public void setSite(Site site) {
+        this.site = site;
+    }
+
     public float getTotalCost(){
         float sum = 0;
         for (OrderRow or : orderRows){

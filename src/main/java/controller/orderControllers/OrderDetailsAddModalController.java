@@ -69,8 +69,8 @@ public class OrderDetailsAddModalController {
         if (current != null && !amountTextField.getText().isEmpty()){
             try {
                 int amount = Integer.parseInt(amountTextField.getText());
-                if (amount > current.getAmount()){
-                    System.out.println("not enough in stock");
+                if ((amount > current.getAmount() ) || ( amount == 0 )){
+                    System.out.println("not enough in stock or equal to 0");
                 } else {
                     observableOrderRows.add(new OrderRow(current.getArticle(), amount));
                     current.setAmount(current.getAmount() - amount);

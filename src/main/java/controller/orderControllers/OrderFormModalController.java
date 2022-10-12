@@ -51,6 +51,9 @@ public class OrderFormModalController {
     private Site site;
     private Sites sites;
     private ObservableList<OrderRow> addedRows;
+
+    private LocalDateTime deadline;
+    private LocalDateTime orderDate;
     private Orders orders;
 
     public void setSite(Site site){
@@ -61,7 +64,7 @@ public class OrderFormModalController {
     @FXML
     public void initialize(){
         addedRows = FXCollections.observableArrayList();
-        orderRowListView.setItems(addedRows);
+        orderRowListView.setItems(addedRows); //.toList() -> OrderList
         orderRowListView.setCellFactory(param -> new ListCell<OrderRow>(){
             @Override
             protected void updateItem(OrderRow s, boolean empty){
@@ -86,14 +89,19 @@ public class OrderFormModalController {
         customerComboBox.getItems().addAll(customers.getAll());
     }
 
-    public void saveOrder(){
+    public void saveOrder(ActionEvent e){
+        System.out.println("Bef0re: " + orders.toString());
 
+        orders.addOrder(new Order(null, orders.getNextOrderNumber(), customerComboBox.getValue(), statusComboBox.getValue(), priorityComboBox.getValue(), orderDate, deadline, addedRows.stream().toList(), site));
+        ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+        orders.updateOrder();
+
+        System.out.println("After: " + orders.toString());
     }
 
     public void setPriorityComboBox(){
         System.out.println("Priority: "+ priorityComboBox.getValue());
     }
-
 
     public void setStatusComboBox(){
         System.out.println("Status: "+ statusComboBox.getValue());
@@ -110,7 +118,8 @@ public class OrderFormModalController {
         int month = orderDeadlineDatePicker.getValue().getMonthValue();
         int year = orderDeadlineDatePicker.getValue().getYear();
 
-        LocalDateTime deadline = df.createDeadline(day,month,year);
+        deadline = df.createDeadline(day,month,year);
+        orderDate = df.createOrderDate();
 
         if(df.isValidDeadline(deadline)){
             System.out.println("Deadline: " + deadline.getDayOfMonth() + "-"+ deadline.getMonthValue() + "-" + deadline.getYear());

@@ -108,4 +108,15 @@ public class Orders implements Observable {
             o.update();
         }
     }
+
+
+//    temporary
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "orders=" + orders +
+                ", nextOrderNumber=" + nextOrderNumber +
+                ", observers=" + observers +
+                '}';
+    }
 }
