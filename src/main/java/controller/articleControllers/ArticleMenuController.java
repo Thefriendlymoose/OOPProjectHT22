@@ -2,8 +2,6 @@ package controller.articleControllers;
 
 import controller.interfaces.ISubMenu;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,9 +16,7 @@ import javafx.stage.Stage;
 import model.WMS;
 import model.article.Article;
 import model.article.Articles;
-import model.article.ArticlesFacade;
 import model.observer.Observer;
-import persistence.ArticlesDAO;
 
 import java.io.IOException;
 import java.util.List;
