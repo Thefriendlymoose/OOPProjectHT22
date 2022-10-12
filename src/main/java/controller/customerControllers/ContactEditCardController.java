@@ -21,7 +21,7 @@ public class ContactEditCardController {
     private ICommand command;
     private CustomerContact contact;
 
-    ContactEditCardController(){
+    public ContactEditCardController(){
         command = new SetEditable(this);
     }
 

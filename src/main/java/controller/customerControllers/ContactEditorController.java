@@ -47,7 +47,7 @@ public class ContactEditorController implements Observer {
         try {
             repaint();
         } catch (IOException e){
-            throw new RuntimeException("oh no");
+            throw new RuntimeException(e);
         }
 
 

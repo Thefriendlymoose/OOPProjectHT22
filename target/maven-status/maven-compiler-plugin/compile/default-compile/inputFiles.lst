@@ -61,11 +61,11 @@ C:\javadev\OOPProjectHT22\src\main\java\model\article\ArticlesFacade.java
 C:\javadev\OOPProjectHT22\src\main\java\controller\articleControllers\ArticleOpenDetailsModalController.java
 C:\javadev\OOPProjectHT22\src\main\java\model\order\DateFactory.java
 C:\javadev\OOPProjectHT22\src\main\java\database\DataBaseAdapter.java
-C:\javadev\OOPProjectHT22\src\main\java\model\Command\customerCommands\SetEditable.java
+C:\javadev\OOPProjectHT22\src\main\java\model\command\customerCommands\SetEditable.java
 C:\javadev\OOPProjectHT22\src\main\java\persistence\IPersistence.java
 C:\javadev\OOPProjectHT22\src\main\java\model\customer\Address.java
 C:\javadev\OOPProjectHT22\src\main\java\controller\customerControllers\CustomerEditController.java
-C:\javadev\OOPProjectHT22\src\main\java\model\Command\ICommand.java
+C:\javadev\OOPProjectHT22\src\main\java\model\command\ICommand.java
 C:\javadev\OOPProjectHT22\src\main\java\controller\orderControllers\OrderCreateModalController.java
 C:\javadev\OOPProjectHT22\src\main\java\persistence\pojos\AddressJSON.java
 C:\javadev\OOPProjectHT22\src\main\java\persistence\pojos\SiteArticleJSON.java
@@ -81,11 +81,11 @@ C:\javadev\OOPProjectHT22\src\main\java\controller\orderControllers\OrderMenuTab
 C:\javadev\OOPProjectHT22\src\main\java\controller\SignInController.java
 C:\javadev\OOPProjectHT22\src\main\java\model\site\Site.java
 C:\javadev\OOPProjectHT22\src\main\java\persistence\UserDAO.java
-C:\javadev\OOPProjectHT22\src\main\java\model\Command\customerCommands\SaveFields.java
+C:\javadev\OOPProjectHT22\src\main\java\controller\customerControllers\ContactEditorController.java
+C:\javadev\OOPProjectHT22\src\main\java\model\command\customerCommands\SaveFields.java
 C:\javadev\OOPProjectHT22\src\main\java\controller\articleControllers\ArticleMenuCardController.java
 C:\javadev\OOPProjectHT22\src\main\java\controller\orderControllers\OrderFormOrderRowModalController.java
 C:\javadev\OOPProjectHT22\src\main\java\controller\siteControllers\siteDetailsUserAddModalController.java
-C:\javadev\OOPProjectHT22\src\main\java\controller\TemplateController.java
 C:\javadev\OOPProjectHT22\src\main\java\controller\siteControllers\SiteCreateController.java
 C:\javadev\OOPProjectHT22\src\main\java\model\Role.java
 C:\javadev\OOPProjectHT22\src\main\java\controller\orderControllers\OrderEditModalController.java
