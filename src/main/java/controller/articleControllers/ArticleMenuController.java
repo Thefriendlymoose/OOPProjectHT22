@@ -1,5 +1,6 @@
 package controller.articleControllers;
 
+import controller.MainMenuController;
 import controller.interfaces.ISubMenu;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -63,7 +64,10 @@ public class ArticleMenuController implements Observer, ISubMenu {
     }
 
     public void backBtnHandler() throws Exception{
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/mainMenu.fxml")));
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/mainMenu.fxml")));
+        Parent root = loader.load();
+        MainMenuController controller = loader.getController();
+        controller.setWMS(wms);
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }
