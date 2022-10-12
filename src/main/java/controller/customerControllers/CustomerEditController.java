@@ -33,7 +33,7 @@ public class CustomerEditController implements Observer {
     private CustomerEditor editor;
 
     @FXML
-    TextField companyNameField, companyOrgNrField;
+    private TextField companyNameField, companyOrgNrField;
 
     public void initialize(){
         Platform.runLater(() -> {
@@ -76,17 +76,24 @@ public class CustomerEditController implements Observer {
     }
 
     public void addContactHandler(ActionEvent e) throws IOException{
-        //Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/customerViews/contactEdit.fxml")));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/customerViews/contactEdit.fxml"));
+        //Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/customerViews/contactCreate.fxml")));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/customerViews/contactEditorView.fxml"));
         Stage stage = loader.load();
-        stage.setTitle("Add Contact");
+        stage.setTitle("Edit Contacts");
+
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
+        ContactEditorController cont = loader.getController();
+        editor.registerObserver(cont);
+        cont.setEditor(editor);
         stage.show();
     }
 
     public void saveBtnHandler(ActionEvent e) {
+        editor.save();
         editor.unregisterObserver(this);
+
+        ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
     }
 
     @Override
@@ -99,15 +106,19 @@ public class CustomerEditController implements Observer {
 
     private void printContacts(){
         List<CustomerContact> contacts = editor.getCustomer().getContacts();
+        contactPane.getChildren().clear();
+        contactPane.add(new Label("Name"),0,0);
+        contactPane.add(new Label("Number"), 1,0);
+        contactPane.add(new Label("Email"),2,0);
         for (int i = 0; i < contacts.size(); i++){
             CustomerContact c = contacts.get(i);
             Label person = new Label(c.getContactPerson());
             Label number = new Label(c.getPhoneNumber());
             Label email = new Label(c.getEmail());
             person.setText(c.getContactPerson());
-            contactPane.add(person,0,i);
-            contactPane.add(number,1,i);
-            contactPane.add(email,2,i);
+            contactPane.add(person,0,i+1);
+            contactPane.add(number,1,i+1);
+            contactPane.add(email,2,i+1);
         }
     }
 }
