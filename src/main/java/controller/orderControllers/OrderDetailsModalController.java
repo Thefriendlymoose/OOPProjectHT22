@@ -34,7 +34,8 @@ public class OrderDetailsModalController {
     private ListView<OrderRow> orderRowListView;
 
     @FXML
-    private ComboBox<Customer> customerComboBox;
+//    private ComboBox<Customer> customerComboBox;
+    private ComboBox<String> customerComboBox;
 
     private Order order;
 
@@ -72,7 +73,7 @@ public class OrderDetailsModalController {
             orderRowListView.setDisable(true);
             orderRowListView.getStyleClass().add("locked-form-field");
 
-            customerComboBox.getItems().addAll(order.getCustomer());
+            customerComboBox.setValue(order.getCustomer().companyNameToString());
             customerComboBox.setDisable(true);
             customerComboBox.getStyleClass().add("locked-form-field");
 

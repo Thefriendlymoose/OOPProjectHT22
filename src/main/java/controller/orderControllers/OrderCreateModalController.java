@@ -62,6 +62,7 @@ public class OrderCreateModalController {
 
         OrderFormModalController cont = loader.getController();
         cont.setSite(current);
+        cont.setOrders(orders);
 
         stage.setTitle("Create Order");
         stage.initModality(Modality.WINDOW_MODAL);

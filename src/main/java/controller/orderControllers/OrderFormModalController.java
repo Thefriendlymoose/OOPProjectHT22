@@ -11,10 +11,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.article.Article;
 import model.customer.Customer;
-import model.order.DateFactory;
-import model.order.Order;
-import model.order.OrderRow;
-import model.order.OrderStatus;
+import model.order.*;
 import model.site.Site;
 import model.site.Sites;
 import persistence.CustomersDAO;
@@ -54,6 +51,7 @@ public class OrderFormModalController {
     private Site site;
     private Sites sites;
     private ObservableList<OrderRow> addedRows;
+    private Orders orders;
 
     public void setSite(Site site){
         this.site = site;
@@ -88,7 +86,9 @@ public class OrderFormModalController {
         customerComboBox.getItems().addAll(customers.getAll());
     }
 
-    public void saveOrder(){}
+    public void saveOrder(){
+
+    }
 
     public void setPriorityComboBox(){
         System.out.println("Priority: "+ priorityComboBox.getValue());
@@ -149,4 +149,6 @@ public class OrderFormModalController {
         this.sites = sites;
     }
 
+    public void setOrders(Orders orders) {this.orders = orders;
+    }
 }
