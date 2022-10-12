@@ -37,13 +37,9 @@ public class OrderDetailsAddModalController {
 
     private SiteArticle current;
     private Site site;
-    private Sites sites;
 
     private ObservableList<OrderRow> observableOrderRows;
 
-
-
-    private SitesDAO jsonDao = SitesDAO.getInstance();
 
     public void initialize(){
 
@@ -73,12 +69,12 @@ public class OrderDetailsAddModalController {
         if (current != null && !amountTextField.getText().isEmpty()){
             try {
                 int amount = Integer.parseInt(amountTextField.getText());
-                if (site.checkIfOverCapacity(amount)){
-                    System.out.println("over capacity");
+                if (amount > current.getAmount()){
+                    System.out.println("not enough in stock");
                 } else {
-                    site.addSiteArticle(new SiteArticle(current.getArticle(), amount));
+                    observableOrderRows.add(new OrderRow(current.getArticle(), amount));
+                    current.setAmount(current.getAmount() - amount);
                     ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
-                    sites.updateSite();
                 }
             } catch (NumberFormatException error){
                 System.out.println("error number");
@@ -99,15 +95,16 @@ public class OrderDetailsAddModalController {
             ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
         }
     }
-    public void setSites(Sites sites) {
-        this.sites = sites;
-    }
 
     public void setSite(Site site) {
         this.site = site;
     }
 
-//    public void setSiteArticles(SiteArticle siteArticles){
-//        this.siteArticles = siteArticles;
-//    }
+    public void setSiteArticles(List<SiteArticle> siteArticles){
+        this.siteArticles = siteArticles;
+    }
+
+    public void setObservableOrderRows(ObservableList<OrderRow> addedRows) {
+        this.observableOrderRows = addedRows;
+    }
 }

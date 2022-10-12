@@ -138,8 +138,8 @@ public class OrderFormModalController {
         Stage stage = loader.load();
         OrderDetailsAddModalController controller = loader.getController();
         controller.setSite(site);
-        controller.setSites(sites);
-//        controller.setSiteArticles(site.getSiteArticles());
+        controller.setSiteArticles(site.getSiteArticles());
+        controller.setObservableOrderRows(addedRows);
 
 
         stage.setTitle("Choose Article and Amount");

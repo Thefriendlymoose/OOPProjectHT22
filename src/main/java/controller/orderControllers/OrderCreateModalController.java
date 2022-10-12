@@ -1,5 +1,6 @@
 package controller.orderControllers;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,30 +31,30 @@ public class OrderCreateModalController {
 
     private Site current;
     private Sites sites;
-    private IPersistence<Site> jsonDao = SitesDAO.getInstance();
 
 
     public void initialize(){
+        Platform.runLater(() -> {
+            siteListView.getItems().addAll(sites.getInList());
+            siteListView.setCellFactory(param -> new ListCell<Site>(){
+                @Override
+                protected void updateItem(Site s, boolean empty){
+                    super.updateItem(s, empty);
 
-        siteListView.getItems().addAll(jsonDao.getAll());
-
-        siteListView.setCellFactory(param -> new ListCell<Site>(){
-            @Override
-            protected void updateItem(Site s, boolean empty){
-                super.updateItem(s, empty);
-
-                if(empty || s == null || s.getSiteName() == null){
-                    setText(null);
-                } else {
-                    setText(s.getSiteName());
+                    if(empty || s == null || s.getSiteName() == null){
+                        setText(null);
+                    } else {
+                        setText(s.getSiteName());
+                    }
                 }
-            }
+            });
+
+            siteListView.getSelectionModel().selectedItemProperty().addListener((observableValue, site, t1) -> {
+                current = siteListView.getSelectionModel().getSelectedItem();
+            });
+
         });
 
-
-        siteListView.getSelectionModel().selectedItemProperty().addListener((observableValue, site, t1) -> {
-            current = siteListView.getSelectionModel().getSelectedItem();
-        });
     }
 
     public void onContinue(ActionEvent e) throws IOException {

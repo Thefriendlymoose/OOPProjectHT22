@@ -95,7 +95,12 @@ public class OrderMenuController implements Observer, ISubMenu {
     }
 
     public void createButton(ActionEvent e) throws Exception{
-        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderCreateModal.fxml")));
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderCreateModal.fxml")));
+        Stage stage = loader.load();
+        OrderCreateModalController controller = loader.getController();
+        controller.setOrders(orders);
+        controller.setSites(sites);
+
         stage.setTitle("Create Order: Choose Site");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node) e.getSource()).getScene().getWindow());
