@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import model.User;
+import model.user.User;
 import model.site.Site;
 import model.site.Sites;
 import persistence.UserDAO;

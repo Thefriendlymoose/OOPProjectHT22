@@ -1,5 +1,7 @@
 package controller.siteControllers;
 
+import controller.interfaces.ISubMenu;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,17 +13,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.WMS;
 import model.observer.Observer;
 import model.site.Site;
 import model.site.Sites;
-import persistence.IPersistence;
-import persistence.SitesDAO;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Objects;
 
-public class SiteMenuController implements Observer {
+public class SiteMenuController implements Observer, ISubMenu {
     @FXML
     private Button openButton, createButton, backButton;
 
@@ -29,11 +29,18 @@ public class SiteMenuController implements Observer {
     private VBox siteCardHolderVBox;
 
     private Sites sites;
+    private WMS wms;
 
-    public void initialize() throws IOException {
-        sites = new Sites(SitesDAO.getInstance().getAllMap());
-        sites.registerObserver(this);
-        loadCards();
+    public void initialize() {
+        Platform.runLater(() -> {
+            sites = wms.getSites();
+            sites.registerObserver(this);
+            try {
+                loadCards();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     private void loadCards() throws IOException {
@@ -85,5 +92,10 @@ public class SiteMenuController implements Observer {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void setWMS(WMS wms) {
+        this.wms = wms;
     }
 }

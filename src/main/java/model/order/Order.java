@@ -1,7 +1,7 @@
 package model.order;
 
 
-import model.User;
+import model.user.User;
 import model.customer.Customer;
 import model.site.Site;
 

@@ -52,6 +52,11 @@ public class CustomerEditor implements Observable {
         notifyObservers();
     }
 
+    public void addContact(CustomerContact contact){
+        customer.addCustomerContact(contact);
+        notifyObservers();
+    }
+
 
     @Override
     public void registerObserver(Observer o) {

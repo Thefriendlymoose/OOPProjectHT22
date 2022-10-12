@@ -1,6 +1,5 @@
 package controller.userControllers;
 
-import database.DataBaseAdapter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -17,9 +16,11 @@ public class OpenUserController {
     private Button openButton;
 
     public void openOrder(){
-        DataBaseAdapter dba = DataBaseAdapter.getInstance();
+        //removed Databaseadapter
+        //DataBaseAdapter dba = DataBaseAdapter.getInstance();
         if(!searchField.getText().isEmpty()){
-            Document doc = dba.findAndOpenOrder(searchField.getText());
+            // removed databaseadapter
+            Document doc = null;
             if (doc != null){
                 System.out.println(doc.get("userID") + " - " + doc.get("description"));
                 Stage stage = (Stage) openButton.getScene().getWindow();

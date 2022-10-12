@@ -3,7 +3,7 @@ package persistence;
 //import model.Order;
 
 import com.google.gson.*;
-import model.User;
+import model.user.User;
 import model.article.Article;
 import model.customer.Customer;
 import model.order.Order;

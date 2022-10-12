@@ -1,5 +1,6 @@
 package controller.userControllers;
 
+import controller.interfaces.ISubMenu;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,12 +10,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.WMS;
 
 import java.util.Objects;
 
-public class UserMenuController {
+public class UserMenuController implements ISubMenu {
     @FXML
     private Button openButton, createButton, listButton, backButton;
+    private WMS wms;
 
 
 
@@ -60,5 +63,10 @@ public class UserMenuController {
         stage.initOwner(((Node)e.getSource()).getScene().getWindow() );
         stage.show();
 
+    }
+
+    @Override
+    public void setWMS(WMS wms) {
+        this.wms = wms;
     }
 }
