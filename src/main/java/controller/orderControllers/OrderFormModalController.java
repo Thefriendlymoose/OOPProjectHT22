@@ -90,13 +90,15 @@ public class OrderFormModalController {
     }
 
     public void saveOrder(ActionEvent e){
-        System.out.println("Bef0re: " + orders.toString());
+//        System.out.println("Bef0re: " + orders.toString());
 
         orders.addOrder(new Order(null, orders.getNextOrderNumber(), customerComboBox.getValue(), statusComboBox.getValue(), priorityComboBox.getValue(), orderDate, deadline, addedRows.stream().toList(), site));
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
         orders.updateOrder();
 
-        System.out.println("After: " + orders.toString());
+//        System.out.println(orderDate.compareTo(deadline));
+
+//        System.out.println("After: " + orders.toString());
     }
 
     public void setPriorityComboBox(){
