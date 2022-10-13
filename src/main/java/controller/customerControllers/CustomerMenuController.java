@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
@@ -19,6 +20,9 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class CustomerMenuController implements Observer {
+
+    @FXML
+    private VBox customerBox;
 
     @FXML
     private Button openButton, createButton, listButton, backButton;
