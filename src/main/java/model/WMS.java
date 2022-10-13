@@ -1,6 +1,6 @@
 package model;
 
-import model.Authentication.Session;
+import model.authentication.Session;
 import model.article.Articles;
 import model.order.Orders;
 import model.site.Sites;

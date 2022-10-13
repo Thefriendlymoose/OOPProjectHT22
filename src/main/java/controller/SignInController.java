@@ -2,7 +2,6 @@ package controller;
 
 import controller.dpi.DependencyInjection;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,14 +10,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import model.Authentication.AuthenticationStatus;
-import model.Authentication.UserAuthentication;
+import model.authentication.AuthenticationStatus;
+import model.authentication.UserAuthentication;
 import model.WMS;
 import model.user.User;
 import persistence.IPersistence;
 import persistence.UserDAO;
-
-import java.util.Objects;
 
 public class SignInController {
 

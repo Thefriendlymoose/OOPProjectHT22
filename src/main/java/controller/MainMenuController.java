@@ -1,13 +1,12 @@
 package controller;
 
 import controller.dpi.DependencyInjection;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import model.Authentication.Session;
+import model.authentication.Session;
 import model.WMS;
 import model.user.Permission;
 
