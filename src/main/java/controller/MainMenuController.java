@@ -15,16 +15,15 @@ public class MainMenuController {
     @FXML
     private Button menuSiteButton, menuArticleButton, menuCustomerButton, menuUserButton, menuOrderButton;
     private WMS wms;
+    private Session session;
 
     public MainMenuController(WMS wms) {
         this.wms = wms;
+        this.session = wms.getSession();
     }
 
 
     public void initialize(){
-        Platform.runLater(() -> {
-            Session session = wms.getSession();
-
             if (!session.hasAccess(Permission.SITE)){
                 menuSiteButton.setDisable(true);
             }
@@ -44,7 +43,6 @@ public class MainMenuController {
             if (!session.hasAccess(Permission.USER)){
                 menuUserButton.setDisable(true);
             }
-        });
     }
 
     public void articleBtnHandler() throws Exception {
