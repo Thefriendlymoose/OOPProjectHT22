@@ -9,7 +9,7 @@ public class Customer{
     private Address billingAddress = new Address();
     private Address shippingAddress = new Address();
     private long customerId;
-    private int companyOrgNumber;
+    private long companyOrgNumber;
     private String companyName;
 
     public Customer(List<CustomerContact> customerContacts, Address billingAddress, Address shippingAddress, long customerId, int companyOrgNumber, String companyName) {
@@ -21,7 +21,7 @@ public class Customer{
         this.companyName = companyName;
     }
 
-    public Customer(long customerId, int companyOrgNumber){
+    public Customer(long customerId, long companyOrgNumber){
         this.customerId = customerId;
         this.companyOrgNumber = companyOrgNumber;
     }
@@ -48,7 +48,7 @@ public class Customer{
         return customerId;
     }
 
-    public int getCompanyOrgNumber() {
+    public long getCompanyOrgNumber() {
         return companyOrgNumber;
     }
 
@@ -78,7 +78,7 @@ public class Customer{
         this.shippingAddress = shippingAddress;
     }
 
-    public void setCompanyOrgNumber(int companyOrgNumber) {
+    public void setCompanyOrgNumber(long companyOrgNumber) {
         this.companyOrgNumber = companyOrgNumber;
     }
 

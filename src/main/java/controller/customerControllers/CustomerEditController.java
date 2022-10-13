@@ -25,9 +25,11 @@ import java.util.Objects;
 
 public class CustomerEditController implements Observer {
 
-    public Label shippingAddressFlow;
-    public Label billingAddressFlow;
-    public GridPane contactPane;
+    @FXML
+    private Label shippingAddressFlow, billingAddressFlow;
+
+    @FXML
+    private GridPane contactPane;
 
 
     private CustomerEditor editor;
@@ -88,9 +90,10 @@ public class CustomerEditController implements Observer {
     }
 
     public void saveBtnHandler(ActionEvent e) {
-
+        editor.setCompanyName(companyNameField.toString());
+        editor.setCompanyOrgNumber(Long.parseLong(companyOrgNrField.toString()));
         editor.unregisterObserver(this);
-
+        editor.save();
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
     }
 

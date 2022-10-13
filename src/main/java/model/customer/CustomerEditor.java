@@ -20,6 +20,14 @@ public class CustomerEditor implements Observable {
         this.customer = customer;
     }
 
+    public void setCompanyName(String name){
+        customer.setCompanyName(name);
+    }
+
+    public void setCompanyOrgNumber(long orgNumber){
+        customer.setCompanyOrgNumber(orgNumber);
+    }
+
     public void setBillingStrategy(){
         strategy = new BillingAddressStrategy(customer);
     }
