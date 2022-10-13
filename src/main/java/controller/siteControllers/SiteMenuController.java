@@ -1,7 +1,6 @@
 package controller.siteControllers;
 
-import controller.MainMenuController;
-import controller.interfaces.ISubMenu;
+import controller.dpi.DependencyInjection;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,7 +21,7 @@ import model.site.Sites;
 import java.io.IOException;
 import java.util.Objects;
 
-public class SiteMenuController implements Observer, ISubMenu {
+public class SiteMenuController implements Observer {
     @FXML
     private Button openButton, createButton, backButton;
 
@@ -32,16 +31,14 @@ public class SiteMenuController implements Observer, ISubMenu {
     private Sites sites;
     private WMS wms;
 
-    public void initialize() {
-        Platform.runLater(() -> {
-            sites = wms.getSites();
-            sites.registerObserver(this);
-            try {
-                loadCards();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
+    public SiteMenuController(WMS wms) {
+        this.wms = wms;
+        this.sites = wms.getSites();
+        sites.registerObserver(this);
+    }
+
+    public void initialize() throws IOException {
+        loadCards();
     }
 
     private void loadCards() throws IOException {
@@ -70,10 +67,7 @@ public class SiteMenuController implements Observer, ISubMenu {
     }
 
     public void backBtnHandler() throws Exception{
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/mainMenu.fxml")));
-        Parent root = loader.load();
-        MainMenuController controller = loader.getController();
-        controller.setWMS(wms);
+        Parent root = DependencyInjection.load("fxml/mainMenu.fxml");
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }
@@ -98,8 +92,4 @@ public class SiteMenuController implements Observer, ISubMenu {
         }
     }
 
-    @Override
-    public void setWMS(WMS wms) {
-        this.wms = wms;
-    }
 }

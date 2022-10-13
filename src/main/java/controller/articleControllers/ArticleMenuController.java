@@ -1,7 +1,6 @@
 package controller.articleControllers;
 
-import controller.MainMenuController;
-import controller.interfaces.ISubMenu;
+import controller.dpi.DependencyInjection;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,7 +22,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-public class ArticleMenuController implements Observer, ISubMenu {
+public class ArticleMenuController implements Observer {
     @FXML
     private Button openArticleButton, createButton, listButton, backButton;
 
@@ -33,18 +32,14 @@ public class ArticleMenuController implements Observer, ISubMenu {
     private Articles articles;
     private WMS wms;
 
-    public void initialize() {
+    public ArticleMenuController(WMS wms) {
+        this.wms = wms;
+        this.articles = wms.getArticles();
+        articles.registerObserver(this);
+    }
 
-        Platform.runLater(() -> {
-            this.articles = wms.getArticles();
-            articles.registerObserver(this);
-            try {
-                loadCards();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
+    public void initialize() throws IOException {
+        loadCards();
     }
 
     private void loadCards() throws IOException {
@@ -64,10 +59,7 @@ public class ArticleMenuController implements Observer, ISubMenu {
     }
 
     public void backBtnHandler() throws Exception{
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/mainMenu.fxml")));
-        Parent root = loader.load();
-        MainMenuController controller = loader.getController();
-        controller.setWMS(wms);
+        Parent root = DependencyInjection.load("fxml/mainMenu.fxml");
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }
@@ -104,8 +96,4 @@ public class ArticleMenuController implements Observer, ISubMenu {
         }
     }
 
-    @Override
-    public void setWMS(WMS wms) {
-        this.wms = wms;
-    }
 }

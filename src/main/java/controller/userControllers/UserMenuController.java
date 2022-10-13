@@ -1,7 +1,6 @@
 package controller.userControllers;
 
-import controller.MainMenuController;
-import controller.interfaces.ISubMenu;
+import controller.dpi.DependencyInjection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,10 +14,14 @@ import model.WMS;
 
 import java.util.Objects;
 
-public class UserMenuController implements ISubMenu {
+public class UserMenuController {
     @FXML
     private Button openButton, createButton, listButton, backButton;
     private WMS wms;
+
+    public UserMenuController(WMS wms) {
+        this.wms = wms;
+    }
 
 
 
@@ -44,10 +47,7 @@ public class UserMenuController implements ISubMenu {
      */
 
     public void backBtnHandler() throws Exception{
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/mainMenu.fxml")));
-        Parent root = loader.load();
-        MainMenuController controller = loader.getController();
-        controller.setWMS(wms);
+        Parent root = DependencyInjection.load("fxml/mainMenu.fxml");
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }
@@ -69,8 +69,4 @@ public class UserMenuController implements ISubMenu {
 
     }
 
-    @Override
-    public void setWMS(WMS wms) {
-        this.wms = wms;
-    }
 }

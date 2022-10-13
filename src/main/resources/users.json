@@ -9,8 +9,8 @@
   },
   {
     "userId": 2,
-    "userName": "ulul",
-    "password": "T0pS3cr3t",
+    "userName": "test2",
+    "password": "1234",
     "name": "Ulla Ullman",
     "status": true,
     "permissions": ["ORDER", "USER", "SITE"]

@@ -3,15 +3,15 @@ package model.Authentication;
 import model.user.Permission;
 import model.user.User;
 
-public class CachedUser {
-
+public class Session {
     private User user;
 
-    public CachedUser(User user){
+    public Session(User user){
         this.user = user;
     }
 
-    public boolean hasPermission(Permission permission){
+    public boolean hasAccess(Permission permission){
         return user.hasPermission(permission);
     }
+
 }
