@@ -2,6 +2,7 @@ package persistence.pojos;
 
 import model.order.OrderStatus;
 
+import java.time.LocalDateTime;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -11,8 +12,8 @@ public class OrderJSON {
     private long customer;
     private OrderStatus orderStatus;
     private boolean priority;
-    private GregorianCalendar orderDate;
-    private GregorianCalendar deadline;
+    private LocalDateTime orderDate;
+    private LocalDateTime deadline;
     private List<OrderRowJSON> orderRows;
     private long site;
 
@@ -56,19 +57,19 @@ public class OrderJSON {
         this.priority = priority;
     }
 
-    public GregorianCalendar getOrderDate() {
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(GregorianCalendar orderDate) {
+    public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = orderDate;
     }
 
-    public GregorianCalendar getDeadline() {
+    public LocalDateTime getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(GregorianCalendar deadline) {
+    public void setDeadline(LocalDateTime deadline) {
         this.deadline = deadline;
     }
 

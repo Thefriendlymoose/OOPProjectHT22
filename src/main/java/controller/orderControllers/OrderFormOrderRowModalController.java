@@ -1,13 +1,17 @@
 package controller.orderControllers;
 
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+import model.order.OrderRow;
 import model.site.SiteArticle;
 
 import java.util.List;
+import java.util.Optional;
 
 public class OrderFormOrderRowModalController {
 
@@ -21,9 +25,12 @@ public class OrderFormOrderRowModalController {
 
     private SiteArticle current;
 
-    public void initialize(){
-        Platform.runLater(() -> {
+    private ObservableList<OrderRow> observableOrderRows;
 
+
+    public void initialize(){
+
+        Platform.runLater(() -> {
             siteArtListView.getItems().addAll(siteArticles);
 
             siteArtListView.setCellFactory(param -> new ListCell<SiteArticle>(){
@@ -34,7 +41,7 @@ public class OrderFormOrderRowModalController {
                     if(empty || s == null || s.getArticle() == null){
                         setText(null);
                     } else {
-                        setText(s.getArticle().getArticleName() + " ----- Amount: " + s.getAmount());
+                        setText(s.getArticle().getArticleName() + "\\n " + s.getAmount() + "x");
                     }
                 }
             });
@@ -44,12 +51,33 @@ public class OrderFormOrderRowModalController {
         });
     }
 
+    public void cancelBtnHandler(ActionEvent e){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("Look, another Confirmation Dialog");
+        alert.setContentText("Are you ok with this?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.CANCEL){
+            System.out.println("Clicked Cancel");
+        } else {
+            ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+        }
+    }
     public void setSiteArticles(List<SiteArticle> siteArticles){
         this.siteArticles = siteArticles;
     }
 
+    public void setObservableOrderRows(ObservableList<OrderRow> oro){
+        this.observableOrderRows = oro;
+    }
+
+
     public void onAddArticleButton(){
+        observableOrderRows.add(new OrderRow(current.getArticle(), current.getAmount()));
 
     }
+
+
 
 }

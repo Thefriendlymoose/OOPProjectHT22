@@ -1,29 +1,34 @@
 package model.order;
+import java.time.LocalDateTime;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class DateFactory {
 
-    public GregorianCalendar createDate(){
-        return new GregorianCalendar();
+    private final LocalDateTime orderDate = LocalDateTime.now();
+
+    public boolean isValidDeadline(LocalDateTime orderDate, LocalDateTime deadline){
+        return 1 >= deadline.compareTo(orderDate);
     }
 
-    public GregorianCalendar createDeadline(int y, int m, int d){
-        GregorianCalendar dateDeadline = new GregorianCalendar();
-
-        dateDeadline.set(y,m,d);
-
-        return(dateDeadline);
+    public boolean isValidDeadline(LocalDateTime deadline){
+        LocalDateTime orderDate = LocalDateTime.now();
+        return 1 >= deadline.compareTo(orderDate);
     }
 
-    public GregorianCalendar createDeadline(int y, int m, int d, GregorianCalendar gc){
-//        GregorianCalendar dateDeadline = new GregorianCalendar();
+    public LocalDateTime createDeadline(int day, int month, int year) {
+        day -= LocalDateTime.now().getDayOfMonth();
+        month -= LocalDateTime.now().getMonthValue();
+        year -= LocalDateTime.now().getYear();
 
-        gc.set(y,m,d);
+        return LocalDateTime.now().plusDays(day).plusMonths(month).plusYears(year);
+    }
 
+    public LocalDateTime createOrderDate() {
+        return LocalDateTime.now();
+    }
 
-        return(gc);
+    public LocalDateTime getOrderDate(){
+        return orderDate;
     }
 
 }

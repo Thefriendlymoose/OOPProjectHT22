@@ -3,6 +3,8 @@ package persistence.pojos;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
 
+import java.time.LocalDateTime;
+
 public class ArticleJSON {
 
     private long articleId;
@@ -12,6 +14,9 @@ public class ArticleJSON {
     private ArticleStatus status;
     private float cost;
     private float sellPrice;
+    private long createdBy;
+    private LocalDateTime createdOn;
+    private LocalDateTime lastEdited;
 
     public ArticleJSON(){
     }
@@ -70,5 +75,29 @@ public class ArticleJSON {
 
     public void setSellPrice(float sellPrice) {
         this.sellPrice = sellPrice;
+    }
+
+    public long getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(long createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public LocalDateTime getLastEdited() {
+        return lastEdited;
+    }
+
+    public void setLastEdited(LocalDateTime lastEdited) {
+        this.lastEdited = lastEdited;
     }
 }

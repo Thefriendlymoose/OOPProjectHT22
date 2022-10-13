@@ -1,12 +1,11 @@
 package model.order;
 
 
-import model.User;
-import model.article.Article;
+import model.user.User;
 import model.customer.Customer;
 import model.site.Site;
 
-import java.util.GregorianCalendar;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -16,14 +15,13 @@ public class Order {
     private Customer customer;
     private OrderStatus orderStatus;
     private boolean priority;
-    private GregorianCalendar orderDate;
-    private GregorianCalendar deadline;
+    private LocalDateTime orderDate;
+    private LocalDateTime deadline;
     private List<OrderRow> orderRows;
     private Site site;
 
-    public static int CURRENTORDER = 0; //senare "CurrentOrderNumber = orderList.size + 1;"
 
-    public Order(User user, long orderNumber, Customer customer, OrderStatus orderStatus, boolean priority, GregorianCalendar orderDate, GregorianCalendar deadline, List<OrderRow> orderRows, Site site) {
+    public Order(User user, long orderNumber, Customer customer, OrderStatus orderStatus, boolean priority, LocalDateTime orderDate, LocalDateTime deadline, List<OrderRow> orderRows, Site site) {
         this.user = user;
         this.orderNumber = orderNumber;
         this.customer = customer;
@@ -55,11 +53,11 @@ public class Order {
         return priority;
     }
 
-    public GregorianCalendar getOrderDate() {
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
-    public GregorianCalendar getDeadline() {
+    public LocalDateTime getDeadline() {
         return deadline;
     }
 
@@ -69,6 +67,66 @@ public class Order {
 
     public Site getSite() {
         return site;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setOrderNumber(long orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public void setPriority(boolean priority) {
+        this.priority = priority;
+    }
+
+    public void setOrderDate(LocalDateTime orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public void setDeadline(LocalDateTime deadline) {
+        this.deadline = deadline;
+    }
+
+    public void setOrderRows(List<OrderRow> orderRows) {
+        this.orderRows = orderRows;
+    }
+
+    public void setSite(Site site) {
+        this.site = site;
+    }
+
+    public float getTotalCost(){
+        float sum = 0;
+        for (OrderRow or : orderRows){
+            sum += or.getArticle().getCost() * or.getAmount();
+        }
+        return sum;
+    }
+
+    public float getTotalRevenue(){
+        float sum = 0;
+        for (OrderRow or : orderRows){
+            sum += or.getArticle().getSellPrice() * or.getAmount();
+        }
+        return sum;
+    }
+
+    public int getTotalAmount(){
+        int sum = 0;
+        for (OrderRow or : orderRows){
+            sum += or.getAmount();
+        }
+        return sum;
     }
 
 }

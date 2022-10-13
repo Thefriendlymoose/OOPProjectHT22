@@ -19,11 +19,7 @@ public class SiteArticle {
         return amount;
     }
 
-    @Override
-    public String toString() {
-        return "SiteArticle{" +
-                "article=" + article +
-                ", amount=" + amount +
-                '}';
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }

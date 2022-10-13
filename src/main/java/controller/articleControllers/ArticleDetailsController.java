@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import model.article.Article;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
+import model.article.Articles;
 
 import java.io.IOException;
 
@@ -36,6 +37,7 @@ public class ArticleDetailsController {
 
 
     private Article art;
+    private Articles arts;
 
     @FXML
     public void initialize(){
@@ -59,12 +61,17 @@ public class ArticleDetailsController {
         this.art = art;
     }
 
+    public void setArticles(Articles arts) {
+        this.arts = arts;
+    }
+
     public void editHandler(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/articleViews/articleEditFormModal.fxml"));
         Stage stage = loader.load();
 
         ArticleEditFormController cont = loader.getController();
         cont.setArticle(art);
+        cont.setArticles(arts);
 
         stage.setTitle("Open Article");
         stage.initModality(Modality.WINDOW_MODAL);
@@ -79,6 +86,5 @@ public class ArticleDetailsController {
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
     }
 
-    //TODO handlers for when user clicks edit and close buttons
 
 }

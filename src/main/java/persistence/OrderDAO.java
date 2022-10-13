@@ -2,8 +2,8 @@ package persistence;
 
 //import model.Order;
 
-import com.google.gson.Gson;
-import model.User;
+import com.google.gson.*;
+import model.user.User;
 import model.article.Article;
 import model.customer.Customer;
 import model.order.Order;
@@ -13,8 +13,10 @@ import persistence.pojos.OrderJSON;
 import persistence.pojos.OrderRowJSON;
 
 import java.io.Reader;
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public final class OrderDAO implements IPersistence<Order> {
@@ -24,7 +26,7 @@ public final class OrderDAO implements IPersistence<Order> {
 
     private Map<Long, Order> orders;
 
-    private Gson gson = new Gson();
+    private Gson gson;
     private long nextFreeId = 0;
 
     private Map<Long, User> users;
@@ -41,7 +43,13 @@ public final class OrderDAO implements IPersistence<Order> {
         this.customer = CustomersDAO.getInstance().getAllMap();
         this.sites = SitesDAO.getInstance().getAllMap();
 
+        gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
+            @Override
+            public LocalDateTime deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 
+                return LocalDateTime.parse(json.getAsString());
+            }
+        }).create();
 
         try {
             Reader reader = Files.newBufferedReader(Path.of(file));

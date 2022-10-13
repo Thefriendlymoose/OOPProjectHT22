@@ -1,28 +1,42 @@
 package persistence;
 
 import java.io.Reader;
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.*;
 
-import com.google.gson.Gson;
+import com.google.gson.*;
+import model.user.User;
 import model.article.Article;
 import persistence.pojos.ArticleJSON;
 
 public final class ArticlesDAO implements IPersistence<Article> {
     private static ArticlesDAO instance;
-    private final String articlesFile="src/main/resources/articles.json";
+    private final String articlesFile = "src/main/resources/articles.json";
     private Map<Long, Article> articles = new HashMap<>();
-    private Gson gson = new Gson();
+    private Gson gson;
     private long nextFreeId = 0;
 
+    private Map<Long, User> users = UserDAO.getInstance().getAllMap();
+
     private ArticlesDAO() {
+        gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
+            @Override
+            public LocalDateTime deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+
+                return LocalDateTime.parse(json.getAsString());
+            }
+        }).create();
+
+
         try {
             Reader reader = Files.newBufferedReader(Path.of(articlesFile));
             List<ArticleJSON> articleJSONS = Arrays.asList(gson.fromJson(reader, ArticleJSON[].class));
             for(ArticleJSON aj : articleJSONS) {
                 Article article = new Article(aj.getArticleId(), aj.getArticleName(), aj.getDescription(),
-                        aj.getCategory(), aj.getStatus(), aj.getCost(), aj.getSellPrice());
+                        aj.getCategory(), aj.getStatus(), aj.getCost(), aj.getSellPrice(), users.get(aj.getCreatedBy()), aj.getCreatedOn(), aj.getLastEdited());
 
                 articles.put(article.getArticleId(), article);
             }
@@ -47,7 +61,12 @@ public final class ArticlesDAO implements IPersistence<Article> {
 
     @Override
     public void save(Article article) {
+        if (articles.containsKey(article.getArticleId()) && articles.containsValue(article)){
 
+        } else {
+            articles.put(article.getArticleId(), article);
+            nextFreeId++;
+        }
     }
 
     @Override

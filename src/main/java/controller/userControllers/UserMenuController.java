@@ -1,6 +1,6 @@
 package controller.userControllers;
 
-
+import controller.dpi.DependencyInjection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.WMS;
 import persistence.IPersistence;
 import model.User;
 import persistence.UserDAO;
@@ -23,6 +24,11 @@ import java.util.Objects;
 public class UserMenuController {
     @FXML
     private Button openButton, createButton, listButton, backButton;
+    private WMS wms;
+
+    public UserMenuController(WMS wms) {
+        this.wms = wms;
+    }
 
     @FXML
     private VBox userCardHolder;
@@ -51,7 +57,7 @@ public class UserMenuController {
 
 
     public void backBtnHandler() throws Exception{
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/mainMenu.fxml")));
+        Parent root = DependencyInjection.load("fxml/mainMenu.fxml");
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }

@@ -1,9 +1,7 @@
 package controller;
 
-import database.DataBaseAdapter;
-import database.DataBaseConnection;
+import controller.dpi.DependencyInjection;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,10 +9,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-
-import java.util.Objects;
+import model.authentication.AuthenticationStatus;
+import model.authentication.UserAuthentication;
+import model.WMS;
+import model.user.User;
+import persistence.IPersistence;
+import persistence.UserDAO;
 
 public class SignInController {
 
@@ -30,22 +31,37 @@ public class SignInController {
     @FXML
     private Label errorLabel;
 
+    private IPersistence<User> users = UserDAO.getInstance();
+    private WMS wms;
+
+    public SignInController(WMS wms) {
+        this.wms = wms;
+    }
+
+
     public void handleBtnSignIn() throws Exception {
         if (userNameField.getText().isEmpty() || passWordField.getText().equals("")){
             errorLabel.setText("Username or password field empty");
             errorLabel.setTextFill(Color.RED);
-        } else if (userNameField.getText().equals("test") && passWordField.getText().equals("1234")){
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/mainMenu.fxml")));
-            Stage window = (Stage) btnSignIn.getScene().getWindow();
-            window.setScene(new Scene(root));
-            errorLabel.setText("Logging in...");
-            errorLabel.setTextFill(Color.GREEN);
         } else {
-            errorLabel.setText("Username or password incorrect");
-            errorLabel.setTextFill(Color.RED);
+            UserAuthentication uAuth = new UserAuthentication();
+            AuthenticationStatus status = uAuth.logIn(userNameField.getText(), passWordField.getText(), users.getAll());
+
+            if (status == AuthenticationStatus.SUCCESS){
+                wms.setSession(uAuth.getSession());
+
+                Parent root = DependencyInjection.load("fxml/mainMenu.fxml");
+
+                Stage window = (Stage) btnSignIn.getScene().getWindow();
+                window.setScene(new Scene(root));
+                errorLabel.setText("Logging in...");
+                errorLabel.setTextFill(Color.GREEN);
+            } else {
+                errorLabel.setText("Username or password incorrect");
+                errorLabel.setTextFill(Color.RED);
+            }
         }
-
-
-
     }
+
+
 }

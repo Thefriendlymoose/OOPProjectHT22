@@ -28,7 +28,7 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="openButton" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="Open Site">
+                  <Button onAction="#onOpen" fx:id="openButton" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="Open Site">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -36,20 +36,12 @@
                         <Insets bottom="15.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="createButton" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="Create Site">
+                  <Button fx:id="createButton" maxWidth="150.0" mnemonicParsing="false" onAction="#createButton" styleClass="generic-button" text="Create Site">
                      <font>
                         <Font size="18.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="15.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Button fx:id="listButton" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="Site List">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="100.0" />
                      </VBox.margin>
                   </Button>
                   <Button fx:id="backButton" maxWidth="150.0" mnemonicParsing="false" onAction="#backBtnHandler" styleClass="generic-button" text="Back">

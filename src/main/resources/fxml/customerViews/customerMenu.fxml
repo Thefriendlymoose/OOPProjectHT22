@@ -35,7 +35,7 @@
                         <Insets bottom="15.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="createButton" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="Create Customer">
+                  <Button fx:id="createButton" maxWidth="150.0" mnemonicParsing="false" onAction="#createBtnHandler" styleClass="generic-button" text="Create Customer">
                      <font>
                         <Font size="18.0" />
                      </font>

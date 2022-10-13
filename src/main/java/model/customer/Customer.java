@@ -8,7 +8,7 @@ public class Customer{
     private List<CustomerContact> customerContacts = new ArrayList<>();
     private Address billingAddress;
     private Address shippingAddress;
-    private final long customerId;
+    private long customerId;
     private int companyOrgNumber;
     private String companyName;
 
@@ -21,6 +21,19 @@ public class Customer{
         this.companyName = companyName;
     }
 
+    public Customer(long customerId, int companyOrgNumber){
+        this.customerId = customerId;
+        this.companyOrgNumber = companyOrgNumber;
+    }
+
+    public Customer(long customerId){
+        this.customerId = customerId;
+    }
+
+    public Customer(){};
+
+
+    // getters
     public List<CustomerContact> getContacts() {
         return customerContacts;
     }
@@ -45,6 +58,8 @@ public class Customer{
         return companyName;
     }
 
+    // setters
+
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
@@ -67,5 +82,10 @@ public class Customer{
 
     public void setCompanyOrgNumber(int companyOrgNumber) {
         this.companyOrgNumber = companyOrgNumber;
+    }
+
+
+    public String companyNameToString() {
+        return companyName;
     }
 }

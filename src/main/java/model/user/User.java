@@ -1,11 +1,8 @@
-package model;
-
-import com.google.gson.Gson;
+package model.user;
 
 import java.util.List;
 
-//User(1,"Olofsson","Olof321", "Olof", [USER], true)
-public class User {
+public class    User {
 
     private long userId;
     private String userName;
@@ -92,6 +89,14 @@ public class User {
     }
     public Boolean allowedArticle(){
         return allowed(Permission.ARTICLE);
+    }
+
+    public boolean isPasswordCorrect(User user){
+        return user.getPassword().equals(this.password);
+    }
+
+    public boolean hasPermission(Permission permission){
+        return permissions.contains(permission);
     }
 
 

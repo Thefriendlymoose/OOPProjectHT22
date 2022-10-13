@@ -17,26 +17,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 public class TestJSON {
 
-/*    @Test
-    public void testConvertFromJavaToJSON(){
-        Order orderTest1 = new Order(1,1,1, OrderStatus.ACTIVE,true,null,null,null);
-        Gson gson = new Gson();
-        String jsonTest = gson.toJson(orderTest1);
-
-        assertTrue("{\"userId\":1,\"orderNumber\":1,\"customerId\":1,\"orderStatus\":\"ACTIVE\",\"priority\":true}".equals(jsonTest));
-        System.out.println("anic");
-    }
-
-    @Test
-    public void testConvertJSONToJava(){
-        Order originalOrder = new Order(1,1,1, OrderStatus.ACTIVE,true,null,null,null);
-        Gson gson = new Gson();
-        Order convertedOrder = gson.fromJson("{\"userId\":1,\"orderNumber\":1,\"customerId\":1,\"orderStatus\":\"ACTIVE\",\"priority\":true}", Order.class);
-
-        assertTrue(originalOrder.equals(convertedOrder));
-        System.out.println("igor");
-    }*/
-
     @Test
     public void readFromFile(){
         final var pathToDB = Path.of("src/test/java/orderTests/orderdb.json");

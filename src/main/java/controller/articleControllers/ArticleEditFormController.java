@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import model.article.Article;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
+import model.article.Articles;
 
 import java.util.Optional;
 
@@ -33,6 +34,7 @@ public class ArticleEditFormController {
     Button saveButton, cancelButton;
 
     private Article art;
+    private Articles arts;
 
     @FXML
     public void initialize(){
@@ -55,9 +57,27 @@ public class ArticleEditFormController {
         this.art = art;
     }
 
-    public void onSave(){
-        // TODO: Need to check all fields, then create new object from data?
+    public void setArticles(Articles arts) {
+        this.arts = arts;
+    }
 
+
+    public void onSave(ActionEvent e){
+        // TODO: Need to check all fields, then create new object from data?
+        if (nameTextField.getText().isEmpty() || nameTextField.getText().isEmpty() || descriptionTextArea.getText().isEmpty() || categoryComboBox.getValue() == null || statusComboBox.getValue() == null){
+
+        } else {
+            art.setArticleName(nameTextField.getText());
+            art.setDescription(descriptionTextArea.getText());
+            art.setCategory(categoryComboBox.getValue());
+            art.setStatus(statusComboBox.getValue());
+            art.setCost(Float.parseFloat(costTextField.getText()));
+            art.setSellPrice(Float.parseFloat(sellPriceTextField.getText()));
+
+            arts.updateArticle();
+
+            ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+        }
     }
 
     public void onCancel(ActionEvent e){
