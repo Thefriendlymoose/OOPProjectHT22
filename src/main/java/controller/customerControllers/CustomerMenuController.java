@@ -13,11 +13,12 @@ import javafx.event.ActionEvent;
 import model.WMS;
 import model.customer.CustomerEditor;
 import model.customer.CustomerModel;
+import model.observer.Observer;
 
 import java.io.IOException;
 import java.util.Objects;
 
-public class CustomerMenuController {
+public class CustomerMenuController implements Observer {
 
     @FXML
     private Button openButton, createButton, listButton, backButton;
@@ -27,10 +28,12 @@ public class CustomerMenuController {
     public CustomerMenuController(WMS wms) {
         this.wms = wms;
         model = wms.getCustomerModel();
+        model.registerObserver(this);
     }
 
     public void backBtnHandler() throws Exception{
         Parent root = DependencyInjection.load("fxml/mainMenu.fxml");
+        model.unregisterObserver(this);
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }
@@ -50,4 +53,8 @@ public class CustomerMenuController {
         stage.show();
     }
 
+    @Override
+    public void update() {
+
+    }
 }
