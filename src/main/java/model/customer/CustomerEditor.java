@@ -11,19 +11,12 @@ import java.util.List;
 public class CustomerEditor implements Observable {
 
     private Customer customer;
-    private IPersistence<Customer> dao = CustomersDAO.getInstance();
+    private CustomerModel model;
     private AddressStrategy strategy;
     private List<Observer> observers = new ArrayList<>();
 
-    public CustomerEditor(){
-        customer = new Customer(dao.getNextId());
-        customer.setBillingAddress(new Address());
-        customer.setShippingAddress(new Address());
-        strategy = new ShippingAddressStrategy(customer);
-
-    }
-
-    public CustomerEditor(Customer customer){
+    public CustomerEditor(Customer customer, CustomerModel model){
+        this.model = model;
         this.customer = customer;
     }
 
@@ -66,10 +59,13 @@ public class CustomerEditor implements Observable {
         return customer.getContacts();
     }
 
+
     public void save(){
-        dao.save(customer);
+        model.saveCustomer(customer);
         notifyObservers();
     }
+
+
 
 
     @Override

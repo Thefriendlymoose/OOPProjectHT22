@@ -48,10 +48,13 @@ public class ContactEditorController implements Observer {
     }
 
     public void saveHandler(ActionEvent actionEvent) {
+        editor.unregisterObserver(this);
     }
 
     public void cancelHandler(ActionEvent actionEvent) {
+        editor.unregisterObserver(this);
     }
+
 
     @Override
     public void update() {

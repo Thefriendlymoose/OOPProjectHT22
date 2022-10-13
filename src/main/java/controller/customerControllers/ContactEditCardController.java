@@ -44,6 +44,7 @@ public class ContactEditCardController {
     }
 
     public void setCustomerContact(CustomerContact contact){
+
         this.contact = contact;
     }
 

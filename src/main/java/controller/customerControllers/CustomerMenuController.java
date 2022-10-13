@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import model.WMS;
 import model.customer.CustomerEditor;
+import model.customer.CustomerModel;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -21,9 +22,11 @@ public class CustomerMenuController {
     @FXML
     private Button openButton, createButton, listButton, backButton;
     private WMS wms;
+    private CustomerModel model;
 
     public CustomerMenuController(WMS wms) {
         this.wms = wms;
+        model = wms.getCustomerModel();
     }
 
     public void backBtnHandler() throws Exception{
@@ -41,7 +44,7 @@ public class CustomerMenuController {
         CustomerEditController cont = loader.getController();
 
         //TODO change this nonsense or maybe not?
-        CustomerEditor editor = new CustomerEditor();
+        CustomerEditor editor = model.newCustomer();
         editor.registerObserver(cont);
         cont.setEditor(editor);
         stage.show();

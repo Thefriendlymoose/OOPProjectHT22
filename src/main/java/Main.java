@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.WMS;
 import model.article.Articles;
+import model.customer.CustomerModel;
 import model.order.Orders;
 import model.site.Sites;
 import persistence.*;
@@ -31,7 +32,8 @@ public class Main extends Application {
         Articles articles = new Articles(ArticlesDAO.getInstance().getAllMap());
         Orders orders = new Orders(OrderDAO.getInstance().getAllMap());
         Sites sites = new Sites(SitesDAO.getInstance().getAllMap());
-        this.wms = new WMS(articles, orders, sites);
+        CustomerModel customers = new CustomerModel(CustomersDAO.getInstance());
+        this.wms = new WMS(articles, orders, sites, customers);
 
         setUpDependencyInjector();
 
