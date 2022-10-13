@@ -34,18 +34,11 @@ public class SiteMenuController implements Observer {
     public SiteMenuController(WMS wms) {
         this.wms = wms;
         this.sites = wms.getSites();
+        sites.registerObserver(this);
     }
 
-    public void initialize() {
-        Platform.runLater(() -> {
-            sites = wms.getSites();
-            sites.registerObserver(this);
-            try {
-                loadCards();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
+    public void initialize() throws IOException {
+        loadCards();
     }
 
     private void loadCards() throws IOException {

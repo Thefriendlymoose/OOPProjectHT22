@@ -42,19 +42,11 @@ public class OrderMenuController implements Observer{
         this.wms = wms;
         this.sites = wms.getSites();
         this.orders = wms.getOrders();
+        orders.registerObserver(this);
     }
 
     public void initialize() throws IOException {
-        Platform.runLater(() -> {
-            this.orders = wms.getOrders();
-            this.sites = wms.getSites();
-            orders.registerObserver(this);
-            try {
-                loadTabs();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
+        loadTabs();
     }
 
     private void loadTabs() throws IOException{

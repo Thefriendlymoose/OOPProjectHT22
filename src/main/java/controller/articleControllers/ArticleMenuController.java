@@ -35,20 +35,11 @@ public class ArticleMenuController implements Observer {
     public ArticleMenuController(WMS wms) {
         this.wms = wms;
         this.articles = wms.getArticles();
+        articles.registerObserver(this);
     }
 
-    public void initialize() {
-
-        Platform.runLater(() -> {
-            this.articles = wms.getArticles();
-            articles.registerObserver(this);
-            try {
-                loadCards();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
+    public void initialize() throws IOException {
+        loadCards();
     }
 
     private void loadCards() throws IOException {
