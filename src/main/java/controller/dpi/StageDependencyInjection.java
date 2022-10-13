@@ -1,7 +1,7 @@
 package controller.dpi;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -10,21 +10,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class DependencyInjection {
+public class StageDependencyInjection {
 
     /**
      * A map of all Controllers that can be injected, and the methods responsible for doing so.
      */
     private static final Map<Class<?>, Callback<Class<?>, Object>> injectionMethods = new HashMap<>();
 
-    public static Parent load(String location) throws IOException {
+    public static Stage load(String location) throws IOException {
         FXMLLoader loader = getLoader(location);
         return loader.load();
     }
 
     public static FXMLLoader getLoader(String location) {
-        FXMLLoader temp = new FXMLLoader(DependencyInjection.class.getResource("../../" + location));
-        temp.setControllerFactory(DependencyInjection::constructController);
+        FXMLLoader temp = new FXMLLoader(StageDependencyInjection.class.getResource("../../" + location));
+        temp.setControllerFactory(StageDependencyInjection::constructController);
 
         return temp;
     }

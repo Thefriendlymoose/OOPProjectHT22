@@ -1,8 +1,7 @@
 package controller;
 
-import controller.dpi.DependencyInjection;
+import controller.dpi.ParentDependencyInjection;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,8 +16,6 @@ import model.WMS;
 import model.user.User;
 import persistence.IPersistence;
 import persistence.UserDAO;
-
-import java.util.Objects;
 
 public class SignInController {
 
@@ -53,7 +50,7 @@ public class SignInController {
             if (status == AuthenticationStatus.SUCCESS){
                 wms.setSession(uAuth.getSession());
 
-                Parent root = DependencyInjection.load("fxml/mainMenu.fxml");
+                Parent root = ParentDependencyInjection.load("fxml/mainMenu.fxml");
 
                 Stage window = (Stage) btnSignIn.getScene().getWindow();
                 window.setScene(new Scene(root));

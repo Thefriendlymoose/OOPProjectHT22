@@ -23,16 +23,17 @@ public class ArticleOpenDetailsModalController {
     @FXML
     private Label warningLabel;
 
-    private Articles arts;
+    private Articles articles;
 
-    public void setArticles(Articles arts){
-        this.arts = arts;
+    public ArticleOpenDetailsModalController(Articles articles) {
+        this.articles = articles;
     }
+
     public void modalOpenArticleButtonHandler(ActionEvent e) throws IOException {
 
         try {
 
-            Article testArt = arts.findById(Long.parseLong(modalSearchField.getText()));
+            Article testArt = articles.findById(Long.parseLong(modalSearchField.getText()));
 
             if(testArt == null){
                 warningLabel.setText("Can't find article");
@@ -42,7 +43,7 @@ public class ArticleOpenDetailsModalController {
 
                 ArticleDetailsController cont = loader.getController();
                 cont.setArticle(testArt);
-                cont.setArticles(arts);
+                cont.setArticles(articles);
 
                 stage.setTitle("Article: " + testArt.getArticleId());
                 stage.initModality(Modality.WINDOW_MODAL);

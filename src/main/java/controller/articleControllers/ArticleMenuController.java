@@ -1,7 +1,7 @@
 package controller.articleControllers;
 
-import controller.dpi.DependencyInjection;
-import javafx.application.Platform;
+import controller.dpi.ParentDependencyInjection;
+import controller.dpi.StageDependencyInjection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -59,16 +59,13 @@ public class ArticleMenuController implements Observer {
     }
 
     public void backBtnHandler() throws Exception{
-        Parent root = DependencyInjection.load("fxml/mainMenu.fxml");
+        Parent root = ParentDependencyInjection.load("fxml/mainMenu.fxml");
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }
 
     public void openButtonHandler(ActionEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/articleViews/articleOpenDetailsModal.fxml")));
-        Stage stage = loader.load();
-        ArticleOpenDetailsModalController controller = loader.getController();
-        controller.setArticles(articles);
+        Stage stage = StageDependencyInjection.load("fxml/articleViews/articleOpenDetailsModal.fxml");
         stage.setTitle("Open Article");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
@@ -76,10 +73,7 @@ public class ArticleMenuController implements Observer {
     }
 
     public void createButtonHandler(ActionEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/articleViews/articleFormModal.fxml")));
-        Stage stage = loader.load();
-        ArticleFormController controller = loader.getController();
-        controller.setArticles(articles);
+        Stage stage = StageDependencyInjection.load("fxml/articleViews/articleFormModal.fxml");
         stage.setTitle("Create Article");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());

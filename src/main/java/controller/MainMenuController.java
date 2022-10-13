@@ -1,6 +1,6 @@
 package controller;
 
-import controller.dpi.DependencyInjection;
+import controller.dpi.ParentDependencyInjection;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -67,7 +67,7 @@ public class MainMenuController {
     }
 
     private void changeScene(String newScene, Button button) throws Exception{
-        Parent root = DependencyInjection.load("fxml/"+newScene+".fxml");
+        Parent root = ParentDependencyInjection.load("fxml/"+newScene+".fxml");
 
         Stage window = (Stage) button.getScene().getWindow();
         window.setScene(new Scene(root));

@@ -1,7 +1,6 @@
 package controller.orderControllers;
 
-import controller.dpi.DependencyInjection;
-import javafx.application.Platform;
+import controller.dpi.ParentDependencyInjection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -78,7 +77,7 @@ public class OrderMenuController implements Observer{
     }
 
     public void backBtnHandler() throws Exception{
-        Parent root = DependencyInjection.load("fxml/mainMenu.fxml");
+        Parent root = ParentDependencyInjection.load("fxml/mainMenu.fxml");
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }

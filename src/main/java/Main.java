@@ -1,8 +1,11 @@
 import controller.MainMenuController;
 import controller.SignInController;
+import controller.articleControllers.ArticleFormController;
 import controller.articleControllers.ArticleMenuController;
+import controller.articleControllers.ArticleOpenDetailsModalController;
 import controller.customerControllers.CustomerMenuController;
-import controller.dpi.DependencyInjection;
+import controller.dpi.ParentDependencyInjection;
+import controller.dpi.StageDependencyInjection;
 import controller.orderControllers.OrderMenuController;
 import controller.siteControllers.SiteMenuController;
 import controller.userControllers.UserMenuController;
@@ -33,9 +36,10 @@ public class Main extends Application {
         Sites sites = new Sites(SitesDAO.getInstance().getAllMap());
         this.wms = new WMS(articles, orders, sites);
 
-        setUpDependencyInjector();
+        setUpSceneDependencyInjector();
+        setUpStageDependencyInjector();
 
-        Parent root = DependencyInjection.load("fxml/startScreen.fxml");
+        Parent root = ParentDependencyInjection.load("fxml/startScreen.fxml");
 
         Scene scene = new Scene(root);
         stage.setTitle("WMS");
@@ -49,7 +53,7 @@ public class Main extends Application {
 
     }
 
-    private void setUpDependencyInjector() {
+    private void setUpSceneDependencyInjector() {
         //Factories
         Callback<Class<?>, Object> signInControllerFactory = param -> new SignInController(wms);
         Callback<Class<?>, Object> mainMenuControllerFactory = param -> new MainMenuController(wms);
@@ -61,32 +65,47 @@ public class Main extends Application {
 
 
         //Saving Factories
-        DependencyInjection.addInjectionMethod(
+        ParentDependencyInjection.addInjectionMethod(
                 SignInController.class, signInControllerFactory
         );
 
-        DependencyInjection.addInjectionMethod(
+        ParentDependencyInjection.addInjectionMethod(
                 MainMenuController.class, mainMenuControllerFactory
         );
 
-        DependencyInjection.addInjectionMethod(
+        ParentDependencyInjection.addInjectionMethod(
                 ArticleMenuController.class, articleMenuController
         );
 
-        DependencyInjection.addInjectionMethod(
+        ParentDependencyInjection.addInjectionMethod(
                 SiteMenuController.class, siteMenuController
         );
 
-        DependencyInjection.addInjectionMethod(
+        ParentDependencyInjection.addInjectionMethod(
                 OrderMenuController.class, orderMenuController
         );
 
-        DependencyInjection.addInjectionMethod(
+        ParentDependencyInjection.addInjectionMethod(
                 CustomerMenuController.class, customerMenuController
         );
 
-        DependencyInjection.addInjectionMethod(
+        ParentDependencyInjection.addInjectionMethod(
                 UserMenuController.class, userMenuController
+        );
+    }
+
+    private void setUpStageDependencyInjector() {
+        //Factories
+        Callback<Class<?>, Object> articleOpenDetailsModal = param -> new ArticleOpenDetailsModalController(wms.getArticles());
+        Callback<Class<?>, Object> articleFormModal = param -> new ArticleFormController(wms.getArticles());
+
+        //Saving Factories
+        StageDependencyInjection.addInjectionMethod(
+                ArticleOpenDetailsModalController.class, articleOpenDetailsModal
+        );
+
+        StageDependencyInjection.addInjectionMethod(
+                ArticleFormController.class, articleFormModal
         );
     }
 
