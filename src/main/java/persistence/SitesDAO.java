@@ -3,7 +3,7 @@ package persistence;
 // @todo justera importer när klasserna flyttas till ett paket per
 // funktionellt paket i applikationen
 import com.google.gson.Gson;
-import model.User;
+import model.user.User;
 import model.article.Article;
 import model.site.Site;
 import model.site.SiteArticle;
@@ -22,14 +22,9 @@ public final class SitesDAO implements IPersistence<Site> {
     private final String sitesFile="src/main/resources/sites.json";
     private Map<Long, Site> sites;
     private long nextFreeId =0;
-
     private Gson gson = new Gson();
-
     private Map<Long, User> users;
     private Map<Long, Article> articles;
-
-
-
 
     private SitesDAO(){
         this.sites  = new HashMap<>();

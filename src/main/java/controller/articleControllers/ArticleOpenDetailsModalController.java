@@ -9,9 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.article.Article;
+import model.article.Articles;
 import model.article.ArticlesFacade;
-import persistence.ArticlesDAO;
-import persistence.IPersistence;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -24,12 +23,16 @@ public class ArticleOpenDetailsModalController {
     @FXML
     private Label warningLabel;
 
-    private ArticlesFacade facade = new ArticlesFacade();
+    private Articles arts;
+
+    public void setArticles(Articles arts){
+        this.arts = arts;
+    }
     public void modalOpenArticleButtonHandler(ActionEvent e) throws IOException {
 
         try {
 
-            Article testArt = facade.findById(Long.parseLong(modalSearchField.getText()));
+            Article testArt = arts.findById(Long.parseLong(modalSearchField.getText()));
 
             if(testArt == null){
                 warningLabel.setText("Can't find article");
@@ -39,6 +42,7 @@ public class ArticleOpenDetailsModalController {
 
                 ArticleDetailsController cont = loader.getController();
                 cont.setArticle(testArt);
+                cont.setArticles(arts);
 
                 stage.setTitle("Article: " + testArt.getArticleId());
                 stage.initModality(Modality.WINDOW_MODAL);

@@ -1,7 +1,7 @@
 package persistence;
 
 import com.google.gson.Gson;
-import model.User;
+import model.user.User;
 import persistence.pojos.UserJSON;
 
 import java.io.IOException;

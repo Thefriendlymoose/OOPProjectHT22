@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.article.Article;
+import model.article.Articles;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -25,10 +26,14 @@ public class ArticleMenuCardController {
     private Button cardGoToButton;
 
     private Article art;
+    private Articles arts;
 
 
-    public void setCard(Article art){
+    public void setArticle(Article art){
         this.art = art;
+    }
+    public void setArticles(Articles arts) {
+        this.arts = arts;
     }
 
     @FXML
@@ -51,7 +56,7 @@ public class ArticleMenuCardController {
 
                     ArticleDetailsController cont = loader.getController();
                     cont.setArticle(art);
-
+                    cont.setArticles(arts);
                     stage.setTitle("Article: " + art.getArticleId());
                     stage.initModality(Modality.WINDOW_MODAL);
                     stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());

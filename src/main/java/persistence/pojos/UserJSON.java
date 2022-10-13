@@ -1,6 +1,6 @@
 package persistence.pojos;
 
-import model.Permission;
+import model.user.Permission;
 
 import java.util.List;
 

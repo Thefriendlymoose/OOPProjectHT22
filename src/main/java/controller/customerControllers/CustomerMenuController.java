@@ -1,5 +1,6 @@
 package controller.customerControllers;
 
+import controller.dpi.DependencyInjection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import model.WMS;
 import model.customer.CustomerEditor;
 
 import java.io.IOException;
@@ -18,9 +20,14 @@ public class CustomerMenuController {
 
     @FXML
     private Button openButton, createButton, listButton, backButton;
+    private WMS wms;
+
+    public CustomerMenuController(WMS wms) {
+        this.wms = wms;
+    }
 
     public void backBtnHandler() throws Exception{
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/mainMenu.fxml")));
+        Parent root = DependencyInjection.load("fxml/mainMenu.fxml");
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }
@@ -39,4 +46,5 @@ public class CustomerMenuController {
         cont.setEditor(editor);
         stage.show();
     }
+
 }

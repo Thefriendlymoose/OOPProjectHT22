@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.order.Order;
+import model.order.Orders;
 import persistence.IPersistence;
 import persistence.OrderDAO;
 
@@ -18,6 +19,7 @@ import java.io.IOException;
 
 public class OrderOpenController {
 
+    private Orders orders;
     @FXML
     private TextField searchField;
 
@@ -57,4 +59,7 @@ public class OrderOpenController {
 
     }
 
+    public void setOrders(Orders orders) {
+        this.orders = orders;
+    }
 }

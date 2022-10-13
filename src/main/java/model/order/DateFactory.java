@@ -23,6 +23,10 @@ public class DateFactory {
         return LocalDateTime.now().plusDays(day).plusMonths(month).plusYears(year);
     }
 
+    public LocalDateTime createOrderDate() {
+        return LocalDateTime.now();
+    }
+
     public LocalDateTime getOrderDate(){
         return orderDate;
     }

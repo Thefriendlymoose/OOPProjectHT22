@@ -1,12 +1,14 @@
 package model.customer;
 
+import model.observer.Observable;
+import model.observer.Observer;
 import persistence.CustomersDAO;
 import persistence.IPersistence;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerEditor implements Observable{
+public class CustomerEditor implements Observable {
 
     private Customer customer;
     private IPersistence<Customer> dao = CustomersDAO.getInstance();
@@ -47,6 +49,25 @@ public class CustomerEditor implements Observable{
 
     public void setAddress(Address address){
         strategy.setAddress(address);
+        notifyObservers();
+    }
+
+    public void addContact(CustomerContact contact){
+        customer.addCustomerContact(contact);
+        notifyObservers();
+    }
+
+    public void removeContact(CustomerContact contact){
+        customer.removeCustomerContact(contact);
+        notifyObservers();
+    }
+
+    public List<CustomerContact> getContacts(){
+        return customer.getContacts();
+    }
+
+    public void save(){
+        dao.save(customer);
         notifyObservers();
     }
 

@@ -1,52 +1,84 @@
 package controller.orderControllers;
 
+import controller.dpi.DependencyInjection;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.WMS;
+import model.observer.Observer;
+import model.order.Order;
+import model.order.Orders;
 import model.site.Site;
-import persistence.*;
+import model.site.Sites;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-public class OrderMenuController {
+public class OrderMenuController implements Observer{
     @FXML
     private Button openButton, createButton, listButton, backButton;
 
     @FXML
-    private VBox siteCardHolder;
+    private TabPane tabPane;
 
+    private Orders orders;
+    private Sites sites;
+    private WMS wms;
 
-    private IPersistence<Site> testDao = SitesDAO.getInstance();
+    public OrderMenuController(WMS wms) {
+        this.wms = wms;
+        this.sites = wms.getSites();
+        this.orders = wms.getOrders();
+        orders.registerObserver(this);
+    }
 
-    public  void initialize() throws IOException {
-        List<Site> sites = testDao.getAll();
+    public void initialize() throws IOException {
+        loadTabs();
+    }
 
-        for (Site site : sites){
-            FXMLLoader cardLoader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderSiteDetailsMenuCard.fxml")));
+    private void loadTabs() throws IOException{
+        List<Site> s = sites.getInList();
+            tabPane.getTabs().clear();
 
-            AnchorPane pane = cardLoader.load();
-            OrderSiteMenuCardController cont =  cardLoader.getController();
+        for (Site site : s){
+            Tab tab = new Tab();
+            tab.setText(site.getSiteName());
+            FlowPane fp = new FlowPane();
+            fp.setPadding(new Insets(10,10,10,10));
+            fp.setHgap(10);
+            fp.setVgap(10);
+            tab.setContent(fp);
 
-            cont.setCard(site);
+            for (Order order : orders.getOrdersBySite(site)){
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderMenuTabCard.fxml"));
+                AnchorPane pane = loader.load();
 
-            siteCardHolder.getChildren().add(pane);
+                OrderMenuTabCardController controller = loader.getController();
+                controller.setOrder(order);
+                controller.setOrders(orders);
+                controller.setSite(site);
+                fp.getChildren().add(pane);
 
+            }
+            tabPane.getTabs().add(tab);
         }
-
     }
 
     public void backBtnHandler() throws Exception{
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/mainMenu.fxml")));
+        Parent root = DependencyInjection.load("fxml/mainMenu.fxml");
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }
@@ -61,20 +93,25 @@ public class OrderMenuController {
     }
 
     public void createButton(ActionEvent e) throws Exception{
-        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderCreateModal.fxml")));
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderCreateModal.fxml")));
+        Stage stage = loader.load();
+        OrderCreateModalController controller = loader.getController();
+        controller.setOrders(orders);
+        controller.setSites(sites);
+
         stage.setTitle("Create Order: Choose Site");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node) e.getSource()).getScene().getWindow());
         stage.show();
     }
 
-
-
-//    public void listButton() throws Exception{
-//        System.out.println("LIST");
-//    }
-
-
-
+    @Override
+    public void update() {
+        try{
+            loadTabs();
+        } catch (IOException e){
+            throw new RuntimeException(e);
+        }
+    }
 
 }

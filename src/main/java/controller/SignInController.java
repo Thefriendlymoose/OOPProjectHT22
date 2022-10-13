@@ -1,9 +1,7 @@
 package controller;
 
-import database.DataBaseAdapter;
-import database.DataBaseConnection;
+import controller.dpi.DependencyInjection;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,13 +9,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import model.User;
+import model.authentication.AuthenticationStatus;
+import model.authentication.UserAuthentication;
+import model.WMS;
+import model.user.User;
 import persistence.IPersistence;
 import persistence.UserDAO;
-
-import java.util.Objects;
 
 public class SignInController {
 
@@ -34,27 +32,26 @@ public class SignInController {
     private Label errorLabel;
 
     private IPersistence<User> users = UserDAO.getInstance();
+    private WMS wms;
+
+    public SignInController(WMS wms) {
+        this.wms = wms;
+    }
+
 
     public void handleBtnSignIn() throws Exception {
         if (userNameField.getText().isEmpty() || passWordField.getText().equals("")){
             errorLabel.setText("Username or password field empty");
             errorLabel.setTextFill(Color.RED);
-
-
-
         } else {
+            UserAuthentication uAuth = new UserAuthentication();
+            AuthenticationStatus status = uAuth.logIn(userNameField.getText(), passWordField.getText(), users.getAll());
 
-            boolean ok = false;
+            if (status == AuthenticationStatus.SUCCESS){
+                wms.setSession(uAuth.getSession());
 
-            for (User user : users.getAll()){
-                if (userNameField.getText().equals(user.getUserName()) && passWordField.getText().equals(user.getPassword())){
-                    ok = true;
-                    break;
-                }
-            }
+                Parent root = DependencyInjection.load("fxml/mainMenu.fxml");
 
-            if (ok){
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../fxml/mainMenu.fxml")));
                 Stage window = (Stage) btnSignIn.getScene().getWindow();
                 window.setScene(new Scene(root));
                 errorLabel.setText("Logging in...");
@@ -65,4 +62,6 @@ public class SignInController {
             }
         }
     }
+
+
 }

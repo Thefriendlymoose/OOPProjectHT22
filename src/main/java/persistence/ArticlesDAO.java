@@ -4,13 +4,11 @@ import java.io.Reader;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.*;
 
 import com.google.gson.*;
-import model.User;
+import model.user.User;
 import model.article.Article;
 import persistence.pojos.ArticleJSON;
 

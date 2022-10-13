@@ -83,4 +83,9 @@ public class Customer{
     public void setCompanyOrgNumber(int companyOrgNumber) {
         this.companyOrgNumber = companyOrgNumber;
     }
+
+
+    public String companyNameToString() {
+        return companyName;
+    }
 }

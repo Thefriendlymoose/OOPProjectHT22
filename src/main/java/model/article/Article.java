@@ -1,9 +1,8 @@
 package model.article;
 
-import model.User;
+import model.user.User;
 
 import java.time.LocalDateTime;
-import java.util.Calendar;
 
 public class Article {
 

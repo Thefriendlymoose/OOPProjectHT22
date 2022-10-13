@@ -1,5 +1,6 @@
 package controller.userControllers;
 
+import controller.dpi.DependencyInjection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,12 +10,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.WMS;
 
 import java.util.Objects;
 
 public class UserMenuController {
     @FXML
     private Button openButton, createButton, listButton, backButton;
+    private WMS wms;
+
+    public UserMenuController(WMS wms) {
+        this.wms = wms;
+    }
 
 
 
@@ -40,7 +47,7 @@ public class UserMenuController {
      */
 
     public void backBtnHandler() throws Exception{
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/mainMenu.fxml")));
+        Parent root = DependencyInjection.load("fxml/mainMenu.fxml");
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }
@@ -61,4 +68,5 @@ public class UserMenuController {
         stage.show();
 
     }
+
 }
