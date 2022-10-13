@@ -90,8 +90,8 @@ public class CustomerEditController implements Observer {
     }
 
     public void saveBtnHandler(ActionEvent e) {
-        editor.setCompanyName(companyNameField.toString());
-        editor.setCompanyOrgNumber(Long.parseLong(companyOrgNrField.toString()));
+        editor.setCompanyName(companyNameField.getText());
+        editor.setCompanyOrgNumber(Long.parseLong(companyOrgNrField.getText().strip()));
         editor.unregisterObserver(this);
         editor.save();
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();

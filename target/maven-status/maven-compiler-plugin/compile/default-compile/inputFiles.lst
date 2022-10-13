@@ -30,6 +30,7 @@ C:\javadev\OOPProjectHT22\src\main\java\model\order\DateFactory.java
 C:\javadev\OOPProjectHT22\src\main\java\persistence\ArticlesDAO.java
 C:\javadev\OOPProjectHT22\src\main\java\controller\siteControllers\siteDetailsSiteArticleAddModalController.java
 C:\javadev\OOPProjectHT22\src\main\java\controller\customerControllers\ContactEditCardController.java
+C:\javadev\OOPProjectHT22\src\main\java\controller\customerControllers\CustomerCardController.java
 C:\javadev\OOPProjectHT22\src\main\java\model\command\customerCommands\SetEditable.java
 C:\javadev\OOPProjectHT22\src\main\java\model\order\Orders.java
 C:\javadev\OOPProjectHT22\src\main\java\persistence\IPersistence.java

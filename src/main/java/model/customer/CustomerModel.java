@@ -40,6 +40,10 @@ public class CustomerModel implements Observable {
         return customers.get(id);
     }
 
+    public List<Customer> getCustomerList(){
+        return dao.getAll();
+    }
+
 
     @Override
     public void registerObserver(Observer o) {

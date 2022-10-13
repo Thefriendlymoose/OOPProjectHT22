@@ -1,22 +1,26 @@
 package controller.customerControllers;
 
 import controller.dpi.DependencyInjection;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import model.WMS;
+import model.customer.Customer;
 import model.customer.CustomerEditor;
 import model.customer.CustomerModel;
 import model.observer.Observer;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 public class CustomerMenuController implements Observer {
@@ -33,6 +37,10 @@ public class CustomerMenuController implements Observer {
         this.wms = wms;
         model = wms.getCustomerModel();
         model.registerObserver(this);
+    }
+
+    public void initialize(){
+        Platform.runLater(() -> update());
     }
 
     public void backBtnHandler() throws Exception{
@@ -59,6 +67,24 @@ public class CustomerMenuController implements Observer {
 
     @Override
     public void update() {
+        try {
+            loadCustomerCards();
+        } catch (IOException e){
+            throw new RuntimeException(e);
+        }
+    }
 
+    private void loadCustomerCards() throws IOException {
+        List<Customer> customerList = model.getCustomerList();
+        customerBox.getChildren().clear();
+        for (Customer c : customerList){
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/customerViews/customerCard.fxml")));
+            AnchorPane pane = loader.load();
+
+            CustomerCardController cont = loader.getController();
+            cont.setCustomer(c);
+
+            customerBox.getChildren().add(pane);
+        }
     }
 }

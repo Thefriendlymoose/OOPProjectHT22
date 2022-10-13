@@ -94,6 +94,7 @@ model\observer\Observable.class
 persistence\pojos\SiteArticleJSON.class
 controller\orderControllers\OrderCreateModalController$1.class
 controller\orderControllers\OrderDetailsModalController$1.class
+controller\customerControllers\CustomerCardController.class
 persistence\pojos\CustomerJSON.class
 model\authentication\UserAuthentication.class
 controller\siteControllers\siteDetailsUserAddModalController.class
