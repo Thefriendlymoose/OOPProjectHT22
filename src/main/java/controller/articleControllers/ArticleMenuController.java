@@ -1,8 +1,6 @@
 package controller.articleControllers;
 
-import controller.MainMenuController;
 import controller.dpi.DependencyInjection;
-import controller.interfaces.ISubMenu;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +22,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-public class ArticleMenuController implements Observer, ISubMenu {
+public class ArticleMenuController implements Observer {
     @FXML
     private Button openArticleButton, createButton, listButton, backButton;
 
@@ -33,6 +31,11 @@ public class ArticleMenuController implements Observer, ISubMenu {
 
     private Articles articles;
     private WMS wms;
+
+    public ArticleMenuController(WMS wms) {
+        this.wms = wms;
+        this.articles = wms.getArticles();
+    }
 
     public void initialize() {
 
@@ -102,8 +105,4 @@ public class ArticleMenuController implements Observer, ISubMenu {
         }
     }
 
-    @Override
-    public void setWMS(WMS wms) {
-        this.wms = wms;
-    }
 }

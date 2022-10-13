@@ -1,8 +1,6 @@
 package controller.siteControllers;
 
-import controller.MainMenuController;
 import controller.dpi.DependencyInjection;
-import controller.interfaces.ISubMenu;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,7 +21,7 @@ import model.site.Sites;
 import java.io.IOException;
 import java.util.Objects;
 
-public class SiteMenuController implements Observer, ISubMenu {
+public class SiteMenuController implements Observer {
     @FXML
     private Button openButton, createButton, backButton;
 
@@ -32,6 +30,11 @@ public class SiteMenuController implements Observer, ISubMenu {
 
     private Sites sites;
     private WMS wms;
+
+    public SiteMenuController(WMS wms) {
+        this.wms = wms;
+        this.sites = wms.getSites();
+    }
 
     public void initialize() {
         Platform.runLater(() -> {
@@ -96,8 +99,4 @@ public class SiteMenuController implements Observer, ISubMenu {
         }
     }
 
-    @Override
-    public void setWMS(WMS wms) {
-        this.wms = wms;
-    }
 }

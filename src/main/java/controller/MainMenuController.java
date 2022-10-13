@@ -1,9 +1,8 @@
 package controller;
 
-import controller.interfaces.ISubMenu;
+import controller.dpi.DependencyInjection;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,8 +10,6 @@ import javafx.stage.Stage;
 import model.Authentication.Session;
 import model.WMS;
 import model.user.Permission;
-
-import java.util.Objects;
 
 public class MainMenuController {
     @FXML
@@ -70,10 +67,7 @@ public class MainMenuController {
     }
 
     private void changeScene(String newScene, Button button) throws Exception{
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../fxml/"+newScene+".fxml")));
-        Parent root = loader.load();
-        ISubMenu controller = loader.getController();
-        controller.setWMS(wms);
+        Parent root = DependencyInjection.load("fxml/"+newScene+".fxml");
 
         Stage window = (Stage) button.getScene().getWindow();
         window.setScene(new Scene(root));

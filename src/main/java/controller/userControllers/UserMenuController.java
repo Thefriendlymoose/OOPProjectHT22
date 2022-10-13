@@ -1,8 +1,6 @@
 package controller.userControllers;
 
-import controller.MainMenuController;
 import controller.dpi.DependencyInjection;
-import controller.interfaces.ISubMenu;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,10 +14,14 @@ import model.WMS;
 
 import java.util.Objects;
 
-public class UserMenuController implements ISubMenu {
+public class UserMenuController {
     @FXML
     private Button openButton, createButton, listButton, backButton;
     private WMS wms;
+
+    public UserMenuController(WMS wms) {
+        this.wms = wms;
+    }
 
 
 
@@ -67,8 +69,4 @@ public class UserMenuController implements ISubMenu {
 
     }
 
-    @Override
-    public void setWMS(WMS wms) {
-        this.wms = wms;
-    }
 }

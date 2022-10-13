@@ -1,8 +1,6 @@
 package controller.orderControllers;
 
-import controller.MainMenuController;
 import controller.dpi.DependencyInjection;
-import controller.interfaces.ISubMenu;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,7 +27,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-public class OrderMenuController implements Observer, ISubMenu {
+public class OrderMenuController implements Observer{
     @FXML
     private Button openButton, createButton, listButton, backButton;
 
@@ -39,6 +37,12 @@ public class OrderMenuController implements Observer, ISubMenu {
     private Orders orders;
     private Sites sites;
     private WMS wms;
+
+    public OrderMenuController(WMS wms) {
+        this.wms = wms;
+        this.sites = wms.getSites();
+        this.orders = wms.getOrders();
+    }
 
     public void initialize() throws IOException {
         Platform.runLater(() -> {
@@ -118,8 +122,4 @@ public class OrderMenuController implements Observer, ISubMenu {
         }
     }
 
-    @Override
-    public void setWMS(WMS wms) {
-        this.wms = wms;
-    }
 }
