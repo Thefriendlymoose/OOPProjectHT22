@@ -8,7 +8,6 @@ public class Role {
     private String name;
     private List<Permission> permissions;
     public Role(){
-
     }
     public static Role getManager(){
         Role role = new Role();

@@ -19,9 +19,9 @@
                 <Label fx:id="cardNameLabel" styleClass="generic-form-label" text="Name: " />
                 <Label fx:id="cardPremissionLabel" styleClass="generic-form-label" text="Premissions: " wrapText="true" />
                 <HBox>
-                    <Button fx:id="cardGoToButton" alignment="BASELINE_LEFT" mnemonicParsing="false" styleClass="generic-button" text="Edit User" />
+                    <Button fx:id="" alignment="BASELINE_LEFT" mnemonicParsing="false" styleClass="generic-button" text="Edit User" />
                     <Region HBox.hgrow="ALWAYS" />
-                    <Button fx:id="cardGoToButton" alignment="BASELINE_RIGHT" mnemonicParsing="false" styleClass="generic-button" text="Remove User" />
+                    <Button fx:id="" alignment="BASELINE_RIGHT" mnemonicParsing="false" styleClass="generic-button" text="Remove User" />
                 </HBox>
             </children>
         </VBox>
