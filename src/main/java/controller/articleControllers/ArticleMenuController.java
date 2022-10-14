@@ -4,12 +4,10 @@ import controller.dpi.ParentDependencyInjection;
 import controller.dpi.StageDependencyInjection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -21,7 +19,6 @@ import model.observer.Observer;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 
 public class ArticleMenuController implements Observer {
     @FXML

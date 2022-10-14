@@ -1,6 +1,5 @@
 package controller.articleControllers;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -33,48 +32,41 @@ public class ArticleEditFormController {
     @FXML
     Button saveButton, cancelButton;
 
-    private Article art;
-    private Articles arts;
+    private Article article;
+    private Articles articles;
+
+    public ArticleEditFormController(Articles articles, Article article) {
+        this.articles = articles;
+        this.article = article;
+    }
 
     @FXML
     public void initialize(){
-
-        Platform.runLater(() -> {
-            titleLabel.setText("Edit Article: " + art.getArticleId());
-            numberTextField.setText(String.valueOf(art.getArticleId()));
-            nameTextField.setText(art.getArticleName());
-            descriptionTextArea.setText(art.getDescription());
-            categoryComboBox.getItems().setAll(ArticleCategory.values());
-            statusComboBox.getItems().setAll(ArticleStatus.values());
-            categoryComboBox.setValue(art.getCategory());
-            statusComboBox.setValue(art.getStatus());
-            costTextField.setText(String.valueOf(art.getCost()));
-            sellPriceTextField.setText(String.valueOf(art.getSellPrice()));
-        });
+        titleLabel.setText("Edit Article: " + article.getArticleId());
+        numberTextField.setText(String.valueOf(article.getArticleId()));
+        nameTextField.setText(article.getArticleName());
+        descriptionTextArea.setText(article.getDescription());
+        categoryComboBox.getItems().setAll(ArticleCategory.values());
+        statusComboBox.getItems().setAll(ArticleStatus.values());
+        categoryComboBox.setValue(article.getCategory());
+        statusComboBox.setValue(article.getStatus());
+        costTextField.setText(String.valueOf(article.getCost()));
+        sellPriceTextField.setText(String.valueOf(article.getSellPrice()));
     }
-
-    public void setArticle(Article art) {
-        this.art = art;
-    }
-
-    public void setArticles(Articles arts) {
-        this.arts = arts;
-    }
-
 
     public void onSave(ActionEvent e){
         // TODO: Need to check all fields, then create new object from data?
         if (nameTextField.getText().isEmpty() || nameTextField.getText().isEmpty() || descriptionTextArea.getText().isEmpty() || categoryComboBox.getValue() == null || statusComboBox.getValue() == null){
 
         } else {
-            art.setArticleName(nameTextField.getText());
-            art.setDescription(descriptionTextArea.getText());
-            art.setCategory(categoryComboBox.getValue());
-            art.setStatus(statusComboBox.getValue());
-            art.setCost(Float.parseFloat(costTextField.getText()));
-            art.setSellPrice(Float.parseFloat(sellPriceTextField.getText()));
+            article.setArticleName(nameTextField.getText());
+            article.setDescription(descriptionTextArea.getText());
+            article.setCategory(categoryComboBox.getValue());
+            article.setStatus(statusComboBox.getValue());
+            article.setCost(Float.parseFloat(costTextField.getText()));
+            article.setSellPrice(Float.parseFloat(sellPriceTextField.getText()));
 
-            arts.updateArticle();
+            articles.updateArticle();
 
             ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
         }

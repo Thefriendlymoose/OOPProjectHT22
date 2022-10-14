@@ -1,13 +1,13 @@
 package controller.articleControllers;
 
-import javafx.application.Platform;
+import controller.dpi.StageDependencyInjection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import model.article.Article;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
@@ -58,12 +58,13 @@ public class ArticleDetailsController {
     }
 
     public void editHandler(ActionEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/articleViews/articleEditFormModal.fxml"));
-        Stage stage = loader.load();
+        Callback<Class<?>, Object> test = param -> new ArticleEditFormController(articles, article);
 
-        ArticleEditFormController cont = loader.getController();
-        cont.setArticle(article);
-        cont.setArticles(articles);
+        StageDependencyInjection.addInjectionMethod(
+                ArticleEditFormController.class, test
+        );
+
+        Stage stage = StageDependencyInjection.load("fxml/articleViews/articleEditFormModal.fxml");
 
         stage.setTitle("Open Article");
         stage.initModality(Modality.WINDOW_MODAL);
@@ -71,7 +72,6 @@ public class ArticleDetailsController {
         stage.show();
 
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
-
     }
 
     public void closeHandler(ActionEvent e) {
