@@ -1,5 +1,6 @@
 package controller.articleControllers;
 
+import controller.dpi.StageDependencyInjection;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import model.article.Article;
 import model.article.Articles;
 
@@ -25,45 +27,35 @@ public class ArticleMenuCardController {
     @FXML
     private Button cardGoToButton;
 
-    private Article art;
-    private Articles arts;
+    private Article article;
+    private Articles articles;
 
+    public ArticleMenuCardController(Articles articles, Article article) {
+        this.articles = articles;
+        this.article = article;
+    }
 
-    public void setArticle(Article art){
-        this.art = art;
-    }
-    public void setArticles(Articles arts) {
-        this.arts = arts;
-    }
 
     @FXML
     public void initialize(){
-        Platform.runLater(() -> {
-            cardNumberLabel.setText(cardNumberLabel.getText() + art.getArticleId());
-            cardNameLabel.setText(cardNameLabel.getText() + art.getArticleName());
-            cardDescriptionLabel.setText(cardDescriptionLabel.getText() + art.getDescription());
+        cardNumberLabel.setText(cardNumberLabel.getText() + article.getArticleId());
+        cardNameLabel.setText(cardNameLabel.getText() + article.getArticleName());
+        cardDescriptionLabel.setText(cardDescriptionLabel.getText() + article.getDescription());
+    }
 
-            cardGoToButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/articleViews/articleDetailsModal.fxml")));
-                    Stage stage = null;
-                    try {
-                        stage = loader.load();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+    public void onGo(ActionEvent actionEvent) throws IOException {
+        Callback<Class<?>, Object> test = param -> new ArticleDetailsController(articles, article);
 
-                    ArticleDetailsController cont = loader.getController();
-                    cont.setArticle(art);
-                    cont.setArticles(arts);
-                    stage.setTitle("Article: " + art.getArticleId());
-                    stage.initModality(Modality.WINDOW_MODAL);
-                    stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
-                    stage.show();
-                }
-            });
-        });
+        StageDependencyInjection.addInjectionMethod(
+                ArticleDetailsController.class, test
+        );
+
+        Stage stage = StageDependencyInjection.load("fxml/articleViews/articleDetailsModal.fxml");
+
+        stage.setTitle("Article: " + article.getArticleId());
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
+        stage.show();
     }
 
 }
