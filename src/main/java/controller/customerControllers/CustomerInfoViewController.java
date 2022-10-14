@@ -22,31 +22,25 @@ public class CustomerInfoViewController {
     @FXML
     private Button editButton, closeButton;
 
-    private long customerId;
-
-    private CustomerModel model;
+    private Customer customer;
 
     public void initialize(){
         Platform.runLater(() -> {
+            update();
         });
     }
 
-    public void setCustomerId(Long id){
-        this.customerId = id;
-    }
-
-    public void setModel(CustomerModel model){
-        this.model = model;
+    public void setCustomer(Customer customer){
+        this.customer = customer;
     }
 
     public void update(){
-        Customer c = model.getCustomerById(customerId);
-        customerIdLabel.setText(Long.toString(customerId));
-        companyNameLabel.setText(c.getCompanyName());
-        orgNrLabel.setText(Long.toString(c.getCompanyOrgNumber()));
-        shippingAddressLabel.setText(c.getShippingAddress().toString());
-        billingAddressLabel.setText(c.getBillingAddress().toString());
-        printContacts(c);
+        customerIdLabel.setText(Long.toString(customer.getCustomerID()));
+        companyNameLabel.setText(customer.getCompanyName());
+        orgNrLabel.setText(Long.toString(customer.getCompanyOrgNumber()));
+        shippingAddressLabel.setText(customer.getShippingAddress().toString());
+        billingAddressLabel.setText(customer.getBillingAddress().toString());
+        printContacts(customer);
     }
 
     private void printContacts(Customer c){
