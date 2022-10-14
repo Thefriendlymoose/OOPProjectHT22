@@ -97,7 +97,7 @@ public class OrderDetailsModalController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderEditModal.fxml"));
         Stage stage = loader.load();
         OrderEditModalController controller = loader.getController();
-
+        controller.setOrders(orders);
         controller.setOrder(order);
         controller.setSite(site);
 
