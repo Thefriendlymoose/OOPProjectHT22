@@ -47,11 +47,12 @@ public class ContactEditorController implements Observer {
         stage.show();
     }
 
-    public void saveHandler(ActionEvent actionEvent) {
+    public void closeHandler(ActionEvent actionEvent) {
+        editor.unregisterObserver(this);
+        ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
     }
 
-    public void cancelHandler(ActionEvent actionEvent) {
-    }
+
 
     @Override
     public void update() {
@@ -76,5 +77,4 @@ public class ContactEditorController implements Observer {
             contactBox.getChildren().add(ap);
         }
     }
-
 }

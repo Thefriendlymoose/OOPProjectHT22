@@ -1,13 +1,12 @@
 package controller;
 
-import controller.dpi.ParentDependencyInjection;
-import javafx.application.Platform;
+import controller.dpi.DependencyInjection;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import model.Authentication.Session;
+import model.authentication.Session;
 import model.WMS;
 import model.user.Permission;
 
@@ -15,16 +14,15 @@ public class MainMenuController {
     @FXML
     private Button menuSiteButton, menuArticleButton, menuCustomerButton, menuUserButton, menuOrderButton;
     private WMS wms;
+    private Session session;
 
     public MainMenuController(WMS wms) {
         this.wms = wms;
+        this.session = wms.getSession();
     }
 
 
     public void initialize(){
-        Platform.runLater(() -> {
-            Session session = wms.getSession();
-
             if (!session.hasAccess(Permission.SITE)){
                 menuSiteButton.setDisable(true);
             }
@@ -44,7 +42,6 @@ public class MainMenuController {
             if (!session.hasAccess(Permission.USER)){
                 menuUserButton.setDisable(true);
             }
-        });
     }
 
     public void articleBtnHandler() throws Exception {
@@ -67,7 +64,7 @@ public class MainMenuController {
     }
 
     private void changeScene(String newScene, Button button) throws Exception{
-        Parent root = ParentDependencyInjection.load("fxml/"+newScene+".fxml");
+        Parent root = DependencyInjection.load("fxml/"+newScene+".fxml");
 
         Stage window = (Stage) button.getScene().getWindow();
         window.setScene(new Scene(root));

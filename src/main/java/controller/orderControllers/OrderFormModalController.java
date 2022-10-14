@@ -9,7 +9,6 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.article.Article;
 import model.customer.Customer;
 import model.order.*;
 import model.site.Site;
@@ -45,9 +44,6 @@ public class OrderFormModalController {
     @FXML
     private ListView<OrderRow> orderRowListView;
 
-//    private List<Article> articles;
-
-//    List<Order> orders = new ArrayList<>();
     private Site site;
     private Sites sites;
     private ObservableList<OrderRow> addedRows;
@@ -61,8 +57,10 @@ public class OrderFormModalController {
     }
 
     private IPersistence<Customer> customers = CustomersDAO.getInstance();
+
     @FXML
     public void initialize(){
+
         addedRows = FXCollections.observableArrayList();
         orderRowListView.setItems(addedRows); //.toList() -> OrderList
         orderRowListView.setCellFactory(param -> new ListCell<OrderRow>(){
@@ -83,8 +81,9 @@ public class OrderFormModalController {
 
         numberTextField.setText(Integer.toString((int) OrderDAO.getInstance().getNextId()));
 
-        OrderStatus [] orderStatuses = {ACTIVE,OrderStatus.CANCELED,OrderStatus.FINISHED};
-        statusComboBox.getItems().addAll(orderStatuses);
+        List<OrderStatus> orderStatusList = new ArrayList<>(EnumSet.allOf(OrderStatus.class));
+
+        statusComboBox.getItems().addAll(orderStatusList);
 
         customerComboBox.getItems().addAll(customers.getAll());
     }

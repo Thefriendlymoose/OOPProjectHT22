@@ -27,17 +27,18 @@ public class OrderOpenController {
     private Button openButton;
 
     public void openOrder(ActionEvent event){
-        IPersistence<Order> orders = OrderDAO.getInstance();
+
         if(!searchField.getText().isEmpty()){
             try {
                 Long id = Long.parseLong(searchField.getText());
-                if(orders.getAllMap().containsKey(id)){
+                if(orders.checkIfExist(id)){
+
                     Order order = orders.findById(id);
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderDetailsModal.fxml"));
                     Stage stage = loader.load();
                     OrderDetailsModalController controller = loader.getController();
                     controller.setOrder(order);
-
+                    controller.setOrders(orders);
                     stage.setTitle("Order: " + order.getOrderNumber());
                     stage.initModality(Modality.WINDOW_MODAL);
                     stage.initOwner(((Stage) ((Node)event.getSource()).getScene().getWindow()).getOwner());
