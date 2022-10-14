@@ -1,6 +1,7 @@
 package controller.orderControllers;
 
 import controller.dpi.ParentDependencyInjection;
+import controller.dpi.StageDependencyInjection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -83,7 +84,7 @@ public class OrderMenuController implements Observer{
     }
 
     public void openButton(ActionEvent e) throws Exception{
-        Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderOpenModal.fxml")));
+        Stage stage = StageDependencyInjection.load("fxml/orderViews/orderOpenModal.fxml");
         stage.setTitle("Open Order");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow() );

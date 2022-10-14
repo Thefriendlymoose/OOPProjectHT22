@@ -26,6 +26,11 @@ public class OrderOpenController {
     @FXML
     private Button openButton;
 
+    public OrderOpenController(Orders orders) {
+        this.orders = orders;
+
+    }
+
     public void openOrder(ActionEvent event){
 
         if(!searchField.getText().isEmpty()){
@@ -58,9 +63,5 @@ public class OrderOpenController {
             System.out.println("Field Empty");
         }
 
-    }
-
-    public void setOrders(Orders orders) {
-        this.orders = orders;
     }
 }

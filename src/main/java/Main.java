@@ -7,6 +7,7 @@ import controller.customerControllers.CustomerMenuController;
 import controller.dpi.ParentDependencyInjection;
 import controller.dpi.StageDependencyInjection;
 import controller.orderControllers.OrderMenuController;
+import controller.orderControllers.OrderOpenController;
 import controller.siteControllers.SiteMenuController;
 import controller.userControllers.UserMenuController;
 import javafx.application.Application;
@@ -100,6 +101,8 @@ public class Main extends Application {
         //Factories
         Callback<Class<?>, Object> articleOpenDetailsModal = param -> new ArticleOpenDetailsModalController(wms.getArticles());
         Callback<Class<?>, Object> articleFormModal = param -> new ArticleFormController(wms.getArticles());
+        Callback<Class<?>, Object> orderOpenModal = param -> new OrderOpenController(wms.getOrders());
+
 
         //Saving Factories
         StageDependencyInjection.addInjectionMethod(
@@ -108,6 +111,10 @@ public class Main extends Application {
 
         StageDependencyInjection.addInjectionMethod(
                 ArticleFormController.class, articleFormModal
+        );
+
+        StageDependencyInjection.addInjectionMethod(
+                OrderOpenController.class, orderOpenModal
         );
     }
 
