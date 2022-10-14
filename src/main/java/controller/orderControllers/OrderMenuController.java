@@ -69,7 +69,6 @@ public class OrderMenuController implements Observer{
                 OrderMenuTabCardController controller = loader.getController();
                 controller.setOrder(order);
                 controller.setOrders(orders);
-                controller.setSite(site);
                 fp.getChildren().add(pane);
 
             }

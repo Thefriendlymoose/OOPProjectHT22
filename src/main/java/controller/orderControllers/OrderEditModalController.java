@@ -51,20 +51,13 @@ public class OrderEditModalController {
 
     private Order order;
     private Orders orders;
-    private Site site;
-    private Sites sites;
     private ObservableList<OrderRow> addedRows;
-    private List<SiteArticle> siteArticles;
-//    private IPersistence<Customer> customers = CustomersDAO.getInstance();
 
 
     public void setOrder(Order order){
         this.order = order;
     }
 
-    public void setSite(Site site){
-        this.site = site;
-    }
 
     @FXML
     public void initialize(){
@@ -124,8 +117,8 @@ public class OrderEditModalController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderDetailsAddModal.fxml"));
         Stage stage = loader.load();
         OrderDetailsAddModalController controller = loader.getController();
-        controller.setSite(site);
-        controller.setSiteArticles(site.getSiteArticles());
+        controller.setSite(order.getSite());
+        controller.setSiteArticles(order.getSite().getSiteArticles());
         controller.setObservableOrderRows(addedRows);
 
 
@@ -135,22 +128,6 @@ public class OrderEditModalController {
         stage.show();
     }
 
-    public void onAddOrderRowButtonNew(ActionEvent e) throws IOException {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderDetailsAddModal.fxml"));
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderFormOrderRowModal.fxml")));
-        Stage stage = loader.load();
-
-        OrderEditModalController controller = loader.getController();
-        controller.setSite(site);
-        controller.setSites(sites);
-        controller.setSiteArticles(site.getSiteArticles());
-
-
-        stage.setTitle("Choose Article");
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(((Node)e.getSource()).getScene().getWindow());
-        stage.show();
-    }
 
     public void onCancel(ActionEvent e){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -181,13 +158,6 @@ public class OrderEditModalController {
         }
     }
 
-    public void setSites(Sites sites) {
-        this.sites = sites;
-    }
-    public void setSiteArticles(List<SiteArticle> siteArticles){
-        this.siteArticles = siteArticles;
-    }
-
     public void setOrders(Orders orders) {
         this.orders = orders;
     }
@@ -204,8 +174,6 @@ public class OrderEditModalController {
         order.setPriority(priorityComboBox.getValue());
         order.setDeadline(deadline);
         order.setOrderRows(addedRows.stream().toList());
-        order.setSite(site);
-
 
 
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();

@@ -36,11 +36,6 @@ public class OrderMenuTabCardController {
     }
     public void setOrders(Orders orders){this.orders = orders;}
 
-    public void setSite(Site site){
-        this.site = site;
-    }
-
-    public void setSites(Sites site){this.sites = sites;}
 
     public void initialize(){
         Platform.runLater(() -> {
@@ -64,8 +59,7 @@ public class OrderMenuTabCardController {
                     OrderDetailsModalController controller = loader.getController();
                     controller.setOrder(order);
                     controller.setOrders(orders);
-                    controller.setSite(site);
-//                    controller.setSites(sites);
+
                     stage.setTitle("Order: " + order.getOrderNumber());
                     stage.initModality(Modality.WINDOW_MODAL);
                     stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());

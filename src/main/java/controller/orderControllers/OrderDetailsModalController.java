@@ -39,15 +39,10 @@ public class OrderDetailsModalController {
 
     private Order order;
 
-    private Site site;
     private Orders orders;
 
     public void setOrder(Order order){
         this.order = order;
-    }
-
-    public void setSite(Site site){
-        this.site = site;
     }
 
     public void initialize(){
@@ -99,7 +94,6 @@ public class OrderDetailsModalController {
         OrderEditModalController controller = loader.getController();
         controller.setOrders(orders);
         controller.setOrder(order);
-        controller.setSite(site);
 
         stage.setTitle("Edit Order");
         stage.initModality(Modality.WINDOW_MODAL);
