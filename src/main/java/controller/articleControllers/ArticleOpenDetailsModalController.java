@@ -47,20 +47,13 @@ public class ArticleOpenDetailsModalController {
                         ArticleDetailsController.class, test
                 );
 
-                //FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/articleViews/articleDetailsModal.fxml")));
                 Stage stage = StageDependencyInjection.load("fxml/articleViews/articleDetailsModal.fxml");
-
-                //ArticleDetailsController cont = loader.getController();
-                //cont.setArticle(article);
-                //cont.setArticles(articles);
 
                 stage.setTitle("Article: " + article.getArticleId());
                 stage.initModality(Modality.WINDOW_MODAL);
                 stage.initOwner(((Stage) ((Node)e.getSource()).getScene().getWindow()).getOwner());
                 stage.show();
                 ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
-
-              //  StageDependencyInjection.removeInjectionMethod(ArticleDetailsController.class);
 
             }
 
