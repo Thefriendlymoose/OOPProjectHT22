@@ -1,10 +1,8 @@
 package controller.articleControllers;
 
-import controller.SignInController;
 import controller.dpi.StageDependencyInjection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -13,10 +11,8 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.article.Article;
 import model.article.Articles;
-import model.article.ArticlesFacade;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class ArticleOpenDetailsModalController {
 
