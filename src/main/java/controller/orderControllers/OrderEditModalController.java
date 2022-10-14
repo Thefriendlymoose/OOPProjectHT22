@@ -1,6 +1,5 @@
 package controller.orderControllers;
 
-import controller.siteControllers.siteDetailsSiteArticleAddModalController;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,14 +17,12 @@ import model.site.SiteArticle;
 import model.site.Sites;
 import persistence.CustomersDAO;
 import persistence.IPersistence;
-
+import persistence.OrderDAO;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
-import static model.order.OrderStatus.ACTIVE;
+//import static model.order.OrderStatus.ACTIVE;
 
 public class OrderEditModalController {
 
@@ -41,6 +38,8 @@ public class OrderEditModalController {
     private ComboBox<Customer> customerComboBox;
     @FXML
     private DatePicker orderDeadlineDatePicker;
+
+    private LocalDateTime deadline;
     @FXML
     private Button addOrderRowButton, saveButton, cancelButton;
     @FXML
@@ -48,12 +47,16 @@ public class OrderEditModalController {
 
     private IPersistence<Customer> dao = CustomersDAO.getInstance();
 
+
+
     private Order order;
     private Orders orders;
     private Site site;
     private Sites sites;
     private ObservableList<OrderRow> addedRows;
     private List<SiteArticle> siteArticles;
+//    private IPersistence<Customer> customers = CustomersDAO.getInstance();
+
 
     public void setOrder(Order order){
         this.order = order;
@@ -65,6 +68,7 @@ public class OrderEditModalController {
 
     @FXML
     public void initialize(){
+
         Platform.runLater(() -> {
             numberTextField.setText(Long.toString(order.getOrderNumber()));
             priorityComboBox.setValue(order.isPriority());
@@ -91,18 +95,21 @@ public class OrderEditModalController {
             priorityComboBox.getItems().addAll(priorities);
 
 
-            OrderStatus [] orderStatuses = {ACTIVE,OrderStatus.CANCELED,OrderStatus.FINISHED};
-            statusComboBox.getItems().addAll(orderStatuses);
+//            OrderStatus [] orderStatuses = {OrderStatus.ACTIVE,OrderStatus.CANCELED,OrderStatus.FINISHED};
+//            statusComboBox.getItems().addAll(orderStatuses);
+
+            List<OrderStatus> orderStatusList = new ArrayList<>(EnumSet.allOf(OrderStatus.class));
+            statusComboBox.getItems().addAll(orderStatusList);
 
             orderDeadlineDatePicker.setValue(order.getDeadline().toLocalDate());
 
         });
     }
 
+
     public void setPriorityComboBox(){
         System.out.println("Priority: "+ priorityComboBox.getValue());
     }
-
 
     public void setStatusComboBox(){
         System.out.println("Status: "+ statusComboBox.getValue());
@@ -113,44 +120,33 @@ public class OrderEditModalController {
     }
 
 
-    public void deadlineDatePicker(){
-        DateFactory df = new DateFactory();
-
-        int day = orderDeadlineDatePicker.getValue().getDayOfMonth();
-        int month = orderDeadlineDatePicker.getValue().getMonthValue();
-        int year = orderDeadlineDatePicker.getValue().getYear();
-
-        LocalDateTime deadline = df.createDeadline(day,month,year);
-
-        if(df.isValidDeadline(deadline)){
-            System.out.println("Deadline: " + deadline.getDayOfMonth() + "-"+ deadline.getMonthValue() + "-" + deadline.getYear());
-        }
-    }
-
     public void onAddOrderRowButton(ActionEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderFormOrderRowModal.fxml")));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderDetailsAddModal.fxml"));
         Stage stage = loader.load();
-
-        OrderFormOrderRowModalController controller = loader.getController();
+        OrderDetailsAddModalController controller = loader.getController();
+        controller.setSite(site);
         controller.setSiteArticles(site.getSiteArticles());
         controller.setObservableOrderRows(addedRows);
 
-        stage.setTitle("Choose Article");
+
+        stage.setTitle("Choose Article and Amount");
         stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(((Node) e.getSource()).getScene().getWindow());
+        stage.initOwner(((Node)e.getSource()).getScene().getWindow());
         stage.show();
     }
 
     public void onAddOrderRowButtonNew(ActionEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderDetailsAddModal.fxml"));
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderDetailsAddModal.fxml"));
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderFormOrderRowModal.fxml")));
         Stage stage = loader.load();
+
         OrderEditModalController controller = loader.getController();
         controller.setSite(site);
         controller.setSites(sites);
         controller.setSiteArticles(site.getSiteArticles());
 
 
-        stage.setTitle("Add Stock Item");
+        stage.setTitle("Choose Article");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
         stage.show();
@@ -171,6 +167,20 @@ public class OrderEditModalController {
         }
     }
 
+    public void deadlineDatePicker(){
+        DateFactory df = new DateFactory();
+
+        int day = orderDeadlineDatePicker.getValue().getDayOfMonth();
+        int month = orderDeadlineDatePicker.getValue().getMonthValue();
+        int year = orderDeadlineDatePicker.getValue().getYear();
+
+        deadline = df.createDeadline(day,month,year);
+
+        if(df.isValidDeadline(deadline)){
+            System.out.println("Deadline: " + deadline.getDayOfMonth() + "-"+ deadline.getMonthValue() + "-" + deadline.getYear());
+        }
+    }
+
     public void setSites(Sites sites) {
         this.sites = sites;
     }
@@ -183,22 +193,24 @@ public class OrderEditModalController {
     }
 
     public void saveOrder(ActionEvent e){
-        //skriv över listan
+        System.out.println("before: " + orders);
 
-        System.out.println("keksociety");
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
-    }
 
-    public void saveOrderAdd(ActionEvent e){
-        System.out.println("Bef0re: " + orders.toString());
 
-//        Orders replaceOrders = new Orders();
+        order.setUser(null);
+        order.setCustomer(customerComboBox.getValue());
+        order.setOrderStatus(statusComboBox.getValue());
+        order.setPriority(priorityComboBox.getValue());
+        order.setDeadline(deadline);
+        order.setOrderRows(addedRows.stream().toList());
+        order.setSite(site);
 
-//        orders.addOrder(new Order(null, orders.getNextOrderNumber(), customerComboBox.getValue(), statusComboBox.getValue(), priorityComboBox.getValue(), orderDate, deadline, addedRows.stream().toList(), site));
+
+
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
-        orders.updateOrder();
-
-        System.out.println("After: " + orders.toString());
+//        orders.updateOrder();
+        System.out.println("after: " + orders);
     }
 
 
