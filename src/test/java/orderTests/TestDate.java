@@ -14,6 +14,8 @@ public class TestDate {
     public boolean isValidDeadline(LocalDateTime orderDate, LocalDateTime deadline){
         return 1 >= deadline.compareTo(orderDate);
     }
+
+//    måste fixa test
     @Test
     public void testValidDeadline(){
 

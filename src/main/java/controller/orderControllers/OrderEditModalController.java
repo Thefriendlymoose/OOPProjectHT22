@@ -12,12 +12,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.customer.Customer;
 import model.order.*;
-import model.site.Site;
-import model.site.SiteArticle;
-import model.site.Sites;
 import persistence.CustomersDAO;
 import persistence.IPersistence;
-import persistence.OrderDAO;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -39,7 +35,10 @@ public class OrderEditModalController {
     @FXML
     private DatePicker orderDeadlineDatePicker;
 
+    private DateFactory df = new DateFactory();
+
     private LocalDateTime deadline;
+
     @FXML
     private Button addOrderRowButton, saveButton, cancelButton;
     @FXML
@@ -47,11 +46,10 @@ public class OrderEditModalController {
 
     private IPersistence<Customer> dao = CustomersDAO.getInstance();
 
-
-
     private Order order;
     private Orders orders;
     private ObservableList<OrderRow> addedRows;
+
 
 
     public void setOrder(Order order){
@@ -87,9 +85,6 @@ public class OrderEditModalController {
             Boolean [] priorities = {true,false};
             priorityComboBox.getItems().addAll(priorities);
 
-
-//            OrderStatus [] orderStatuses = {OrderStatus.ACTIVE,OrderStatus.CANCELED,OrderStatus.FINISHED};
-//            statusComboBox.getItems().addAll(orderStatuses);
 
             List<OrderStatus> orderStatusList = new ArrayList<>(EnumSet.allOf(OrderStatus.class));
             statusComboBox.getItems().addAll(orderStatusList);
@@ -145,17 +140,18 @@ public class OrderEditModalController {
     }
 
     public void deadlineDatePicker(){
-        DateFactory df = new DateFactory();
+
 
         int day = orderDeadlineDatePicker.getValue().getDayOfMonth();
         int month = orderDeadlineDatePicker.getValue().getMonthValue();
         int year = orderDeadlineDatePicker.getValue().getYear();
-
+        
         deadline = df.createDeadline(day,month,year);
 
-        if(df.isValidDeadline(deadline)){
-            System.out.println("Deadline: " + deadline.getDayOfMonth() + "-"+ deadline.getMonthValue() + "-" + deadline.getYear());
-        }
+//        if(df.isValidDeadline(deadline)){
+//            System.out.println("today: " + LocalDateTime.now().getDayOfMonth() + "-"+ LocalDateTime.now().getMonthValue() + "-" + LocalDateTime.now().getYear());
+//            System.out.println("deadline: " + deadline.getDayOfMonth() + "-"+ deadline.getMonthValue() + "-" + deadline.getYear());
+//        }
     }
 
     public void setOrders(Orders orders) {
@@ -165,21 +161,18 @@ public class OrderEditModalController {
     public void saveOrder(ActionEvent e){
         System.out.println("before: " + orders);
 
-        ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
-
-
-        order.setUser(null);
-        order.setCustomer(customerComboBox.getValue());
-        order.setOrderStatus(statusComboBox.getValue());
-        order.setPriority(priorityComboBox.getValue());
-        order.setDeadline(deadline);
-        order.setOrderRows(addedRows.stream().toList());
-
-
-        ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
-        orders.updateOrder();
-        System.out.println("after: " + orders);
+        if (df.isValidDeadline(deadline)){
+            order.setUser(null);
+            order.setCustomer(customerComboBox.getValue());
+            order.setOrderStatus(statusComboBox.getValue());
+            order.setPriority(priorityComboBox.getValue());
+            order.setDeadline(deadline);
+            order.setOrderRows(addedRows.stream().toList());
+            ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+            orders.updateOrder();
+        } else {
+            System.out.println("after: ");
+        }
     }
-
 
 }
