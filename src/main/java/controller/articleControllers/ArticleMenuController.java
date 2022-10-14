@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import model.WMS;
 import model.article.Article;
 import model.article.Articles;
@@ -45,14 +46,14 @@ public class ArticleMenuController implements Observer {
     private void loadCards() throws IOException {
         List<Article> arts = articles.getInList();
         articlesCardHolder.getChildren().clear();
-        for (Article art : arts){
-            FXMLLoader cardLoader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/articleViews/articleDetailsMenuCard.fxml")));
+        for (Article article : arts){
 
-            AnchorPane pane = cardLoader.load();
-            ArticleMenuCardController cont =  cardLoader.getController();
+            Callback<Class<?>, Object> test = params -> new ArticleMenuCardController(articles, article);
+            ParentDependencyInjection.addInjectionMethod(
+                    ArticleMenuCardController.class, test
+            );
 
-            cont.setArticle(art);
-            cont.setArticles(articles);
+            Parent pane = ParentDependencyInjection.load("fxml/articleViews/articleDetailsMenuCard.fxml");
 
             articlesCardHolder.getChildren().add(pane);
         }
