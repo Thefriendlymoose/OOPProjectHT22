@@ -1,6 +1,6 @@
 package controller.customerControllers;
 
-import controller.dpi.DependencyInjection;
+import controller.dpi.ParentDependencyInjection;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,7 +44,7 @@ public class CustomerMenuController implements Observer {
     }
 
     public void backBtnHandler() throws Exception{
-        Parent root = DependencyInjection.load("fxml/mainMenu.fxml");
+        Parent root = ParentDependencyInjection.load("fxml/mainMenu.fxml");
         model.unregisterObserver(this);
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
