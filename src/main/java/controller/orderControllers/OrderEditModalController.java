@@ -209,7 +209,7 @@ public class OrderEditModalController {
 
 
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
-//        orders.updateOrder();
+        orders.updateOrder();
         System.out.println("after: " + orders);
     }
 
