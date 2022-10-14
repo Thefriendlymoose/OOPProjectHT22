@@ -34,5 +34,6 @@ public class CustomerCardController {
     }
 
     public void openButtonHandler(ActionEvent actionEvent) {
+
     }
 }

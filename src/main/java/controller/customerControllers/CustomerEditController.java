@@ -89,6 +89,7 @@ public class CustomerEditController implements Observer {
         stage.show();
     }
 
+    // TODO validate fields
     public void saveBtnHandler(ActionEvent e) {
         editor.setCompanyName(companyNameField.getText());
         editor.setCompanyOrgNumber(Long.parseLong(companyOrgNrField.getText().strip()));
