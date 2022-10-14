@@ -48,6 +48,7 @@ public class OrderFormModalController {
     private Sites sites;
     private ObservableList<OrderRow> addedRows;
 
+    private DateFactory df = new DateFactory();
     private LocalDateTime deadline;
     private LocalDateTime orderDate;
     private Orders orders;
@@ -88,16 +89,17 @@ public class OrderFormModalController {
         customerComboBox.getItems().addAll(customers.getAll());
     }
 
-    public void saveOrder(ActionEvent e){
-//        System.out.println("Bef0re: " + orders.toString());
+//    !amountTextField.getText().isEmpty()
 
-        orders.addOrder(new Order(null, orders.getNextOrderNumber(), customerComboBox.getValue(), statusComboBox.getValue(), priorityComboBox.getValue(), orderDate, deadline, addedRows.stream().toList(), site));
+    public void saveOrder(ActionEvent e){
+        System.out.println("orderRowListView.getItems().size(): " + orderRowListView.getItems().size());
+//        if (df.isValidDeadline(deadline) && !customerComboBox.getEditor().equals("Choose Customer")){
+            if (df.isValidDeadline(deadline) && customerComboBox.getValue() != null && statusComboBox.getValue() != null && priorityComboBox.getValue() != null && orderRowListView.getItems().size() > 0){
+                orders.addOrder(new Order(null, orders.getNextOrderNumber(), customerComboBox.getValue(), statusComboBox.getValue(), priorityComboBox.getValue(), orderDate, deadline, addedRows.stream().toList(), site));
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
         orders.updateOrder();
+        }
 
-//        System.out.println(orderDate.compareTo(deadline));
-
-//        System.out.println("After: " + orders.toString());
     }
 
     public void setPriorityComboBox(){
@@ -113,7 +115,6 @@ public class OrderFormModalController {
     }
 
     public void deadlineDatePicker(){
-        DateFactory df = new DateFactory();
 
         int day = orderDeadlineDatePicker.getValue().getDayOfMonth();
         int month = orderDeadlineDatePicker.getValue().getMonthValue();

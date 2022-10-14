@@ -12,7 +12,7 @@
             <Label fx:id="cardNumberLabel" styleClass="generic-form-label" text="Article Number: " />
             <Label fx:id="cardNameLabel" styleClass="generic-form-label" text="Article Name: " />
             <Label fx:id="cardDescriptionLabel" styleClass="generic-form-label" text="Article Description: " wrapText="true" />
-            <Button fx:id="cardGoToButton" mnemonicParsing="false" styleClass="generic-button" text="Go To Article" />
+            <Button onAction="#onGo" fx:id="cardGoToButton" mnemonicParsing="false" styleClass="generic-button" text="Go To Article" />
          </children>
       </VBox>
    </children>
