@@ -99,8 +99,6 @@ public class OrderEditModalController {
         });
     }
 
-    public void saveOrder(){}
-
     public void setPriorityComboBox(){
         System.out.println("Priority: "+ priorityComboBox.getValue());
     }
@@ -183,5 +181,25 @@ public class OrderEditModalController {
     public void setOrders(Orders orders) {
         this.orders = orders;
     }
+
+    public void saveOrder(ActionEvent e){
+        //skriv över listan
+
+        System.out.println("keksociety");
+        ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+    }
+
+    public void saveOrderAdd(ActionEvent e){
+        System.out.println("Bef0re: " + orders.toString());
+
+//        Orders replaceOrders = new Orders();
+
+//        orders.addOrder(new Order(null, orders.getNextOrderNumber(), customerComboBox.getValue(), statusComboBox.getValue(), priorityComboBox.getValue(), orderDate, deadline, addedRows.stream().toList(), site));
+        ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+        orders.updateOrder();
+
+        System.out.println("After: " + orders.toString());
+    }
+
 
 }
