@@ -60,6 +60,14 @@ public class Orders implements Observable {
         return getRevenuePerOrderStatus(status) - getCostPerOrderStatus(status);
     }
 
+    public boolean checkIfExist(Long id){
+        return orders.containsKey(id);
+    }
+
+    public Order findById(Long id){
+        return orders.get(id);
+    }
+
     public List<Order> getInList() {
         return new ArrayList<>(orders.values());
     }
