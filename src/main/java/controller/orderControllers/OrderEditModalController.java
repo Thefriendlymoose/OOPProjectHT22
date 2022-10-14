@@ -61,6 +61,7 @@ public class OrderEditModalController {
     public void initialize(){
 
         Platform.runLater(() -> {
+            titleLabel.setText("Order: " + order.getOrderNumber());
             numberTextField.setText(Long.toString(order.getOrderNumber()));
             priorityComboBox.setValue(order.isPriority());
             statusComboBox.setValue(order.getOrderStatus());
