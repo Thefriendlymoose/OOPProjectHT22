@@ -31,7 +31,7 @@ public class SaveFields implements ICommand {
     }
 
     private void save(){
-        CustomerContact c = new CustomerContact();
+        CustomerContact c = controller.getCustomerContact();
         c.setPhoneNumber(controller.number.getText());
         c.setContactPerson(controller.name.getText());
         c.setEmail(controller.email.getText());
