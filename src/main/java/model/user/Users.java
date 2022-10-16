@@ -1,5 +1,6 @@
 package model.user;
 
+import model.article.ArticleStatus;
 import model.observer.Observable;
 import model.observer.Observer;
 import model.order.Order;
@@ -42,6 +43,14 @@ public class Users implements Observable {
 
     public Long getNextUserID(){
         return nextUserID;
+    }
+
+    public Permission[] getPermissions(){
+        return Permission.values();
+    }
+
+    public List<User> getInList() {
+        return new ArrayList<>(users.values());
     }
 
     public void updateUser(){

@@ -12,7 +12,7 @@ public class UserMenuCardController {
 
     private User user;
 
-    public void setCard(User user){
+    public void setUser(User user){
         this.user = user;
     }
 

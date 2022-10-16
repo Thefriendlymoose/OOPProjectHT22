@@ -1,6 +1,7 @@
 package controller.userControllers;
 
 import controller.dpi.DependencyInjection;
+import controller.siteControllers.SiteOpenDetailsController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.WMS;
+import model.user.Users;
 import persistence.IPersistence;
 import model.user.User;
 import persistence.UserDAO;
@@ -20,14 +22,19 @@ import persistence.UserDAO;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import java.util.Observable;
+import java.util.Observer;
 
-public class UserMenuController {
+public class UserMenuController implements Observer {
     @FXML
     private Button openButton, createButton, listButton, backButton;
     private WMS wms;
+    private Users users;
 
     public UserMenuController(WMS wms) {
         this.wms = wms;
+        this.users = wms.getUsers();
+        users.registerObserver(this);
     }
 
     @FXML
@@ -36,20 +43,25 @@ public class UserMenuController {
 
     private IPersistence<User> testDao = UserDAO.getInstance();
 
-    List<User> users = testDao.getAll();
 
     public  void initialize() throws IOException {
+        loadCards();
 
-        for (User user : users){
+    }
+
+
+    private void loadCards() throws IOException{
+        userCardHolder.getChildren().clear();
+        for (User user : users.getInList()){
             FXMLLoader cardLoader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/userViews/userDetailsMenuCard.fxml")));
             AnchorPane pane = cardLoader.load();
             UserMenuCardController cont =  cardLoader.getController();
 
-            cont.setCard(user);
+            cont.setUser(user);
+
 
             userCardHolder.getChildren().add(pane);
         }
-
     }
 
 
@@ -62,8 +74,11 @@ public class UserMenuController {
         window.setScene(new Scene(root));
     }
     public void createButton(ActionEvent e) throws Exception{
-            Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/userViews/createUserMenu.fxml")));
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/userViews/CreateUserMenu.fxml")));
+            Stage stage = loader.load();
             stage.setTitle("My modal window");
+            CreateUserController controller = loader.getController();
+            controller.setUsers(users);
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(((Node)e.getSource()).getScene().getWindow() );
             stage.show();}
@@ -71,9 +86,21 @@ public class UserMenuController {
     public void openButton(ActionEvent e) throws Exception{
         Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/userViews/openUser.fxml")));
         stage.setTitle("My modal window");
+
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow() );
         stage.show();
 
+    }
+
+
+
+    @Override
+    public void update() {
+        try {
+            loadCards();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

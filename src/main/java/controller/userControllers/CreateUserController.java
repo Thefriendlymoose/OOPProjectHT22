@@ -10,13 +10,17 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.site.Site;
 import model.site.SiteArticle;
+import model.site.Sites;
+import model.user.Permission;
 import model.user.Role;
 import model.user.User;
+import model.user.Users;
 import persistence.SitesDAO;
 import persistence.UserDAO;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CreateUserController {
 
@@ -33,36 +37,33 @@ public class CreateUserController {
     private Label userIDLabel, firstNameLabel,lastNameLabel,userNameLabel,passwordLabel,StatusLabel, roleLabel;
 
     @FXML
-    private ComboBox<Role> roleBox;
+    private ComboBox<Permission> roleBox;
 
     @FXML
     private ComboBox<Boolean> statusBox;
 
 
-    private User user;
+    private Users users;
+    public void setUsers(Users users) {
+        this.users = users;
+    }
     public void onSave(ActionEvent e) throws IOException {
-        User newUser = new Site(user.getNextId(), nameTextField.getText(), siteAddressTextArea.getText(),Integer.parseInt(maxCapacityTextField.getText()), new ArrayList<SiteArticle>(), new ArrayList<User>());
+        // temp
+        List<Permission> role = new ArrayList<Permission>();
+        role.add(roleBox.getValue());
 
-        sites.addSite(newSite);
+        User newUser = new User(users.getNextUserID(), userNameField.getText(), passwordField.getText(),firstNameField.getText() + " " + lastNameField.getText()
+        , statusBox.getValue(),role);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/siteDetailsModal.fxml"));
-        Stage stage = loader.load();
-        SiteDetailsController controller = loader.getController();
-        controller.setSite(newSite);
-        controller.setSites(sites);
+        users.addUser(newUser);
 
-        stage.setTitle("Site: " + newSite.getSiteId());
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(((Stage) ((Node)e.getSource()).getScene().getWindow()).getOwner());
-        stage.show();
-        ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
 
     }
 
 
     public void initialize(){
-        statusBox.getItems().addAll(true, false);
-        roleBox.getItems().addAll();
+        statusBox.getItems().setAll(true, false);
+        roleBox.getItems().setAll(users.getPermissions());
         userIDTextField.setText(Long.toString(UserDAO.getInstance().getNextId()));
     }
 

@@ -15,6 +15,7 @@ import model.WMS;
 import model.article.Articles;
 import model.order.Orders;
 import model.site.Sites;
+import model.user.Users;
 import persistence.*;
 
 public class Main extends Application {
@@ -31,7 +32,8 @@ public class Main extends Application {
         Articles articles = new Articles(ArticlesDAO.getInstance().getAllMap());
         Orders orders = new Orders(OrderDAO.getInstance().getAllMap());
         Sites sites = new Sites(SitesDAO.getInstance().getAllMap());
-        this.wms = new WMS(articles, orders, sites);
+        Users users = new Users(UserDAO.getInstance().getAllMap());
+        this.wms = new WMS(articles, orders, sites, users);
 
         setUpDependencyInjector();
 

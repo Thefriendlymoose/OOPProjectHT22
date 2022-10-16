@@ -105,6 +105,7 @@ public class User implements Observable {
         return permissions.contains(permission);
     }
 
+
     @Override
     public void registerObserver(Observer o) {
         observers.add(o);
