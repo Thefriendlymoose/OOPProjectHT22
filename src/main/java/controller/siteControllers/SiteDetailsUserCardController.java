@@ -1,6 +1,7 @@
 package controller.siteControllers;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -25,42 +26,34 @@ public class SiteDetailsUserCardController {
     private Site site;
     private Sites sites;
 
-    @FXML
-    public void initialize(){
-        Platform.runLater(() -> {
-            cardNameLabel.setText(cardNameLabel.getText() + user.getName());
-
-            cardGoToButton.setOnAction(actionEvent -> {
-                System.out.println("open user details window");
-            });
-
-            deleteButton.setOnAction(actionEvent -> {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirm Deletion");
-                alert.setHeaderText("The Employee will be removed from this site");
-                alert.setContentText("Are you sure? Will not be able to be revered");
-
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.get() == ButtonType.CANCEL){
-                    System.out.println("Clicked Cancel");
-                } else {
-                    site.removeEmployee(user);
-                    sites.updateSite();
-                }
-            });
-
-        });
-    }
-
-    public void setUser(User user){
+    public SiteDetailsUserCardController(Sites sites, Site site, User user) {
+        this.sites = sites;
+        this.site = site;
         this.user = user;
     }
 
-    public void setSite(Site site) {
-        this.site = site;
+    @FXML
+    public void initialize(){
+        cardNameLabel.setText(cardNameLabel.getText() + user.getName());
+
     }
 
-    public void setSites(Sites sites) {
-        this.sites = sites;
+    public void onGoTo(ActionEvent e){
+        System.out.println("open user details window");
+    }
+
+    public void onDelete(ActionEvent e) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm Deletion");
+        alert.setHeaderText("The Employee will be removed from this site");
+        alert.setContentText("Are you sure? Will not be able to be revered");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.CANCEL){
+            System.out.println("Clicked Cancel");
+        } else {
+            site.removeEmployee(user);
+            sites.updateSite();
+        }
     }
 }

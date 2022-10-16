@@ -14,7 +14,7 @@ import model.site.Sites;
 
 import java.util.Optional;
 
-public class siteDetailsSiteArticleAddModalController {
+public class SiteDetailsSiteArticleAddModalController {
 
     @FXML
     private ListView<Article> chooseArticleListView;
@@ -30,7 +30,8 @@ public class siteDetailsSiteArticleAddModalController {
     private Site site;
     private Sites sites;
 
-    public void setSite(Site site){
+    public SiteDetailsSiteArticleAddModalController(Sites sites, Site site) {
+        this.sites = sites;
         this.site = site;
     }
 
@@ -89,8 +90,4 @@ public class siteDetailsSiteArticleAddModalController {
         }
     }
 
-
-    public void setSites(Sites sites) {
-        this.sites = sites;
-    }
 }

@@ -24,31 +24,27 @@ public class SiteDetailsSiteArticleModalController {
     @FXML
     private Button editButton, closeButton;
 
-    private SiteArticle sa;
+    private SiteArticle siteArticle;
     private Site site;
     private Sites sites;
 
-    public void initialize(){
-        Platform.runLater(() -> {
-            articleNameTextField.setDisable(true);
-            articleNameTextField.getStyleClass().add("locked-form-field");
-
-            amountTextField.setDisable(true);
-            amountTextField.getStyleClass().add("locked-form-field");
-
-
-            articleNameTextField.setText(sa.getArticle().getArticleName());
-            amountTextField.setText(String.valueOf(sa.getAmount()));
-        });
-    }
-
-    public void setSiteArticle(SiteArticle sa){
-        this.sa = sa;
-    }
-
-    public void setSite(Site site){
+    public SiteDetailsSiteArticleModalController(Sites sites, Site site, SiteArticle siteArticle) {
+        this.sites = sites;
         this.site = site;
+        this.siteArticle = siteArticle;
     }
+
+    public void initialize(){
+        articleNameTextField.setDisable(true);
+        articleNameTextField.getStyleClass().add("locked-form-field");
+
+        amountTextField.setDisable(true);
+        amountTextField.getStyleClass().add("locked-form-field");
+
+        articleNameTextField.setText(siteArticle.getArticle().getArticleName());
+        amountTextField.setText(String.valueOf(siteArticle.getAmount()));
+    }
+
 
     public void onClose(ActionEvent e){
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
@@ -58,11 +54,11 @@ public class SiteDetailsSiteArticleModalController {
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/siteViews/siteDetailsSiteArticleEditModal.fxml")));
         Stage stage = loader.load();
         SiteDetailsSiteArticleEditModalController controller = loader.getController();
-        controller.setSiteArticle(sa);
+        controller.setSiteArticle(siteArticle);
         controller.setSite(site);
         controller.setSites(sites);
 
-        stage.setTitle("Stock: " + sa.getArticle().getArticleName());
+        stage.setTitle("Stock: " + siteArticle.getArticle().getArticleName());
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Stage) ((Node)e.getSource()).getScene().getWindow()).getOwner());
         stage.show();
