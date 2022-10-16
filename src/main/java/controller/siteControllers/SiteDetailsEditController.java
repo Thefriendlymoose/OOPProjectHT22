@@ -23,24 +23,20 @@ public class SiteDetailsEditController {
     @FXML
     private Button saveButton, cancelButton;
 
-
     private Site site;
     private Sites sites;
 
-    public void setSite(Site site){
+    public SiteDetailsEditController(Sites sites, Site site) {
+        this.sites = sites;
         this.site = site;
     }
 
     public void initialize(){
-        Platform.runLater(() -> {
-
-            numberTextField.setText(Integer.toString((int) SitesDAO.getInstance().getNextId()));
-            nameTextField.setText(site.getSiteName());
-            maxCapacityTextField.setText(String.valueOf(site.getMaxCapacity()));
-            maxCapacityTextField.setDisable(true);
-            siteAddressTextArea.setText(site.getSiteAddress());
-
-        });
+        numberTextField.setText(Integer.toString((int) SitesDAO.getInstance().getNextId()));
+        nameTextField.setText(site.getSiteName());
+        maxCapacityTextField.setText(String.valueOf(site.getMaxCapacity()));
+        maxCapacityTextField.setDisable(true);
+        siteAddressTextArea.setText(site.getSiteAddress());
     }
 
     public void onSave(ActionEvent e){
@@ -63,7 +59,4 @@ public class SiteDetailsEditController {
         }
     }
 
-    public void setSites(Sites sites) {
-        this.sites = sites;
-    }
 }

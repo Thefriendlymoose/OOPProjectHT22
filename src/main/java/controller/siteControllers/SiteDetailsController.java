@@ -1,12 +1,13 @@
 package controller.siteControllers;
 
-import javafx.application.Platform;
+import controller.dpi.ParentDependencyInjection;
+import controller.dpi.StageDependencyInjection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -38,78 +39,60 @@ public class SiteDetailsController implements Observer {
     private Site site;
     private Sites sites;
 
+    public SiteDetailsController(Sites sites, Site site) {
+        this.sites = sites;
+        this.site = site;
+        site.registerObserver(this);
+    }
+
 
     @FXML
     public void initialize(){
+        detailsTitleLabel.setText(detailsTitleLabel.getText() + site.getSiteId());
+        numberTextField.setText(String.valueOf(site.getSiteId()));
+        nameTextField.setText(site.getSiteName());
+        siteAddressTextArea.setText(site.getSiteAddress());
+        maxCapacityTextField.setText(String.valueOf(site.getMaxCapacity()));
 
-        Platform.runLater(() -> {
-            site.registerObserver(this);
-
-            detailsTitleLabel.setText(detailsTitleLabel.getText() + site.getSiteId());
-            numberTextField.setText(String.valueOf(site.getSiteId()));
-            nameTextField.setText(site.getSiteName());
-            siteAddressTextArea.setText(site.getSiteAddress());
-            maxCapacityTextField.setText(String.valueOf(site.getMaxCapacity()));
-
-            loadSiteEmployeeCards();
+        try {
             loadSiteArticleCards();
-
-        });
-
+            loadSiteEmployeeCards();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    private void loadSiteEmployeeCards(){
+    private void loadSiteEmployeeCards() throws IOException {
         employeeVBox.getChildren().clear();
         for(User user : site.getEmployees()){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/siteDetailsUserCard.fxml"));
-            AnchorPane pane = null;
-            try {
-                pane = loader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            ParentDependencyInjection.addInjectionMethod(
+                    SiteDetailsUserCardController.class, params -> new SiteDetailsUserCardController(sites, site, user)
+            );
 
-            SiteDetailsUserCardController controller = loader.getController();
-            controller.setUser(user);
-            controller.setSite(site);
-            controller.setSites(sites);
+            Parent pane = ParentDependencyInjection.load("fxml/siteViews/siteDetailsUserCard.fxml");
 
             employeeVBox.getChildren().add(pane);
         }
     }
-    private void loadSiteArticleCards(){
+    private void loadSiteArticleCards() throws IOException {
         stockVBox.getChildren().clear();
-        for(SiteArticle sa : site.getSiteArticles()){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/siteDetailsSiteArticleCard.fxml"));
-            AnchorPane pane = null;
+        for(SiteArticle siteArticle : site.getSiteArticles()){
+            ParentDependencyInjection.addInjectionMethod(
+                    SiteDetailsSiteArticleCardController.class, params -> new SiteDetailsSiteArticleCardController(sites, site, siteArticle)
+            );
 
-            try {
-                pane = loader.load();
-            } catch(IOException e){
-                throw new RuntimeException(e);
-            }
-
-            SiteDetailsSiteArticleCardController controller = loader.getController();
-            controller.setSiteArticle(sa);
-            controller.setSite(site);
-            controller.setSites(sites);
+            Parent pane = ParentDependencyInjection.load("fxml/siteViews/siteDetailsSiteArticleCard.fxml");
 
             stockVBox.getChildren().add(pane);
         }
     }
 
-
-    public void setSite(Site site){
-        this.site = site;
-    }
-
     public void editHandler(ActionEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/siteDetailsEditModal.fxml"));
-        Stage stage = loader.load();
+        StageDependencyInjection.addInjectionMethod(
+                SiteDetailsEditController.class, params -> new SiteDetailsEditController(sites, site)
+        );
 
-        SiteDetailsEditController cont = loader.getController();
-        cont.setSite(site);
-        cont.setSites(sites);
+        Stage stage = StageDependencyInjection.load("fxml/siteViews/siteDetailsEditModal.fxml");
 
         stage.setTitle("Edit Site");
         stage.initModality(Modality.WINDOW_MODAL);
@@ -124,12 +107,11 @@ public class SiteDetailsController implements Observer {
     }
 
     public void onStockAdd(ActionEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/siteDetailsSiteArticleAddModal.fxml"));
-        Stage stage = loader.load();
-        siteDetailsSiteArticleAddModalController controller = loader.getController();
-        controller.setSite(site);
-        controller.setSites(sites);
+        StageDependencyInjection.addInjectionMethod(
+                SiteDetailsSiteArticleAddModalController.class, params -> new SiteDetailsSiteArticleAddModalController(sites, site)
+        );
 
+        Stage stage = StageDependencyInjection.load("fxml/siteViews/siteDetailsSiteArticleAddModal.fxml");
 
         stage.setTitle("Add Stock Item");
         stage.initModality(Modality.WINDOW_MODAL);
@@ -140,7 +122,7 @@ public class SiteDetailsController implements Observer {
     public void onEmployeeAdd(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/siteDetailsUserAddModal.fxml"));
         Stage stage = loader.load();
-        siteDetailsUserAddModalController controller = loader.getController();
+        SiteDetailsUserAddModalController controller = loader.getController();
         controller.setSite(site);
         controller.setSites(sites);
 
@@ -152,13 +134,14 @@ public class SiteDetailsController implements Observer {
         stage.show();
     }
 
-    public void setSites(Sites sites) {
-        this.sites = sites;
-    }
-
     @Override
     public void update() {
-        loadSiteArticleCards();
-        loadSiteEmployeeCards();
+        try {
+            loadSiteArticleCards();
+            loadSiteEmployeeCards();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

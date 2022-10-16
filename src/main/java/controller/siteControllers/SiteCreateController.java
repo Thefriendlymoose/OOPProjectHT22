@@ -1,5 +1,6 @@
 package controller.siteControllers;
 
+import controller.dpi.StageDependencyInjection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,8 +30,12 @@ public class SiteCreateController {
     private Button saveButton, cancelButton;
     private Sites sites;
 
+    public SiteCreateController(Sites sites) {
+        this.sites = sites;
+    }
+
     public void initialize(){
-        numberTextField.setText(Long.toString(SitesDAO.getInstance().getNextId()));
+        numberTextField.setText(Long.toString(sites.getNextId()));
     }
 
     public void onSave(ActionEvent e) throws IOException {
@@ -39,12 +44,11 @@ public class SiteCreateController {
 
         sites.addSite(newSite);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/siteDetailsModal.fxml"));
-        Stage stage = loader.load();
-        SiteDetailsController controller = loader.getController();
-        controller.setSite(newSite);
-        controller.setSites(sites);
+        StageDependencyInjection.addInjectionMethod(
+                SiteDetailsController.class, params -> new SiteDetailsController(sites, newSite)
+        );
 
+        Stage stage = StageDependencyInjection.load("fxml/siteViews/siteDetailsModal.fxml");
         stage.setTitle("Site: " + newSite.getSiteId());
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Stage) ((Node)e.getSource()).getScene().getWindow()).getOwner());
@@ -66,7 +70,4 @@ public class SiteCreateController {
         }
     }
 
-    public void setSites(Sites sites) {
-        this.sites = sites;
-    }
 }

@@ -45,9 +45,9 @@ public class ArticleMenuController implements Observer {
         articlesCardHolder.getChildren().clear();
         for (Article article : arts){
 
-            Callback<Class<?>, Object> test = params -> new ArticleMenuCardController(articles, article);
+            Callback<Class<?>, Object> temp = params -> new ArticleMenuCardController(articles, article);
             ParentDependencyInjection.addInjectionMethod(
-                    ArticleMenuCardController.class, test
+                    ArticleMenuCardController.class, temp
             );
 
             Parent pane = ParentDependencyInjection.load("fxml/articleViews/articleDetailsMenuCard.fxml");

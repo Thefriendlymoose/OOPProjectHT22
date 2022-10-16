@@ -8,7 +8,9 @@ import controller.dpi.ParentDependencyInjection;
 import controller.dpi.StageDependencyInjection;
 import controller.orderControllers.OrderMenuController;
 import controller.orderControllers.OrderOpenController;
+import controller.siteControllers.SiteCreateController;
 import controller.siteControllers.SiteMenuController;
+import controller.siteControllers.SiteOpenDetailsController;
 import controller.userControllers.UserMenuController;
 import javafx.application.Application;
 import javafx.scene.Parent;
@@ -99,10 +101,16 @@ public class Main extends Application {
 
     private void setUpStageDependencyInjector() {
         //Factories
+        //Article
         Callback<Class<?>, Object> articleOpenDetailsModal = param -> new ArticleOpenDetailsModalController(wms.getArticles());
         Callback<Class<?>, Object> articleFormModal = param -> new ArticleFormController(wms.getArticles());
+
+        //Orders
         Callback<Class<?>, Object> orderOpenModal = param -> new OrderOpenController(wms.getOrders());
 
+        //Sites
+        Callback<Class<?>, Object> siteOpenModal = param -> new SiteOpenDetailsController(wms.getSites());
+        Callback<Class<?>, Object> siteCreateModal = param -> new SiteCreateController(wms.getSites());
 
         //Saving Factories
         StageDependencyInjection.addInjectionMethod(
@@ -116,8 +124,14 @@ public class Main extends Application {
         StageDependencyInjection.addInjectionMethod(
                 OrderOpenController.class, orderOpenModal
         );
+
+        StageDependencyInjection.addInjectionMethod(
+                SiteOpenDetailsController.class, siteOpenModal
+        );
+
+        StageDependencyInjection.addInjectionMethod(
+                SiteCreateController.class, siteCreateModal
+        );
     }
-
-
 
 }

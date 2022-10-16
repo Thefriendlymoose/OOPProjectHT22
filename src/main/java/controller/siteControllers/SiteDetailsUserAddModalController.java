@@ -13,7 +13,7 @@ import persistence.UserDAO;
 
 import java.util.Optional;
 
-public class siteDetailsUserAddModalController {
+public class SiteDetailsUserAddModalController {
 
     @FXML
     private ListView<User> chooseUserListView;

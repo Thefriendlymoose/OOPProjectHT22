@@ -26,7 +26,7 @@
         </rowConstraints>
          <children>
             <Label fx:id="cardNameLabel" prefHeight="27.0" styleClass="generic-form-label" text="Employee Name: " GridPane.columnSpan="4" GridPane.rowSpan="2" />
-            <Button fx:id="cardGoToButton" mnemonicParsing="false" prefHeight="123.0" prefWidth="93.0" styleClass="generic-button" text="Open" GridPane.columnIndex="5" GridPane.rowSpan="2">
+            <Button onAction="#onGoTo" fx:id="cardGoToButton" mnemonicParsing="false" prefHeight="123.0" prefWidth="93.0" styleClass="generic-button" text="Open" GridPane.columnIndex="5" GridPane.rowSpan="2">
                <font>
                   <Font size="20.0" />
                </font>
@@ -37,7 +37,7 @@
                   <Insets bottom="5.0" top="5.0" />
                </padding>
             </Button>
-            <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="92.0" styleClass="generic-button" text="Delete" GridPane.columnIndex="4" GridPane.rowSpan="2">
+            <Button onAction="#onDelete" fx:id="deleteButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="92.0" styleClass="generic-button" text="Delete" GridPane.columnIndex="4" GridPane.rowSpan="2">
                <font>
                   <Font size="20.0" />
                </font>
