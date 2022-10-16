@@ -14,7 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.WMS;
 import persistence.IPersistence;
-import model.User;
+import model.user.User;
 import persistence.UserDAO;
 
 import java.io.IOException;

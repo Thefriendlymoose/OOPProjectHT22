@@ -3,7 +3,7 @@ package controller.userControllers;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import model.User;
+import model.user.User;
 
 public class UserMenuCardController {
 
