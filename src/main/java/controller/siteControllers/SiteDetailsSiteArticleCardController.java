@@ -1,10 +1,8 @@
 package controller.siteControllers;
 
 import controller.dpi.StageDependencyInjection;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -17,7 +15,6 @@ import model.site.SiteArticle;
 import model.site.Sites;
 
 import java.io.IOException;
-import java.util.Objects;
 import java.util.Optional;
 
 public class SiteDetailsSiteArticleCardController {

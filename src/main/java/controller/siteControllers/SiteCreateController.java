@@ -3,7 +3,6 @@ package controller.siteControllers;
 import controller.dpi.StageDependencyInjection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
@@ -12,7 +11,6 @@ import model.user.User;
 import model.site.Site;
 import model.site.SiteArticle;
 import model.site.Sites;
-import persistence.SitesDAO;
 
 import java.io.IOException;
 import java.util.ArrayList;
