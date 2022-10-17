@@ -13,7 +13,7 @@ public interface Observable {
 
     /**
      * Removes all observers (Observer pattern).
-     *
+     * @param o is the observer which is removed.
      */
     void unregisterObserver(Observer o);
 

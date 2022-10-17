@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A facade to order objects (Facade pattern), this enumerates every order uniquely and makes orders observables
- * (Observer pattern)
+ * A facade to order objects (Facade pattern), this enumerates every order uniquely
+ * and makes orders observables (Observer pattern).
  *
  */
 public class Orders implements Observable {
