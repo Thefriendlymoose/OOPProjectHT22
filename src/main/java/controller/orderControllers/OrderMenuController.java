@@ -27,17 +27,26 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Controller for the OrderMenu, is also the observer (Observer pattern).
+ *
+ */
+
 public class OrderMenuController implements Observer{
     @FXML
     private Button openButton, createButton, listButton, backButton;
 
     @FXML
     private TabPane tabPane;
-
     private Orders orders;
     private Sites sites;
     private WMS wms;
 
+    /**
+     * Constructor adds orders as observers (Observer pattern).
+     *
+     * @param wms is the facade for all facades in the model.
+     */
     public OrderMenuController(WMS wms) {
         this.wms = wms;
         this.sites = wms.getSites();
@@ -45,9 +54,21 @@ public class OrderMenuController implements Observer{
         orders.registerObserver(this);
     }
 
+    /**
+     * Loads all tabs.
+     *
+     * @throws IOException if tabs can't be added
+     */
+
     public void initialize() throws IOException {
         loadTabs();
     }
+
+    /**
+     * Creates a tab for every site.
+     *
+     * @throws IOException if tabs can't be added
+     */
 
     private void loadTabs() throws IOException{
         List<Site> s = sites.getInList();
@@ -76,11 +97,23 @@ public class OrderMenuController implements Observer{
         }
     }
 
+    /**
+     * Sets MainMenu as the active View.
+     *
+     * @throws Exception if stage can't be loaded
+     */
+
     public void backBtnHandler() throws Exception{
         Parent root = ParentDependencyInjection.load("fxml/mainMenu.fxml");
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }
+
+    /**
+     * Creates modal window when opening an order.
+     * @param e is the ActionEvent
+     * @throws Exception if stage can't be loaded
+     */
 
     public void openButton(ActionEvent e) throws Exception{
         Stage stage = StageDependencyInjection.load("fxml/orderViews/orderOpenModal.fxml");
@@ -90,6 +123,13 @@ public class OrderMenuController implements Observer{
         stage.show();
 
     }
+
+    /**
+     * Creates modal window when creating an order.
+     *
+     * @param e is the ActionEvent
+     * @throws Exception if stage cant be loaded
+     */
 
     public void createButton(ActionEvent e) throws Exception{
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderCreateModal.fxml")));
