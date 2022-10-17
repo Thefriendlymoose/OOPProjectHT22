@@ -1,6 +1,6 @@
 package orderTests;
 
-import model.order.DateFactory;
+import model.order.DateFunctions;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.util.concurrent.ThreadLocalRandom;
@@ -31,7 +31,7 @@ public class TestDate {
     @Test
     public void testValidDeadlineDateFactory(){
 
-        DateFactory df = new DateFactory();
+        DateFunctions df = new DateFunctions();
 
         int randomNum = ThreadLocalRandom.current().nextInt(-5, 5);
         System.out.println(randomNum);

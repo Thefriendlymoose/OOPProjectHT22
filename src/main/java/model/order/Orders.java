@@ -10,6 +10,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * A facade to order objects, this enumerates every order uniquely and makes orders observers.
+ *
+ */
 public class Orders implements Observable {
 
     private Map<Long, Order> orders;
@@ -22,6 +26,13 @@ public class Orders implements Observable {
         observers = new ArrayList<>();
     }
 
+    /**
+     * Returns all orders in the site as an array.
+     *
+     * @param site is the which has the orders
+     * @return all orders in the site as an array.
+     */
+
     public List<Order> getOrdersBySite(Site site){
         List<Order> temp = new ArrayList<>();
 
@@ -33,10 +44,20 @@ public class Orders implements Observable {
         return temp;
     }
 
+    /** all orders as an array.
+     *
+     * @return all orders as an array.
+     */
     public List<Order> getAllOrders(){
         return new ArrayList<>(orders.values());
     }
 
+    /**
+     * Returns the sum of all orders given a specific status.
+     *
+     * @param status is the type of status.
+     * @return the sum of all orders with a specific status.
+     */
     public float getCostPerOrderStatus(OrderStatus status){
         int sum = 0;
         for (Order order : orders.values()){
@@ -46,6 +67,13 @@ public class Orders implements Observable {
         }
         return sum;
     }
+
+    /**
+     * Returns the sum of revenue given a specific status.
+     *
+     * @param status is the type of status.
+     * @return the sum of revenue given specific status
+     */
     public float getRevenuePerOrderStatus(OrderStatus status){
         int sum = 0;
         for (Order order : orders.values()){
@@ -56,14 +84,33 @@ public class Orders implements Observable {
         return sum;
     }
 
+    /**
+     * Returns the sum of profit given a specific status.
+     *
+     * @param status is the type of status.
+     * @return the sum of revenue given a specific status.
+     */
+
     public float getProfitPerOrderStatus(OrderStatus status){
         return getRevenuePerOrderStatus(status) - getCostPerOrderStatus(status);
     }
 
+    /**
+     * Verifies if a specific OrderNumber exists in Orders.
+     *
+     * @param id is the OrderNumber
+     * @return true if it exists, else false.
+     */
     public boolean checkIfExist(Long id){
         return orders.containsKey(id);
     }
 
+    /**
+     * Returns an order in Order with a specified OrderNumber.
+     *
+     * @param id the OrderNumber.
+     * @return an order in Order with a specified OrderNumber
+     */
     public Order findById(Long id){
         return orders.get(id);
     }

@@ -2,7 +2,7 @@ package model.order;
 import java.time.LocalDateTime;
 
 
-public class DateFactory {
+public class DateFunctions {
 
     private final LocalDateTime orderDate = LocalDateTime.now();
 

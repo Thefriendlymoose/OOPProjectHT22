@@ -21,10 +21,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 
-
-
-import static model.order.OrderStatus.*;
-
 public class OrderFormModalController {
 
     @FXML
@@ -48,7 +44,7 @@ public class OrderFormModalController {
     private Sites sites;
     private ObservableList<OrderRow> addedRows;
 
-    private DateFactory df = new DateFactory();
+    private DateFunctions df = new DateFunctions();
     private LocalDateTime deadline;
     private LocalDateTime orderDate;
     private Orders orders;
