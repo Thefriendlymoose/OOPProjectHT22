@@ -1,5 +1,6 @@
 package model.order;
 
+import model.customer.Customer;
 import model.observer.Observable;
 import model.observer.Observer;
 import model.site.Site;
@@ -94,6 +95,16 @@ public class Orders implements Observable {
 
     public float getProfitPerOrderStatus(OrderStatus status){
         return getRevenuePerOrderStatus(status) - getCostPerOrderStatus(status);
+    }
+
+    public List<Order> getOrdersByCustomer(Customer customer) {
+        List<Order> os = new ArrayList<>();
+        for (Order o : orders.values()){
+            if (o.getCustomer().equals(customer)){
+                os.add(o);
+            }
+        }
+        return os;
     }
 
     /**
