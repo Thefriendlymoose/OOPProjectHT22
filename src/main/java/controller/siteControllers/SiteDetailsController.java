@@ -120,13 +120,11 @@ public class SiteDetailsController implements Observer {
     }
 
     public void onEmployeeAdd(ActionEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/siteDetailsUserAddModal.fxml"));
-        Stage stage = loader.load();
-        SiteDetailsUserAddModalController controller = loader.getController();
-        controller.setSite(site);
-        controller.setSites(sites);
+        StageDependencyInjection.addInjectionMethod(
+                SiteDetailsUserAddModalController.class, params -> new SiteDetailsUserAddModalController(sites, site)
+        );
 
-        sites.updateSite();
+        Stage stage = StageDependencyInjection.load("fxml/siteViews/siteDetailsUserAddModal.fxml");
 
         stage.setTitle("Add Employee");
         stage.initModality(Modality.WINDOW_MODAL);

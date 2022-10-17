@@ -36,26 +36,23 @@ public class SiteDetailsSiteArticleAddModalController {
     }
 
     public void initialize(){
-        Platform.runLater(() -> {
-            chooseArticleListView.getItems().addAll(new ArticlesFacade().getAll());
+        chooseArticleListView.getItems().addAll(new ArticlesFacade().getAll());
 
-            chooseArticleListView.setCellFactory(param -> new ListCell<Article>(){
-                @Override
-                protected void updateItem(Article s, boolean empty){
-                    super.updateItem(s, empty);
+        chooseArticleListView.setCellFactory(param -> new ListCell<Article>(){
+            @Override
+            protected void updateItem(Article s, boolean empty){
+                super.updateItem(s, empty);
 
-                    if(empty || s == null || s.getArticleName() == null){
-                        setText(null);
-                    } else {
-                        setText(s.getArticleName());
-                    }
+                if(empty || s == null || s.getArticleName() == null){
+                    setText(null);
+                } else {
+                    setText(s.getArticleName());
                 }
-            });
+            }
+        });
 
-
-            chooseArticleListView.getSelectionModel().selectedItemProperty().addListener((observableValue, site, t1) -> {
-                current = chooseArticleListView.getSelectionModel().getSelectedItem();
-            });
+        chooseArticleListView.getSelectionModel().selectedItemProperty().addListener((observableValue, site, t1) -> {
+            current = chooseArticleListView.getSelectionModel().getSelectedItem();
         });
     }
 

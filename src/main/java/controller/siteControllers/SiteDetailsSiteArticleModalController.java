@@ -1,8 +1,8 @@
 package controller.siteControllers;
 
+import controller.dpi.StageDependencyInjection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -13,7 +13,6 @@ import model.site.SiteArticle;
 import model.site.Sites;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class SiteDetailsSiteArticleModalController {
 
@@ -50,12 +49,11 @@ public class SiteDetailsSiteArticleModalController {
     }
 
     public void onEdit(ActionEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/siteViews/siteDetailsSiteArticleEditModal.fxml")));
-        Stage stage = loader.load();
-        SiteDetailsSiteArticleEditModalController controller = loader.getController();
-        controller.setSiteArticle(siteArticle);
-        controller.setSite(site);
-        controller.setSites(sites);
+        StageDependencyInjection.addInjectionMethod(
+                SiteDetailsSiteArticleEditModalController.class, params -> new SiteDetailsSiteArticleEditModalController(sites, site, siteArticle)
+        );
+
+        Stage stage = StageDependencyInjection.load("fxml/siteViews/siteDetailsSiteArticleEditModal.fxml");
 
         stage.setTitle("Stock: " + siteArticle.getArticle().getArticleName());
         stage.initModality(Modality.WINDOW_MODAL);
@@ -66,7 +64,4 @@ public class SiteDetailsSiteArticleModalController {
     }
 
 
-    public void setSites(Sites sites) {
-        this.sites = sites;
-    }
 }

@@ -20,26 +20,21 @@ public class SiteDetailsSiteArticleEditModalController {
     @FXML
     private Button saveButton, cancelButton;
 
-    private SiteArticle sa;
+    private SiteArticle siteArticle;
     private Site site;
     private Sites sites;
 
-    public void setSiteArticle(SiteArticle sa){
-        this.sa = sa;
-    }
-
-    public void setSite(Site site){
+    public SiteDetailsSiteArticleEditModalController(Sites sites, Site site, SiteArticle siteArticle) {
+        this.sites = sites;
         this.site = site;
+        this.siteArticle = siteArticle;
     }
-
 
     public void initialize(){
-        Platform.runLater(() -> {
-            articleNameTextField.setDisable(true);
-            articleNameTextField.setText(sa.getArticle().getArticleName());
+        articleNameTextField.setDisable(true);
+        articleNameTextField.setText(siteArticle.getArticle().getArticleName());
 
-            amountTextField.setText(String.valueOf(sa.getAmount()));
-        });
+        amountTextField.setText(String.valueOf(siteArticle.getAmount()));
     }
 
     public void onCancel(ActionEvent e){
@@ -59,10 +54,10 @@ public class SiteDetailsSiteArticleEditModalController {
     public void onSave(ActionEvent e){
         try{
             int amount = Integer.parseInt(amountTextField.getText());
-            if (site.isOverCapacity(sa, amount)){
+            if (site.isOverCapacity(siteArticle, amount)){
                 System.out.println("Over Capacity");
             } else {
-                site.editSiteArticle(sa, amount);
+                site.editSiteArticle(siteArticle, amount);
                 ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
                 sites.updateSite();
             }
@@ -73,7 +68,4 @@ public class SiteDetailsSiteArticleEditModalController {
 
     }
 
-    public void setSites(Sites sites) {
-        this.sites = sites;
-    }
 }
