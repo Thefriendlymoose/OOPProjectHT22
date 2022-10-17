@@ -11,7 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A facade to order objects, this enumerates every order uniquely and makes orders observers.
+ * A facade to order objects (Facade pattern), this enumerates every order uniquely and makes orders observables
+ * (Observer pattern)
  *
  */
 public class Orders implements Observable {
@@ -115,48 +116,86 @@ public class Orders implements Observable {
         return orders.get(id);
     }
 
+    /**
+     * Returns a list of all order objects in Orders.
+     *
+     * @return a list of all order objects in Orders.
+     */
+
     public List<Order> getInList() {
         return new ArrayList<>(orders.values());
     }
 
-    public Order getByOrderNumber(Long orderNumber){
-        return orders.get(orderNumber);
-    }
-
+    /**
+     * Adds an order object to orders with a unique OrderNumber.
+     *
+     * @param order is the order which is added.
+     */
     public void addOrder(Order order){
         orders.put(order.getOrderNumber(), order);
         nextOrderNumber++;
         notifyObservers();
     }
 
+    /**
+     * Removes an order object from orders.
+     *
+     * @param order is the order which is removed.
+     */
+
     public void removeOrder(Order order){
         orders.remove(order.getOrderNumber());
         notifyObservers(); }
 
+    /**
+     * Returns the unique next OrderNumber.
+     *
+     * @return the unique next OrderNUmber.
+     */
     public Long getNextOrderNumber(){
         return nextOrderNumber;
     }
 
+    /**
+     * Notifies all observers that a change has been made (Observer pattern).
+     *
+     */
     public void updateOrder(){
         notifyObservers();
     }
 
 
+    /**
+     * Adds an observer (Observer pattern).
+     * @param o is the observer which is added.
+     */
     @Override
     public void registerObserver(Observer o) {observers.add(o);
 
     }
 
+    /**
+     * Removes an observer (Observer pattern).
+     * @param o is the observer which is removed.
+     */
     @Override
     public void unregisterObserver(Observer o) { observers.remove(o);
 
     }
 
+    /**
+     * Removes all observers (Observer pattern).
+     *
+     */
     @Override
     public void unregisterAll() { observers = new ArrayList<>();
 
     }
 
+    /**
+     * Notifies all observers (Observer pattern).
+     *
+     */
     @Override
     public void notifyObservers() {
         for (Observer o : observers){
@@ -165,7 +204,10 @@ public class Orders implements Observable {
     }
 
 
-//    temporary
+    /** Returns a string containing information about order objects in Orders.
+     *
+     * @return a string containing information about order objects in Orders.
+     */
     @Override
     public String toString() {
         return "Orders{" +
