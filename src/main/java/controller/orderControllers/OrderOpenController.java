@@ -10,12 +10,14 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.order.Order;
 import model.order.Orders;
-import persistence.IPersistence;
-import persistence.OrderDAO;
 
 
 import java.io.IOException;
 
+/**
+ * Controller for opening an order by pressing the "Open Order" button in the OrderMenu
+ * on the top left, after having provided an order number in the text field.
+ */
 
 public class OrderOpenController {
 
@@ -30,6 +32,10 @@ public class OrderOpenController {
         this.orders = orders;
 
     }
+
+    /**
+     * Creates a modal with order details for the orders that can be open.
+     */
 
     public void openOrder(ActionEvent event){
 

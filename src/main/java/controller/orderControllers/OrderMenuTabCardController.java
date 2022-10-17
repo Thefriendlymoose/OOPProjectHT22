@@ -17,6 +17,11 @@ import model.site.Sites;
 
 import java.io.IOException;
 
+/**
+ * Controller for the opening an order by pressing an "Open" button in the OrderMenu
+ * on the Order cards.
+ */
+
 public class OrderMenuTabCardController {
 
     @FXML
@@ -27,15 +32,16 @@ public class OrderMenuTabCardController {
 
     private Order order;
 
-    private Site site;
     private Orders orders;
-    private Sites sites;
 
     public void setOrder(Order order){
         this.order = order;
     }
     public void setOrders(Orders orders){this.orders = orders;}
 
+    /**
+     * Creates a modal with order details for the orders that can be open.
+     */
 
     public void initialize(){
         Platform.runLater(() -> {
