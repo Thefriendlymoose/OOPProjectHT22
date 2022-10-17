@@ -4,23 +4,19 @@ import controller.dpi.ParentDependencyInjection;
 import controller.dpi.StageDependencyInjection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import model.WMS;
 import model.observer.Observer;
 import model.site.Site;
 import model.site.Sites;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class SiteMenuController implements Observer {
     @FXML
