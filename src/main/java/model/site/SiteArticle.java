@@ -2,6 +2,9 @@ package model.site;
 
 import model.article.Article;
 
+/**
+ * Class represents inventory of an article in a site.
+ */
 public class SiteArticle {
     private Article article;
     private int amount;
