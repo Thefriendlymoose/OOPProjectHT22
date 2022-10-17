@@ -35,7 +35,7 @@ public class OrderEditModalController {
     @FXML
     private DatePicker orderDeadlineDatePicker;
 
-    private DateFactory df = new DateFactory();
+    private DateFunctions df = new DateFunctions();
 
     private LocalDateTime deadline;
 
