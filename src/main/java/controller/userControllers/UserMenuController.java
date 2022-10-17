@@ -18,12 +18,12 @@ import model.user.Users;
 import persistence.IPersistence;
 import model.user.User;
 import persistence.UserDAO;
+import model.observer.Observer;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Observable;
-import java.util.Observer;
 
 public class UserMenuController implements Observer {
     @FXML
@@ -92,8 +92,6 @@ public class UserMenuController implements Observer {
         stage.show();
 
     }
-
-
 
     @Override
     public void update() {

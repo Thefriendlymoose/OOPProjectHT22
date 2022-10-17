@@ -1,15 +1,12 @@
 package controller.userControllers;
 
-import controller.siteControllers.SiteDetailsController;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+import model.article.ArticleCategory;
+import model.article.ArticleStatus;
 import model.user.Permission;
-import model.user.Role;
 import model.user.User;
 import model.user.Users;
 import persistence.UserDAO;
@@ -18,7 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateUserController {
+public class userDetailsController {
 
     @FXML
     private Button saveButton,cancelButton;
@@ -40,37 +37,28 @@ public class CreateUserController {
 
 
     private Users users;
+    private User user;
     public void setUsers(Users users) {
         this.users = users;
     }
-    public void onSave(ActionEvent e) throws IOException {
-        // temp
-        List<Permission> role = new ArrayList<Permission>();
-        role.add(roleBox.getValue());
-
-        User newUser = new User(users.getNextUserID(), userNameField.getText(), passwordField.getText(),firstNameField.getText() + " " + lastNameField.getText()
-        , statusBox.getValue(),role);
-
-        users.addUser(newUser);
-
-
-    }
-
-
-    public void initialize(){
-        statusBox.getItems().setAll(true, false);
-        //roleBox.getItems().setAll(users.getPermissions());
-        userIDTextField.setText(Long.toString(UserDAO.getInstance().getNextId()));
+    public void setUser(User user) {
+        this.user = user;
     }
 
 
 
 
+    @FXML
+    public void initialize() {
 
 
+        Platform.runLater(() -> {
+            userIDLabel.setText(userIDLabel.getText() + user.getUserId());
 
 
+        });
 
+    }
 
 
 }
