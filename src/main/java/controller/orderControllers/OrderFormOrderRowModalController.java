@@ -45,7 +45,7 @@ public class OrderFormOrderRowModalController {
                     if(empty || s == null || s.getArticle() == null){
                         setText(null);
                     } else {
-                        setText(s.getArticle().getArticleName() + "\\n " + s.getAmount() + "x");
+                        setText(s.getArticle().getArticleName() + " " + s.getAmount() + "x");
                     }
                 }
             });
