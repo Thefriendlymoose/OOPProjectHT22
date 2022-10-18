@@ -46,7 +46,7 @@ public class CustomerInfoViewController {
     private void printContacts(Customer c){
         contactBox.getChildren().clear();
         for (CustomerContact cc : c.getContacts()){
-            Label contact = new Label(cc.getContactPerson());
+            Label contact = new Label(cc.toString());
             contactBox.getChildren().add(contact);
         }
     }
