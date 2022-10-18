@@ -58,7 +58,7 @@ public class UserMenuController implements Observer {
             UserMenuCardController cont =  cardLoader.getController();
 
             cont.setUser(user);
-
+            cont.setUsers(users);
 
             userCardHolder.getChildren().add(pane);
         }

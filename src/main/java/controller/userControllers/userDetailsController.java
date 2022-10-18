@@ -78,7 +78,6 @@ public class userDetailsController {
         UserEditFormController cont = loader.getController();
         cont.setUser(user);
         cont.setUsers(users);
-
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Stage) ((Node)e.getSource()).getScene().getWindow()).getOwner());
         stage.show();
