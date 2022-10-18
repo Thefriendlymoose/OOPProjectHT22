@@ -29,7 +29,7 @@ public class CustomerMenuController implements Observer {
     private VBox customerBox;
 
     @FXML
-    private Button openButton, createButton, listButton, backButton;
+    private Button openButton, createButton, backButton;
     private WMS wms;
     private CustomerModel model;
 
@@ -83,6 +83,7 @@ public class CustomerMenuController implements Observer {
 
             CustomerCardController cont = loader.getController();
             cont.setCustomer(c);
+            cont.setModel(model);
 
             customerBox.getChildren().add(pane);
         }

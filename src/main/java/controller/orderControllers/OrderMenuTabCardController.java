@@ -1,5 +1,6 @@
 package controller.orderControllers;
 
+import controller.dpi.StageDependencyInjection;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,8 +13,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.order.Order;
 import model.order.Orders;
-import model.site.Site;
-import model.site.Sites;
+
 
 import java.io.IOException;
 
@@ -34,44 +34,35 @@ public class OrderMenuTabCardController {
 
     private Orders orders;
 
-    public void setOrder(Order order){
+    public OrderMenuTabCardController(Orders orders, Order order) {
+        this.orders = orders;
         this.order = order;
     }
-    public void setOrders(Orders orders){this.orders = orders;}
 
     /**
      * Creates a modal with order details for the orders that can be open.
      */
 
     public void initialize(){
-        Platform.runLater(() -> {
-            orderNum.setText(String.valueOf(order.getOrderNumber()));
-            priority.setText(Boolean.toString(order.isPriority()));
-            status.setText(order.getOrderStatus().toString());
-            amount.setText(Integer.toString(order.getTotalAmount()));
-            deadline.setText(order.getDeadline().toString());
-
-            openButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderDetailsModal.fxml"));
-                    Stage stage;
-                    try {
-                        stage = loader.load();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-
-                    OrderDetailsModalController controller = loader.getController();
-                    controller.setOrder(order);
-                    controller.setOrders(orders);
-
-                    stage.setTitle("Order: " + order.getOrderNumber());
-                    stage.initModality(Modality.WINDOW_MODAL);
-                    stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
-                    stage.show();
-                }
-            });
-        });
+        orderNum.setText(String.valueOf(order.getOrderNumber()));
+        priority.setText(Boolean.toString(order.isPriority()));
+        status.setText(order.getOrderStatus().toString());
+        amount.setText(Integer.toString(order.getTotalAmount()));
+        deadline.setText(order.getDeadline().toString());
     }
+
+    public void onOpen(ActionEvent e) throws IOException{
+
+        StageDependencyInjection.addInjectionMethod(
+                OrderDetailsModalController.class, params -> new OrderDetailsModalController(orders, order)
+        );
+
+        Stage stage = StageDependencyInjection.load("fxml/orderViews/orderDetailsModal.fxml");
+
+        stage.setTitle("Order: " + order.getOrderNumber());
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Node)e.getSource()).getScene().getWindow());
+        stage.show();
+    }
+
 }

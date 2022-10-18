@@ -1,5 +1,6 @@
 package controller.orderControllers;
 
+import controller.dpi.StageDependencyInjection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,13 +44,13 @@ public class OrderOpenController {
             try {
                 Long id = Long.parseLong(searchField.getText());
                 if(orders.checkIfExist(id)){
-
                     Order order = orders.findById(id);
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderDetailsModal.fxml"));
-                    Stage stage = loader.load();
-                    OrderDetailsModalController controller = loader.getController();
-                    controller.setOrder(order);
-                    controller.setOrders(orders);
+
+                    StageDependencyInjection.addInjectionMethod(
+                        OrderDetailsModalController.class, params -> new OrderDetailsModalController(orders, order)
+                    );
+
+                    Stage stage = StageDependencyInjection.load("fxml/orderViews/orderDetailsModal.fxml");
                     stage.setTitle("Order: " + order.getOrderNumber());
                     stage.initModality(Modality.WINDOW_MODAL);
                     stage.initOwner(((Stage) ((Node)event.getSource()).getScene().getWindow()).getOwner());

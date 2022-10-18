@@ -82,8 +82,4 @@ public class Customer{
         this.companyOrgNumber = companyOrgNumber;
     }
 
-
-    public String companyNameToString() {
-        return companyName;
-    }
 }

@@ -227,4 +227,14 @@ public class Orders implements Observable {
                 ", observers=" + observers +
                 '}';
     }
+
+    /**
+     * Returns a Boolean array of {true, false}.
+     *
+     * @return a Boolean array of {true, false}.
+     */
+    public Boolean[] getAllPriorities() {
+        return new Boolean[]{true,false};
+    }
+
 }
