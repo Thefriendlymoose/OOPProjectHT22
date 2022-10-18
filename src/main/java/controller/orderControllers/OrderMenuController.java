@@ -144,6 +144,10 @@ public class OrderMenuController implements Observer{
         stage.show();
     }
 
+    /**
+     * Updates the tabs. Method is called when orders are added or edited.
+     *
+     */
     @Override
     public void update() {
         try{

@@ -13,6 +13,10 @@ import model.site.SiteArticle;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Controller for choosing an article through previous cards.
+ */
+
 public class OrderFormOrderRowModalController {
 
     @FXML

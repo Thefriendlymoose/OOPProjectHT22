@@ -59,15 +59,14 @@ public class OrderEditModalController {
 
     @FXML
     public void initialize(){
+        titleLabel.setText("Order: " + order.getOrderNumber());
+        numberTextField.setText(Long.toString(order.getOrderNumber()));
+        priorityComboBox.setValue(order.isPriority());
+        statusComboBox.setValue(order.getOrderStatus());
+        customerComboBox.setValue(order.getCustomer());
+        customerComboBox.getItems().addAll(dao.getAll());
 
-        Platform.runLater(() -> {
-            titleLabel.setText("Order: " + order.getOrderNumber());
-            numberTextField.setText(Long.toString(order.getOrderNumber()));
-            priorityComboBox.setValue(order.isPriority());
-            statusComboBox.setValue(order.getOrderStatus());
-            customerComboBox.setValue(order.getCustomer());
-
-            addedRows = FXCollections.observableArrayList(order.getOrderRows());
+        addedRows = FXCollections.observableArrayList(order.getOrderRows());
 
             orderRowListView.setItems(addedRows);
             orderRowListView.setCellFactory(param -> new ListCell<OrderRow>(){
@@ -83,9 +82,7 @@ public class OrderEditModalController {
                 }
             });
 
-            Boolean [] priorities = {true,false};
-            priorityComboBox.getItems().addAll(priorities);
-
+        priorityComboBox.getItems().addAll(orders.getAllPriorities());
 
             List<OrderStatus> orderStatusList = new ArrayList<>(EnumSet.allOf(OrderStatus.class));
             statusComboBox.getItems().addAll(orderStatusList);

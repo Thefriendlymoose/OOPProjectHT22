@@ -21,6 +21,10 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 
+/**
+ * Controller for creating an Order, which is accessed by pressing the "Create Order" button.
+ */
+
 public class OrderFormModalController {
 
     @FXML
@@ -48,13 +52,18 @@ public class OrderFormModalController {
     private LocalDateTime deadline;
     private LocalDateTime orderDate;
     private Orders orders;
+    private Site site;
+    private CustomerModel customerModel;
 
-    public void setSite(Site site){
+    public OrderFormModalController(Orders orders, Site site, CustomerModel customerModel) {
+        this.orders = orders;
         this.site = site;
+        this.customerModel = customerModel;
     }
 
-    private IPersistence<Customer> customers = CustomersDAO.getInstance();
-
+    /**
+     * Gives the text fields
+     */
     @FXML
     public void initialize(){
 
@@ -73,8 +82,7 @@ public class OrderFormModalController {
             }
         });
 
-        Boolean [] priorities = {true,false};
-        priorityComboBox.getItems().addAll(priorities);
+        priorityComboBox.getItems().addAll(orders.getAllPriorities());
 
         numberTextField.setText(Integer.toString((int) OrderDAO.getInstance().getNextId()));
 
@@ -85,11 +93,8 @@ public class OrderFormModalController {
         customerComboBox.getItems().addAll(customers.getAll());
     }
 
-//    !amountTextField.getText().isEmpty()
-
     public void saveOrder(ActionEvent e){
         System.out.println("orderRowListView.getItems().size(): " + orderRowListView.getItems().size());
-//        if (df.isValidDeadline(deadline) && !customerComboBox.getEditor().equals("Choose Customer")){
             if (df.isValidDeadline(deadline) && customerComboBox.getValue() != null && statusComboBox.getValue() != null && priorityComboBox.getValue() != null && orderRowListView.getItems().size() > 0){
                 orders.addOrder(new Order(null, orders.getNextOrderNumber(), customerComboBox.getValue(), statusComboBox.getValue(), priorityComboBox.getValue(), orderDate, deadline, addedRows.stream().toList(), site));
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
@@ -98,17 +103,6 @@ public class OrderFormModalController {
 
     }
 
-    public void setPriorityComboBox(){
-        System.out.println("Priority: "+ priorityComboBox.getValue());
-    }
-
-    public void setStatusComboBox(){
-        System.out.println("Status: "+ statusComboBox.getValue());
-    }
-
-    public void setCustomerComboBox(){
-        System.out.println("Customer: "+ customerComboBox.getValue());
-    }
 
     public void deadlineDatePicker(){
 
@@ -123,22 +117,6 @@ public class OrderFormModalController {
             System.out.println("Deadline: " + deadline.getDayOfMonth() + "-"+ deadline.getMonthValue() + "-" + deadline.getYear());
         }
     }
-
-    public void onAddOrderRowButtonOld(ActionEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderFormOrderRowModal.fxml")));
-        Stage stage = loader.load();
-
-        OrderFormOrderRowModalController controller = loader.getController();
-        controller.setSiteArticles(site.getSiteArticles());
-        controller.setObservableOrderRows(addedRows);
-
-        stage.setTitle("Choose Article");
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(((Node) e.getSource()).getScene().getWindow());
-        stage.show();
-    }
-
-//    denna
 
     public void onAddOrderRowButton(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderDetailsAddModal.fxml"));
@@ -169,10 +147,16 @@ public class OrderFormModalController {
         }
     }
 
-    public void setSites(Sites sites) {
-        this.sites = sites;
+    public void setPriorityComboBox(){
+        System.out.println("Priority: "+ priorityComboBox.getValue());
     }
 
-    public void setOrders(Orders orders) {this.orders = orders;
+    public void setStatusComboBox(){
+        System.out.println("Status: "+ statusComboBox.getValue());
     }
+
+    public void setCustomerComboBox(){
+        System.out.println("Customer: "+ customerComboBox.getValue());
+    }
+
 }

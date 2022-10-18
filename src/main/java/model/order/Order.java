@@ -150,7 +150,6 @@ public class Order {
         return sum;
     }
 
-
     /**
      * Returns the sum of the number of articles in the order.
      *
@@ -163,5 +162,6 @@ public class Order {
         }
         return sum;
     }
+
 
 }
