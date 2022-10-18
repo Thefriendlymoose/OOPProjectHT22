@@ -35,7 +35,7 @@ public class CustomerCardController {
         });
     }
 
-    private void setModel(CustomerModel model){
+    public void setModel(CustomerModel model){
         this.model = model;
     }
 
@@ -44,7 +44,10 @@ public class CustomerCardController {
         Stage stage = loader.load();
         CustomerInfoViewController cont = loader.getController();
         cont.setCustomer(customer);
-        stage.setTitle(customer.getCompanyName());
+        cont.setModel(model);
+        stage.setTitle("Customer Info");
+
+        model.registerObserver(cont);
 
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
