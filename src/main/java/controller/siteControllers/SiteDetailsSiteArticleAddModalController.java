@@ -14,7 +14,7 @@ import model.site.Sites;
 
 import java.util.Optional;
 
-public class siteDetailsSiteArticleAddModalController {
+public class SiteDetailsSiteArticleAddModalController {
 
     @FXML
     private ListView<Article> chooseArticleListView;
@@ -30,31 +30,29 @@ public class siteDetailsSiteArticleAddModalController {
     private Site site;
     private Sites sites;
 
-    public void setSite(Site site){
+    public SiteDetailsSiteArticleAddModalController(Sites sites, Site site) {
+        this.sites = sites;
         this.site = site;
     }
 
     public void initialize(){
-        Platform.runLater(() -> {
-            chooseArticleListView.getItems().addAll(new ArticlesFacade().getAll());
+        chooseArticleListView.getItems().addAll(new ArticlesFacade().getAll());
 
-            chooseArticleListView.setCellFactory(param -> new ListCell<Article>(){
-                @Override
-                protected void updateItem(Article s, boolean empty){
-                    super.updateItem(s, empty);
+        chooseArticleListView.setCellFactory(param -> new ListCell<Article>(){
+            @Override
+            protected void updateItem(Article s, boolean empty){
+                super.updateItem(s, empty);
 
-                    if(empty || s == null || s.getArticleName() == null){
-                        setText(null);
-                    } else {
-                        setText(s.getArticleName());
-                    }
+                if(empty || s == null || s.getArticleName() == null){
+                    setText(null);
+                } else {
+                    setText(s.getArticleName());
                 }
-            });
+            }
+        });
 
-
-            chooseArticleListView.getSelectionModel().selectedItemProperty().addListener((observableValue, site, t1) -> {
-                current = chooseArticleListView.getSelectionModel().getSelectedItem();
-            });
+        chooseArticleListView.getSelectionModel().selectedItemProperty().addListener((observableValue, site, t1) -> {
+            current = chooseArticleListView.getSelectionModel().getSelectedItem();
         });
     }
 
@@ -89,8 +87,4 @@ public class siteDetailsSiteArticleAddModalController {
         }
     }
 
-
-    public void setSites(Sites sites) {
-        this.sites = sites;
-    }
 }

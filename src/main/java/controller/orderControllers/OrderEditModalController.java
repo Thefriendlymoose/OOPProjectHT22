@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 import model.customer.Customer;
 import model.order.*;
 import persistence.CustomersDAO;
@@ -35,7 +36,7 @@ public class OrderEditModalController {
     @FXML
     private DatePicker orderDeadlineDatePicker;
 
-    private DateFactory df = new DateFactory();
+    private DateFunctions df = new DateFunctions();
 
     private LocalDateTime deadline;
 
@@ -50,49 +51,56 @@ public class OrderEditModalController {
     private Orders orders;
     private ObservableList<OrderRow> addedRows;
 
-
-
-    public void setOrder(Order order){
+    public OrderEditModalController(Orders orders, Order order) {
+        this.orders = orders;
         this.order = order;
     }
 
 
     @FXML
     public void initialize(){
+        titleLabel.setText("Order: " + order.getOrderNumber());
+        numberTextField.setText(Long.toString(order.getOrderNumber()));
+        priorityComboBox.setValue(order.isPriority());
+        statusComboBox.setValue(order.getOrderStatus());
+        customerComboBox.setValue(order.getCustomer());
+        customerComboBox.getItems().addAll(dao.getAll());
 
-        Platform.runLater(() -> {
-            titleLabel.setText("Order: " + order.getOrderNumber());
-            numberTextField.setText(Long.toString(order.getOrderNumber()));
-            priorityComboBox.setValue(order.isPriority());
-            statusComboBox.setValue(order.getOrderStatus());
-            customerComboBox.setValue(order.getCustomer());
+        addedRows = FXCollections.observableArrayList(order.getOrderRows());
 
-            addedRows = FXCollections.observableArrayList(order.getOrderRows());
+        orderRowListView.setItems(addedRows);
+        orderRowListView.setCellFactory(param -> new ListCell<OrderRow>(){
+            @Override
+            protected void updateItem(OrderRow s, boolean empty){
+                super.updateItem(s, empty);
 
-            orderRowListView.setItems(addedRows);
-            orderRowListView.setCellFactory(param -> new ListCell<OrderRow>(){
-                @Override
-                protected void updateItem(OrderRow s, boolean empty){
-                    super.updateItem(s, empty);
-
-                    if(empty || s == null || s.getArticle() == null){
-                        setText(null);
-                    } else {
-                        setText(s.getArticle().getArticleName() + "\\n " + s.getAmount() + "x");
-                    }
+                if(empty || s == null || s.getArticle() == null){
+                    setText(null);
+                } else {
+                    setText(s.getArticle().getArticleName() + " " + s.getAmount() + "x");
                 }
-            });
-
-            Boolean [] priorities = {true,false};
-            priorityComboBox.getItems().addAll(priorities);
-
-
-            List<OrderStatus> orderStatusList = new ArrayList<>(EnumSet.allOf(OrderStatus.class));
-            statusComboBox.getItems().addAll(orderStatusList);
-
-            orderDeadlineDatePicker.setValue(order.getDeadline().toLocalDate());
-
+            }
         });
+
+        priorityComboBox.getItems().addAll(orders.getAllPriorities());
+
+        List<OrderStatus> orderStatusList = new ArrayList<>(EnumSet.allOf(OrderStatus.class));
+        statusComboBox.getItems().addAll(orderStatusList);
+
+        orderDeadlineDatePicker.setValue(order.getDeadline().toLocalDate());
+
+        customerComboBox.setConverter(new StringConverter<Customer>() {
+            @Override
+            public String toString(Customer c) {
+                return c.getCompanyName();
+            }
+
+            @Override
+            public Customer fromString(String c) {
+                return null;
+            }
+        });
+
     }
 
 
@@ -153,10 +161,6 @@ public class OrderEditModalController {
 //            System.out.println("today: " + LocalDateTime.now().getDayOfMonth() + "-"+ LocalDateTime.now().getMonthValue() + "-" + LocalDateTime.now().getYear());
 //            System.out.println("deadline: " + deadline.getDayOfMonth() + "-"+ deadline.getMonthValue() + "-" + deadline.getYear());
 //        }
-    }
-
-    public void setOrders(Orders orders) {
-        this.orders = orders;
     }
 
     public void saveOrder(ActionEvent e){

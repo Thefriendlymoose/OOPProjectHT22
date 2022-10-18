@@ -8,6 +8,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Models a collection of sites
+ */
 public class Sites implements Observable {
 
     private Map<Long, Site> sites;
@@ -15,16 +18,29 @@ public class Sites implements Observable {
 
     private List<Observer> observers;
 
+    /**
+     * Constructor for sites, takes the map which contains all the sites, calculates the next available if and initializes
+     * the list of observers
+     * @param sites
+     */
     public Sites(Map<Long, Site> sites){
         this.sites = sites;
         nextId = Collections.max(sites.keySet()) + 1;
         observers = new ArrayList<>();
     }
 
+    /**
+     *
+     * @return Returns all the sites in a map
+     */
     public Map<Long, Site> getInMap(){
         return sites;
     }
 
+    /**
+     *
+     * @return returns all the sites in a list
+     */
     public List<Site> getInList() {
         return new ArrayList<>(sites.values());
     }
@@ -48,6 +64,9 @@ public class Sites implements Observable {
         return nextId;
     }
 
+    /**
+     * Used when a site was edited to inform observers
+     */
     public void updateSite(){
         notifyObservers();
     }

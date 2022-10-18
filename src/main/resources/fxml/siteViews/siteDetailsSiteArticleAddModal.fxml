@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-<Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.siteControllers.siteDetailsSiteArticleAddModalController">
+<Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.siteControllers.SiteDetailsSiteArticleAddModalController">
     <scene>
         <Scene>
             <AnchorPane prefHeight="200" prefWidth="200" stylesheets="@../stylesheet.css">

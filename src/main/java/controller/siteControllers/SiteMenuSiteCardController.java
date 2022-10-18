@@ -1,8 +1,8 @@
 package controller.siteControllers;
 
-import javafx.application.Platform;
+import controller.dpi.StageDependencyInjection;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class SiteMenuSiteCardController {
 
-    private Site site;
+
 
     @FXML
     private Label cardNameLabel, cardAmountLabel;
@@ -24,46 +24,30 @@ public class SiteMenuSiteCardController {
     @FXML
     private Button cardGoToButton;
     private Sites sites;
+    private Site site;
 
-
-    public void initialize(){
-
-        Platform.runLater(() -> {
-            cardNameLabel.setText(cardNameLabel.getText() + site.getSiteName());
-            cardAmountLabel.setText(cardAmountLabel.getText() + site.getTotalAmountItems());
-
-            cardGoToButton.setOnAction(actionEvent -> {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/siteViews/siteDetailsModal.fxml"));
-
-                Stage stage = null;
-                try {
-                    stage = loader.load();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-
-
-                SiteDetailsController controller = loader.getController();
-                controller.setSite(site);
-                controller.setSites(sites);
-
-                stage.setTitle("Site: " + site.getSiteId());
-                stage.initModality(Modality.WINDOW_MODAL);
-                stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
-                stage.show();
-
-            });
-
-        });
-
-    }
-
-    public void setSite(Site site){
+    public SiteMenuSiteCardController(Sites sites, Site site) {
+        this.sites = sites;
         this.site = site;
     }
 
 
-    public void setSites(Sites sites) {
-        this.sites = sites;
+    public void initialize(){
+        cardNameLabel.setText(cardNameLabel.getText() + site.getSiteName());
+        cardAmountLabel.setText(cardAmountLabel.getText() + site.getTotalAmountItems());
+    }
+
+    public void onGoTo(ActionEvent e) throws IOException {
+        StageDependencyInjection.addInjectionMethod(
+                SiteDetailsController.class, params -> new SiteDetailsController(sites, site)
+        );
+
+        Stage stage = StageDependencyInjection.load("fxml/siteViews/siteDetailsModal.fxml");
+
+        stage.setTitle("Site: " + site.getSiteId());
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Node)e.getSource()).getScene().getWindow());
+        stage.show();
+
     }
 }
