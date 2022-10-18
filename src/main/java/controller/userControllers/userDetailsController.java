@@ -1,9 +1,15 @@
 package controller.userControllers;
 
+import controller.articleControllers.ArticleEditFormController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
 import model.user.Permission;
@@ -14,11 +20,12 @@ import persistence.UserDAO;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class userDetailsController {
 
     @FXML
-    private Button saveButton,cancelButton;
+    private Button editButton,cancelButton;
 
     @FXML
     private TextField userIDTextField, firstNameField, lastNameField, userNameField, passwordField;
@@ -64,6 +71,22 @@ public class userDetailsController {
         });
 
     }
+
+    public void edit(ActionEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/userViews/userEditor.fxml"));
+        Stage stage = loader.load();
+        UserEditFormController cont = loader.getController();
+        cont.setUser(user);
+        cont.setUsers(users);
+
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Stage) ((Node)e.getSource()).getScene().getWindow()).getOwner());
+        stage.show();
+
+        ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+    }
+
+
 
 
 }

@@ -53,7 +53,6 @@ public class CreateUserController {
 
         users.addUser(newUser);
 
-
     }
 
 

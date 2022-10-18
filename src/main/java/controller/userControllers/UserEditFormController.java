@@ -1,11 +1,16 @@
 package controller.userControllers;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.user.Permission;
 import model.user.User;
 import model.user.Users;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserEditFormController {
 
@@ -54,6 +59,16 @@ public class UserEditFormController {
             statusBox.getItems().setAll(user.isStatus());
 
         });
+
+    }
+    public void onSave(ActionEvent e) throws IOException {
+        // temp
+        user.getFirtName(firstNameField.getText(),0);
+        user.getFirtName(lastNameField.getText(),1);
+        user.setUserName((userNameField.getText()));
+        user.setPassword(passwordField.getText());
+        user.setStatus(statusBox.getValue());
+        users.updateUser();
 
     }
 

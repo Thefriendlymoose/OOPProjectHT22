@@ -33,18 +33,18 @@
                                 <Label fx:id="lastNameLabel" styleClass="generic-form-label" text="Last Name" alignment="CENTER_RIGHT" />
                             </HBox>
                             <HBox spacing="5">
-                                <TextField fx:id="firstNameField"  promptText="First Name" styleClass="generic-field, locked-form-field" alignment="CENTER_LEFT" />
+                                <TextField fx:id="firstNameField" disable="true"  promptText="First Name" styleClass="generic-field, locked-form-field" alignment="CENTER_LEFT" />
                                 <Region HBox.hgrow="ALWAYS" />
-                                <TextField fx:id="lastNameField"  promptText="Last Name" styleClass="generic-field, locked-form-field" alignment="CENTER_RIGHT" />
+                                <TextField fx:id="lastNameField" disable="true"  promptText="Last Name" styleClass="generic-field, locked-form-field" alignment="CENTER_RIGHT" />
                             </HBox>
-                            <Label fx:id="userNameLabel" styleClass="generic-form-label" text="UserName" />
-                            <TextField fx:id="userNameField"  promptText="UserName" styleClass="generic-field, locked-form-field" />
-                            <Label fx:id="passwordLabel" styleClass="generic-form-label" text="Password" />
-                            <TextField fx:id="passwordField"  promptText="Password" styleClass="generic-field, locked-form-field" />
+                            <Label fx:id="userNameLabel" disable="true" styleClass="generic-form-label" text="UserName" />
+                            <TextField fx:id="userNameField" disable="true"  promptText="UserName" styleClass="generic-field, locked-form-field" />
+                            <Label fx:id="passwordLabel" disable="true" styleClass="generic-form-label" text="Password" />
+                            <TextField fx:id="passwordField" disable="true"  promptText="Password" styleClass="generic-field, locked-form-field" />
                             <Label fx:id="StatusLabel" styleClass="generic-form-label" text="Status" />
-                            <ComboBox fx:id="statusBox" maxWidth="1.7976931348623157E308" promptText="Choose Status" styleClass="generic-field, locked-form-field" />
+                            <ComboBox fx:id="statusBox" disable="true" maxWidth="1.7976931348623157E308" promptText="Choose Status" styleClass="generic-field, locked-form-field" />
                             <Label fx:id="roleLabel" styleClass="generic-form-label" text="Role" />
-                            <ComboBox fx:id="roleBox"  maxWidth="1.7976931348623157E308" promptText="Choose Role" styleClass="generic-field, locked-form-field" />
+                            <ComboBox fx:id="roleBox" disable="true"  maxWidth="1.7976931348623157E308" promptText="Choose Role" styleClass="generic-field, locked-form-field" />
                             <Label styleClass="generic-form-label" text="Role Description" />
                             <TextArea fx:id="descriptionTextArea" disable="true" promptText="Role Description" prefWidth="200.0" styleClass="generic-field" />
                         </children>
@@ -52,7 +52,7 @@
                             <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
                         </VBox.margin>
                         <HBox>
-                            <Button styleClass="generic-button"  fx:id="saveButton" mnemonicParsing="false" text="Save" alignment="BASELINE_LEFT" />
+                            <Button onAction="#edit" styleClass="generic-button"  fx:id="editButton" mnemonicParsing="false" text="Edit User" alignment="BASELINE_LEFT" />
                             <Region HBox.hgrow="ALWAYS" />
                             <Button styleClass="generic-button"  fx:id="cancelButton" mnemonicParsing="false" text="Cancel" alignment="BASELINE_RIGHT" />
                         </HBox>
@@ -60,7 +60,6 @@
                 </children>
 
             </AnchorPane>
-
         </Scene>
     </scene>
 </Stage>

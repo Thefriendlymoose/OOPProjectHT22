@@ -51,7 +51,7 @@
                             <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
                         </VBox.margin>
                         <HBox>
-                            <Button styleClass="generic-button"  fx:id="saveButton" mnemonicParsing="false" text="Save" alignment="BASELINE_LEFT" />
+                            <Button onAction="#onSave" styleClass="generic-button"  fx:id="saveButton" mnemonicParsing="false" text="Save" alignment="BASELINE_LEFT" />
                             <Region HBox.hgrow="ALWAYS" />
                             <Button styleClass="generic-button"  fx:id="cancelButton" mnemonicParsing="false" text="Cancel" alignment="BASELINE_RIGHT" />
                         </HBox>
