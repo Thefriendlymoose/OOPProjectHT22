@@ -84,12 +84,12 @@ public class OrderMenuController implements Observer{
             tab.setContent(fp);
 
             for (Order order : orders.getOrdersBySite(site)){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderMenuTabCard.fxml"));
-                AnchorPane pane = loader.load();
+                ParentDependencyInjection.addInjectionMethod(
+                        OrderMenuTabCardController.class, params -> new OrderMenuTabCardController(orders, order)
+                );
 
-                OrderMenuTabCardController controller = loader.getController();
-                controller.setOrder(order);
-                controller.setOrders(orders);
+                Parent pane = ParentDependencyInjection.load("fxml/orderViews/orderMenuTabCard.fxml");
+
                 fp.getChildren().add(pane);
 
             }
@@ -132,11 +132,11 @@ public class OrderMenuController implements Observer{
      */
 
     public void createButton(ActionEvent e) throws Exception{
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderCreateModal.fxml")));
-        Stage stage = loader.load();
-        OrderCreateModalController controller = loader.getController();
-        controller.setOrders(orders);
-        controller.setSites(sites);
+        StageDependencyInjection.addInjectionMethod(
+                OrderCreateModalController.class, params -> new OrderCreateModalController(sites, orders, wms.getCustomerModel())
+        );
+
+        Stage stage = StageDependencyInjection.load("fxml/orderViews/orderCreateModal.fxml");
 
         stage.setTitle("Create Order: Choose Site");
         stage.initModality(Modality.WINDOW_MODAL);

@@ -1,5 +1,6 @@
 package controller.orderControllers;
 
+import controller.dpi.StageDependencyInjection;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.customer.CustomerModel;
 import model.order.Orders;
 import model.site.Site;
 import model.site.Sites;
@@ -31,6 +33,13 @@ public class OrderCreateModalController {
 
     private Site current;
     private Sites sites;
+    private CustomerModel customerModel;
+
+    public OrderCreateModalController(Sites sites, Orders orders, CustomerModel customerModel) {
+        this.sites = sites;
+        this.orders = orders;
+        this.customerModel = customerModel;
+    }
 
 
     public void initialize(){
@@ -58,12 +67,11 @@ public class OrderCreateModalController {
     }
 
     public void onContinue(ActionEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/orderViews/orderFormModal.fxml")));
-        Stage stage = loader.load();
+        StageDependencyInjection.addInjectionMethod(
+                OrderFormModalController.class, params -> new OrderFormModalController(orders, current, customerModel)
+        );
 
-        OrderFormModalController cont = loader.getController();
-        cont.setSite(current);
-        cont.setOrders(orders);
+        Stage stage = StageDependencyInjection.load("fxml/orderViews/orderFormModal.fxml");
 
         stage.setTitle("Create Order");
         stage.initModality(Modality.WINDOW_MODAL);

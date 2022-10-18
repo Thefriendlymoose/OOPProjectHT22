@@ -9,7 +9,9 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 import model.customer.Customer;
+import model.customer.CustomerModel;
 import model.order.*;
 import model.site.Site;
 import model.site.Sites;
@@ -44,8 +46,6 @@ public class OrderFormModalController {
     @FXML
     private ListView<OrderRow> orderRowListView;
 
-    private Site site;
-    private Sites sites;
     private ObservableList<OrderRow> addedRows;
 
     private DateFunctions df = new DateFunctions();
@@ -84,13 +84,24 @@ public class OrderFormModalController {
 
         priorityComboBox.getItems().addAll(orders.getAllPriorities());
 
-        numberTextField.setText(Integer.toString((int) OrderDAO.getInstance().getNextId()));
+        numberTextField.setText(Long.toString(orders.getNextOrderNumber()));
 
         List<OrderStatus> orderStatusList = new ArrayList<>(EnumSet.allOf(OrderStatus.class));
 
         statusComboBox.getItems().addAll(orderStatusList);
 
-        customerComboBox.getItems().addAll(customers.getAll());
+        customerComboBox.getItems().addAll(customerModel.getCustomerList());
+        customerComboBox.setConverter(new StringConverter<Customer>() {
+            @Override
+            public String toString(Customer c) {
+                return c.getCompanyName();
+            }
+
+            @Override
+            public Customer fromString(String c) {
+                return null;
+            }
+        });
     }
 
     public void saveOrder(ActionEvent e){

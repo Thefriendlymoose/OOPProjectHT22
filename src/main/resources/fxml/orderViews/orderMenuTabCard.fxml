@@ -29,7 +29,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="openButton" maxHeight="30.0" maxWidth="125.0" mnemonicParsing="false" styleClass="generic-button" text="Open" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+            <Button onAction="#onOpen" fx:id="openButton" maxHeight="30.0" maxWidth="125.0" mnemonicParsing="false" styleClass="generic-button" text="Open" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
             <Label styleClass="generic-form-label" text="Order Number:" />
             <Label styleClass="generic-form-label" text="Priority: " GridPane.rowIndex="2" />
             <Label styleClass="generic-form-label" text="Status: " GridPane.rowIndex="4" />
