@@ -79,6 +79,12 @@ public class User implements Observable {
             return true;
         return  (this.permissions.contains(perm));
     }
+    public String getFirtName(String namen, int i){
+        String[] nameList = name.split(" ");
+
+        String firstOrLastName =nameList[i];
+        return firstOrLastName;
+    };
     public Boolean allowedUser(){
         return allowed(Permission.USER);
     }

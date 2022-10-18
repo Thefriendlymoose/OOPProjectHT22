@@ -1,21 +1,13 @@
 package controller.userControllers;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import model.article.ArticleCategory;
-import model.article.ArticleStatus;
 import model.user.Permission;
 import model.user.User;
 import model.user.Users;
-import persistence.UserDAO;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-public class userDetailsController {
+public class UserEditFormController {
 
     @FXML
     private Button saveButton,cancelButton;
@@ -64,6 +56,7 @@ public class userDetailsController {
         });
 
     }
+
 
 
 }
