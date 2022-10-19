@@ -2,6 +2,10 @@ package model.order;
 
 import model.article.Article;
 
+/**
+ * The part of Order which has the Article and amount of that Article.
+ */
+
 public class OrderRow {
     private Article article;
     private int amount;

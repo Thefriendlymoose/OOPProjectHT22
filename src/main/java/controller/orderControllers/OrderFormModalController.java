@@ -62,7 +62,7 @@ public class OrderFormModalController {
     }
 
     /**
-     * Gives the text fields
+     * Gives the user alternatives when pressing each Combo Box
      */
     @FXML
     public void initialize(){
@@ -104,6 +104,11 @@ public class OrderFormModalController {
         });
     }
 
+    /**
+     * Adds the Order if inputted correctly (no empty fields or invalid deadline)
+     *
+     * @param e is the Action Event
+     */
     public void saveOrder(ActionEvent e){
         System.out.println("orderRowListView.getItems().size(): " + orderRowListView.getItems().size());
             if (df.isValidDeadline(deadline) && customerComboBox.getValue() != null && statusComboBox.getValue() != null && priorityComboBox.getValue() != null && orderRowListView.getItems().size() > 0){
@@ -114,6 +119,9 @@ public class OrderFormModalController {
 
     }
 
+    /**
+     * Sets the date by using the calendar in the Create Order Menu
+     */
 
     public void deadlineDatePicker(){
 
@@ -128,6 +136,13 @@ public class OrderFormModalController {
             System.out.println("Deadline: " + deadline.getDayOfMonth() + "-"+ deadline.getMonthValue() + "-" + deadline.getYear());
         }
     }
+
+    /**
+     * Takes user to modal where user can select Article and amount
+     *
+     * @param e is the Action Event
+     * @throws IOException throws is stage doesn't exist.
+     */
 
     public void onAddOrderRowButton(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderDetailsAddModal.fxml"));
@@ -147,7 +162,7 @@ public class OrderFormModalController {
     public void onCancel(ActionEvent e){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("Look, a Confirmation Dialog");
+        alert.setHeaderText("Confirmation Dialog");
         alert.setContentText("Are you ok with this?");
 
         Optional<ButtonType> result = alert.showAndWait();
@@ -167,7 +182,7 @@ public class OrderFormModalController {
     }
 
     public void setCustomerComboBox(){
-        System.out.println("Customer: "+ customerComboBox.getValue());
+        System.out.println("Customer: "+ customerComboBox.getValue().getCompanyName());
     }
 
 }

@@ -21,6 +21,10 @@ import persistence.SitesDAO;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Controller for choosing what Site the user wants to create the Order at.
+ */
+
 public class OrderCreateModalController {
 
     @FXML
@@ -41,6 +45,9 @@ public class OrderCreateModalController {
         this.customerModel = customerModel;
     }
 
+    /**
+     * Shows all available Site (Göteborg, ... etc)
+     */
 
     public void initialize(){
         Platform.runLater(() -> {
@@ -65,6 +72,13 @@ public class OrderCreateModalController {
         });
 
     }
+
+    /**
+     * Takes user to OrderForm modal where user can create the Order located in that site.
+     *
+     * @param e is the ActionEvent
+     * @throws IOException throws if stage doesn't exist
+     */
 
     public void onContinue(ActionEvent e) throws IOException {
         StageDependencyInjection.addInjectionMethod(
