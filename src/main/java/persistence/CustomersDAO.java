@@ -80,9 +80,13 @@ public final class CustomersDAO implements IPersistence<Customer> {
 
     @Override
     public long getNextId() {
-        Set<Long> keys = customers.keySet();
-        long maxKeyVal = Collections.max(keys);
-        return maxKeyVal + 1;
+        if (customers.isEmpty()){
+            return 1;
+        } else {
+            Set<Long> keys = customers.keySet();
+            long maxKeyVal = Collections.max(keys);
+            return maxKeyVal + 1;
+        }
     }
 
     @Override
