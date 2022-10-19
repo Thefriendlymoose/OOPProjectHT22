@@ -1,5 +1,8 @@
 package model.customer;
 
+/**
+ * A class that represents an address
+ */
 public class Address{
     private String streetName;
     private String streetNumber;
