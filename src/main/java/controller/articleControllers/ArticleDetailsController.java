@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import model.WMS;
 import model.article.Article;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
@@ -36,10 +37,10 @@ public class ArticleDetailsController {
     Button editButton, closeButton;
 
     private Article article;
-    private Articles articles;
+    private WMS wms;
 
-    public ArticleDetailsController(Articles articles, Article article) {
-        this.articles = articles;
+    public ArticleDetailsController(WMS wms, Article article) {
+        this.wms = wms;
         this.article = article;
     }
 
@@ -58,7 +59,7 @@ public class ArticleDetailsController {
     }
 
     public void editHandler(ActionEvent e) throws IOException {
-        Callback<Class<?>, Object> test = param -> new ArticleEditFormController(articles, article);
+        Callback<Class<?>, Object> test = param -> new ArticleEditFormController(wms, article);
 
         StageDependencyInjection.addInjectionMethod(
                 ArticleEditFormController.class, test

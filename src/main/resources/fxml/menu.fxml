@@ -3,23 +3,18 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.Pane?>
 
-<MenuBar maxHeight="25.0" minHeight="25.0" prefHeight="25.0" style="-fx-background-color: #D9D9D9;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
-  <menus>
-    <Menu mnemonicParsing="false" text="File">
-      <items>
-        <MenuItem mnemonicParsing="false" text="Close" />
-      </items>
-    </Menu>
-    <Menu mnemonicParsing="false" text="Edit">
-      <items>
-        <MenuItem mnemonicParsing="false" text="Delete" />
-      </items>
-    </Menu>
-    <Menu mnemonicParsing="false" text="Help">
-      <items>
-        <MenuItem mnemonicParsing="false" text="About" />
-      </items>
-    </Menu>
-  </menus>
-</MenuBar>
+<Pane fx:id="test" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #D9D9D9;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
+   <children>
+      <MenuBar maxHeight="25.0" minHeight="25.0" prefHeight="25.0" style="-fx-background-color: #D9D9D9;">
+         <menus>
+            <Menu mnemonicParsing="false" text="Account">
+               <items>
+                  <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#onLogout" text="Logout" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </children>
+</Pane>
