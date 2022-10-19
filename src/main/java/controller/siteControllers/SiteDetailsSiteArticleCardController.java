@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import model.WMS;
 import model.site.Site;
 import model.site.SiteArticle;
-import model.site.Sites;
 
 import java.io.IOException;
 import java.util.Optional;

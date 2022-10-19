@@ -8,8 +8,6 @@ import javafx.stage.Stage;
 import model.WMS;
 import model.order.Order;
 import model.order.OrderRow;
-import model.site.Site;
-import model.site.SiteArticle;
 
 import java.util.Optional;
 

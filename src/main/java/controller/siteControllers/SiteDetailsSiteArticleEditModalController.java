@@ -1,6 +1,5 @@
 package controller.siteControllers;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -9,7 +8,6 @@ import javafx.stage.Stage;
 import model.WMS;
 import model.site.Site;
 import model.site.SiteArticle;
-import model.site.Sites;
 
 import java.util.Optional;
 

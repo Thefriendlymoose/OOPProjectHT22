@@ -12,7 +12,6 @@ import model.WMS;
 import model.article.Article;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
-import model.article.Articles;
 
 import java.io.IOException;
 

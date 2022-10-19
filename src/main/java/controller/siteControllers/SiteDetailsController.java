@@ -4,7 +4,6 @@ import controller.dpi.ParentDependencyInjection;
 import controller.dpi.StageDependencyInjection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
@@ -16,7 +15,6 @@ import model.user.User;
 import model.observer.Observer;
 import model.site.Site;
 import model.site.SiteArticle;
-import model.site.Sites;
 
 import java.io.IOException;
 

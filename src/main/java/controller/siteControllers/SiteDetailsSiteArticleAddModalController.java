@@ -1,6 +1,5 @@
 package controller.siteControllers;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -8,10 +7,8 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.WMS;
 import model.article.Article;
-import model.article.ArticlesFacade;
+import model.article.Articles;
 import model.site.Site;
-import model.site.SiteArticle;
-import model.site.Sites;
 
 import java.util.Optional;
 
@@ -29,16 +26,17 @@ public class SiteDetailsSiteArticleAddModalController {
     private Article current;
 
     private Site site;
-    private Sites sites;
     private WMS wms;
+    private Articles articles;
 
     public SiteDetailsSiteArticleAddModalController(WMS wms, Site site) {
         this.wms = wms;
         this.site = site;
+        this.articles = wms.getArticles();
     }
 
     public void initialize(){
-        chooseArticleListView.getItems().addAll(new ArticlesFacade().getAll());
+        chooseArticleListView.getItems().addAll(articles.getInList());
 
         chooseArticleListView.setCellFactory(param -> new ListCell<Article>(){
             @Override

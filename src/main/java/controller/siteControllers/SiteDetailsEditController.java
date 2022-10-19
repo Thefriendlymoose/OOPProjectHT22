@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 import model.WMS;
 import model.site.Site;
 import model.site.Sites;
-import persistence.SitesDAO;
 
 import java.util.Optional;
 
@@ -25,14 +24,16 @@ public class SiteDetailsEditController {
 
     private Site site;
     private WMS wms;
+    private Sites sites;
 
     public SiteDetailsEditController(WMS wms, Site site) {
         this.wms = wms;
         this.site = site;
+        this.sites = wms.getSites();
     }
 
     public void initialize(){
-        numberTextField.setText(Integer.toString((int) SitesDAO.getInstance().getNextId()));
+        numberTextField.setText(Long.toString(sites.getNextId()));
         nameTextField.setText(site.getSiteName());
         maxCapacityTextField.setText(String.valueOf(site.getMaxCapacity()));
         maxCapacityTextField.setDisable(true);

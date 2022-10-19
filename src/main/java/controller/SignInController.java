@@ -13,9 +13,7 @@ import javafx.stage.Stage;
 import model.authentication.AuthenticationStatus;
 import model.authentication.UserAuthentication;
 import model.WMS;
-import model.user.User;
-import persistence.IPersistence;
-import persistence.UserDAO;
+import model.user.Users;
 
 public class SignInController {
 
@@ -31,11 +29,12 @@ public class SignInController {
     @FXML
     private Label errorLabel;
 
-    private IPersistence<User> users = UserDAO.getInstance();
+    private Users users;
     private WMS wms;
 
     public SignInController(WMS wms) {
         this.wms = wms;
+        this.users = wms.getUsers();
     }
 
 
@@ -45,7 +44,7 @@ public class SignInController {
             errorLabel.setTextFill(Color.RED);
         } else {
             UserAuthentication uAuth = new UserAuthentication();
-            AuthenticationStatus status = uAuth.logIn(userNameField.getText(), passWordField.getText(), users.getAll());
+            AuthenticationStatus status = uAuth.logIn(userNameField.getText(), passWordField.getText(), users);
 
             if (status == AuthenticationStatus.SUCCESS){
                 wms.setSession(uAuth.getSession());

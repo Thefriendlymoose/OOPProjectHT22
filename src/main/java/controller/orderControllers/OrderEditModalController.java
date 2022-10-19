@@ -1,22 +1,15 @@
 package controller.orderControllers;
 
-import controller.dpi.StageDependencyInjection;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import model.WMS;
 import model.customer.Customer;
 import model.customer.CustomerModel;
 import model.order.*;
-import persistence.CustomersDAO;
-import persistence.IPersistence;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;

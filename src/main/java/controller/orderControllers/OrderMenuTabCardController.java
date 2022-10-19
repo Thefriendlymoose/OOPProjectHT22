@@ -1,11 +1,8 @@
 package controller.orderControllers;
 
 import controller.dpi.StageDependencyInjection;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,7 +10,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.WMS;
 import model.order.Order;
-import model.order.Orders;
 
 
 import java.io.IOException;

@@ -1,6 +1,5 @@
 package controller.orderControllers;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -8,10 +7,8 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.WMS;
 import model.order.Order;
-import model.order.OrderRow;
 import model.site.Site;
 import model.site.SiteArticle;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -19,8 +16,6 @@ import java.util.Optional;
  */
 
 public class OrderDetailsAddOrderRowController {
-
-
 
     @FXML
     private Button addArticleButton, cancelButton;

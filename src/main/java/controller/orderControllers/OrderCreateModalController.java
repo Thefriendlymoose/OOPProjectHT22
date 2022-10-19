@@ -1,10 +1,8 @@
 package controller.orderControllers;
 
 import controller.dpi.StageDependencyInjection;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
@@ -12,15 +10,10 @@ import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.WMS;
-import model.customer.CustomerModel;
-import model.order.Orders;
 import model.site.Site;
 import model.site.Sites;
-import persistence.IPersistence;
-import persistence.SitesDAO;
 
 import java.io.IOException;
-import java.util.Objects;
 
 /**
  * Controller for choosing what Site the user wants to create the Order at.

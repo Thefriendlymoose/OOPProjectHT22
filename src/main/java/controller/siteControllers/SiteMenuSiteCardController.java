@@ -10,7 +10,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.WMS;
 import model.site.Site;
-import model.site.Sites;
 
 import java.io.IOException;
 

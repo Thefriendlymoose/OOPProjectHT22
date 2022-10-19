@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import model.WMS;
 import model.user.User;
 import model.site.Site;
-import model.site.Sites;
 
 import java.util.Optional;
 

@@ -8,8 +8,7 @@ import javafx.stage.Stage;
 import model.WMS;
 import model.user.User;
 import model.site.Site;
-import model.site.Sites;
-import persistence.UserDAO;
+import model.user.Users;
 
 import java.util.Optional;
 
@@ -25,14 +24,16 @@ public class SiteDetailsUserAddModalController {
 
     private Site site;
     private WMS wms;
+    private Users users;
 
     public SiteDetailsUserAddModalController(WMS wms, Site site) {
         this.wms = wms;
         this.site = site;
+        this.users = wms.getUsers();
     }
 
     public void initialize(){
-        chooseUserListView.getItems().addAll(UserDAO.getInstance().getAll());
+        chooseUserListView.getItems().addAll(users.getAllUsers());
 
         chooseUserListView.setCellFactory(param -> new ListCell<User>(){
             @Override

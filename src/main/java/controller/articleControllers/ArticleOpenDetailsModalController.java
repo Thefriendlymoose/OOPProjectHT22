@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.WMS;
 import model.article.Article;
-import model.article.Articles;
 
 import java.io.IOException;
 

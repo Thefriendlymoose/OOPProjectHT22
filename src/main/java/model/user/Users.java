@@ -100,6 +100,15 @@ public class Users implements Observable {
         notifyObservers();
     }
 
+    public User returnUserByUsername(String userName){
+        for (User user : users.values()){
+            if (user.getUserName().equals(userName)){
+                return user;
+            }
+        }
+        return null;
+    }
+
 
     @Override
     public void registerObserver(Observer o) {observers.add(o);
