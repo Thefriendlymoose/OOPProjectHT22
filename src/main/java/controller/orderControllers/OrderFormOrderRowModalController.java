@@ -58,7 +58,7 @@ public class OrderFormOrderRowModalController {
     public void cancelBtnHandler(ActionEvent e){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("Look, another Confirmation Dialog");
+        alert.setHeaderText("Confirmation Dialog");
         alert.setContentText("Are you ok with this?");
 
         Optional<ButtonType> result = alert.showAndWait();

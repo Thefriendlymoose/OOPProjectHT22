@@ -9,7 +9,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * Order class.
+ * The Order class consists of all other classes that the WMS application is built around i.e., User, Customer,
+ * Site and Article (found in OrderRows).
  *
  */
 

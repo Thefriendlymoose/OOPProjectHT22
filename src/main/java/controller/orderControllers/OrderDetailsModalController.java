@@ -1,10 +1,8 @@
 package controller.orderControllers;
 
 import controller.dpi.StageDependencyInjection;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
@@ -15,10 +13,14 @@ import model.order.Order;
 import model.order.OrderRow;
 import model.order.OrderStatus;
 import model.order.Orders;
-import model.site.Site;
-import model.site.Sites;
 
 import java.io.IOException;
+
+/**
+ *  Controller when "Open Order" or "Open" button has been pressed in the Order Menu.
+ *  The user may see what an Order consists of in this Modal, however all information is locked until
+ *  "Edit" button is pressed.
+ */
 
 public class OrderDetailsModalController {
 
@@ -47,6 +49,10 @@ public class OrderDetailsModalController {
         this.orders = orders;
         this.order = order;
     }
+
+    /**
+     * Shows the uneditable information of the particular Order being opened.
+     */
 
     public void initialize(){
             titleLabel.setText(titleLabel.getText() + order.getOrderNumber());
@@ -97,6 +103,13 @@ public class OrderDetailsModalController {
                 }
             });
     }
+
+    /**
+     * Takes the user to a new Modal where the Order can be edited.
+     *
+     * @param e is the ActionEvent.
+     * @throws IOException is thrown if the stage doesn't exist.
+     */
 
     public void onEdit(ActionEvent e) throws IOException {
         StageDependencyInjection.addInjectionMethod(
