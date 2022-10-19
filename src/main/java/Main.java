@@ -23,6 +23,7 @@ import model.article.Articles;
 import model.customer.CustomerModel;
 import model.order.Orders;
 import model.site.Sites;
+import model.user.Users;
 import persistence.*;
 
 public class Main extends Application {
@@ -40,7 +41,8 @@ public class Main extends Application {
         Orders orders = new Orders(OrderDAO.getInstance().getAllMap());
         Sites sites = new Sites(SitesDAO.getInstance().getAllMap());
         CustomerModel customers = new CustomerModel(CustomersDAO.getInstance());
-        this.wms = new WMS(articles, orders, sites, customers);
+        Users users = new Users(UserDAO.getInstance().getAllMap());
+        this.wms = new WMS(articles, orders, sites, customers, users);
 
         setUpSceneDependencyInjector();
         setUpStageDependencyInjector();

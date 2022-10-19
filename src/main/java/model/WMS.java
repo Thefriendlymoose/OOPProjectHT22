@@ -10,6 +10,7 @@ import model.order.Order;
 import model.order.Orders;
 import model.site.Site;
 import model.site.Sites;
+import model.user.Users;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,17 +19,20 @@ public class WMS implements Observable {
     private Articles articles;
     private Orders orders;
     private Sites sites;
+    private Users users;
+
     private CustomerModel customerModel;
     private Session session;
 
     private List<Observer> observers;
 
-    public WMS(Articles articles, Orders orders, Sites sites, CustomerModel customerModel) {
+    public WMS(Articles articles, Orders orders, Sites sites, CustomerModel customerModel, Users users) {
         this.articles = articles;
         this.orders = orders;
         this.sites = sites;
         this.customerModel = customerModel;
         this.observers = new ArrayList<>();
+        this.users = users;
     }
 
     public Articles getArticles() {
@@ -44,6 +48,7 @@ public class WMS implements Observable {
         articles.updateArticle();
         notifyObservers();
     }
+
 
     public Orders getOrders() {
         return orders;
@@ -71,6 +76,9 @@ public class WMS implements Observable {
         notifyObservers();
     }
 
+    public Users getUsers() {
+        return users;
+    }
     public CustomerModel getCustomerModel(){ return customerModel; }
 
     public void setSession(Session session) {
@@ -100,5 +108,4 @@ public class WMS implements Observable {
     public void notifyObservers() {
         observers.forEach(Observer::update);
     }
-
 }

@@ -2,11 +2,14 @@ package model.customer;
 
 import model.observer.Observable;
 import model.observer.Observer;
-import persistence.CustomersDAO;
-import persistence.IPersistence;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Provides encapsulation for editing a Customer object
+ * Observable in order to update views after each edit
+ */
 
 public class CustomerEditor implements Observable {
 
@@ -28,9 +31,16 @@ public class CustomerEditor implements Observable {
         customer.setCompanyOrgNumber(orgNumber);
     }
 
+    /**
+     * Changes the behavior of the get/setAddress() methods to setting and getting the billing address
+     */
     public void setBillingStrategy(){
         strategy = new BillingAddressStrategy(customer);
     }
+
+    /**
+     * Changes the behavior of the get/setAddress() methods to setting and getting the shipping address
+     */
 
     public void setShippingStrategy(){
         strategy = new ShippingAddressStrategy(customer);
