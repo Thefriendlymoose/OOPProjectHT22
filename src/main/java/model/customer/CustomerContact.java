@@ -39,4 +39,32 @@ public class CustomerContact {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString(){
+        String name;
+        String nr;
+        String em;
+
+        if (contactPerson == null){
+            name = "";
+        } else {
+            name = contactPerson;
+        }
+
+        if (phoneNumber == null){
+            nr = "";
+        } else {
+            nr = phoneNumber;
+        }
+
+        if (email == null){
+            em = "";
+        } else {
+            em = email;
+        }
+        return name +
+                "  " + nr +
+                "  " + em;
+    }
 }

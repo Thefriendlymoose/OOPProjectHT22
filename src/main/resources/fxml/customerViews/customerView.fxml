@@ -13,7 +13,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-
 <Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customerControllers.CustomerInfoViewController">
    <scene>
       <Scene>
@@ -75,25 +74,33 @@
                                                 <Font size="19.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="shippingAddressLabel" text="sAddressLabel">
-                                             <font>
-                                                <Font size="19.0" />
-                                             </font>
-                                          </Label>
+                                          <ScrollPane>
+                                             <content>
+                                                <Label fx:id="shippingAddressLabel" text="sAddressLabel">
+                                                   <font>
+                                                      <Font size="19.0" />
+                                                   </font>
+                                                </Label>
+                                             </content>
+                                          </ScrollPane>
                                        </children>
                                     </VBox>
-                                    <VBox layoutX="14.0" layoutY="254.0" prefHeight="169.0" prefWidth="317.0">
+                                    <VBox layoutX="14.0" layoutY="254.0" prefHeight="2000" prefWidth="323.0">
                                        <children>
                                           <Label text="Billing Address">
                                              <font>
                                                 <Font size="19.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="billingAddressLabel" text="bAddressLabel">
-                                             <font>
-                                                <Font size="19.0" />
-                                             </font>
-                                          </Label>
+                                          <ScrollPane>
+                                             <content>
+                                                <Label fx:id="billingAddressLabel" text="bAddressLabel">
+                                                   <font>
+                                                      <Font size="19.0" />
+                                                   </font>
+                                                </Label>
+                                             </content>
+                                          </ScrollPane>
                                        </children>
                                     </VBox>
                                     <VBox layoutX="15.0" layoutY="455.0" prefHeight="200.0" prefWidth="323.0">
@@ -105,7 +112,7 @@
                                           </Label>
                                           <ScrollPane prefHeight="172.0" prefWidth="254.0">
                                              <content>
-                                                <VBox fx:id="contactBox" prefHeight="200.0" prefWidth="298.0" />
+                                                <VBox fx:id="contactBox" prefHeight="200.0" prefWidth="544.0" />
                                              </content>
                                           </ScrollPane>
                                        </children>
@@ -113,7 +120,7 @@
                                     <ButtonBar layoutX="378.0" layoutY="605.0" prefHeight="40.0" prefWidth="190.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="378.0">
                                       <buttons>
                                         <Button fx:id="editButton" mnemonicParsing="false" prefHeight="27.0" text="Edit" />
-                                          <Button fx:id="closeButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="121.0" text="Close" />
+                                          <Button fx:id="closeButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="121.0" text="Close" onAction="#closeButtonHandler" />
                                       </buttons>
                                     </ButtonBar>
                                  </children>
