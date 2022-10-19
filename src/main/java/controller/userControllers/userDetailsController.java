@@ -1,6 +1,5 @@
 package controller.userControllers;
 
-import controller.articleControllers.ArticleEditFormController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,8 +10,7 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.WMS;
-import model.article.ArticleCategory;
-import model.article.ArticleStatus;
+
 import model.user.Permission;
 import model.user.User;
 import model.user.Users;

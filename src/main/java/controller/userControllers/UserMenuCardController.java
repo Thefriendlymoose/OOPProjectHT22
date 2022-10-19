@@ -1,6 +1,6 @@
 package controller.userControllers;
 
-import controller.articleControllers.ArticleDetailsController;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

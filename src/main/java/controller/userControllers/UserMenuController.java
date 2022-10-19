@@ -1,7 +1,6 @@
 package controller.userControllers;
 
 import controller.dpi.ParentDependencyInjection;
-import controller.siteControllers.SiteOpenDetailsController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

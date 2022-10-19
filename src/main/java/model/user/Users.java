@@ -1,11 +1,8 @@
 package model.user;
 
-import model.article.ArticleStatus;
+
 import model.observer.Observable;
 import model.observer.Observer;
-import model.order.Order;
-import model.order.OrderStatus;
-import model.site.Site;
 
 import java.util.*;
 
@@ -46,7 +43,7 @@ public class Users implements Observable {
     }
 
 
-    // Extremly scuffed sort
+    // Extremely scuffed sort
     /*
     public void sortByName(){
         List<String> allNames = new ArrayList<>();
