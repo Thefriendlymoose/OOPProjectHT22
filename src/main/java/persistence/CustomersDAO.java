@@ -12,7 +12,7 @@ import persistence.pojos.CustomerJSON;
 
 public final class CustomersDAO implements IPersistence<Customer> {
     private static CustomersDAO instance = null;
-    private final String customersFile = "src/main/resources/customers.json";
+    private  String customersFile = "src/main/resources/customers.json";
     private Map<Long, Customer> customers = new HashMap<>();
     private Gson gson = new Gson();
 
@@ -20,6 +20,11 @@ public final class CustomersDAO implements IPersistence<Customer> {
     private long nextFreeId=0;
 
     private CustomersDAO() {
+        readFile();
+    }
+
+    // so that testing can be done on dummy data
+    public void readFile(){
         try {
             Reader reader = Files.newBufferedReader(Path.of(customersFile));
             List<CustomerJSON> customerJSONS = Arrays.asList(gson.fromJson(reader, CustomerJSON[].class));
@@ -48,6 +53,10 @@ public final class CustomersDAO implements IPersistence<Customer> {
             instance = new CustomersDAO();
         }
         return instance;
+    }
+
+    public void setCustomersFile(String filePath){
+        customersFile = filePath;
     }
 
     @Override
