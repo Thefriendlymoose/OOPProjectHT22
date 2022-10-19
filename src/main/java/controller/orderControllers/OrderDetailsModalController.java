@@ -1,22 +1,26 @@
 package controller.orderControllers;
 
-import javafx.application.Platform;
+import controller.dpi.StageDependencyInjection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 import model.customer.Customer;
 import model.order.Order;
 import model.order.OrderRow;
 import model.order.OrderStatus;
 import model.order.Orders;
-import model.site.Site;
-import model.site.Sites;
 
 import java.io.IOException;
+
+/**
+ *  Controller when "Open Order" or "Open" button has been pressed in the Order Menu.
+ *  The user may see what an Order consists of in this Modal, however all information is locked until
+ *  "Edit" button is pressed.
+ */
 
 public class OrderDetailsModalController {
 
@@ -35,24 +39,22 @@ public class OrderDetailsModalController {
 
     @FXML
 //    private ComboBox<Customer> customerComboBox;
-    private ComboBox<String> customerComboBox;
+    private ComboBox<Customer> customerComboBox;
 
     private Order order;
 
-    private Site site;
     private Orders orders;
 
-    public void setOrder(Order order){
+    public OrderDetailsModalController(Orders orders, Order order) {
+        this.orders = orders;
         this.order = order;
     }
 
-    public void setSite(Site site){
-        this.site = site;
-    }
+    /**
+     * Shows the uneditable information of the particular Order being opened.
+     */
 
     public void initialize(){
-        Platform.runLater(() -> {
-
             titleLabel.setText(titleLabel.getText() + order.getOrderNumber());
 
             numberTextField.setText(String.valueOf(order.getOrderNumber()));
@@ -73,9 +75,20 @@ public class OrderDetailsModalController {
             orderRowListView.setDisable(true);
             orderRowListView.getStyleClass().add("locked-form-field");
 
-            customerComboBox.setValue(order.getCustomer().companyNameToString());
+            customerComboBox.setValue(order.getCustomer());
             customerComboBox.setDisable(true);
             customerComboBox.getStyleClass().add("locked-form-field");
+            customerComboBox.setConverter(new StringConverter<Customer>() {
+                @Override
+                public String toString(Customer c) {
+                    return c.getCompanyName();
+                }
+
+                @Override
+                public Customer fromString(String c) {
+                    return null;
+                }
+            });
 
             orderRowListView.setCellFactory(param -> new ListCell<OrderRow>(){
                 @Override
@@ -89,17 +102,21 @@ public class OrderDetailsModalController {
                     }
                 }
             });
-
-        });
     }
 
-    public void onEdit(ActionEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderEditModal.fxml"));
-        Stage stage = loader.load();
-        OrderEditModalController controller = loader.getController();
+    /**
+     * Takes the user to a new Modal where the Order can be edited.
+     *
+     * @param e is the ActionEvent.
+     * @throws IOException is thrown if the stage doesn't exist.
+     */
 
-        controller.setOrder(order);
-        controller.setSite(site);
+    public void onEdit(ActionEvent e) throws IOException {
+        StageDependencyInjection.addInjectionMethod(
+                OrderEditModalController.class, params -> new OrderEditModalController(orders, order)
+        );
+
+        Stage stage = StageDependencyInjection.load("fxml/orderViews/orderEditModal.fxml");
 
         stage.setTitle("Edit Order");
         stage.initModality(Modality.WINDOW_MODAL);
@@ -114,7 +131,6 @@ public class OrderDetailsModalController {
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
     }
 
-    public void setOrders(Orders orders){this.orders = orders;}
 
 }
 

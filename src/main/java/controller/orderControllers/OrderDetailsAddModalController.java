@@ -7,19 +7,15 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import model.article.ArticlesFacade;
 import model.order.OrderRow;
-import model.order.Orders;
 import model.site.Site;
 import model.site.SiteArticle;
-import model.site.Sites;
-import persistence.IPersistence;
-import persistence.SitesDAO;
-
 import java.util.List;
 import java.util.Optional;
 
-import java.util.List;
+/**
+ * Controller when the user is in the process of creating or editing and Order.
+ */
 
 public class OrderDetailsAddModalController {
 
@@ -40,6 +36,9 @@ public class OrderDetailsAddModalController {
 
     private ObservableList<OrderRow> observableOrderRows;
 
+    /**
+     * Shows all the Article and amount, which the user can select when creating or editing an order.
+     */
 
     public void initialize(){
 
@@ -54,7 +53,7 @@ public class OrderDetailsAddModalController {
                     if(empty || s == null || s.getArticle() == null){
                         setText(null);
                     } else {
-                        setText(s.getArticle().getArticleName() + "\\n " + s.getAmount() + "x");
+                        setText(s.getArticle().getArticleName() + " " + s.getAmount() + "x");
                     }
                 }
             });
@@ -64,13 +63,18 @@ public class OrderDetailsAddModalController {
         });
     }
 
+    /**
+     * Make sure there is wrong input from user.
+     *
+     * @param e is ActionEvent
+     */
 
     public void onSave(ActionEvent e){
         if (current != null && !amountTextField.getText().isEmpty()){
             try {
                 int amount = Integer.parseInt(amountTextField.getText());
                 if ((amount > current.getAmount() ) || ( amount == 0 )){
-                    System.out.println("not enough in stock or equal to 0");
+                    System.out.println("Not enough in stock or equal to 0");
                 } else {
                     observableOrderRows.add(new OrderRow(current.getArticle(), amount));
                     current.setAmount(current.getAmount() - amount);

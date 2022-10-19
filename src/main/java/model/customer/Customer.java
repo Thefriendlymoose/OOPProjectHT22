@@ -3,13 +3,21 @@ package model.customer;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class that represents Customers
+ * A customer has two different (or potentially same) addresses for shipments and billing
+ * A customer has a list of contacts, containing names, numbers and emails
+ * A customer has an organizational number
+ * A customer has a name
+ */
+
 public class Customer{
 
     private List<CustomerContact> customerContacts = new ArrayList<>();
-    private Address billingAddress;
-    private Address shippingAddress;
-    private long customerId;
-    private int companyOrgNumber;
+    private Address billingAddress = new Address();
+    private Address shippingAddress = new Address();
+    private final long customerId;
+    private long companyOrgNumber;
     private String companyName;
 
     public Customer(List<CustomerContact> customerContacts, Address billingAddress, Address shippingAddress, long customerId, int companyOrgNumber, String companyName) {
@@ -21,7 +29,7 @@ public class Customer{
         this.companyName = companyName;
     }
 
-    public Customer(long customerId, int companyOrgNumber){
+    public Customer(long customerId, long companyOrgNumber){
         this.customerId = customerId;
         this.companyOrgNumber = companyOrgNumber;
     }
@@ -29,8 +37,6 @@ public class Customer{
     public Customer(long customerId){
         this.customerId = customerId;
     }
-
-    public Customer(){};
 
 
     // getters
@@ -50,7 +56,7 @@ public class Customer{
         return customerId;
     }
 
-    public int getCompanyOrgNumber() {
+    public long getCompanyOrgNumber() {
         return companyOrgNumber;
     }
 
@@ -80,12 +86,8 @@ public class Customer{
         this.shippingAddress = shippingAddress;
     }
 
-    public void setCompanyOrgNumber(int companyOrgNumber) {
+    public void setCompanyOrgNumber(long companyOrgNumber) {
         this.companyOrgNumber = companyOrgNumber;
     }
 
-
-    public String companyNameToString() {
-        return companyName;
-    }
 }

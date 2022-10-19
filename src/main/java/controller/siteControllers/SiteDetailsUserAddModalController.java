@@ -1,6 +1,5 @@
 package controller.siteControllers;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -13,7 +12,7 @@ import persistence.UserDAO;
 
 import java.util.Optional;
 
-public class siteDetailsUserAddModalController {
+public class SiteDetailsUserAddModalController {
 
     @FXML
     private ListView<User> chooseUserListView;
@@ -26,31 +25,29 @@ public class siteDetailsUserAddModalController {
     private Site site;
     private Sites sites;
 
-    public void setSite(Site site){
+    public SiteDetailsUserAddModalController(Sites sites, Site site) {
+        this.sites = sites;
         this.site = site;
     }
 
     public void initialize(){
-        Platform.runLater(() -> {
-            chooseUserListView.getItems().addAll(UserDAO.getInstance().getAll());
+        chooseUserListView.getItems().addAll(UserDAO.getInstance().getAll());
 
-            chooseUserListView.setCellFactory(param -> new ListCell<User>(){
-                @Override
-                protected void updateItem(User s, boolean empty){
-                    super.updateItem(s, empty);
+        chooseUserListView.setCellFactory(param -> new ListCell<User>(){
+            @Override
+            protected void updateItem(User s, boolean empty){
+                super.updateItem(s, empty);
 
-                    if(empty || s == null || s.getName() == null){
-                        setText(null);
-                    } else {
-                        setText(s.getName());
-                    }
+                if(empty || s == null || s.getName() == null){
+                    setText(null);
+                } else {
+                    setText(s.getName());
                 }
-            });
+            }
+        });
 
-
-            chooseUserListView.getSelectionModel().selectedItemProperty().addListener((observableValue, site, t1) -> {
-                current = chooseUserListView.getSelectionModel().getSelectedItem();
-            });
+        chooseUserListView.getSelectionModel().selectedItemProperty().addListener((observableValue, site, t1) -> {
+            current = chooseUserListView.getSelectionModel().getSelectedItem();
         });
     }
 
@@ -78,8 +75,4 @@ public class siteDetailsUserAddModalController {
         }
     }
 
-
-    public void setSites(Sites sites) {
-        this.sites = sites;
-    }
 }

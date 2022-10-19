@@ -1,6 +1,6 @@
 package controller.userControllers;
 
-import controller.dpi.DependencyInjection;
+import controller.dpi.ParentDependencyInjection;
 import controller.siteControllers.SiteOpenDetailsController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -70,7 +70,7 @@ public class UserMenuController implements Observer {
 
 
     public void backBtnHandler() throws Exception{
-        Parent root = DependencyInjection.load("fxml/mainMenu.fxml");
+        Parent root = ParentDependencyInjection.load("fxml/mainMenu.fxml");
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }

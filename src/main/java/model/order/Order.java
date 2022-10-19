@@ -8,6 +8,11 @@ import model.site.Site;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * The Order class consists of all other classes that the WMS application is built around i.e., User, Customer,
+ * Site and Article (found in OrderRows).
+ *
+ */
 
 public class Order {
     private User user;
@@ -20,7 +25,10 @@ public class Order {
     private List<OrderRow> orderRows;
     private Site site;
 
-
+    /**
+     * Constructs an Order object.
+     *
+     */
     public Order(User user, long orderNumber, Customer customer, OrderStatus orderStatus, boolean priority, LocalDateTime orderDate, LocalDateTime deadline, List<OrderRow> orderRows, Site site) {
         this.user = user;
         this.orderNumber = orderNumber;
@@ -33,13 +41,24 @@ public class Order {
         this.site = site;
     }
 
+    /**
+     * Returns the User object.
+     *
+     * @return Returns the User object of the Order.
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     * Returns the long OrderNumber.
+     *
+     * @return long OrderNumber.
+     */
     public long getOrderNumber() {
         return orderNumber;
     }
+
 
     public Customer getCustomer() {
         return customer;
@@ -105,6 +124,12 @@ public class Order {
         this.site = site;
     }
 
+    /**
+     * Returns the sum of all article costs in the Order.
+     *
+     * @return sum of all article costs in the Order.
+     */
+
     public float getTotalCost(){
         float sum = 0;
         for (OrderRow or : orderRows){
@@ -113,6 +138,11 @@ public class Order {
         return sum;
     }
 
+    /**
+     * Returns the sum of all article sell price in the order.
+     *
+     * @return sum of all article sell price in the order.
+     */
     public float getTotalRevenue(){
         float sum = 0;
         for (OrderRow or : orderRows){
@@ -121,6 +151,11 @@ public class Order {
         return sum;
     }
 
+    /**
+     * Returns the sum of the number of articles in the order.
+     *
+     * @return sum of the number of articles in the order.
+     */
     public int getTotalAmount(){
         int sum = 0;
         for (OrderRow or : orderRows){
@@ -128,5 +163,6 @@ public class Order {
         }
         return sum;
     }
+
 
 }

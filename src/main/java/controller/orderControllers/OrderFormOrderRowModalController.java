@@ -13,6 +13,10 @@ import model.site.SiteArticle;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Controller for choosing an article through previous cards.
+ */
+
 public class OrderFormOrderRowModalController {
 
     @FXML
@@ -41,7 +45,7 @@ public class OrderFormOrderRowModalController {
                     if(empty || s == null || s.getArticle() == null){
                         setText(null);
                     } else {
-                        setText(s.getArticle().getArticleName() + "\\n " + s.getAmount() + "x");
+                        setText(s.getArticle().getArticleName() + " " + s.getAmount() + "x");
                     }
                 }
             });
@@ -54,7 +58,7 @@ public class OrderFormOrderRowModalController {
     public void cancelBtnHandler(ActionEvent e){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("Look, another Confirmation Dialog");
+        alert.setHeaderText("Confirmation Dialog");
         alert.setContentText("Are you ok with this?");
 
         Optional<ButtonType> result = alert.showAndWait();

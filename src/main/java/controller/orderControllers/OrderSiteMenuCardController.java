@@ -4,9 +4,11 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Label;
-//import model.order.Orders;
 import model.site.Site;
 
+/**
+ * Controller for the menu cards in former Order Menu.
+ */
 
 public class OrderSiteMenuCardController {
 
@@ -14,7 +16,6 @@ public class OrderSiteMenuCardController {
     private Label cardSiteNameLabel, cardNumberArticlesLabel, cardNumberEmployeesLabel;
 
     private Site site;
-//    private Orders orders;
 
     public void setCard(Site site){
         this.site = site;
@@ -28,8 +29,5 @@ public class OrderSiteMenuCardController {
         });
     }
 
-//    public void setOrders(Orders orders){
-//        this.orders = orders;
-//    }
 
 }

@@ -1,5 +1,6 @@
 package controller.orderControllers;
 
+import controller.dpi.StageDependencyInjection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,12 +11,14 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.order.Order;
 import model.order.Orders;
-import persistence.IPersistence;
-import persistence.OrderDAO;
 
 
 import java.io.IOException;
 
+/**
+ * Controller for opening an order by pressing the "Open Order" button in the OrderMenu
+ * on the top left, after having provided an order number in the text field.
+ */
 
 public class OrderOpenController {
 
@@ -26,18 +29,28 @@ public class OrderOpenController {
     @FXML
     private Button openButton;
 
+    public OrderOpenController(Orders orders) {
+        this.orders = orders;
+
+    }
+
+    /**
+     * Creates a modal with order details for the orders that can be open.
+     */
+
     public void openOrder(ActionEvent event){
-        IPersistence<Order> orders = OrderDAO.getInstance();
+
         if(!searchField.getText().isEmpty()){
             try {
                 Long id = Long.parseLong(searchField.getText());
-                if(orders.getAllMap().containsKey(id)){
+                if(orders.checkIfExist(id)){
                     Order order = orders.findById(id);
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderDetailsModal.fxml"));
-                    Stage stage = loader.load();
-                    OrderDetailsModalController controller = loader.getController();
-                    controller.setOrder(order);
 
+                    StageDependencyInjection.addInjectionMethod(
+                        OrderDetailsModalController.class, params -> new OrderDetailsModalController(orders, order)
+                    );
+
+                    Stage stage = StageDependencyInjection.load("fxml/orderViews/orderDetailsModal.fxml");
                     stage.setTitle("Order: " + order.getOrderNumber());
                     stage.initModality(Modality.WINDOW_MODAL);
                     stage.initOwner(((Stage) ((Node)event.getSource()).getScene().getWindow()).getOwner());
@@ -57,9 +70,5 @@ public class OrderOpenController {
             System.out.println("Field Empty");
         }
 
-    }
-
-    public void setOrders(Orders orders) {
-        this.orders = orders;
     }
 }

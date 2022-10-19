@@ -1,11 +1,11 @@
 package controller.articleControllers;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.WMS;
 import model.article.*;
 
 import java.time.LocalDateTime;
@@ -31,24 +31,20 @@ public class ArticleFormController {
     @FXML
     Button saveButton, cancelButton;
 
-    private Articles arts;
+    private WMS wms;
+    private Articles articles;
 
-    public void setArticles(Articles arts){
-        this.arts = arts;
+    public ArticleFormController(WMS wms) {
+        this.wms = wms;
+        this.articles = wms.getArticles();
     }
 
     @FXML
     public void initialize(){
-        Platform.runLater(() -> {
-            titleLabel.setText("Create Article");
-            // TODO: Need the model to autogenerate the article number/ID
-            numberTextField.setText(String.valueOf(arts.getNextId()));
-
-            categoryComboBox.getItems().setAll(arts.getCategories());
-            statusComboBox.getItems().setAll(arts.getStatus());
-        });
-
-
+        titleLabel.setText("Create Article");
+        numberTextField.setText(String.valueOf(articles.getNextId()));
+        categoryComboBox.getItems().setAll(articles.getCategories());
+        statusComboBox.getItems().setAll(articles.getStatus());
     }
 
     public void onSave(ActionEvent e){
@@ -57,11 +53,11 @@ public class ArticleFormController {
         if (nameTextField.getText().isEmpty() || nameTextField.getText().isEmpty() || descriptionTextArea.getText().isEmpty() || categoryComboBox.getValue() == null || statusComboBox.getValue() == null){
 
         } else {
-            Article art = new Article(arts.getNextId(), nameTextField.getText(), descriptionTextArea.getText(), categoryComboBox.getValue(),
+            Article art = new Article(articles.getNextId(), nameTextField.getText(), descriptionTextArea.getText(), categoryComboBox.getValue(),
                                       statusComboBox.getValue(), Float.parseFloat(costTextField.getText()), Float.parseFloat(sellPriceTextField.getText()),
                                         null , LocalDateTime.now(), LocalDateTime.now());
 
-            arts.addArticle(art);
+            wms.addArticle(art);
 
             ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
         }

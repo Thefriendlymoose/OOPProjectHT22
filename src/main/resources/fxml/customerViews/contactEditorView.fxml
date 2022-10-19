@@ -19,8 +19,7 @@
                      </content>
                   </ScrollPane>
                   <Button layoutX="419.0" layoutY="184.0" mnemonicParsing="false" onAction="#addContactHandler" prefHeight="94.0" prefWidth="95.0" text="Add Contact" />
-                  <Button layoutX="31.0" layoutY="411.0" mnemonicParsing="false" onAction="#saveHandler" prefHeight="27.0" prefWidth="81.0" text="Save" />
-                  <Button layoutX="130.0" layoutY="411.0" mnemonicParsing="false" onAction="#cancelHandler" prefHeight="27.0" prefWidth="85.0" text="Cancel" />
+                  <Button layoutX="31.0" layoutY="411.0" mnemonicParsing="false" onAction="#closeHandler" prefHeight="27.0" prefWidth="81.0" text="Close" />
                </children>
             </AnchorPane>
          </root>
