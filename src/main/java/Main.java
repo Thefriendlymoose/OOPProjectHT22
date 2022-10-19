@@ -1,4 +1,5 @@
 import controller.MainMenuController;
+import controller.MenuController;
 import controller.SignInController;
 import controller.articleControllers.ArticleFormController;
 import controller.articleControllers.ArticleMenuController;
@@ -61,6 +62,7 @@ public class Main extends Application {
     private void setUpSceneDependencyInjector() {
         //Factories
         Callback<Class<?>, Object> signInControllerFactory = param -> new SignInController(wms);
+        Callback<Class<?>, Object> menuBarControllerFactory = param -> new MenuController(wms);
         Callback<Class<?>, Object> mainMenuControllerFactory = param -> new MainMenuController(wms);
         Callback<Class<?>, Object> articleMenuController = param -> new ArticleMenuController(wms);
         Callback<Class<?>, Object> siteMenuController = param -> new SiteMenuController(wms);
@@ -72,6 +74,10 @@ public class Main extends Application {
         //Saving Factories
         ParentDependencyInjection.addInjectionMethod(
                 SignInController.class, signInControllerFactory
+        );
+
+        ParentDependencyInjection.addInjectionMethod(
+                MenuController.class, menuBarControllerFactory
         );
 
         ParentDependencyInjection.addInjectionMethod(
@@ -102,8 +108,8 @@ public class Main extends Application {
     private void setUpStageDependencyInjector() {
         //Factories
         //Article
-        Callback<Class<?>, Object> articleOpenDetailsModal = param -> new ArticleOpenDetailsModalController(wms.getArticles());
-        Callback<Class<?>, Object> articleFormModal = param -> new ArticleFormController(wms.getArticles());
+        Callback<Class<?>, Object> articleOpenDetailsModal = param -> new ArticleOpenDetailsModalController(wms);
+        Callback<Class<?>, Object> articleFormModal = param -> new ArticleFormController(wms);
 
         //Orders
         Callback<Class<?>, Object> orderOpenModal = param -> new OrderOpenController(wms.getOrders());
