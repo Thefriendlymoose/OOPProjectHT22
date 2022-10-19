@@ -82,4 +82,10 @@ public class CustomerInfoViewController implements Observer {
         model.unregisterObserver(this);
         ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
     }
+
+    public void deleteCustomerHandler(ActionEvent actionEvent) {
+        model.removeCustomer(customer);
+        model.unregisterObserver(this);
+        ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
+    }
 }

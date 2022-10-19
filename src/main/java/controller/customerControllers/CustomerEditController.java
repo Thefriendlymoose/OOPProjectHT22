@@ -123,4 +123,5 @@ public class CustomerEditController implements Observer {
             contactPane.add(email,2,i+1);
         }
     }
+
 }

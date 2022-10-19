@@ -19,11 +19,11 @@
          <root>
             <AnchorPane prefHeight="676.0" prefWidth="600.0">
                <children>
-                  <TabPane prefHeight="700.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane prefHeight="700.0" prefWidth="652.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                       <Tab text="Info">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="572.0" prefWidth="600.0">
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="669.0" prefWidth="670.0">
                                  <children>
                                     <HBox layoutX="14.0" layoutY="14.0" prefHeight="91.0" prefWidth="340.0">
                                        <children>
@@ -119,8 +119,9 @@
                                     </VBox>
                                     <ButtonBar layoutX="378.0" layoutY="605.0" prefHeight="40.0" prefWidth="190.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="378.0">
                                       <buttons>
-                                        <Button fx:id="editButton" mnemonicParsing="false" prefHeight="27.0" text="Edit" />
-                                          <Button fx:id="closeButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="121.0" text="Close" onAction="#closeButtonHandler" />
+                                        <Button fx:id="editButton" mnemonicParsing="false" prefHeight="27.0" text="Edit" onAction="#editButtonHandler" />
+                                          <Button mnemonicParsing="false" onAction="#deleteCustomerHandler" text="DELETE" />
+                                          <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeButtonHandler" prefHeight="27.0" prefWidth="121.0" text="Close" />
                                       </buttons>
                                     </ButtonBar>
                                  </children>
