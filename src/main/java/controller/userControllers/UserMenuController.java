@@ -59,6 +59,7 @@ public class UserMenuController implements Observer {
 
             cont.setUser(user);
             cont.setUsers(users);
+            cont.setWms(wms);
 
             userCardHolder.getChildren().add(pane);
         }
@@ -84,12 +85,17 @@ public class UserMenuController implements Observer {
             stage.show();}
 
     public void openButton(ActionEvent e) throws Exception{
+
         Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/userViews/openUser.fxml")));
         stage.setTitle("My modal window");
 
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow() );
         stage.show();
+
+
+
+
 
     }
 

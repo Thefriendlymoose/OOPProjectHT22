@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.WMS;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
 import model.user.Permission;

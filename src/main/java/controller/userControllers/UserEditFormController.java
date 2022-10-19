@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.WMS;
 import model.user.Permission;
 import model.user.User;
 import model.user.Users;
@@ -43,6 +44,7 @@ public class UserEditFormController {
     public void setUser(User user) {
         this.user = user;
     }
+
 
 
 
