@@ -31,8 +31,8 @@ public class WMS implements Observable {
         this.orders = orders;
         this.sites = sites;
         this.customerModel = customerModel;
-        this.observers = new ArrayList<>();
         this.users = users;
+        this.observers = new ArrayList<>();
     }
 
     public Articles getArticles() {
