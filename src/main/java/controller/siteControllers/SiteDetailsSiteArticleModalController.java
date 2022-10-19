@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.WMS;
 import model.site.Site;
 import model.site.SiteArticle;
 import model.site.Sites;
@@ -24,10 +25,10 @@ public class SiteDetailsSiteArticleModalController {
 
     private SiteArticle siteArticle;
     private Site site;
-    private Sites sites;
+    private WMS wms;
 
-    public SiteDetailsSiteArticleModalController(Sites sites, Site site, SiteArticle siteArticle) {
-        this.sites = sites;
+    public SiteDetailsSiteArticleModalController(WMS wms, Site site, SiteArticle siteArticle) {
+        this.wms = wms;
         this.site = site;
         this.siteArticle = siteArticle;
     }
@@ -50,7 +51,7 @@ public class SiteDetailsSiteArticleModalController {
 
     public void onEdit(ActionEvent e) throws IOException {
         StageDependencyInjection.addInjectionMethod(
-                SiteDetailsSiteArticleEditModalController.class, params -> new SiteDetailsSiteArticleEditModalController(sites, site, siteArticle)
+                SiteDetailsSiteArticleEditModalController.class, params -> new SiteDetailsSiteArticleEditModalController(wms, site, siteArticle)
         );
 
         Stage stage = StageDependencyInjection.load("fxml/siteViews/siteDetailsSiteArticleEditModal.fxml");

@@ -1,12 +1,13 @@
 package controller.orderControllers;
 
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.WMS;
+import model.order.Order;
 import model.order.OrderRow;
 import model.site.Site;
 import model.site.SiteArticle;
@@ -17,7 +18,9 @@ import java.util.Optional;
  * Controller when the user is in the process of creating or editing and Order.
  */
 
-public class OrderDetailsAddModalController {
+public class OrderDetailsAddOrderRowController {
+
+
 
     @FXML
     private Button addArticleButton, cancelButton;
@@ -29,37 +32,40 @@ public class OrderDetailsAddModalController {
     @FXML
     private ListView<SiteArticle> chooseArticleListView;
 
-    private List<SiteArticle> siteArticles;
-
+    private final Site site;
+    private final Order order;
+    private final WMS wms;
     private SiteArticle current;
-    private Site site;
 
-    private ObservableList<OrderRow> observableOrderRows;
+
+
+    public OrderDetailsAddOrderRowController(WMS wms,Order order) {
+        this.site = order.getSite();
+        this.wms = wms;
+        this.order = order;
+    }
 
     /**
      * Shows all the Article and amount, which the user can select when creating or editing an order.
      */
 
     public void initialize(){
+        chooseArticleListView.getItems().addAll(site.getSiteArticleOverZero());
 
-        Platform.runLater(() -> {
-            chooseArticleListView.getItems().addAll(siteArticles);
+        chooseArticleListView.setCellFactory(param -> new ListCell<SiteArticle>(){
+            @Override
+            protected void updateItem(SiteArticle s, boolean empty){
+                super.updateItem(s, empty);
 
-            chooseArticleListView.setCellFactory(param -> new ListCell<SiteArticle>(){
-                @Override
-                protected void updateItem(SiteArticle s, boolean empty){
-                    super.updateItem(s, empty);
-
-                    if(empty || s == null || s.getArticle() == null){
-                        setText(null);
-                    } else {
-                        setText(s.getArticle().getArticleName() + " " + s.getAmount() + "x");
-                    }
+                if(empty || s == null || s.getArticle() == null){
+                    setText(null);
+                } else {
+                    setText(s.getArticle().getArticleName() + " " + s.getAmount() + "x");
                 }
-            });
-            chooseArticleListView.getSelectionModel().selectedItemProperty().addListener((observableValue, site, t1) -> {
-                current = chooseArticleListView.getSelectionModel().getSelectedItem();
-            });
+            }
+        });
+        chooseArticleListView.getSelectionModel().selectedItemProperty().addListener((observableValue, site, t1) -> {
+            current = chooseArticleListView.getSelectionModel().getSelectedItem();
         });
     }
 
@@ -73,13 +79,14 @@ public class OrderDetailsAddModalController {
         if (current != null && !amountTextField.getText().isEmpty()){
             try {
                 int amount = Integer.parseInt(amountTextField.getText());
-                if ((amount > current.getAmount() ) || ( amount == 0 )){
-                    System.out.println("Not enough in stock or equal to 0");
-                } else {
-                    observableOrderRows.add(new OrderRow(current.getArticle(), amount));
-                    current.setAmount(current.getAmount() - amount);
+                if (order.addOrderRow(current, amount)) {
+                    System.out.println("success");
                     ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+                    wms.updateOrder();
+                } else {
+                    System.out.println("you are poop");
                 }
+
             } catch (NumberFormatException error){
                 System.out.println("error number");
             }
@@ -100,15 +107,4 @@ public class OrderDetailsAddModalController {
         }
     }
 
-    public void setSite(Site site) {
-        this.site = site;
-    }
-
-    public void setSiteArticles(List<SiteArticle> siteArticles){
-        this.siteArticles = siteArticles;
-    }
-
-    public void setObservableOrderRows(ObservableList<OrderRow> addedRows) {
-        this.observableOrderRows = addedRows;
-    }
 }

@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.WMS;
 import model.site.Site;
 import model.site.Sites;
 
@@ -23,11 +24,11 @@ public class SiteMenuSiteCardController {
 
     @FXML
     private Button cardGoToButton;
-    private Sites sites;
+    private WMS wms;
     private Site site;
 
-    public SiteMenuSiteCardController(Sites sites, Site site) {
-        this.sites = sites;
+    public SiteMenuSiteCardController(WMS wms, Site site) {
+        this.wms = wms;
         this.site = site;
     }
 
@@ -39,7 +40,7 @@ public class SiteMenuSiteCardController {
 
     public void onGoTo(ActionEvent e) throws IOException {
         StageDependencyInjection.addInjectionMethod(
-                SiteDetailsController.class, params -> new SiteDetailsController(sites, site)
+                SiteDetailsController.class, params -> new SiteDetailsController(wms, site)
         );
 
         Stage stage = StageDependencyInjection.load("fxml/siteViews/siteDetailsModal.fxml");

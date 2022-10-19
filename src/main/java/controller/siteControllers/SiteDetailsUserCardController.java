@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import model.WMS;
 import model.user.User;
 import model.site.Site;
 import model.site.Sites;
@@ -23,10 +24,10 @@ public class SiteDetailsUserCardController {
 
     private User user;
     private Site site;
-    private Sites sites;
+    private WMS wms;
 
-    public SiteDetailsUserCardController(Sites sites, Site site, User user) {
-        this.sites = sites;
+    public SiteDetailsUserCardController(WMS wms, Site site, User user) {
+        this.wms = wms;
         this.site = site;
         this.user = user;
     }
@@ -52,7 +53,7 @@ public class SiteDetailsUserCardController {
             System.out.println("Clicked Cancel");
         } else {
             site.removeEmployee(user);
-            sites.updateSite();
+            wms.updateSite();
         }
     }
 }

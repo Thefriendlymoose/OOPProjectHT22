@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.WMS;
 import model.site.Site;
 import model.site.Sites;
 
@@ -20,9 +21,11 @@ public class SiteOpenDetailsController {
     @FXML
     private Label warningLabel;
     private Sites sites;
+    private WMS wms;
 
-    public SiteOpenDetailsController(Sites sites) {
-        this.sites = sites;
+    public SiteOpenDetailsController(WMS wms) {
+        this.wms = wms;
+        this.sites = wms.getSites();
     }
 
     public void onOpen(ActionEvent e) throws IOException {
@@ -36,7 +39,7 @@ public class SiteOpenDetailsController {
             } else {
 
                 StageDependencyInjection.addInjectionMethod(
-                        SiteDetailsController.class, params -> new SiteDetailsController(sites, site)
+                        SiteDetailsController.class, params -> new SiteDetailsController(wms, site)
                 );
 
                 Stage stage = StageDependencyInjection.load("fxml/siteViews/siteDetailsModal.fxml");

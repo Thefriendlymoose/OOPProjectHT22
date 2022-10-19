@@ -55,7 +55,7 @@ public class ArticleFormController {
         } else {
             Article art = new Article(articles.getNextId(), nameTextField.getText(), descriptionTextArea.getText(), categoryComboBox.getValue(),
                                       statusComboBox.getValue(), Float.parseFloat(costTextField.getText()), Float.parseFloat(sellPriceTextField.getText()),
-                                        null , LocalDateTime.now(), LocalDateTime.now());
+                                        wms.getSession().getUser(), LocalDateTime.now(), LocalDateTime.now());
 
             wms.addArticle(art);
 

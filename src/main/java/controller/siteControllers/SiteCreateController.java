@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.WMS;
 import model.user.User;
 import model.site.Site;
 import model.site.SiteArticle;
@@ -26,10 +27,12 @@ public class SiteCreateController {
 
     @FXML
     private Button saveButton, cancelButton;
+    private WMS wms;
     private Sites sites;
 
-    public SiteCreateController(Sites sites) {
-        this.sites = sites;
+    public SiteCreateController(WMS wms) {
+        this.wms = wms;
+        this.sites = wms.getSites();
     }
 
     public void initialize(){
@@ -37,13 +40,12 @@ public class SiteCreateController {
     }
 
     public void onSave(ActionEvent e) throws IOException {
-        System.out.println("Clicked save");
         Site newSite = new Site(sites.getNextId(), nameTextField.getText(), siteAddressTextArea.getText(),Integer.parseInt(maxCapacityTextField.getText()), new ArrayList<SiteArticle>(), new ArrayList<User>());
 
-        sites.addSite(newSite);
+        wms.addSite(newSite);
 
         StageDependencyInjection.addInjectionMethod(
-                SiteDetailsController.class, params -> new SiteDetailsController(sites, newSite)
+                SiteDetailsController.class, params -> new SiteDetailsController(wms, newSite)
         );
 
         Stage stage = StageDependencyInjection.load("fxml/siteViews/siteDetailsModal.fxml");

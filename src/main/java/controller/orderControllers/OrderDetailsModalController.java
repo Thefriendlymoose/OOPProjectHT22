@@ -8,7 +8,9 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import model.WMS;
 import model.customer.Customer;
+import model.observer.Observer;
 import model.order.Order;
 import model.order.OrderRow;
 import model.order.OrderStatus;
@@ -22,7 +24,7 @@ import java.io.IOException;
  *  "Edit" button is pressed.
  */
 
-public class OrderDetailsModalController {
+public class OrderDetailsModalController implements Observer {
 
     @FXML
     private Label titleLabel;
@@ -34,20 +36,23 @@ public class OrderDetailsModalController {
     private ComboBox<Boolean> priorityComboBox;
     @FXML
     private DatePicker orderDeadlineDatePicker;
+
+    @FXML
+    private TextField createdByTextField;
+
     @FXML
     private ListView<OrderRow> orderRowListView;
 
     @FXML
-//    private ComboBox<Customer> customerComboBox;
     private ComboBox<Customer> customerComboBox;
 
     private Order order;
+    private WMS wms;
 
-    private Orders orders;
-
-    public OrderDetailsModalController(Orders orders, Order order) {
-        this.orders = orders;
+    public OrderDetailsModalController(WMS wms, Order order) {
+        this.wms = wms;
         this.order = order;
+        wms.registerObserver(this);
     }
 
     /**
@@ -55,53 +60,52 @@ public class OrderDetailsModalController {
      */
 
     public void initialize(){
-            titleLabel.setText(titleLabel.getText() + order.getOrderNumber());
+        updateFields();
 
-            numberTextField.setText(String.valueOf(order.getOrderNumber()));
+        titleLabel.setText(titleLabel.getText() + order.getOrderNumber());
 
-            statusComboBox.setValue(order.getOrderStatus());
-            statusComboBox.setDisable(true);
-            statusComboBox.getStyleClass().add("locked-form-field");
+        numberTextField.setText(String.valueOf(order.getOrderNumber()));
 
-            priorityComboBox.setValue(order.isPriority());
-            priorityComboBox.setDisable(true);
-            priorityComboBox.getStyleClass().add("locked-form-field");
+        statusComboBox.setDisable(true);
+        statusComboBox.getStyleClass().add("locked-form-field");
 
-            orderDeadlineDatePicker.setValue(order.getDeadline().toLocalDate());
-            orderDeadlineDatePicker.setDisable(true);
-            orderDeadlineDatePicker.getStyleClass().add("locked-form-field");
+        priorityComboBox.setDisable(true);
+        priorityComboBox.getStyleClass().add("locked-form-field");
 
-            orderRowListView.getItems().addAll(order.getOrderRows());
-            orderRowListView.setDisable(true);
-            orderRowListView.getStyleClass().add("locked-form-field");
+        orderDeadlineDatePicker.setDisable(true);
+        orderDeadlineDatePicker.getStyleClass().add("locked-form-field");
 
-            customerComboBox.setValue(order.getCustomer());
-            customerComboBox.setDisable(true);
-            customerComboBox.getStyleClass().add("locked-form-field");
-            customerComboBox.setConverter(new StringConverter<Customer>() {
-                @Override
-                public String toString(Customer c) {
-                    return c.getCompanyName();
+        orderRowListView.setDisable(true);
+        orderRowListView.getStyleClass().add("locked-form-field");
+
+        createdByTextField.setDisable(true);
+
+        customerComboBox.setDisable(true);
+        customerComboBox.getStyleClass().add("locked-form-field");
+        customerComboBox.setConverter(new StringConverter<Customer>() {
+            @Override
+            public String toString(Customer c) {
+                return c.getCompanyName();
+            }
+
+            @Override
+            public Customer fromString(String c) {
+                return null;
+            }
+        });
+
+        orderRowListView.setCellFactory(param -> new ListCell<OrderRow>(){
+            @Override
+            protected void updateItem(OrderRow s, boolean empty){
+                super.updateItem(s, empty);
+
+                if(empty || s == null || s.getArticle() == null){
+                    setText(null);
+                } else {
+                    setText(s.getArticle().getArticleName() + ", " + s.getAmount() + "x");
                 }
-
-                @Override
-                public Customer fromString(String c) {
-                    return null;
-                }
-            });
-
-            orderRowListView.setCellFactory(param -> new ListCell<OrderRow>(){
-                @Override
-                protected void updateItem(OrderRow s, boolean empty){
-                    super.updateItem(s, empty);
-
-                    if(empty || s == null || s.getArticle() == null){
-                        setText(null);
-                    } else {
-                        setText(s.getArticle().getArticleName() + ", " + s.getAmount() + "x");
-                    }
-                }
-            });
+            }
+        });
     }
 
     /**
@@ -113,17 +117,15 @@ public class OrderDetailsModalController {
 
     public void onEdit(ActionEvent e) throws IOException {
         StageDependencyInjection.addInjectionMethod(
-                OrderEditModalController.class, params -> new OrderEditModalController(orders, order)
+                OrderEditModalController.class, params -> new OrderEditModalController(wms, order)
         );
 
         Stage stage = StageDependencyInjection.load("fxml/orderViews/orderEditModal.fxml");
 
         stage.setTitle("Edit Order");
         stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(((Stage) ((Node)e.getSource()).getScene().getWindow()).getOwner());
+        stage.initOwner(((Stage) ((Node)e.getSource()).getScene().getWindow()));
         stage.show();
-
-        ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
 
     }
 
@@ -131,6 +133,47 @@ public class OrderDetailsModalController {
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
     }
 
+    public void onAddOrderRow(ActionEvent e) throws IOException {
+        StageDependencyInjection.addInjectionMethod(
+                OrderDetailsAddOrderRowController.class, param -> new OrderDetailsAddOrderRowController(wms, order)
+        );
 
+        Stage stage = StageDependencyInjection.load("fxml/orderViews/orderDetailsAddOrderRow.fxml");
+
+        stage.setTitle("Add Order Row");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Stage) ((Node)e.getSource()).getScene().getWindow()));
+        stage.show();
+
+    }
+
+    public void onRemoveOrderRow(ActionEvent e) throws IOException {
+        StageDependencyInjection.addInjectionMethod(
+                OrderDetailsReduceOrderRowController.class, param -> new OrderDetailsReduceOrderRowController(wms, order)
+        );
+
+        Stage stage = StageDependencyInjection.load("fxml/orderViews/orderDetailsReduceOrderRow.fxml");
+
+
+        stage.setTitle("Reduce/Delete Order Row");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Stage) ((Node)e.getSource()).getScene().getWindow()));
+        stage.show();
+    }
+
+    private void updateFields(){
+        statusComboBox.setValue(order.getOrderStatus());
+        priorityComboBox.setValue(order.isPriority());
+        orderDeadlineDatePicker.setValue(order.getDeadline().toLocalDate());
+        orderRowListView.getItems().clear();
+        orderRowListView.getItems().addAll(order.getOrderRows());
+        createdByTextField.setText(order.getUser().getName());
+        customerComboBox.setValue(order.getCustomer());
+    }
+
+    @Override
+    public void update() {
+        updateFields();
+    }
 }
 

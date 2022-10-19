@@ -112,11 +112,11 @@ public class Main extends Application {
         Callback<Class<?>, Object> articleFormModal = param -> new ArticleFormController(wms);
 
         //Orders
-        Callback<Class<?>, Object> orderOpenModal = param -> new OrderOpenController(wms.getOrders());
+        Callback<Class<?>, Object> orderOpenModal = param -> new OrderOpenController(wms);
 
         //Sites
-        Callback<Class<?>, Object> siteOpenModal = param -> new SiteOpenDetailsController(wms.getSites());
-        Callback<Class<?>, Object> siteCreateModal = param -> new SiteCreateController(wms.getSites());
+        Callback<Class<?>, Object> siteOpenModal = param -> new SiteOpenDetailsController(wms);
+        Callback<Class<?>, Object> siteCreateModal = param -> new SiteCreateController(wms);
 
         //Saving Factories
         StageDependencyInjection.addInjectionMethod(

@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.WMS;
 import model.user.User;
 import model.observer.Observer;
 import model.site.Site;
@@ -37,12 +38,12 @@ public class SiteDetailsController implements Observer {
     private VBox stockVBox, employeeVBox;
 
     private Site site;
-    private Sites sites;
+    private WMS wms;
 
-    public SiteDetailsController(Sites sites, Site site) {
-        this.sites = sites;
+    public SiteDetailsController(WMS wms, Site site) {
+        this.wms = wms;
         this.site = site;
-        site.registerObserver(this);
+        wms.registerObserver(this);
     }
 
 
@@ -66,7 +67,7 @@ public class SiteDetailsController implements Observer {
         employeeVBox.getChildren().clear();
         for(User user : site.getEmployees()){
             ParentDependencyInjection.addInjectionMethod(
-                    SiteDetailsUserCardController.class, params -> new SiteDetailsUserCardController(sites, site, user)
+                    SiteDetailsUserCardController.class, params -> new SiteDetailsUserCardController(wms, site, user)
             );
 
             Parent pane = ParentDependencyInjection.load("fxml/siteViews/siteDetailsUserCard.fxml");
@@ -78,7 +79,7 @@ public class SiteDetailsController implements Observer {
         stockVBox.getChildren().clear();
         for(SiteArticle siteArticle : site.getSiteArticles()){
             ParentDependencyInjection.addInjectionMethod(
-                    SiteDetailsSiteArticleCardController.class, params -> new SiteDetailsSiteArticleCardController(sites, site, siteArticle)
+                    SiteDetailsSiteArticleCardController.class, params -> new SiteDetailsSiteArticleCardController(wms, site, siteArticle)
             );
 
             Parent pane = ParentDependencyInjection.load("fxml/siteViews/siteDetailsSiteArticleCard.fxml");
@@ -89,7 +90,7 @@ public class SiteDetailsController implements Observer {
 
     public void editHandler(ActionEvent e) throws IOException {
         StageDependencyInjection.addInjectionMethod(
-                SiteDetailsEditController.class, params -> new SiteDetailsEditController(sites, site)
+                SiteDetailsEditController.class, params -> new SiteDetailsEditController(wms, site)
         );
 
         Stage stage = StageDependencyInjection.load("fxml/siteViews/siteDetailsEditModal.fxml");
@@ -103,12 +104,12 @@ public class SiteDetailsController implements Observer {
 
     public void closeHandler(ActionEvent e) {
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
-        sites.updateSite();
+        wms.updateSite();
     }
 
     public void onStockAdd(ActionEvent e) throws IOException {
         StageDependencyInjection.addInjectionMethod(
-                SiteDetailsSiteArticleAddModalController.class, params -> new SiteDetailsSiteArticleAddModalController(sites, site)
+                SiteDetailsSiteArticleAddModalController.class, params -> new SiteDetailsSiteArticleAddModalController(wms, site)
         );
 
         Stage stage = StageDependencyInjection.load("fxml/siteViews/siteDetailsSiteArticleAddModal.fxml");
@@ -121,7 +122,7 @@ public class SiteDetailsController implements Observer {
 
     public void onEmployeeAdd(ActionEvent e) throws IOException {
         StageDependencyInjection.addInjectionMethod(
-                SiteDetailsUserAddModalController.class, params -> new SiteDetailsUserAddModalController(sites, site)
+                SiteDetailsUserAddModalController.class, params -> new SiteDetailsUserAddModalController(wms, site)
         );
 
         Stage stage = StageDependencyInjection.load("fxml/siteViews/siteDetailsUserAddModal.fxml");

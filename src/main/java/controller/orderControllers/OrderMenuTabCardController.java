@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.WMS;
 import model.order.Order;
 import model.order.Orders;
 
@@ -32,10 +33,10 @@ public class OrderMenuTabCardController {
 
     private Order order;
 
-    private Orders orders;
+    private WMS wms;
 
-    public OrderMenuTabCardController(Orders orders, Order order) {
-        this.orders = orders;
+    public OrderMenuTabCardController(WMS wms, Order order) {
+        this.wms = wms;
         this.order = order;
     }
 
@@ -54,7 +55,7 @@ public class OrderMenuTabCardController {
     public void onOpen(ActionEvent e) throws IOException{
 
         StageDependencyInjection.addInjectionMethod(
-                OrderDetailsModalController.class, params -> new OrderDetailsModalController(orders, order)
+                OrderDetailsModalController.class, params -> new OrderDetailsModalController(wms, order)
         );
 
         Stage stage = StageDependencyInjection.load("fxml/orderViews/orderDetailsModal.fxml");

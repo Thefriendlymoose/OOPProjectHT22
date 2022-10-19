@@ -10,6 +10,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.WMS;
 import model.site.Site;
 import model.site.SiteArticle;
 import model.site.Sites;
@@ -27,10 +28,10 @@ public class SiteDetailsSiteArticleCardController {
 
     private SiteArticle siteArticle;
     private Site site;
-    private Sites sites;
+    private WMS wms;
 
-    public SiteDetailsSiteArticleCardController(Sites sites, Site site, SiteArticle siteArticle) {
-        this.sites = sites;
+    public SiteDetailsSiteArticleCardController(WMS wms, Site site, SiteArticle siteArticle) {
+        this.wms = wms;
         this.site = site;
         this.siteArticle = siteArticle;
     }
@@ -42,7 +43,7 @@ public class SiteDetailsSiteArticleCardController {
 
     public void onGoTo(ActionEvent e) throws IOException {
         StageDependencyInjection.addInjectionMethod(
-                SiteDetailsSiteArticleModalController.class, params -> new SiteDetailsSiteArticleModalController(sites, site, siteArticle)
+                SiteDetailsSiteArticleModalController.class, params -> new SiteDetailsSiteArticleModalController(wms, site, siteArticle)
         );
 
         Stage stage = StageDependencyInjection.load("fxml/siteViews/siteDetailsSiteArticleModal.fxml");
@@ -64,7 +65,7 @@ public class SiteDetailsSiteArticleCardController {
             System.out.println("Clicked Cancel");
         } else {
             site.removeSiteArticles(siteArticle);
-            sites.updateSite();
+            wms.updateSite();
         }
     }
 }

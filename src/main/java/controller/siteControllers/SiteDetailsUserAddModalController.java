@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.WMS;
 import model.user.User;
 import model.site.Site;
 import model.site.Sites;
@@ -23,10 +24,10 @@ public class SiteDetailsUserAddModalController {
     private User current;
 
     private Site site;
-    private Sites sites;
+    private WMS wms;
 
-    public SiteDetailsUserAddModalController(Sites sites, Site site) {
-        this.sites = sites;
+    public SiteDetailsUserAddModalController(WMS wms, Site site) {
+        this.wms = wms;
         this.site = site;
     }
 
@@ -57,7 +58,7 @@ public class SiteDetailsUserAddModalController {
         } else {
             site.addEmployee(current);
             ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
-            sites.updateSite();
+            wms.updateSite();
         }
     }
 

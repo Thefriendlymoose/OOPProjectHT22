@@ -49,7 +49,7 @@ public class OrderMenuController implements Observer{
         this.wms = wms;
         this.sites = wms.getSites();
         this.orders = wms.getOrders();
-        orders.registerObserver(this);
+        wms.registerObserver(this);
     }
 
     /**
@@ -83,7 +83,7 @@ public class OrderMenuController implements Observer{
 
             for (Order order : orders.getOrdersBySite(site)){
                 ParentDependencyInjection.addInjectionMethod(
-                        OrderMenuTabCardController.class, params -> new OrderMenuTabCardController(orders, order)
+                        OrderMenuTabCardController.class, params -> new OrderMenuTabCardController(wms, order)
                 );
 
                 Parent pane = ParentDependencyInjection.load("fxml/orderViews/orderMenuTabCard.fxml");
@@ -131,7 +131,7 @@ public class OrderMenuController implements Observer{
 
     public void createButton(ActionEvent e) throws Exception{
         StageDependencyInjection.addInjectionMethod(
-                OrderCreateModalController.class, params -> new OrderCreateModalController(sites, orders, wms.getCustomerModel())
+                OrderCreateModalController.class, params -> new OrderCreateModalController(wms)
         );
 
         Stage stage = StageDependencyInjection.load("fxml/orderViews/orderCreateModal.fxml");

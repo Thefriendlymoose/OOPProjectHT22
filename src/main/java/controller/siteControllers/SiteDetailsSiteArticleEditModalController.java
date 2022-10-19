@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.WMS;
 import model.site.Site;
 import model.site.SiteArticle;
 import model.site.Sites;
@@ -22,10 +23,10 @@ public class SiteDetailsSiteArticleEditModalController {
 
     private SiteArticle siteArticle;
     private Site site;
-    private Sites sites;
+    private WMS wms;
 
-    public SiteDetailsSiteArticleEditModalController(Sites sites, Site site, SiteArticle siteArticle) {
-        this.sites = sites;
+    public SiteDetailsSiteArticleEditModalController(WMS wms, Site site, SiteArticle siteArticle) {
+        this.wms = wms;
         this.site = site;
         this.siteArticle = siteArticle;
     }
@@ -59,7 +60,7 @@ public class SiteDetailsSiteArticleEditModalController {
             } else {
                 site.editSiteArticle(siteArticle, amount);
                 ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
-                sites.updateSite();
+                wms.updateSite();
             }
 
         } catch (NumberFormatException error){

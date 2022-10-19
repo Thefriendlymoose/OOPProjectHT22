@@ -6,7 +6,9 @@ import model.article.Articles;
 import model.customer.CustomerModel;
 import model.observer.Observable;
 import model.observer.Observer;
+import model.order.Order;
 import model.order.Orders;
+import model.site.Site;
 import model.site.Sites;
 
 import java.util.ArrayList;
@@ -43,13 +45,30 @@ public class WMS implements Observable {
         notifyObservers();
     }
 
-
     public Orders getOrders() {
         return orders;
     }
 
+    public void addOrder(Order order) {
+        orders.addOrder(order);
+        notifyObservers();
+    }
+
+    public void updateOrder() {
+        notifyObservers();
+    }
+
     public Sites getSites() {
         return sites;
+    }
+
+    public void addSite(Site site) {
+        sites.addSite(site);
+        notifyObservers();
+    }
+
+    public void updateSite() {
+        notifyObservers();
     }
 
     public CustomerModel getCustomerModel(){ return customerModel; }
@@ -81,4 +100,5 @@ public class WMS implements Observable {
     public void notifyObservers() {
         observers.forEach(Observer::update);
     }
+
 }

@@ -1,5 +1,6 @@
 package controller.orderControllers;
 
+import controller.dpi.StageDependencyInjection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import model.WMS;
 import model.customer.Customer;
 import model.customer.CustomerModel;
 import model.order.*;
@@ -41,24 +43,19 @@ public class OrderFormModalController {
     private ComboBox<Customer> customerComboBox;
     @FXML
     private DatePicker orderDeadlineDatePicker;
-    @FXML
-    private Button addOrderRowButton, saveButton, cancelButton;
-    @FXML
-    private ListView<OrderRow> orderRowListView;
-
-    private ObservableList<OrderRow> addedRows;
-
     private DateFunctions df = new DateFunctions();
     private LocalDateTime deadline;
     private LocalDateTime orderDate;
+    private WMS wms;
     private Orders orders;
-    private Site site;
+    private Site chosenSite;
     private CustomerModel customerModel;
 
-    public OrderFormModalController(Orders orders, Site site, CustomerModel customerModel) {
-        this.orders = orders;
-        this.site = site;
-        this.customerModel = customerModel;
+    public OrderFormModalController(WMS wms, Site chosenSite) {
+        this.wms = wms;
+        this.chosenSite = chosenSite;
+        this.customerModel = wms.getCustomerModel();
+        this.orders = wms.getOrders();
     }
 
     /**
@@ -67,20 +64,6 @@ public class OrderFormModalController {
     @FXML
     public void initialize(){
 
-        addedRows = FXCollections.observableArrayList();
-        orderRowListView.setItems(addedRows); //.toList() -> OrderList
-        orderRowListView.setCellFactory(param -> new ListCell<OrderRow>(){
-            @Override
-            protected void updateItem(OrderRow s, boolean empty){
-                super.updateItem(s, empty);
-
-                if(empty || s == null || s.getArticle() == null){
-                    setText(null);
-                } else {
-                    setText(s.getArticle().getArticleName() + " " + s.getAmount() + "x");
-                }
-            }
-        });
 
         priorityComboBox.getItems().addAll(orders.getAllPriorities());
 
@@ -109,14 +92,23 @@ public class OrderFormModalController {
      *
      * @param e is the Action Event
      */
-    public void saveOrder(ActionEvent e){
-        System.out.println("orderRowListView.getItems().size(): " + orderRowListView.getItems().size());
-            if (df.isValidDeadline(deadline) && customerComboBox.getValue() != null && statusComboBox.getValue() != null && priorityComboBox.getValue() != null && orderRowListView.getItems().size() > 0){
-                orders.addOrder(new Order(null, orders.getNextOrderNumber(), customerComboBox.getValue(), statusComboBox.getValue(), priorityComboBox.getValue(), orderDate, deadline, addedRows.stream().toList(), site));
-        ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
-        orders.updateOrder();
-        }
+    public void saveOrder(ActionEvent e) throws IOException {
+        if (df.isValidDeadline(deadline) && customerComboBox.getValue() != null && statusComboBox.getValue() != null && priorityComboBox.getValue() != null ){
+            Order newOrder = new Order(wms.getSession().getUser(), orders.getNextOrderNumber(), customerComboBox.getValue(), statusComboBox.getValue(), priorityComboBox.getValue(), orderDate, deadline, new ArrayList<>(), chosenSite);
+            wms.addOrder(newOrder);
 
+            StageDependencyInjection.addInjectionMethod(
+                    OrderDetailsModalController.class, param -> new OrderDetailsModalController(wms, newOrder)
+            );
+
+            Stage stage = StageDependencyInjection.load("fxml/orderViews/orderDetailsModal.fxml");
+            stage.setTitle("Site: " + newOrder.getOrderNumber());
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(((Stage) ((Node)e.getSource()).getScene().getWindow()).getOwner());
+            stage.show();
+
+            ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+        }
     }
 
     /**
@@ -135,28 +127,6 @@ public class OrderFormModalController {
         if(df.isValidDeadline(deadline)){
             System.out.println("Deadline: " + deadline.getDayOfMonth() + "-"+ deadline.getMonthValue() + "-" + deadline.getYear());
         }
-    }
-
-    /**
-     * Takes user to modal where user can select Article and amount
-     *
-     * @param e is the Action Event
-     * @throws IOException throws is stage doesn't exist.
-     */
-
-    public void onAddOrderRowButton(ActionEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderDetailsAddModal.fxml"));
-        Stage stage = loader.load();
-        OrderDetailsAddModalController controller = loader.getController();
-        controller.setSite(site);
-        controller.setSiteArticles(site.getSiteArticles());
-        controller.setObservableOrderRows(addedRows);
-
-
-        stage.setTitle("Choose Article and Amount");
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(((Node)e.getSource()).getScene().getWindow());
-        stage.show();
     }
 
     public void onCancel(ActionEvent e){
