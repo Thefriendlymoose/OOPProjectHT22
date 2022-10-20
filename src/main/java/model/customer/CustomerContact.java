@@ -1,8 +1,10 @@
 package model.customer;
 
 /**
- * A class for creating contact information
- * A contact has a name, a phone number and an email
+ * Responsibility: storing contact information
+ * Used by: Customer
+ * Uses: String
+ * @author Simon Porsgaard / doktorjevksy
  */
 
 public class CustomerContact {

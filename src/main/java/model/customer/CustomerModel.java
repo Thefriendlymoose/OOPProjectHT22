@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The customer model figures more or less as a facade to the database
- * supports operations for finding, saving, creating and deleting Customers
+ * Responsibility: creating a facade between the data and the controllers
+ * Used by: CustomerEditor, CustomerEditController, CustomerMenuController
+ * Uses: Customer, Observer, IPersistence, List, CustomerEditor
+ * @author Simon Porsgaard / doktorjevksy
  */
 
 public class CustomerModel implements Observable {

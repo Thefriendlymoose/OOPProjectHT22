@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A class that represents Customers
- * A customer has two different (or potentially same) addresses for shipments and billing
- * A customer has a list of contacts, containing names, numbers and emails
- * A customer has an organizational number
- * A customer has a name
+ * Responsibility: store customer information
+ * Used by: CustomerEditor, BillingAddressStrategy, ShippingAddressStrategy,
+ *          CustomerModel
+ *
+ * Uses: CustomerContact, Address
+ * @author Simon Porsgaard / doktorjevksy
  */
 
 public class Customer{

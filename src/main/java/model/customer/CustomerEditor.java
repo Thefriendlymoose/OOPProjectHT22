@@ -7,8 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Provides encapsulation for editing a Customer object
- * Observable in order to update views after each edit
+ * Responsibility: encapsulating the process of manipulating data in a Customer object
+ * Used by: CustomerEditor, CustomerModel, CustomerEditController,
+ *          ContactEditController, AddressCreateController, ContactEditCardController
+ * Uses: Customer, CustomerModel, AddressStrategy, Observer
+ * @author Simon Porsgaard / doktorjevksy
  */
 
 public class CustomerEditor implements Observable {

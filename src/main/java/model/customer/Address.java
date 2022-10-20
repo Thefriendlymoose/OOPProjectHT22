@@ -1,7 +1,11 @@
 package model.customer;
 
 /**
- * A class that represents an address
+ * Responsibility: Representing an address
+ * Used by: Customer
+ * Uses: String
+ * @author Simon Porsgaard / doktorjevsky
+ *
  */
 public class Address{
     private String streetName;

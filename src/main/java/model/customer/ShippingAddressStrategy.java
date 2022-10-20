@@ -1,5 +1,12 @@
 package model.customer;
 
+/**
+ * Responsibility: a concrete strategy for setting an address in the editor
+ * Used by: CustomerEditor
+ * Uses: Customer
+ * @author Simon Porsgaard / doktorjevksy
+ */
+
 public class ShippingAddressStrategy implements AddressStrategy{
 
     private Customer customer;
