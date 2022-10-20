@@ -3,7 +3,6 @@ package persistence.pojos;
 import model.order.OrderStatus;
 
 import java.time.LocalDateTime;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 public class OrderJSON {

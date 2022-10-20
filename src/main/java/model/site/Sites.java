@@ -1,8 +1,5 @@
 package model.site;
 
-import model.observer.Observable;
-import model.observer.Observer;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -24,7 +21,11 @@ public class Sites {
      */
     public Sites(Map<Long, Site> sites){
         this.sites = sites;
-        nextId = Collections.max(sites.keySet()) + 1;
+        if (sites.isEmpty()){
+            nextId = 1L;
+        } else {
+            nextId = Collections.max(sites.keySet()) + 1;
+        }
     }
 
     /**

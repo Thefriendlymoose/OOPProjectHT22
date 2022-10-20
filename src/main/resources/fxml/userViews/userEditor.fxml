@@ -17,7 +17,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
-<Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.userControllers.UserEditFormController">
+<Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.usercontrollers.UserEditFormController">
     <scene>
         <Scene>
             <AnchorPane prefHeight="700.0" prefWidth="500.0" stylesheets="@../stylesheet.css">

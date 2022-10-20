@@ -15,7 +15,11 @@ public class Users implements Observable {
 
     public Users(Map<Long, User> users){
         this.users = users;
-        nextUserID = Collections.max(users.keySet()) + 1;
+        if (users.isEmpty()){
+            this.nextUserID = 1L;
+        } else {
+            nextUserID = Collections.max(users.keySet()) + 1;
+        }
         observers = new ArrayList<>();
     }
 

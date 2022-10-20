@@ -13,7 +13,16 @@ import model.user.Permission;
 
 public class MainMenuController {
     @FXML
-    private Button menuSiteButton, menuArticleButton, menuCustomerButton, menuUserButton, menuOrderButton;
+    private Button menuSiteButton;
+    @FXML
+    private Button menuArticleButton;
+    @FXML
+    private Button menuCustomerButton;
+    @FXML
+    private Button menuUserButton;
+    @FXML
+    private Button menuOrderButton;
+
     private WMS wms;
     private Session session;
 

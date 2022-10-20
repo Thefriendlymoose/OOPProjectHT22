@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="99.0" prefWidth="436.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customerControllers.CustomerCardController">
+<AnchorPane prefHeight="99.0" prefWidth="436.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customercontrollers.CustomerCardController">
    <children>
       <HBox layoutX="14.0" layoutY="23.0" prefHeight="57.0" prefWidth="324.0">
          <children>

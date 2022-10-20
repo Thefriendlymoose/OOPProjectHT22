@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.stage.Stage?>
 
-<Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customerControllers.CustomerEditController">
+<Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customercontrollers.CustomerEditController">
     <scene>
         <Scene>
             <AnchorPane prefHeight="696.0" prefWidth="309.0">

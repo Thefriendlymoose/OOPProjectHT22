@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="125.0" prefWidth="348.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customerControllers.ContactEditCardController">
+<AnchorPane prefHeight="125.0" prefWidth="348.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customercontrollers.ContactEditCardController">
    <children>
       <VBox layoutX="14.0" layoutY="14.0" prefHeight="94.0" prefWidth="139.0">
          <children>

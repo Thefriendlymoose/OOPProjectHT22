@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 
-<AnchorPane maxHeight="300.0" maxWidth="250.0" prefHeight="300.0" prefWidth="250.0" styleClass="generic-card" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.orderControllers.OrderMenuTabCardController">
+<AnchorPane maxHeight="300.0" maxWidth="250.0" prefHeight="300.0" prefWidth="250.0" styleClass="generic-card" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ordercontrollers.OrderMenuTabCardController">
    <children>
       <GridPane prefHeight="300.0" prefWidth="270.0">
         <columnConstraints>

@@ -4,7 +4,6 @@ package model.authentication;
 import model.user.User;
 import model.user.Users;
 
-import java.util.List;
 
 /**
  * Class is used to log in/out user from the system
