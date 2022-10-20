@@ -22,7 +22,7 @@ public class Articles {
      */
     public Articles(Map<Long, Article> articles) {
         this.articles = articles;
-        if (articles.size() == 0){
+        if (articles.isEmpty()){
             this.nextId = Long.valueOf(1);
         } else {
             nextId = Collections.max(articles.keySet()) + 1;

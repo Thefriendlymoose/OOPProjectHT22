@@ -22,8 +22,8 @@ public class Orders {
 
     public Orders(Map<Long, Order> orders){
         this.orders = orders;
-        if (orders.size() == 0){
-            nextOrderNumber = Long.valueOf(1);
+        if (orders.isEmpty()){
+            nextOrderNumber = 1L;
         } else {
             nextOrderNumber = Collections.max(orders.keySet()) + 1;
         }
