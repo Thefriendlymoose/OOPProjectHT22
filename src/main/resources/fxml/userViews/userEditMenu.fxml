@@ -54,7 +54,7 @@
                         <HBox>
                             <Button onAction="#edit" styleClass="generic-button"  fx:id="editButton" mnemonicParsing="false" text="Edit User" alignment="BASELINE_LEFT" />
                             <Region HBox.hgrow="ALWAYS" />
-                            <Button onAction="#cancel" styleClass="generic-button"  fx:id="cancelButton" mnemonicParsing="false" text="Cancel" alignment="BASELINE_RIGHT" />
+                            <Button onAction="#cancel" styleClass="generic-button, form-cancel-button"  fx:id="cancelButton" mnemonicParsing="false" text="Cancel" alignment="BASELINE_RIGHT" />
                         </HBox>
                     </VBox>
                 </children>

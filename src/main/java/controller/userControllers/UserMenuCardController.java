@@ -73,6 +73,20 @@ public class UserMenuCardController {
                     }
                 }
             });
+            removeUserButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    if (wms.getSession().getUser().getUserId() == user.getUserId()){
+                        System.out.println("Tooo bad can't remove yourself");
+                    }
+                    else{
+                        users.removeUser(user);
+                        users.updateUser();
+
+                    }
+                }
+            });
+
 
         });
     }

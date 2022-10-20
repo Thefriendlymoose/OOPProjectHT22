@@ -80,6 +80,7 @@ public class userDetailsController {
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
     }
     public void cancel(ActionEvent e) throws IOException{
+        ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
 
     }
 

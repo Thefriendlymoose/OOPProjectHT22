@@ -17,6 +17,7 @@ import persistence.UserDAO;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 public class CreateUserController {
@@ -51,6 +52,19 @@ public class CreateUserController {
         users.addUser(newUser);
         users.updateUser();
 
+    }
+    public void onCancel(ActionEvent e){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("All changes made will be cancelled");
+        alert.setContentText("Are you ok with this?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.CANCEL){
+            System.out.println("Clicked Cancel");
+        } else {
+            ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+        }
     }
 
 

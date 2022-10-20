@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class UserEditFormController {
 
@@ -55,8 +56,8 @@ public class UserEditFormController {
 
         Platform.runLater(() -> {
             userIDTextField.setText(String.valueOf(user.getUserId()));
-            firstNameField.setText(user.getFirstOrLastName(user.getName(),0));
-            lastNameField.setText(user.getFirstOrLastName(user.getName(),1));
+            firstNameField.setText(user.getFirstName(user.getName()));
+            lastNameField.setText(user.getLastName(user.getName()));
             userNameField.setText(user.getUserName());
             passwordField.setText(user.getPassword());
             statusBox.setValue(user.isStatus());
@@ -80,6 +81,19 @@ public class UserEditFormController {
         users.updateUser();
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
 
+    }
+    public void onCancel(ActionEvent e){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText("All changes made will be cancelled");
+        alert.setContentText("Are you ok with this?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.CANCEL){
+            System.out.println("Clicked Cancel");
+        } else {
+            ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+        }
     }
 
 
