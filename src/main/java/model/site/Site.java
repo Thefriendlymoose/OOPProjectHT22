@@ -2,8 +2,6 @@ package model.site;
 
 import model.user.User;
 import model.article.Article;
-import model.observer.Observable;
-import model.observer.Observer;
 
 import java.util.ArrayList;
 import java.util.List;

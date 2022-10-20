@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-<Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.orderControllers.OrderDetailsAddOrderRowController">
+<Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ordercontrollers.OrderDetailsAddOrderRowController">
     <scene>
         <Scene>
             <AnchorPane prefHeight="300" prefWidth="300" stylesheets="@../stylesheet.css">

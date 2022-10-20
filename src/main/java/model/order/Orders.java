@@ -1,10 +1,8 @@
 package model.order;
 
 import model.customer.Customer;
-import model.observer.Observable;
 import model.observer.Observer;
 import model.site.Site;
-import persistence.OrderDAO;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,8 +22,8 @@ public class Orders {
 
     public Orders(Map<Long, Order> orders){
         this.orders = orders;
-        if (orders.size() == 0){
-            nextOrderNumber = Long.valueOf(1);
+        if (orders.isEmpty()){
+            nextOrderNumber = 1L;
         } else {
             nextOrderNumber = Collections.max(orders.keySet()) + 1;
         }

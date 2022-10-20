@@ -1,18 +1,18 @@
 import controller.MainMenuController;
 import controller.MenuController;
 import controller.SignInController;
-import controller.articleControllers.ArticleFormController;
-import controller.articleControllers.ArticleMenuController;
-import controller.articleControllers.ArticleOpenDetailsModalController;
-import controller.customerControllers.CustomerMenuController;
+import controller.articlecontrollers.ArticleFormController;
+import controller.articlecontrollers.ArticleMenuController;
+import controller.articlecontrollers.ArticleOpenDetailsModalController;
+import controller.customercontrollers.CustomerMenuController;
 import controller.dpi.ParentDependencyInjection;
 import controller.dpi.StageDependencyInjection;
-import controller.orderControllers.OrderMenuController;
-import controller.orderControllers.OrderOpenController;
-import controller.siteControllers.SiteCreateController;
-import controller.siteControllers.SiteMenuController;
-import controller.siteControllers.SiteOpenDetailsController;
-import controller.userControllers.UserMenuController;
+import controller.ordercontrollers.OrderMenuController;
+import controller.ordercontrollers.OrderOpenController;
+import controller.sitecontrollers.SiteCreateController;
+import controller.sitecontrollers.SiteMenuController;
+import controller.sitecontrollers.SiteOpenDetailsController;
+import controller.usercontrollers.UserMenuController;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -58,7 +58,7 @@ public class Main extends Application {
 
     @Override
     public void stop(){
-
+        // should save to dao
     }
 
     private void setUpSceneDependencyInjector() {
