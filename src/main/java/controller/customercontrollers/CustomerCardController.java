@@ -13,6 +13,13 @@ import model.customer.CustomerModel;
 
 import java.io.IOException;
 
+/**
+ * Responsibility: displaying a single customer card
+ * Used by: CustomerMenuController
+ * Uses: Customer, CustomerModel
+ * @author Simon Porsgaard / doktorjevksy
+ */
+
 public class CustomerCardController {
 
     private CustomerModel model;

@@ -8,6 +8,13 @@ import javafx.stage.Stage;
 import model.customer.Address;
 import model.customer.CustomerEditor;
 
+/**
+ * Responsibility: controls the view for editing addresses
+ * Used by: CustomerEditController
+ * Uses: CustomerEditor
+ * @author Simon Porsgaard / doktorjevksy
+ */
+
 public class AddressCreateController {
 
     public TextField streetNameField;

@@ -18,6 +18,13 @@ import model.observer.Observer;
 
 import java.io.IOException;
 
+/**
+ * Responsibility: controls the customer info view
+ * Used by:
+ * Uses: Customer, CustomerModel
+ * @author Simon Porsgaard / doktorjevksy
+ */
+
 public class CustomerInfoViewController implements Observer {
 
     @FXML

@@ -17,6 +17,13 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Responsibility: controls the view for editing, deleting and adding contacts
+ * Used by:
+ * Uses: CustomerEditor, ContactEditCardController
+ * @author Simon Porsgaard / doktorjevksy
+ */
+
 public class ContactEditorController implements Observer {
 
     private CustomerEditor editor;

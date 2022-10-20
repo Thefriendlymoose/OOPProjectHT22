@@ -18,6 +18,13 @@ import model.observer.Observer;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Responsibility: controls the view for editing customers
+ * Used by:
+ * Uses: CustomerEditor
+ * @author Simon Porsgaard / doktorjevksy
+ */
+
 public class CustomerEditController implements Observer {
 
     @FXML

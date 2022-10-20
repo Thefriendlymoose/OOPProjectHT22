@@ -12,6 +12,13 @@ import model.customer.CustomerEditor;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Responsibility: controls the view for deleting and editing already made contacts
+ * Used by: ContactEditorController
+ * Uses: CustomerEditor, ICommand, CustomerContact
+ * @author Simon Porsgaard / doktorjevksy
+ */
+
 public class ContactEditCardController {
 
     public TextField name;

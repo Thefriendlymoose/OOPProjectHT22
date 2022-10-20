@@ -23,6 +23,13 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Responsibility: controls the main customer view
+ * Used by:
+ * Uses: CustomerModel, WMS
+ * @author Simon Porsgaard / doktorjevksy
+ */
+
 public class CustomerMenuController implements Observer {
 
     @FXML

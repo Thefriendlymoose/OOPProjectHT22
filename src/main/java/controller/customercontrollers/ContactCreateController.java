@@ -7,6 +7,12 @@ import javafx.stage.Stage;
 import model.customer.CustomerContact;
 import model.customer.CustomerEditor;
 
+/**
+ * Responsibility: controls the view for editing customer contact info
+ * Used by: CustomerEditController
+ * Uses: Customer
+ * @author Simon Porsgaard / doktorjevksy
+ */
 public class ContactCreateController {
 
     private CustomerEditor editor;
