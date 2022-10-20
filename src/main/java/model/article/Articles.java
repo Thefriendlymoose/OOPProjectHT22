@@ -25,7 +25,11 @@ public class Articles {
      */
     public Articles(Map<Long, Article> articles) {
         this.articles = articles;
-        nextId = Collections.max(articles.keySet()) + 1;
+        if (articles.size() == 0){
+            this.nextId = Long.valueOf(1);
+        } else {
+            nextId = Collections.max(articles.keySet()) + 1;
+        }
     }
 
 

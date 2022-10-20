@@ -117,8 +117,13 @@ public class Site {
         return getTotalAmountItems() + amount > maxCapacity;
     }
 
-    public void addEmployee(User user){
-        employees.add(user);
+    public boolean addEmployee(User user){
+        if (checkEmployeeInSite(user)){
+            return false;
+        } else {
+            employees.add(user);
+            return true;
+        }
     }
 
     public void removeEmployee(User user){
@@ -188,15 +193,6 @@ public class Site {
             }
         }
         return temp;
-    }
-
-    public boolean checkIfSiteArticleExists(Article art) {
-        for (SiteArticle sa : siteArticles) {
-            if (sa.getArticle() == art){
-                return true;
-            }
-        }
-        return false;
     }
 
 }
