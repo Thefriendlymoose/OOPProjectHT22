@@ -2,24 +2,19 @@ package controller.userControllers;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.WMS;
 
 import model.user.Permission;
 import model.user.User;
 import model.user.Users;
-import persistence.UserDAO;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class userDetailsController {
 
@@ -36,7 +31,7 @@ public class userDetailsController {
     private Label userIDLabel, firstNameLabel,lastNameLabel,userNameLabel,passwordLabel,StatusLabel, roleLabel;
 
     @FXML
-    private ComboBox<Permission> roleBox;
+    private ComboBox<List<Permission>> roleBox;
 
     @FXML
     private ComboBox<Boolean> statusBox;
@@ -60,13 +55,14 @@ public class userDetailsController {
 
         Platform.runLater(() -> {
             userIDTextField.setText(String.valueOf(user.getUserId()));
-            firstNameField.setText(user.getFirtName(user.getName(),0));
-            lastNameField.setText(user.getFirtName(user.getName(),1));
+            firstNameField.setText(user.getFirstName(user.getName()));
+            lastNameField.setText(user.getLastName(user.getName()));
             userNameField.setText(user.getUserName());
             passwordField.setText(user.getPassword());
             statusBox.setValue(user.isStatus());
-            statusBox.getItems().setAll(user.isStatus());
-
+            statusBox.getItems().addAll(user.getAllStatus());
+            roleBox.setValue(user.getPermissions());
+            roleBox.getItems().setAll(user.getPermissions());
         });
 
     }
@@ -82,6 +78,9 @@ public class userDetailsController {
         stage.show();
 
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
+    }
+    public void cancel(ActionEvent e) throws IOException{
+
     }
 
 

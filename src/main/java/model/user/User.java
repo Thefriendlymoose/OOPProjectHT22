@@ -2,7 +2,6 @@ package model.user;
 
 import model.observer.Observable;
 import model.observer.Observer;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,6 +61,38 @@ public class User implements Observable {
         return status;
     }
 
+    public Boolean[] getAllStatus() {
+        return new Boolean[]{true,false};
+    }
+
+    public  List<Permission> managerPermissions(){
+        List<Permission> perms = new ArrayList<>(){
+            {add(Permission.ARTICLE);add(Permission.SITE);add(Permission.ORDER);
+                add(Permission.CUSTOMER);add(Permission.USER);}};
+        return perms;
+    }
+
+
+    public  List<Permission> normalPermissions(){
+        List<Permission> perms = new ArrayList<>(){
+            {add(Permission.SITE);add(Permission.ORDER);
+                add(Permission.USER);}};
+        return perms;
+    }
+    public  List<Permission> adminPermissions(){
+        List<Permission> perms = new ArrayList<>(){
+            {add(Permission.ALL);}};
+        return perms;
+    }
+
+    public List <List<Permission>> getAllPermissions(){
+        List <List <Permission>> perms = new ArrayList<>(){
+            {add(normalPermissions());add(adminPermissions());
+                add(managerPermissions());}};
+
+        return perms;
+    }
+
     public void setStatus(boolean status) {
         this.status = status;
     }
@@ -79,29 +110,17 @@ public class User implements Observable {
             return true;
         return  (this.permissions.contains(perm));
     }
-    public String getFirtName(String namen, int i){
+
+    public String getFirstName(String name) {return getFirstOrLastName(name,0);}
+    public String getLastName(String name) {return getFirstOrLastName(name,1);}
+
+    public String getFirstOrLastName(String name, int i){
         String[] nameList = name.split(" ");
 
         String firstOrLastName =nameList[i];
         return firstOrLastName;
     };
-    public Boolean allowedUser(){
-        return allowed(Permission.USER);
-    }
-    public Boolean allowedCustomer(){
-        return allowed(Permission.CUSTOMER);
-    }
 
-    public Boolean allowedSite(){
-        return allowed(Permission.SITE);
-    }
-
-    public Boolean allowedOrder(){
-        return allowed(Permission.ORDER);
-    }
-    public Boolean allowedArticle(){
-        return allowed(Permission.ARTICLE);
-    }
 
     public boolean isPasswordCorrect(User user){
         return user.getPassword().equals(this.password);

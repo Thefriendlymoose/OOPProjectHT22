@@ -17,6 +17,7 @@ import persistence.UserDAO;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class CreateUserController {
 
@@ -33,7 +34,7 @@ public class CreateUserController {
     private Label userIDLabel, firstNameLabel,lastNameLabel,userNameLabel,passwordLabel,StatusLabel, roleLabel;
 
     @FXML
-    private ComboBox<Permission> roleBox;
+    private ComboBox <List<Permission>> roleBox;
 
     @FXML
     private ComboBox<Boolean> statusBox;
@@ -44,21 +45,20 @@ public class CreateUserController {
         this.users = users;
     }
     public void onSave(ActionEvent e) throws IOException {
-        // temp
-        List<Permission> role = new ArrayList<Permission>();
-        role.add(roleBox.getValue());
-
         User newUser = new User(users.getNextUserID(), userNameField.getText(), passwordField.getText(),firstNameField.getText() + " " + lastNameField.getText()
-        , statusBox.getValue(),role);
+        , statusBox.getValue(), roleBox.getValue());
 
         users.addUser(newUser);
+        users.updateUser();
 
     }
 
 
     public void initialize(){
         statusBox.getItems().setAll(true, false);
-        //roleBox.getItems().setAll(users.getPermissions());
+        List<Permission> perms = new ArrayList<>(){
+            {add(Permission.ARTICLE);add(Permission.SITE);}};
+        roleBox.getItems().addAll(perms);
         userIDTextField.setText(Long.toString(UserDAO.getInstance().getNextId()));
     }
 

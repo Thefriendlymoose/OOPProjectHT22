@@ -86,7 +86,7 @@ public class UserMenuController implements Observer {
     public void openButton(ActionEvent e) throws Exception{
 
         Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/userViews/openUser.fxml")));
-        stage.setTitle("My modal window");
+        stage.setTitle("Open User");
 
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow() );

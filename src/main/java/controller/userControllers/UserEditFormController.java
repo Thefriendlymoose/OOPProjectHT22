@@ -6,13 +6,13 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import model.WMS;
 import model.user.Permission;
 import model.user.User;
 import model.user.Users;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 
 public class UserEditFormController {
@@ -30,7 +30,7 @@ public class UserEditFormController {
     private Label userIDLabel, firstNameLabel,lastNameLabel,userNameLabel,passwordLabel,StatusLabel, roleLabel;
 
     @FXML
-    private ComboBox<Permission> roleBox;
+    private ComboBox<List<Permission>> roleBox;
 
     @FXML
     private ComboBox<Boolean> statusBox;
@@ -55,12 +55,15 @@ public class UserEditFormController {
 
         Platform.runLater(() -> {
             userIDTextField.setText(String.valueOf(user.getUserId()));
-            firstNameField.setText(user.getFirtName(user.getName(),0));
-            lastNameField.setText(user.getFirtName(user.getName(),1));
+            firstNameField.setText(user.getFirstOrLastName(user.getName(),0));
+            lastNameField.setText(user.getFirstOrLastName(user.getName(),1));
             userNameField.setText(user.getUserName());
             passwordField.setText(user.getPassword());
             statusBox.setValue(user.isStatus());
-            statusBox.getItems().setAll(user.isStatus());
+            statusBox.getItems().addAll(user.getAllStatus());
+            roleBox.setValue(user.getPermissions());
+            // tmp
+            roleBox.getItems().addAll(user.managerPermissions(),user.normalPermissions(),user.adminPermissions());
 
         });
 
@@ -72,6 +75,7 @@ public class UserEditFormController {
         user.setUserName((userNameField.getText()));
         user.setPassword(passwordField.getText());
         user.setStatus(statusBox.getValue());
+        user.setPermissions(roleBox.getValue());
 
         users.updateUser();
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
