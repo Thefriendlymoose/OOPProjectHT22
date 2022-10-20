@@ -18,21 +18,29 @@ public class CustomerModel implements Observable {
 
 
     private IPersistence<Customer> dao;
-  //  private Map<Long, Customer> customers;
     private List<Observer> observers = new ArrayList<>();
 
     public CustomerModel(IPersistence<Customer> dao){
         this.dao = dao;
-       // this.customers = dao.getAllMap();
     }
 
+    /**
+     * The newCustomer method returns an editor with an empty Customer
+     * @return CustomerEditor
+     */
+
     public CustomerEditor newCustomer(){ return new CustomerEditor(new Customer(dao.getNextId()), this); }
+
+    /**
+     *
+     * @param c : the customer to be edited
+     * @return CustomerEditor with the customer to be edited
+     */
 
     public CustomerEditor editCustomer(Customer c){ return new CustomerEditor(c, this);}
 
     public void saveCustomer(Customer c){
         dao.save(c);
-      //  customers = dao.getAllMap();
         notifyObservers();
     }
 

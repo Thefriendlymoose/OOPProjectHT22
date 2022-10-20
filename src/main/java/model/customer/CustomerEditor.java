@@ -57,10 +57,19 @@ public class CustomerEditor implements Observable {
         this.customer = customer;
     }
 
+    /**
+     *
+     * @return the address according to current strategy
+     */
+
     public Address getAddress(){
         return strategy.getAddress();
     }
 
+    /**
+     *
+     * @param address returns the address according to current strategy
+     */
     public void setAddress(Address address){
         strategy.setAddress(address);
         notifyObservers();
