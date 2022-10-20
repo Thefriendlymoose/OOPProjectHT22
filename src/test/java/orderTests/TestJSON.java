@@ -1,18 +1,10 @@
 package orderTests;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import model.order.DBJOrders;
-import model.order.Order;
-import model.order.OrderStatus;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 public class TestJSON {

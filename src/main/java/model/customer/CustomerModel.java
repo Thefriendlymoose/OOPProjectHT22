@@ -2,12 +2,10 @@ package model.customer;
 
 import model.observer.Observable;
 import model.observer.Observer;
-import persistence.CustomersDAO;
 import persistence.IPersistence;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * The customer model figures more or less as a facade to the database

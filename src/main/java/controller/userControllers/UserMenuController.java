@@ -20,9 +20,7 @@ import persistence.UserDAO;
 import model.observer.Observer;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Objects;
-import java.util.Observable;
 
 public class UserMenuController implements Observer {
     @FXML

@@ -3,13 +3,8 @@ package controller.userControllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import model.user.Permission;
-import model.user.Role;
 import model.user.User;
 import model.user.Users;
 import persistence.UserDAO;

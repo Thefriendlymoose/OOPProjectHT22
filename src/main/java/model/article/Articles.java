@@ -1,8 +1,5 @@
 package model.article;
 
-import model.observer.Observable;
-import model.observer.Observer;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

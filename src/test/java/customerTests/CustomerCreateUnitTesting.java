@@ -5,9 +5,7 @@ import model.customer.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import persistence.CustomersDAO;
-import persistence.IPersistence;
 
-import java.util.Collections;
 import java.util.List;
 
 public class CustomerCreateUnitTesting {

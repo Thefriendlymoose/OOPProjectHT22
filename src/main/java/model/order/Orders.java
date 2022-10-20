@@ -1,10 +1,8 @@
 package model.order;
 
 import model.customer.Customer;
-import model.observer.Observable;
 import model.observer.Observer;
 import model.site.Site;
-import persistence.OrderDAO;
 
 import java.util.ArrayList;
 import java.util.Collections;

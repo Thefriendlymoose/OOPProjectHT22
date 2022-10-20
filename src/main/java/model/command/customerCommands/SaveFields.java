@@ -3,7 +3,6 @@ package model.command.customerCommands;
 import controller.customerControllers.ContactEditCardController;
 import javafx.scene.control.TextField;
 import model.command.ICommand;
-import model.customer.Customer;
 import model.customer.CustomerContact;
 
 import java.util.List;

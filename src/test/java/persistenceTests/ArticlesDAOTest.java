@@ -7,18 +7,14 @@ import model.user.Permission;
 import model.user.User;
 import org.junit.jupiter.api.*;
 import persistence.ArticlesDAO;
-import persistence.UserDAO;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.*;
-import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
