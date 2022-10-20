@@ -19,7 +19,10 @@ public class SiteMenuSiteCardController {
 
 
     @FXML
-    private Label cardNameLabel, cardAmountLabel;
+    private Label cardNameLabel;
+
+    @FXML
+    private Label cardAmountLabel;
 
     @FXML
     private Button cardGoToButton;

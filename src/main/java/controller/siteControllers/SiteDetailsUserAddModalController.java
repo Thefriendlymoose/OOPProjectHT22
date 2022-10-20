@@ -17,8 +17,8 @@ public class SiteDetailsUserAddModalController {
     @FXML
     private ListView<User> chooseUserListView;
 
-    @FXML
-    private Button saveButton, CancelButton;
+//    @FXML
+//    private Button saveButton, CancelButton;
 
     private User current;
 

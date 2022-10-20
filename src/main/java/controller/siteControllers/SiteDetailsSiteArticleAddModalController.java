@@ -20,8 +20,8 @@ public class SiteDetailsSiteArticleAddModalController {
     @FXML
     private TextField amountTextField;
 
-    @FXML
-    private Button saveButton, CancelButton;
+//    @FXML
+//    private Button saveButton, CancelButton;
 
     private Article current;
 

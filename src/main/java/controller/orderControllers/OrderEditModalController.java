@@ -39,10 +39,10 @@ public class OrderEditModalController {
 
     private LocalDateTime deadline;
 
-    @FXML
-    private Button addOrderRowButton, saveButton, cancelButton;
-    @FXML
-    private ListView<OrderRow> orderRowListView;
+//    @FXML
+//    private Button addOrderRowButton, saveButton, cancelButton;
+//    @FXML
+//    private ListView<OrderRow> orderRowListView;
 
     private Order order;
     private WMS wms;

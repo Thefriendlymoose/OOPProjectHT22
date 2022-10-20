@@ -31,8 +31,10 @@ import java.util.List;
  */
 
 public class OrderMenuController implements Observer{
+//    @FXML
+//    private Button openButton, createButton, listButton, backButton;
     @FXML
-    private Button openButton, createButton, listButton, backButton;
+    private Button backButton;
 
     @FXML
     private TabPane tabPane;

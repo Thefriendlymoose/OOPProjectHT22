@@ -14,10 +14,13 @@ import java.util.Optional;
 public class SiteDetailsSiteArticleEditModalController {
 
     @FXML
-    private TextField articleNameTextField, amountTextField;
+    private TextField articleNameTextField;
 
     @FXML
-    private Button saveButton, cancelButton;
+    private TextField amountTextField;
+
+//    @FXML
+//    private Button saveButton, cancelButton;
 
     private SiteArticle siteArticle;
     private Site site;

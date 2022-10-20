@@ -17,7 +17,9 @@ import java.io.IOException;
 public class SiteDetailsSiteArticleModalController {
 
     @FXML
-    private TextField articleNameTextField, amountTextField;
+    private TextField articleNameTextField;
+    @FXML
+    private TextField amountTextField;
 
     @FXML
     private Button editButton, closeButton;

@@ -22,7 +22,16 @@ import java.io.IOException;
 public class OrderMenuTabCardController {
 
     @FXML
-    private Label orderNum, priority, status, amount, deadline;
+    private Label orderNum;
+    @FXML
+    private Label priority;
+    @FXML
+    private Label status;
+    @FXML
+    private Label amount;
+    @FXML
+    private Label deadline;
+
 
     @FXML
     private Button openButton;

@@ -22,15 +22,18 @@ import java.io.IOException;
 public class SiteDetailsController implements Observer {
     @FXML
     private Label detailsTitleLabel;
-
     @FXML
-    private TextField numberTextField, nameTextField, maxCapacityTextField;
+    private TextField numberTextField;
+    @FXML
+    private TextField nameTextField;
+    @FXML
+    private TextField maxCapacityTextField;
 
     @FXML
     private TextArea siteAddressTextArea;
 
-    @FXML
-    private Button editButton, closeButton, addStockButton, addEmployeeButton;
+//    @FXML
+//    private Button editButton, closeButton, addStockButton, addEmployeeButton;
 
     @FXML
     private VBox stockVBox, employeeVBox;

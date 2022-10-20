@@ -20,13 +20,18 @@ import java.util.Optional;
 public class SiteCreateController {
 
     @FXML
-    private TextField numberTextField, nameTextField, maxCapacityTextField;
+    private TextField numberTextField;
+    @FXML
+    private TextField nameTextField;
+    @FXML
+    private TextField maxCapacityTextField;
+
 
     @FXML
     private TextArea siteAddressTextArea;
 
-    @FXML
-    private Button saveButton, cancelButton;
+//    @FXML
+//    private Button saveButton, cancelButton;
     private WMS wms;
     private Sites sites;
 

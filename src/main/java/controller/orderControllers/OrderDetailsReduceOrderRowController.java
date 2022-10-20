@@ -19,12 +19,11 @@ public class OrderDetailsReduceOrderRowController {
 
 
 
-    @FXML
-    private Button confirmButton, cancelButton;
+//    @FXML
+//    private Button confirmButton, cancelButton;
 
     @FXML
     private TextField amountTextField;
-
 
     @FXML
     private ListView<OrderRow> chooseArticleListView;

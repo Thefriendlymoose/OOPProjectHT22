@@ -17,8 +17,8 @@ import java.util.Optional;
 
 public class OrderDetailsAddOrderRowController {
 
-    @FXML
-    private Button addArticleButton, cancelButton;
+//    @FXML
+//    private Button addArticleButton, cancelButton;
 
     @FXML
     private TextField amountTextField;
