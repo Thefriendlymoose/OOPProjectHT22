@@ -14,6 +14,11 @@ import model.article.Article;
 import java.io.IOException;
 
 
+/**
+ * Controller for the card which is visible in the article menu.
+ *
+ * @author David Al Amiri
+ */
 public class ArticleMenuCardController {
 
     @FXML

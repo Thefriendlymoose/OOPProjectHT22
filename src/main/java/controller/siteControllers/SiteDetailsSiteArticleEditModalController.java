@@ -11,6 +11,11 @@ import model.site.SiteArticle;
 
 import java.util.Optional;
 
+/**
+ * Controller for the view which is for editing an existing site article
+ *
+ * @author David Al Amiri
+ */
 public class SiteDetailsSiteArticleEditModalController {
 
     @FXML

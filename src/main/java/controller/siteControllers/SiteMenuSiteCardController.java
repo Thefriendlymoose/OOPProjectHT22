@@ -14,9 +14,12 @@ import model.site.Site;
 import java.io.IOException;
 
 
+/**
+ * controller for the site cards which is shown in the site menu
+ *
+ * @author David Al Amiri
+ */
 public class SiteMenuSiteCardController {
-
-
 
     @FXML
     private Label cardNameLabel, cardAmountLabel;

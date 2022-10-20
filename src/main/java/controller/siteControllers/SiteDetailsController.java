@@ -18,7 +18,11 @@ import model.site.SiteArticle;
 
 import java.io.IOException;
 
-
+/**
+ * Controller for the view which is used show an existing site's details
+ *
+ * @author David Al Amiri
+ */
 public class SiteDetailsController implements Observer {
     @FXML
     private Label detailsTitleLabel;

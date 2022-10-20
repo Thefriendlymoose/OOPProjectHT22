@@ -11,6 +11,12 @@ import model.article.*;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+/**
+ * Controller for the view which shows the create article form.
+ * Used when creating new articles.
+ *
+ * @author David Al Amiri
+ */
 public class ArticleFormController {
 
     @FXML

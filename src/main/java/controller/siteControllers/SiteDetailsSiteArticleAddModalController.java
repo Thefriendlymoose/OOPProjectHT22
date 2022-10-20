@@ -12,6 +12,11 @@ import model.site.Site;
 
 import java.util.Optional;
 
+/**
+ * Controller for the modal that opens when you want to add a site article to an existing site.
+ *
+ * @author David Al Amiri
+ */
 public class SiteDetailsSiteArticleAddModalController {
 
     @FXML

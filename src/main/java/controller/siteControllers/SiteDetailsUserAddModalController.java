@@ -12,6 +12,11 @@ import model.user.Users;
 
 import java.util.Optional;
 
+/**
+ * Controller for the view which is used to add users to a site
+ *
+ * @author David Al Amiri
+ */
 public class SiteDetailsUserAddModalController {
 
     @FXML

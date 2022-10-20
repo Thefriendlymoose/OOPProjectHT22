@@ -14,6 +14,12 @@ import model.article.Article;
 
 import java.io.IOException;
 
+/**
+ * Controller for the modal which open when you click open article in the menu.
+ * Used to find an article by id.
+ *
+ * @author David Al Amiri
+ */
 public class ArticleOpenDetailsModalController {
 
     @FXML

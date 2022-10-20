@@ -20,6 +20,11 @@ import model.observer.Observer;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Controller for the article menu view.
+ *
+ * @author David Al Amiri
+ */
 public class ArticleMenuController implements Observer {
     @FXML
     private Button openArticleButton, createButton, listButton, backButton;

@@ -17,6 +17,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 
+/**
+ * Controller for the view which is used to create new sites.
+ *
+ * @author David Al Amiri
+ */
 public class SiteCreateController {
 
     @FXML

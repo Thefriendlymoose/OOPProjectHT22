@@ -12,6 +12,12 @@ import model.article.ArticleStatus;
 
 import java.util.Optional;
 
+/**
+ * Controller for the view which shows the article edit form.
+ * Used when editing existing articles.
+ *
+ * @author David Al Amiri
+ */
 public class ArticleEditFormController {
 
     @FXML

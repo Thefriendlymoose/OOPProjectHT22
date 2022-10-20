@@ -12,7 +12,12 @@ import model.site.Site;
 
 import java.util.Optional;
 
-
+/**
+ * controller for the card which is available in the site details
+ * which is used to show the user.
+ *
+ * @author David Al Amiri
+ */
 public class SiteDetailsUserCardController {
 
     @FXML

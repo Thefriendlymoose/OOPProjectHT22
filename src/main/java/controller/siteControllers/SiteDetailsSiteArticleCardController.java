@@ -17,6 +17,11 @@ import model.site.SiteArticle;
 import java.io.IOException;
 import java.util.Optional;
 
+/**
+ * Controller for showing a site article card in the article details view.
+ *
+ * @author David Al Amiri
+ */
 public class SiteDetailsSiteArticleCardController {
 
     @FXML

@@ -18,6 +18,11 @@ import model.site.Sites;
 
 import java.io.IOException;
 
+/**
+ * controller for the site menu view
+ *
+ * @author David Al Amiri
+ */
 public class SiteMenuController implements Observer {
     @FXML
     private Button openButton, createButton, backButton;

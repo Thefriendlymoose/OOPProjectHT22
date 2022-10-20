@@ -15,7 +15,10 @@ import model.article.ArticleStatus;
 
 import java.io.IOException;
 
-
+/**
+ * Controller for the view which shows the article details
+ * Using to show data of existing articles.
+ */
 public class ArticleDetailsController {
     @FXML
     Label detailsTitleLabel, numberLabel, nameLabel, descriptionLabel, categoryLabel, statusLabel;

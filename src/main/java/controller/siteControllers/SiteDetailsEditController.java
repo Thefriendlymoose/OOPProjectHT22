@@ -11,6 +11,11 @@ import model.site.Sites;
 
 import java.util.Optional;
 
+/**
+ * Controller for the view which is for editing an existing site.
+ *
+ * @author David Al Amiri
+ */
 public class SiteDetailsEditController {
 
     @FXML

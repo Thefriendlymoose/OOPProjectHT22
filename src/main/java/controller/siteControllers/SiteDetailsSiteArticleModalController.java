@@ -14,6 +14,11 @@ import model.site.SiteArticle;
 
 import java.io.IOException;
 
+/**
+ * Controller for the modal which shows more details for the site article.
+ *
+ * @author David Al Amiri
+ */
 public class SiteDetailsSiteArticleModalController {
 
     @FXML

@@ -14,6 +14,11 @@ import model.site.Sites;
 
 import java.io.IOException;
 
+/**
+ * Controller for the modal which is used to find a site based on site id.
+ *
+ * @author David Al Amiri
+ */
 public class SiteOpenDetailsController {
     @FXML
     private TextField modalSearchField;
