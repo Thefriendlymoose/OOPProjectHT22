@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.WMS;
 import model.article.*;
 
 import java.time.LocalDateTime;
@@ -30,10 +31,12 @@ public class ArticleFormController {
     @FXML
     Button saveButton, cancelButton;
 
+    private WMS wms;
     private Articles articles;
 
-    public ArticleFormController(Articles articles) {
-        this.articles = articles;
+    public ArticleFormController(WMS wms) {
+        this.wms = wms;
+        this.articles = wms.getArticles();
     }
 
     @FXML
@@ -52,9 +55,9 @@ public class ArticleFormController {
         } else {
             Article art = new Article(articles.getNextId(), nameTextField.getText(), descriptionTextArea.getText(), categoryComboBox.getValue(),
                                       statusComboBox.getValue(), Float.parseFloat(costTextField.getText()), Float.parseFloat(sellPriceTextField.getText()),
-                                        null , LocalDateTime.now(), LocalDateTime.now());
+                                        wms.getSession().getUser(), LocalDateTime.now(), LocalDateTime.now());
 
-            articles.addArticle(art);
+            wms.addArticle(art);
 
             ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
         }

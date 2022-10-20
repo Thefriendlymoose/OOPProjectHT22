@@ -12,22 +12,11 @@ import java.util.Map;
 /**
  * Is a collection of articles, implements Observable so that observers will be notified of changes.
  */
-public class Articles implements Observable {
+public class Articles {
 
-    /**
-     * Map of all the articles in the system, key is the article ID and value is a reference to an article object
-     */
     private Map<Long, Article> articles;
-
-    /**
-     * gives the next available id
-     */
     private Long nextId;
 
-    /**
-     * A list of observers so that we know who to inform of changes
-     */
-    private List<Observer> observers;
 
 
     /**
@@ -37,7 +26,6 @@ public class Articles implements Observable {
     public Articles(Map<Long, Article> articles) {
         this.articles = articles;
         nextId = Collections.max(articles.keySet()) + 1;
-        observers = new ArrayList<>();
     }
 
 
@@ -129,7 +117,6 @@ public class Articles implements Observable {
     public void addArticle(Article article){
         articles.put(article.getArticleId(), article);
         nextId++;
-        notifyObservers();
     }
 
     /**
@@ -138,7 +125,6 @@ public class Articles implements Observable {
      */
     public void removeArticle(Article article){
         articles.remove(article.getArticleId());
-        notifyObservers();
     }
 
 
@@ -146,43 +132,7 @@ public class Articles implements Observable {
      * Used to send an update to observers when an article is edited.
      */
     public void updateArticle(){
-        notifyObservers();
+
     }
 
-
-    /**
-     * Used to register new observers
-     * @param o Takes an observer
-     */
-    @Override
-    public void registerObserver(Observer o) {
-        observers.add(o);
-    }
-
-    /**
-     * Used to remove an observer
-     * @param o Takes the obeserver to be removed
-     */
-    @Override
-    public void unregisterObserver(Observer o) {
-        observers.remove(o);
-    }
-
-    /**
-     * Used to remove all observers
-     */
-    @Override
-    public void unregisterAll() {
-        observers = new ArrayList<>();
-    }
-
-    /**
-     * Used to update all registered observers.
-     */
-    @Override
-    public void notifyObservers() {
-        for (Observer o : observers){
-            o.update();
-        }
-    }
 }

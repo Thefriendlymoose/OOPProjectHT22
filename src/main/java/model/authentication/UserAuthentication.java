@@ -2,6 +2,7 @@ package model.authentication;
 
 
 import model.user.User;
+import model.user.Users;
 
 import java.util.List;
 
@@ -19,13 +20,9 @@ public class UserAuthentication {
      * @param users and a list of users
      * @return returns status of log in attempt
      */
-    public AuthenticationStatus logIn(String userName, String passWord, List<User> users){
-        User user = null;
-        for (User u : users){
-            if (u.getUserName().equals(userName)){
-                user = u;
-            }
-        }
+    public AuthenticationStatus logIn(String userName, String passWord, Users users){
+
+        User user = users.returnUserByUsername(userName);
 
         if (session != null){
             return AuthenticationStatus.ALREADY_USER_LOGGED_IN;

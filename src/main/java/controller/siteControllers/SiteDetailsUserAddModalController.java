@@ -5,10 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.WMS;
 import model.user.User;
 import model.site.Site;
-import model.site.Sites;
-import persistence.UserDAO;
+import model.user.Users;
 
 import java.util.Optional;
 
@@ -23,15 +23,17 @@ public class SiteDetailsUserAddModalController {
     private User current;
 
     private Site site;
-    private Sites sites;
+    private WMS wms;
+    private Users users;
 
-    public SiteDetailsUserAddModalController(Sites sites, Site site) {
-        this.sites = sites;
+    public SiteDetailsUserAddModalController(WMS wms, Site site) {
+        this.wms = wms;
         this.site = site;
+        this.users = wms.getUsers();
     }
 
     public void initialize(){
-        chooseUserListView.getItems().addAll(UserDAO.getInstance().getAll());
+        chooseUserListView.getItems().addAll(users.getAllUsers());
 
         chooseUserListView.setCellFactory(param -> new ListCell<User>(){
             @Override
@@ -57,7 +59,7 @@ public class SiteDetailsUserAddModalController {
         } else {
             site.addEmployee(current);
             ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
-            sites.updateSite();
+            wms.updateSite();
         }
     }
 

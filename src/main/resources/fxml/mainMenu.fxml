@@ -46,7 +46,7 @@
                    <font>
                        <Font size="24.0" />
                    </font></Button>
-               <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="main-menu-button" text="Analytics" GridPane.rowIndex="1">
+               <Button disable="true" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="main-menu-button" text="Analytics" GridPane.rowIndex="1">
                    <font>
                        <Font size="24.0" />
                    </font></Button>
@@ -54,11 +54,11 @@
                    <font>
                        <Font size="24.0" />
                    </font></Button>
-               <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="main-menu-button" text="Temp" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <Button disable="true" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="main-menu-button" text="Finance" GridPane.columnIndex="2" GridPane.rowIndex="1">
                    <font>
                        <Font size="24.0" />
                    </font></Button>
-               <Button maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="main-menu-button" text="Temp" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <Button disable="true" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="main-menu-button" text="Logistics" GridPane.columnIndex="3" GridPane.rowIndex="1">
                    <font>
                        <Font size="24.0" />
                    </font></Button>

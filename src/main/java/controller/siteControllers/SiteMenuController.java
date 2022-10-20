@@ -31,7 +31,7 @@ public class SiteMenuController implements Observer {
     public SiteMenuController(WMS wms) {
         this.wms = wms;
         this.sites = wms.getSites();
-        sites.registerObserver(this);
+        wms.registerObserver(this);
     }
 
     public void initialize() throws IOException {
@@ -43,7 +43,7 @@ public class SiteMenuController implements Observer {
         for (Site site : sites.getInList()){
 
             ParentDependencyInjection.addInjectionMethod(
-                    SiteMenuSiteCardController.class, params -> new SiteMenuSiteCardController(sites, site)
+                    SiteMenuSiteCardController.class, params -> new SiteMenuSiteCardController(wms, site)
             );
 
             Parent pane = ParentDependencyInjection.load("fxml/siteViews/siteMenuSiteCard.fxml");

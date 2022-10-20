@@ -1,19 +1,15 @@
 package controller.orderControllers;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import model.WMS;
 import model.customer.Customer;
+import model.customer.CustomerModel;
 import model.order.*;
-import persistence.CustomersDAO;
-import persistence.IPersistence;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -48,15 +44,19 @@ public class OrderEditModalController {
     @FXML
     private ListView<OrderRow> orderRowListView;
 
-    private IPersistence<Customer> dao = CustomersDAO.getInstance();
-
     private Order order;
+    private WMS wms;
     private Orders orders;
-    private ObservableList<OrderRow> addedRows;
 
-    public OrderEditModalController(Orders orders, Order order) {
-        this.orders = orders;
+    private CustomerModel customers;
+
+
+    public OrderEditModalController(WMS wms, Order order) {
+        this.wms = wms;
         this.order = order;
+        this.orders = wms.getOrders();
+        this.customers = wms.getCustomerModel();
+        deadline = order.getDeadline();
     }
 
     /**
@@ -70,10 +70,9 @@ public class OrderEditModalController {
         priorityComboBox.setValue(order.isPriority());
         statusComboBox.setValue(order.getOrderStatus());
         customerComboBox.setValue(order.getCustomer());
-        customerComboBox.getItems().addAll(dao.getAll());
+        customerComboBox.getItems().addAll(customers.getCustomerList());
 
-        addedRows = FXCollections.observableArrayList(order.getOrderRows());
-
+/*
         orderRowListView.setItems(addedRows);
         orderRowListView.setCellFactory(param -> new ListCell<OrderRow>(){
             @Override
@@ -87,7 +86,7 @@ public class OrderEditModalController {
                 }
             }
         });
-
+*/
         priorityComboBox.getItems().addAll(orders.getAllPriorities());
 
         List<OrderStatus> orderStatusList = new ArrayList<>(EnumSet.allOf(OrderStatus.class));
@@ -129,20 +128,18 @@ public class OrderEditModalController {
      * @throws IOException throws is stage doesn't exist.
      */
 
-    public void onAddOrderRowButton(ActionEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/orderViews/orderDetailsAddModal.fxml"));
-        Stage stage = loader.load();
-        OrderDetailsAddModalController controller = loader.getController();
-        controller.setSite(order.getSite());
-        controller.setSiteArticles(order.getSite().getSiteArticles());
-        controller.setObservableOrderRows(addedRows);
+/*    public void onAddOrderRowButton(ActionEvent e) throws IOException {
+        StageDependencyInjection.addInjectionMethod(
+                OrderDetailsAddModalController.class, params -> new OrderDetailsAddModalController(order.getSite(), addedRows)
+        );
 
+        Stage stage = StageDependencyInjection.load("fxml/orderViews/orderDetailsAddOrderRow.fxml");
 
         stage.setTitle("Choose Article and Amount");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
         stage.show();
-    }
+    }*/
 
 
     public void onCancel(ActionEvent e){
@@ -156,7 +153,6 @@ public class OrderEditModalController {
             System.out.println("Clicked Cancel");
         } else {
             ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
-            orders.updateOrder();
         }
     }
 
@@ -187,14 +183,14 @@ public class OrderEditModalController {
         System.out.println("before: " + orders.getInList().size());
         try {
             if (df.isValidDeadline(deadline)){
-                order.setUser(null);
                 order.setCustomer(customerComboBox.getValue());
                 order.setOrderStatus(statusComboBox.getValue());
                 order.setPriority(priorityComboBox.getValue());
                 order.setDeadline(deadline);
-                order.setOrderRows(addedRows.stream().toList());
                 ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
-                orders.updateOrder();
+                wms.updateOrder();
+            } else {
+                System.out.println("your date is bajs");
             }
             System.out.println("after: " + orders.getInList().size());
         } catch(NullPointerException np){

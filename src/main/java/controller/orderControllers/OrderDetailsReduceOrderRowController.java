@@ -1,4 +1,4 @@
-package controller.siteControllers;
+package controller.orderControllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,66 +6,82 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.WMS;
-import model.article.Article;
-import model.article.Articles;
-import model.site.Site;
+import model.order.Order;
+import model.order.OrderRow;
 
 import java.util.Optional;
 
-public class SiteDetailsSiteArticleAddModalController {
+/**
+ * Controller when the user is in the process of creating or editing and Order.
+ */
+
+public class OrderDetailsReduceOrderRowController {
+
+
 
     @FXML
-    private ListView<Article> chooseArticleListView;
+    private Button confirmButton, cancelButton;
 
     @FXML
     private TextField amountTextField;
 
+
     @FXML
-    private Button saveButton, CancelButton;
+    private ListView<OrderRow> chooseArticleListView;
 
-    private Article current;
+    private final Order order;
+    private final WMS wms;
+    private OrderRow current;
 
-    private Site site;
-    private WMS wms;
-    private Articles articles;
 
-    public SiteDetailsSiteArticleAddModalController(WMS wms, Site site) {
+
+    public OrderDetailsReduceOrderRowController(WMS wms, Order order) {
         this.wms = wms;
-        this.site = site;
-        this.articles = wms.getArticles();
+        this.order = order;
     }
 
-    public void initialize(){
-        chooseArticleListView.getItems().addAll(articles.getInList());
+    /**
+     * Shows all the Article and amount, which the user can select when creating or editing an order.
+     */
 
-        chooseArticleListView.setCellFactory(param -> new ListCell<Article>(){
+    public void initialize(){
+        chooseArticleListView.getItems().addAll(order.getOrderRows());
+
+        chooseArticleListView.setCellFactory(param -> new ListCell<OrderRow>(){
             @Override
-            protected void updateItem(Article s, boolean empty){
+            protected void updateItem(OrderRow s, boolean empty){
                 super.updateItem(s, empty);
 
-                if(empty || s == null || s.getArticleName() == null){
+                if(empty || s == null || s.getArticle() == null){
                     setText(null);
                 } else {
-                    setText(s.getArticleName());
+                    setText(s.getArticle().getArticleName() + " " + s.getAmount() + "x");
                 }
             }
         });
-
         chooseArticleListView.getSelectionModel().selectedItemProperty().addListener((observableValue, site, t1) -> {
             current = chooseArticleListView.getSelectionModel().getSelectedItem();
         });
     }
 
+    /**
+     * Make sure there is wrong input from user.
+     *
+     * @param e is ActionEvent
+     */
+
     public void onSave(ActionEvent e){
         if (current != null && !amountTextField.getText().isEmpty()){
             try {
                 int amount = Integer.parseInt(amountTextField.getText());
-                if (site.addSiteArticle(current, amount)){
+                if (order.reduceOrderRow(current, amount)) {
+                    System.out.println("success");
                     ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
-                    wms.updateSite();
+                    wms.updateOrder();
                 } else {
                     System.out.println("Failed");
                 }
+
             } catch (NumberFormatException error){
                 System.out.println("error number");
             }

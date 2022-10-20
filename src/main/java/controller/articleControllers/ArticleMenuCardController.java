@@ -8,9 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
+import model.WMS;
 import model.article.Article;
-import model.article.Articles;
 
 import java.io.IOException;
 
@@ -24,10 +23,10 @@ public class ArticleMenuCardController {
     private Button cardGoToButton;
 
     private Article article;
-    private Articles articles;
+    private WMS wms;
 
-    public ArticleMenuCardController(Articles articles, Article article) {
-        this.articles = articles;
+    public ArticleMenuCardController(WMS wms, Article article) {
+        this.wms = wms;
         this.article = article;
     }
 
@@ -40,10 +39,8 @@ public class ArticleMenuCardController {
     }
 
     public void onGo(ActionEvent actionEvent) throws IOException {
-        Callback<Class<?>, Object> test = param -> new ArticleDetailsController(articles, article);
-
         StageDependencyInjection.addInjectionMethod(
-                ArticleDetailsController.class, test
+                ArticleDetailsController.class, params -> new ArticleDetailsController(wms, article)
         );
 
         Stage stage = StageDependencyInjection.load("fxml/articleViews/articleDetailsModal.fxml");

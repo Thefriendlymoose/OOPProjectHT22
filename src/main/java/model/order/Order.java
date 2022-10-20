@@ -1,6 +1,8 @@
 package model.order;
 
 
+import model.article.Article;
+import model.site.SiteArticle;
 import model.user.User;
 import model.customer.Customer;
 import model.site.Site;
@@ -165,4 +167,50 @@ public class Order {
     }
 
 
+    private boolean checkIfOrderRowExist(Article article) {
+        for (OrderRow row : orderRows){
+            if (row.getArticle() == article) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void addToOrderRow(Article article, int amount) {
+        for (OrderRow row : orderRows) {
+            if (row.getArticle() == article) {
+                row.addAmount(amount);
+            }
+        }
+    }
+    public boolean addOrderRow(SiteArticle sa, int amount){
+        if (sa.checkIfEnough(amount)){
+            if (checkIfOrderRowExist(sa.getArticle())){
+                addToOrderRow(sa.getArticle(), amount);
+            } else {
+                orderRows.add(new OrderRow(sa.getArticle(), amount));
+            }
+            sa.decreaseAmount(amount);
+            return true;
+
+        } else {
+            return false;
+        }
+    }
+
+    public boolean reduceOrderRow(OrderRow or, int amount) {
+        Article art = or.getArticle();
+        if (or.getAmount() == amount){
+            orderRows.remove(or);
+            return site.addSiteArticle(art, amount);
+        } else if (or.getAmount() < amount || amount < 0){
+            return false;
+        } else if (site.checkIfOverCapacity(amount)) {
+            return false;
+        } else {
+            or.reduceAmount(amount);
+            return site.addSiteArticle(art, amount);
+        }
+
+    }
 }

@@ -1,5 +1,10 @@
 package model.customer;
 
+/**
+ * A class for creating contact information
+ * A contact has a name, a phone number and an email
+ */
+
 public class CustomerContact {
 
     private String contactPerson;

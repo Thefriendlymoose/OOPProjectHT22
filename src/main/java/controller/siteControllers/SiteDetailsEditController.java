@@ -5,9 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.WMS;
 import model.site.Site;
 import model.site.Sites;
-import persistence.SitesDAO;
 
 import java.util.Optional;
 
@@ -23,15 +23,17 @@ public class SiteDetailsEditController {
     private Button saveButton, cancelButton;
 
     private Site site;
+    private WMS wms;
     private Sites sites;
 
-    public SiteDetailsEditController(Sites sites, Site site) {
-        this.sites = sites;
+    public SiteDetailsEditController(WMS wms, Site site) {
+        this.wms = wms;
         this.site = site;
+        this.sites = wms.getSites();
     }
 
     public void initialize(){
-        numberTextField.setText(Integer.toString((int) SitesDAO.getInstance().getNextId()));
+        numberTextField.setText(Long.toString(sites.getNextId()));
         nameTextField.setText(site.getSiteName());
         maxCapacityTextField.setText(String.valueOf(site.getMaxCapacity()));
         maxCapacityTextField.setDisable(true);
@@ -42,7 +44,7 @@ public class SiteDetailsEditController {
         site.setSiteName(nameTextField.getText());
         site.setSiteAddress(siteAddressTextArea.getText());
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
-        sites.updateSite();
+        wms.updateSite();
     }
     public void onCancel(ActionEvent e){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

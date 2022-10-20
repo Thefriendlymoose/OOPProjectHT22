@@ -16,7 +16,7 @@ import java.util.Map;
  * and makes orders observables (Observer pattern).
  *
  */
-public class Orders implements Observable {
+public class Orders {
 
     private Map<Long, Order> orders;
     private Long nextOrderNumber;
@@ -145,7 +145,6 @@ public class Orders implements Observable {
     public void addOrder(Order order){
         orders.put(order.getOrderNumber(), order);
         nextOrderNumber++;
-        notifyObservers();
     }
 
     /**
@@ -156,7 +155,7 @@ public class Orders implements Observable {
 
     public void removeOrder(Order order){
         orders.remove(order.getOrderNumber());
-        notifyObservers(); }
+    }
 
     /**
      * Returns the unique next OrderNumber.
@@ -171,48 +170,6 @@ public class Orders implements Observable {
      * Notifies all observers that a change has been made (Observer pattern).
      *
      */
-    public void updateOrder(){
-        notifyObservers();
-    }
-
-
-    /**
-     * Adds an observer (Observer pattern).
-     * @param o is the observer which is added.
-     */
-    @Override
-    public void registerObserver(Observer o) {observers.add(o);
-
-    }
-
-    /**
-     * Removes an observer (Observer pattern).
-     * @param o is the observer which is removed.
-     */
-    @Override
-    public void unregisterObserver(Observer o) { observers.remove(o);
-
-    }
-
-    /**
-     * Removes all observers (Observer pattern).
-     *
-     */
-    @Override
-    public void unregisterAll() { observers = new ArrayList<>();
-
-    }
-
-    /**
-     * Notifies all observers (Observer pattern).
-     *
-     */
-    @Override
-    public void notifyObservers() {
-        for (Observer o : observers){
-            o.update();
-        }
-    }
 
 
     /** Returns a string containing information about order objects in Orders.

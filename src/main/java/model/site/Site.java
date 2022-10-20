@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Represents a site/warehouse
  */
-public class Site implements Observable {
+public class Site {
 
     private long siteId;
     private String siteName;
@@ -20,7 +20,6 @@ public class Site implements Observable {
     private List<SiteArticle> siteArticles;
     private List<User> employees;
 
-    private List<Observer> observers;
 
 
     /**
@@ -39,8 +38,6 @@ public class Site implements Observable {
         this.maxCapacity = maxCapacity;
         this.siteArticles = siteArticles;
         this.employees = employees;
-
-        observers = new ArrayList<>();
     }
 
     public long getSiteId() {
@@ -122,27 +119,41 @@ public class Site implements Observable {
 
     public void addEmployee(User user){
         employees.add(user);
-        notifyObservers();
     }
 
     public void removeEmployee(User user){
         employees.remove(user);
-        notifyObservers();
     }
 
-    public void addSiteArticle(SiteArticle sa){
-        siteArticles.add(sa);
-        notifyObservers();
+    public boolean addSiteArticle(Article article, int amount){
+        if (checkIfOverCapacity(amount)){
+            return false;
+        } else {
+            if (checkArticleInSite(article)) {
+                SiteArticle sa = findSiteArticle(article);
+                sa.increaseAmount(amount);
+            } else {
+                siteArticles.add(new SiteArticle(article, amount));
+            }
+            return true;
+        }
+    }
+
+    public SiteArticle findSiteArticle(Article art) {
+        for (SiteArticle sa : siteArticles){
+            if (sa.getArticle() == art){
+                return sa;
+            }
+        }
+        return null;
     }
 
     public void removeSiteArticles(SiteArticle sa){
         siteArticles.remove(sa);
-        notifyObservers();
     }
 
     public void editSiteArticle(SiteArticle sa, int amount){
         sa.setAmount(amount);
-        notifyObservers();
     }
 
     /**
@@ -169,25 +180,23 @@ public class Site implements Observable {
         return false;
     }
 
-    @Override
-    public void registerObserver(Observer o) {
-        observers.add(o);
-    }
-
-    @Override
-    public void unregisterObserver(Observer o) {
-        observers.remove(o);
-    }
-
-    @Override
-    public void unregisterAll() {
-        observers = new ArrayList<>();
-    }
-
-    @Override
-    public void notifyObservers() {
-        for (Observer o : observers){
-            o.update();
+    public List<SiteArticle> getSiteArticleOverZero(){
+        List<SiteArticle> temp = new ArrayList<>();
+        for (SiteArticle sa : siteArticles){
+            if (sa.getAmount() > 0) {
+                temp.add(sa);
+            }
         }
+        return temp;
     }
+
+    public boolean checkIfSiteArticleExists(Article art) {
+        for (SiteArticle sa : siteArticles) {
+            if (sa.getArticle() == art){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

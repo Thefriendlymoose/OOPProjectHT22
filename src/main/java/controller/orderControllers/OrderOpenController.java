@@ -3,12 +3,12 @@ package controller.orderControllers;
 import controller.dpi.StageDependencyInjection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.WMS;
 import model.order.Order;
 import model.order.Orders;
 
@@ -22,6 +22,7 @@ import java.io.IOException;
 
 public class OrderOpenController {
 
+    private WMS wms;
     private Orders orders;
     @FXML
     private TextField searchField;
@@ -29,8 +30,9 @@ public class OrderOpenController {
     @FXML
     private Button openButton;
 
-    public OrderOpenController(Orders orders) {
-        this.orders = orders;
+    public OrderOpenController(WMS wms) {
+        this.wms = wms;
+        this.orders = wms.getOrders();
 
     }
 
@@ -47,7 +49,7 @@ public class OrderOpenController {
                     Order order = orders.findById(id);
 
                     StageDependencyInjection.addInjectionMethod(
-                        OrderDetailsModalController.class, params -> new OrderDetailsModalController(orders, order)
+                        OrderDetailsModalController.class, params -> new OrderDetailsModalController(wms, order)
                     );
 
                     Stage stage = StageDependencyInjection.load("fxml/orderViews/orderDetailsModal.fxml");

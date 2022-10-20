@@ -5,10 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.WMS;
 import model.article.Article;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
-import model.article.Articles;
 
 import java.util.Optional;
 
@@ -33,10 +33,10 @@ public class ArticleEditFormController {
     Button saveButton, cancelButton;
 
     private Article article;
-    private Articles articles;
+    private WMS wms;
 
-    public ArticleEditFormController(Articles articles, Article article) {
-        this.articles = articles;
+    public ArticleEditFormController(WMS wms, Article article) {
+        this.wms = wms;
         this.article = article;
     }
 
@@ -66,7 +66,7 @@ public class ArticleEditFormController {
             article.setCost(Float.parseFloat(costTextField.getText()));
             article.setSellPrice(Float.parseFloat(sellPriceTextField.getText()));
 
-            articles.updateArticle();
+            wms.updateArticle();
 
             ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
         }

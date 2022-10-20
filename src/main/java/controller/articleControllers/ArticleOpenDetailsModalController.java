@@ -9,8 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import model.WMS;
 import model.article.Article;
-import model.article.Articles;
 
 import java.io.IOException;
 
@@ -22,22 +22,22 @@ public class ArticleOpenDetailsModalController {
     @FXML
     private Label warningLabel;
 
-    private Articles articles;
+    private WMS wms;
 
-    public ArticleOpenDetailsModalController(Articles articles) {
-        this.articles = articles;
+    public ArticleOpenDetailsModalController(WMS wms) {
+        this.wms = wms;
     }
 
     public void modalOpenArticleButtonHandler(ActionEvent e) throws IOException {
 
         try {
 
-            Article article = articles.findById(Long.parseLong(modalSearchField.getText()));
+            Article article = wms.getArticles().findById(Long.parseLong(modalSearchField.getText()));
 
             if(article == null){
                 warningLabel.setText("Can't find article");
             } else {
-                Callback<Class<?>, Object> test = param -> new ArticleDetailsController(articles, article);
+                Callback<Class<?>, Object> test = param -> new ArticleDetailsController(wms, article);
 
                 StageDependencyInjection.addInjectionMethod(
                         ArticleDetailsController.class, test

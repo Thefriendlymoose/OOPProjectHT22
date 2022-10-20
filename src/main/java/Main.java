@@ -1,4 +1,5 @@
 import controller.MainMenuController;
+import controller.MenuController;
 import controller.SignInController;
 import controller.articleControllers.ArticleFormController;
 import controller.articleControllers.ArticleMenuController;
@@ -22,6 +23,7 @@ import model.article.Articles;
 import model.customer.CustomerModel;
 import model.order.Orders;
 import model.site.Sites;
+import model.user.Users;
 import persistence.*;
 
 public class Main extends Application {
@@ -39,7 +41,8 @@ public class Main extends Application {
         Orders orders = new Orders(OrderDAO.getInstance().getAllMap());
         Sites sites = new Sites(SitesDAO.getInstance().getAllMap());
         CustomerModel customers = new CustomerModel(CustomersDAO.getInstance());
-        this.wms = new WMS(articles, orders, sites, customers);
+        Users users = new Users(UserDAO.getInstance().getAllMap());
+        this.wms = new WMS(articles, orders, sites, customers, users);
 
         setUpSceneDependencyInjector();
         setUpStageDependencyInjector();
@@ -61,6 +64,7 @@ public class Main extends Application {
     private void setUpSceneDependencyInjector() {
         //Factories
         Callback<Class<?>, Object> signInControllerFactory = param -> new SignInController(wms);
+        Callback<Class<?>, Object> menuBarControllerFactory = param -> new MenuController(wms);
         Callback<Class<?>, Object> mainMenuControllerFactory = param -> new MainMenuController(wms);
         Callback<Class<?>, Object> articleMenuController = param -> new ArticleMenuController(wms);
         Callback<Class<?>, Object> siteMenuController = param -> new SiteMenuController(wms);
@@ -72,6 +76,10 @@ public class Main extends Application {
         //Saving Factories
         ParentDependencyInjection.addInjectionMethod(
                 SignInController.class, signInControllerFactory
+        );
+
+        ParentDependencyInjection.addInjectionMethod(
+                MenuController.class, menuBarControllerFactory
         );
 
         ParentDependencyInjection.addInjectionMethod(
@@ -102,15 +110,15 @@ public class Main extends Application {
     private void setUpStageDependencyInjector() {
         //Factories
         //Article
-        Callback<Class<?>, Object> articleOpenDetailsModal = param -> new ArticleOpenDetailsModalController(wms.getArticles());
-        Callback<Class<?>, Object> articleFormModal = param -> new ArticleFormController(wms.getArticles());
+        Callback<Class<?>, Object> articleOpenDetailsModal = param -> new ArticleOpenDetailsModalController(wms);
+        Callback<Class<?>, Object> articleFormModal = param -> new ArticleFormController(wms);
 
         //Orders
-        Callback<Class<?>, Object> orderOpenModal = param -> new OrderOpenController(wms.getOrders());
+        Callback<Class<?>, Object> orderOpenModal = param -> new OrderOpenController(wms);
 
         //Sites
-        Callback<Class<?>, Object> siteOpenModal = param -> new SiteOpenDetailsController(wms.getSites());
-        Callback<Class<?>, Object> siteCreateModal = param -> new SiteCreateController(wms.getSites());
+        Callback<Class<?>, Object> siteOpenModal = param -> new SiteOpenDetailsController(wms);
+        Callback<Class<?>, Object> siteCreateModal = param -> new SiteCreateController(wms);
 
         //Saving Factories
         StageDependencyInjection.addInjectionMethod(

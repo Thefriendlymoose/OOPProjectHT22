@@ -17,4 +17,7 @@ public class Session {
         return user.hasPermission(permission);
     }
 
+    public User getUser() {
+        return user;
+    }
 }

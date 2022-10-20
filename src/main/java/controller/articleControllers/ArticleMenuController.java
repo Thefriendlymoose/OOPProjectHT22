@@ -33,7 +33,7 @@ public class ArticleMenuController implements Observer {
     public ArticleMenuController(WMS wms) {
         this.wms = wms;
         this.articles = wms.getArticles();
-        articles.registerObserver(this);
+        wms.registerObserver(this);
     }
 
     public void initialize() throws IOException {
@@ -45,7 +45,7 @@ public class ArticleMenuController implements Observer {
         articlesCardHolder.getChildren().clear();
         for (Article article : arts){
 
-            Callback<Class<?>, Object> temp = params -> new ArticleMenuCardController(articles, article);
+            Callback<Class<?>, Object> temp = params -> new ArticleMenuCardController(wms, article);
             ParentDependencyInjection.addInjectionMethod(
                     ArticleMenuCardController.class, temp
             );

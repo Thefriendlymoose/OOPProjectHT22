@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.stage.Stage?>
+<?import javafx.stage.Stage?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+
+<Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.userControllers.userDetailsController">
+    <scene>
+        <Scene>
+            <AnchorPane prefHeight="700.0" prefWidth="500.0" stylesheets="@../stylesheet.css">
+                <children>
+                    <VBox alignment="CENTER" spacing="5.0">
+                        <children>
+                            <Label fx:id="userIDLabel" styleClass="generic-form-label" text="UserID:" />
+                            <TextField fx:id="userIDTextField" disable="true" promptText="UserID" styleClass="generic-field, locked-form-field"  />
+                            <HBox>
+                                <Label fx:id="firstNameLabel" styleClass="generic-form-label" text="First Name" alignment="CENTER_LEFT" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label fx:id="lastNameLabel" styleClass="generic-form-label" text="Last Name" alignment="CENTER_RIGHT" />
+                            </HBox>
+                            <HBox spacing="5">
+                                <TextField fx:id="firstNameField" disable="true"  promptText="First Name" styleClass="generic-field, locked-form-field" alignment="CENTER_LEFT" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <TextField fx:id="lastNameField" disable="true"  promptText="Last Name" styleClass="generic-field, locked-form-field" alignment="CENTER_RIGHT" />
+                            </HBox>
+                            <Label fx:id="userNameLabel" disable="true" styleClass="generic-form-label" text="UserName" />
+                            <TextField fx:id="userNameField" disable="true"  promptText="UserName" styleClass="generic-field, locked-form-field" />
+                            <Label fx:id="passwordLabel" disable="true" styleClass="generic-form-label" text="Password" />
+                            <TextField fx:id="passwordField" disable="true"  promptText="Password" styleClass="generic-field, locked-form-field" />
+                            <Label fx:id="StatusLabel" styleClass="generic-form-label" text="Status" />
+                            <ComboBox fx:id="statusBox" disable="true" maxWidth="1.7976931348623157E308" promptText="Choose Status" styleClass="generic-field, locked-form-field" />
+                            <Label fx:id="roleLabel" styleClass="generic-form-label" text="Role" />
+                            <ComboBox fx:id="roleBox" disable="true"  maxWidth="1.7976931348623157E308" promptText="Choose Role" styleClass="generic-field, locked-form-field" />
+                            <Label styleClass="generic-form-label" text="Role Description" />
+                            <TextArea fx:id="descriptionTextArea" disable="true" promptText="Role Description" prefWidth="200.0" styleClass="generic-field" />
+                        </children>
+                        <VBox.margin>
+                            <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+                        </VBox.margin>
+                        <HBox>
+                            <Button onAction="#edit" styleClass="generic-button"  fx:id="editButton" mnemonicParsing="false" text="Edit User" alignment="BASELINE_LEFT" />
+                            <Region HBox.hgrow="ALWAYS" />
+                            <Button styleClass="generic-button"  fx:id="cancelButton" mnemonicParsing="false" text="Cancel" alignment="BASELINE_RIGHT" />
+                        </HBox>
+                    </VBox>
+                </children>
+
+            </AnchorPane>
+        </Scene>
+    </scene>
+</Stage>

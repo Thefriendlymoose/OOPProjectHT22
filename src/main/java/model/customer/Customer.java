@@ -3,12 +3,20 @@ package model.customer;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class that represents Customers
+ * A customer has two different (or potentially same) addresses for shipments and billing
+ * A customer has a list of contacts, containing names, numbers and emails
+ * A customer has an organizational number
+ * A customer has a name
+ */
+
 public class Customer{
 
     private List<CustomerContact> customerContacts = new ArrayList<>();
     private Address billingAddress = new Address();
     private Address shippingAddress = new Address();
-    private long customerId;
+    private final long customerId;
     private long companyOrgNumber;
     private String companyName;
 

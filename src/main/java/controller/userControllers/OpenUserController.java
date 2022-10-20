@@ -16,8 +16,6 @@ public class OpenUserController {
     private Button openButton;
 
     public void openOrder(){
-        //removed Databaseadapter
-        //DataBaseAdapter dba = DataBaseAdapter.getInstance();
         if(!searchField.getText().isEmpty()){
             // removed databaseadapter
             Document doc = null;

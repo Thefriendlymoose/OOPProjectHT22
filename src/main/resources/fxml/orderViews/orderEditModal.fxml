@@ -6,7 +6,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -16,16 +15,16 @@
 <Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.orderControllers.OrderEditModalController">
     <scene>
         <Scene>
-            <AnchorPane prefHeight="600.0" prefWidth="600.0" stylesheets="@../stylesheet.css">
+            <AnchorPane prefHeight="458.0" prefWidth="326.0" stylesheets="@../stylesheet.css">
             <children>
-               <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <VBox alignment="TOP_CENTER" prefHeight="462.0" prefWidth="326.0" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <children>
                      <Label fx:id="titleLabel" styleClass="generic-form-label" text="Order:  ">
                         <VBox.margin>
                            <Insets bottom="10.0" top="20.0" />
                         </VBox.margin>
                      </Label>
-                     <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="20.0">
+                     <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="474.0" prefWidth="356.0" spacing="20.0">
                         <children>
                            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1000.0" prefWidth="300.0" spacing="5.0">
                               <children>
@@ -39,11 +38,8 @@
                                  <ComboBox fx:id="customerComboBox" maxWidth="1.7976931348623157E308" onAction="#setCustomerComboBox" promptText="Choose Status" styleClass="generic-field" />
                                  <Label styleClass="generic-form-label" text="Deadline" />
                                  <DatePicker fx:id="orderDeadlineDatePicker" onAction="#deadlineDatePicker" />
-                                 <Label styleClass="generic-form-label" text="Add OrderRows" />
-                                 <Button fx:id="addOrderRowButton" mnemonicParsing="false" onAction="#onAddOrderRowButton" styleClass="generic-button" text="Click to add" />
                               </children>
                            </VBox>
-                           <ListView fx:id="orderRowListView" prefHeight="200.0" prefWidth="255.0" />
                         </children>
                         <padding>
                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

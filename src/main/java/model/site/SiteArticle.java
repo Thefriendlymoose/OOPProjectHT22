@@ -25,4 +25,17 @@ public class SiteArticle {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+    public boolean checkIfEnough(int takeAmount) {
+        return takeAmount <= amount;
+    }
+
+    public void increaseAmount(int amount){
+        this.amount += amount;
+    }
+
+    public void decreaseAmount(int amount) {
+        this.amount -= amount;
+    }
+
 }
