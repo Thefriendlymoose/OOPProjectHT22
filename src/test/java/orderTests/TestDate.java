@@ -2,6 +2,8 @@ package orderTests;
 
 import model.order.DateFunctions;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.concurrent.ThreadLocalRandom;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -40,5 +42,17 @@ public class TestDate {
         LocalDateTime deadline = LocalDateTime.now().plusDays(randomNum);
         assertTrue(isValidDeadline(orderDate,deadline));
     }
+
+    @Test
+    public void testCreateOrderDate(){
+        DateFunctions df = new DateFunctions();
+
+        LocalDateTime orderDate1 = df.createOrderDate();
+        LocalDateTime orderDate2 = LocalDateTime.now();
+
+        assertTrue(orderDate1.toLocalDate().isEqual(orderDate2.toLocalDate()));
+
+    }
+
 
 }
