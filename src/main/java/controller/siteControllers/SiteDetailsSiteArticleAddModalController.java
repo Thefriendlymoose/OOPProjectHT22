@@ -64,7 +64,7 @@ public class SiteDetailsSiteArticleAddModalController {
                     ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
                     wms.updateSite();
                 } else {
-                    System.out.println("you are poop");
+                    System.out.println("Failed");
                 }
             } catch (NumberFormatException error){
                 System.out.println("error number");

@@ -79,7 +79,7 @@ public class OrderDetailsAddOrderRowController {
                     ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
                     wms.updateOrder();
                 } else {
-                    System.out.println("you are poop");
+                    System.out.println("Failed");
                 }
 
             } catch (NumberFormatException error){
