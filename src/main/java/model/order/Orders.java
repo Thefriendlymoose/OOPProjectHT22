@@ -24,7 +24,12 @@ public class Orders {
 
     public Orders(Map<Long, Order> orders){
         this.orders = orders;
-        nextOrderNumber = Collections.max(orders.keySet()) + 1;
+        if (orders.size() == 0){
+            nextOrderNumber = Long.valueOf(1);
+        } else {
+            nextOrderNumber = Collections.max(orders.keySet()) + 1;
+        }
+
         observers = new ArrayList<>();
     }
 

@@ -54,12 +54,11 @@ public class SiteDetailsUserAddModalController {
     }
 
     public void onSave(ActionEvent e){
-        if (site.checkEmployeeInSite(current)){
-            System.out.println("Employee already in site");
-        } else {
-            site.addEmployee(current);
+        if (site.addEmployee(current)){
             ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
             wms.updateSite();
+        } else {
+            System.out.println("Employee already in site");
         }
     }
 

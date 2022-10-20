@@ -24,7 +24,11 @@ public class Sites {
      */
     public Sites(Map<Long, Site> sites){
         this.sites = sites;
-        nextId = Collections.max(sites.keySet()) + 1;
+        if (sites.size() == 0){
+            nextId = Long.valueOf(1);
+        } else {
+            nextId = Collections.max(sites.keySet()) + 1;
+        }
     }
 
     /**
