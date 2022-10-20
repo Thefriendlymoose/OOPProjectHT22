@@ -16,13 +16,19 @@ public class User implements Observable {
     private List<Observer> observers;
 
     public User(long userId, String userName, String password, String name, boolean status, List<Permission> permissions) {
-        this.userId = userId;
-        this.userName = userName;
-        this.password = password;
-        this.name = name;
+        this.userId = checkNull("UserID is Null",userId);
+        this.userName = checkNull("UserName",userName);
+        this.password = checkNull("Password is null" ,password);
+        this.name = checkNull("Name",name);
         this.status = status;
-        this.permissions = permissions;
+        this.permissions = checkNull("permissions" ,permissions);
         observers = new ArrayList<>();
+    }
+    private <T> T checkNull(String message, T object){
+        if (object == null){
+            throw new NullPointerException(message + "is Null");
+        }
+        return object;
     }
 
     public long getUserId() {
