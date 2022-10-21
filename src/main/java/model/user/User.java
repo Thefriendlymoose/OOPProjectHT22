@@ -12,16 +12,16 @@ public class User implements Observable {
     private String password;
     private String name;
     private boolean status;
-    private List<Permission> permissions;
+    private Role permissions;
     private List<Observer> observers;
 
-    public User(long userId, String userName, String password, String name, boolean status, List<Permission> permissions) {
+    public User(long userId, String userName, String password, String name, boolean status, Role role) {
         this.userId = checkNull("UserID is Null",userId);
         this.userName = checkNull("UserName",userName);
         this.password = checkNull("Password is null" ,password);
         this.name = checkNull("Name",name);
         this.status = status;
-        this.permissions = checkNull("permissions" ,permissions);
+        this.permissions = checkNull("Role" ,role);
         observers = new ArrayList<>();
     }
     private <T> T checkNull(String message, T object){
@@ -103,19 +103,15 @@ public class User implements Observable {
         this.status = status;
     }
 
-    public List<Permission> getPermissions() {
+    public Role getPermissions() {
         return permissions;
     }
 
-    public void setPermissions(List<Permission> permissions) {
+    public void setPermissions(Role permissions) {
         this.permissions = permissions;
     }
 
-    private Boolean allowed(Permission perm){
-        if (this.permissions.contains(Permission.ALL))
-            return true;
-        return  (this.permissions.contains(perm));
-    }
+
 
     public String getFirstName(String name) {return getFirstOrLastName(name,0);}
     public String getLastName(String name) {return getFirstOrLastName(name,1);}
@@ -132,9 +128,7 @@ public class User implements Observable {
         return user.getPassword().equals(this.password);
     }
 
-    public boolean hasPermission(Permission permission){
-        return permissions.contains(permission);
-    }
+
 
 
     @Override

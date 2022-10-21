@@ -14,7 +14,7 @@ public class Session {
     }
 
     public boolean hasAccess(Permission permission){
-        return user.hasPermission(permission);
+        return user.getPermissions().hasPermission(permission);
     }
 
     public User getUser() {

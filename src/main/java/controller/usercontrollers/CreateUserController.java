@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.user.Permission;
+import model.user.Role;
 import model.user.User;
 import model.user.Users;
 import persistence.UserDAO;
@@ -14,6 +15,7 @@ import persistence.UserDAO;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -32,7 +34,7 @@ public class CreateUserController {
     private Label userIDLabel, firstNameLabel,lastNameLabel,userNameLabel,passwordLabel,StatusLabel, roleLabel;
 
     @FXML
-    private ComboBox <List<Permission>> roleBox;
+    private ComboBox <Role> roleBox;
 
     @FXML
     private ComboBox<Boolean> statusBox;
@@ -68,8 +70,8 @@ public class CreateUserController {
     public void initialize(){
         statusBox.getItems().setAll(true, false);
         List<Permission> perms = new ArrayList<>(){
-            {add(Permission.ARTICLE);add(Permission.SITE);}};
-        roleBox.getItems().addAll(perms);
+            {add(Permission.ALL);add(Permission.SITE);}};
+        roleBox.getItems().addAll(new Role("admin","asf",perms));
         userIDTextField.setText(Long.toString(UserDAO.getInstance().getNextId()));
     }
 

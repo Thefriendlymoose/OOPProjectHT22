@@ -1,6 +1,7 @@
 package persistence.pojos;
 
 import model.user.Permission;
+import model.user.Role;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class UserJSON {
     private String password;
     private String name;
     private boolean status;
-    private List<Permission> permissions;
+    private Role permissions;
 
     public UserJSON() {
 
@@ -58,13 +59,13 @@ public class UserJSON {
         this.status = status;
     }
 
-    public List<Permission> getPermissions() {
+    public Role getPermissions() {
         return permissions;
     }
 
-    public void setPermissions(List<Permission> permissions) {
-        this.permissions = permissions;
-    }
+    //public void setPermissions(List<Permission> permissions) {
+    //    this.permissions = permissions;
+    //}
 
 
 }

@@ -14,6 +14,7 @@ import model.user.Users;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class UserEditFormController {
@@ -31,7 +32,7 @@ public class UserEditFormController {
     private Label userIDLabel, firstNameLabel,lastNameLabel,userNameLabel,passwordLabel,StatusLabel, roleLabel;
 
     @FXML
-    private ComboBox<List<Permission>> roleBox;
+    private ComboBox<String> roleBox;
 
     @FXML
     private ComboBox<Boolean> statusBox;
@@ -62,9 +63,9 @@ public class UserEditFormController {
             passwordField.setText(user.getPassword());
             statusBox.setValue(user.isStatus());
             statusBox.getItems().addAll(user.getAllStatus());
-            roleBox.setValue(user.getPermissions());
+            roleBox.setValue(user.getPermissions().getName());
             // tmp
-            roleBox.getItems().addAll(user.managerPermissions(),user.normalPermissions(),user.adminPermissions());
+            roleBox.getItems().addAll("admin","manager","worker");
 
         });
 
@@ -76,7 +77,8 @@ public class UserEditFormController {
         user.setUserName((userNameField.getText()));
         user.setPassword(passwordField.getText());
         user.setStatus(statusBox.getValue());
-        user.setPermissions(roleBox.getValue());
+        if (Objects.equals(roleBox.getValue(), "admin"))
+            user.setPermissions(user.getPermissions().getAdmin());
 
         users.updateUser();
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();

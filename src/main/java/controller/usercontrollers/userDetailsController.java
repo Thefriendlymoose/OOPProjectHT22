@@ -36,7 +36,7 @@ public class userDetailsController {
     private Label userIDLabel, firstNameLabel,lastNameLabel,userNameLabel,passwordLabel,StatusLabel, roleLabel;
 
     @FXML
-    private ComboBox<List<Permission>> roleBox;
+    private ComboBox<String> roleBox;
 
     @FXML
     private ComboBox<Boolean> statusBox;
@@ -66,8 +66,7 @@ public class userDetailsController {
             passwordField.setText(user.getPassword());
             statusBox.setValue(user.isStatus());
             statusBox.getItems().addAll(user.getAllStatus());
-            roleBox.setValue(user.getPermissions());
-            roleBox.getItems().setAll(user.getPermissions());
+            roleBox.setValue(user.getPermissions().getName());
         });
 
     }
