@@ -92,7 +92,7 @@ public final class OrderDAO implements IPersistence<Order> {
         sb.addUserSerializer();
         sb.addLocalDateTimeSerializer();
         sb.addCustomerSerializer();
-        sb.addOrderRowSerializer();
+        sb.addArticleSerializer();
         sb.addSiteSerializer();
         Gson g = sb.getGson();
 

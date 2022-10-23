@@ -6,12 +6,16 @@
     "maxCapacity": 500,
     "siteArticles": [
       {
-        "articleId": 1,
+        "article": 1,
         "amount": 3
       },
       {
-        "articleId": 5,
-        "amount": 25
+        "article": 5,
+        "amount": 20
+      },
+      {
+        "article": 4,
+        "amount": 5
       }
     ],
     "siteUsers": [
@@ -25,7 +29,7 @@
     "maxCapacity": 600,
     "siteArticles": [
       {
-        "articleId": 6,
+        "article": 6,
         "amount": 9
       }
     ],
@@ -40,7 +44,7 @@
     "maxCapacity": 700,
     "siteArticles": [
       {
-        "articleId": 6,
+        "article": 6,
         "amount": 9
       }
     ],

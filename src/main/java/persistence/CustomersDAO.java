@@ -73,8 +73,6 @@ public final class CustomersDAO implements IPersistence<Customer> {
     @Override
     public void save(List<Customer> list) {
         SerializeBuilder sb = new SerializeBuilder();
-        sb.addCustomerContactSerializer();
-        sb.addAddressSerializer();
         Gson g = sb.getGson();
 
         try {

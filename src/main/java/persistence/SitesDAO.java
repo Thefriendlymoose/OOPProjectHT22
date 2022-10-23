@@ -76,7 +76,7 @@ public final class SitesDAO implements IPersistence<Site> {
     @Override
     public void save(List<Site> list) {
         SerializeBuilder sb = new SerializeBuilder();
-        sb.addSiteArticleSerializer();
+        sb.addArticleSerializer();
         sb.addUserSerializer();
         Gson g = sb.getGson();
 

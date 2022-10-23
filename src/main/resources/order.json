@@ -78,5 +78,21 @@
       }
     ],
     "site": 2
+  },
+  {
+    "user": 1,
+    "orderNumber": 6,
+    "customer": 3,
+    "orderStatus": "ACTIVE",
+    "priority": true,
+    "orderDate": "2022-10-23T16:55:54.259008100",
+    "deadline": "2022-10-30T16:55:54.259008100",
+    "orderRows": [
+      {
+        "article": 5,
+        "amount": 5
+      }
+    ],
+    "site": 1
   }
 ]

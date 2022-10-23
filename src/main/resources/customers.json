@@ -55,5 +55,25 @@
     "customerId": 2,
     "companyOrgNumber": 123123,
     "companyName": "Hi"
+  },
+  {
+    "customerContacts": [],
+    "billingAddress": {
+      "streetName": null,
+      "streetNumber": null,
+      "postalCode": null,
+      "cityName": null,
+      "country": null
+    },
+    "shippingAddress": {
+      "streetName": null,
+      "streetNumber": null,
+      "postalCode": null,
+      "cityName": null,
+      "country": null
+    },
+    "customerId": 3,
+    "companyOrgNumber": 123,
+    "companyName": "testnulls"
   }
 ]
