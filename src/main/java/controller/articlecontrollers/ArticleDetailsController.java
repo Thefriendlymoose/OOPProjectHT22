@@ -18,6 +18,8 @@ import java.io.IOException;
 /**
  * Controller for the view which shows the article details
  * Using to show data of existing articles.
+ *
+ * @author David al Amiri
  */
 public class ArticleDetailsController {
     @FXML
@@ -43,6 +45,9 @@ public class ArticleDetailsController {
         this.article = article;
     }
 
+    /**
+     * Initializes the form with the data from an article.
+     */
     @FXML
     public void initialize(){
         detailsTitleLabel.setText(detailsTitleLabel.getText() + article.getArticleId());
@@ -57,6 +62,11 @@ public class ArticleDetailsController {
         sellPriceTextField.setText(String.valueOf(article.getSellPrice()));
     }
 
+    /**
+     * Handler for the edit button which exists in this form
+     * @param e event from button press
+     * @throws IOException throws exception if the FXML fails to load.
+     */
     public void editHandler(ActionEvent e) throws IOException {
         Callback<Class<?>, Object> test = param -> new ArticleEditFormController(wms, article);
 
@@ -74,6 +84,10 @@ public class ArticleDetailsController {
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
     }
 
+    /**
+     * closes the details modal
+     * @param e event from button press
+     */
     public void closeHandler(ActionEvent e) {
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
     }

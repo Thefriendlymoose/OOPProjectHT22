@@ -5,6 +5,8 @@ import model.user.User;
 
 /**
  * When a user has logged in a session is created.
+ *
+ * @author David al Amiri
  */
 public class Session {
     private User user;

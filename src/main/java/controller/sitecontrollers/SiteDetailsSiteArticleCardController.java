@@ -39,11 +39,20 @@ public class SiteDetailsSiteArticleCardController {
         this.siteArticle = siteArticle;
     }
 
+    /**
+     * Initializes the card with the data from the site article
+     */
     public void initialize(){
         cardNameLabel.setText(cardNameLabel.getText() + siteArticle.getArticle().getArticleName());
         cardAmountLabel.setText(cardAmountLabel.getText() + siteArticle.getAmount());
     }
 
+
+    /**
+     * Handles the event when a user clicks the go button in the card
+     * @param e
+     * @throws IOException Throws exception if the FXML fails to load.
+     */
     public void onGoTo(ActionEvent e) throws IOException {
         StageDependencyInjection.addInjectionMethod(
                 SiteDetailsSiteArticleModalController.class, params -> new SiteDetailsSiteArticleModalController(wms, site, siteArticle)
@@ -57,6 +66,11 @@ public class SiteDetailsSiteArticleCardController {
         stage.show();
     }
 
+    /**
+     * Handles the event when a user clicks the delete button in the card
+     * Deletes the sitearticle from the site
+     * @param e
+     */
     public void onDelete(ActionEvent e) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm Deletion");

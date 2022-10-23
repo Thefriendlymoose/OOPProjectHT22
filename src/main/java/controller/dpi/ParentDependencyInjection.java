@@ -9,7 +9,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * Dependency injection for controllers that control views that are JavaFx nodes.
+ */
 public class ParentDependencyInjection {
 
     /**

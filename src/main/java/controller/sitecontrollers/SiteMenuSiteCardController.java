@@ -36,11 +36,20 @@ public class SiteMenuSiteCardController {
     }
 
 
+    /**
+     * Initializes the Labels in the card with data from the provided site
+     */
     public void initialize(){
         cardNameLabel.setText(cardNameLabel.getText() + site.getSiteName());
         cardAmountLabel.setText(cardAmountLabel.getText() + site.getTotalAmountItems());
     }
 
+    /**
+     * Handles the event when a user clicks the goto button in the card.
+     * If clicked opens a modal with the site details
+     * @param e
+     * @throws IOException Throws exception if the FXML fails to load
+     */
     public void onGoTo(ActionEvent e) throws IOException {
         StageDependencyInjection.addInjectionMethod(
                 SiteDetailsController.class, params -> new SiteDetailsController(wms, site)

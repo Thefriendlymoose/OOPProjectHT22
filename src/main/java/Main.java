@@ -26,6 +26,14 @@ import model.site.Sites;
 import model.user.Users;
 import persistence.dataaccessobjects.*;
 
+/**
+ * The main class which is run when the application is started.
+ *
+ * @author David al Amiri
+ * @author James Pålsson
+ * @author Simon Porsgaard
+ * @author Alexander Hyyppa
+ */
 public class Main extends Application {
 
     private WMS wms;
@@ -34,6 +42,13 @@ public class Main extends Application {
         launch(args);
     }
 
+    /**
+     * Is responsible to start the program.
+     * It gets all the saved data and initializes a new WMS object.
+     * It also sets up the dependencyInjectors for the controllers
+     * @param stage
+     * @throws Exception throws exception if the FXML fails to load.
+     */
     @Override
     public void start(Stage stage) throws Exception {
         Articles articles = new Articles(ArticlesDAO.getInstance().getAllMap());
@@ -52,11 +67,12 @@ public class Main extends Application {
         stage.setTitle("WMS");
         stage.setScene(scene);
         stage.show();
-
-
-
     }
 
+    /**
+     * the stop method is run when the application is closed
+     * Stop is responsible to send the save command to the DAOs.
+     */
     @Override
     public void stop(){
         // should save to dao
@@ -67,6 +83,10 @@ public class Main extends Application {
         CustomersDAO.getInstance().save(wms.getCustomerModel().getCustomerList());
     }
 
+    /**
+     * Sets up dependency injection for controllers that only need the wms injected.
+     * Specifically for views that are nodes and not stages.
+     */
     private void setUpSceneDependencyInjector() {
         //Factories
         Callback<Class<?>, Object> signInControllerFactory = param -> new SignInController(wms);
@@ -113,6 +133,10 @@ public class Main extends Application {
         );
     }
 
+    /**
+     * Sets up dependency injection for controllers that only need the wms injected.
+     * Specifically for views that are stages.
+     */
     private void setUpStageDependencyInjector() {
         //Factories
         //Article

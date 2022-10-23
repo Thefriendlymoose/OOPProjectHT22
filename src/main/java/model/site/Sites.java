@@ -7,6 +7,8 @@ import java.util.Map;
 
 /**
  * Models a collection of sites
+ *
+ * @author David al Amiri
  */
 public class Sites {
 

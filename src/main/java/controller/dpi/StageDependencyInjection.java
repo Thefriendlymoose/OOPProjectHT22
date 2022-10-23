@@ -9,7 +9,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * Dependency Injections for controllers that control views that are Stages. Such as modals.
+ */
 public class StageDependencyInjection {
 
     /**

@@ -8,6 +8,8 @@ import java.util.List;
 
 /**
  * Represents a site/warehouse
+ *
+ * @author David al Amiri
  */
 public class Site {
 
@@ -155,8 +157,13 @@ public class Site {
         siteArticles.remove(sa);
     }
 
-    public void editSiteArticle(SiteArticle sa, int amount){
-        sa.setAmount(amount);
+    public boolean editSiteArticle(SiteArticle sa, int amount){
+        if (isOverCapacity(sa, amount)){
+            return false;
+        } else {
+            sa.setAmount(amount);
+            return true;
+        }
     }
 
     /**

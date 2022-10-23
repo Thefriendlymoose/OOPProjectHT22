@@ -15,6 +15,11 @@ import model.authentication.UserAuthentication;
 import model.WMS;
 import model.user.Users;
 
+/**
+ * Controller for the view which shows the login screen
+ *
+ * @author David al Amiri
+ */
 public class SignInController {
 
     @FXML

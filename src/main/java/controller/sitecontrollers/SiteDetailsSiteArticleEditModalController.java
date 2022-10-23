@@ -34,6 +34,9 @@ public class SiteDetailsSiteArticleEditModalController {
         this.siteArticle = siteArticle;
     }
 
+    /**
+     * Initializes fields in the modal with data from the sitearticle
+     */
     public void initialize(){
         articleNameTextField.setDisable(true);
         articleNameTextField.setText(siteArticle.getArticle().getArticleName());
@@ -41,6 +44,11 @@ public class SiteDetailsSiteArticleEditModalController {
         amountTextField.setText(String.valueOf(siteArticle.getAmount()));
     }
 
+    /**
+     * Handles the event when a user clicks the cancel button in the modal
+     * Opens a new modal where the user will have to confirm whether to cancel or return
+     * @param e
+     */
     public void onCancel(ActionEvent e){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
@@ -55,18 +63,25 @@ public class SiteDetailsSiteArticleEditModalController {
         }
     }
 
+    /**
+     * Handles the save button when a user clicks save in the modal
+     * Parses the string that is returned from the TextField, if it fails throws NumberFormat
+     * @param e
+     */
     public void onSave(ActionEvent e){
         try{
             int amount = Integer.parseInt(amountTextField.getText());
-            if (site.isOverCapacity(siteArticle, amount)){
-                System.out.println("Over Capacity");
-            } else {
+            if (site.editSiteArticle(siteArticle, amount)){
                 site.editSiteArticle(siteArticle, amount);
                 ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
                 wms.updateSite();
+            } else {
+                //TODO add error popup
+                System.out.println("Over Capacity");
             }
 
         } catch (NumberFormatException error){
+            //TODO add error popup
             System.out.println("Error only numbers accepted");
         }
 

@@ -45,6 +45,7 @@ public class SiteDetailsEditController {
         siteAddressTextArea.setText(site.getSiteAddress());
     }
 
+    //TODO move stuff to the model?
     public void onSave(ActionEvent e){
         site.setSiteName(nameTextField.getText());
         site.setSiteAddress(siteAddressTextArea.getText());

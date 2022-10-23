@@ -36,6 +36,9 @@ public class SiteDetailsSiteArticleModalController {
         this.siteArticle = siteArticle;
     }
 
+    /**
+     * Initializes the textfields with data from the sitearticle
+     */
     public void initialize(){
         articleNameTextField.setDisable(true);
         articleNameTextField.getStyleClass().add("locked-form-field");
@@ -48,10 +51,21 @@ public class SiteDetailsSiteArticleModalController {
     }
 
 
+    /**
+     * Handles the event when a user clicks close in the modal
+     * Closes the modal
+     * @param e
+     */
     public void onClose(ActionEvent e){
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
     }
 
+    /**
+     * Handles the event when a user clicks edit in the modal
+     * Open a new modal where a user can edit the sitearticle
+     * @param e
+     * @throws IOException Throws exception if the FXML fails to load
+     */
     public void onEdit(ActionEvent e) throws IOException {
         StageDependencyInjection.addInjectionMethod(
                 SiteDetailsSiteArticleEditModalController.class, params -> new SiteDetailsSiteArticleEditModalController(wms, site, siteArticle)

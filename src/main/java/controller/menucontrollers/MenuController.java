@@ -13,6 +13,11 @@ import model.WMS;
 
 import java.io.IOException;
 
+/**
+ * Controller for the menubar
+ *
+ * @author David al Amiri
+ */
 public class MenuController {
 
     @FXML

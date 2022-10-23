@@ -33,6 +33,9 @@ public class ArticleMenuCardController {
     }
 
 
+    /**
+     * Initializes the card with the data from the provided article
+     */
     @FXML
     public void initialize(){
         cardNumberLabel.setText(cardNumberLabel.getText() + article.getArticleId());
@@ -40,6 +43,12 @@ public class ArticleMenuCardController {
         cardDescriptionLabel.setText(cardDescriptionLabel.getText() + article.getDescription());
     }
 
+    /**
+     * Handles the event when the user presses the button in the card.
+     * Which opens the article in a new modal
+     * @param actionEvent
+     * @throws IOException Is thrown when the FXML fails to load
+     */
     public void onGo(ActionEvent actionEvent) throws IOException {
         StageDependencyInjection.addInjectionMethod(
                 ArticleDetailsController.class, params -> new ArticleDetailsController(wms, article)

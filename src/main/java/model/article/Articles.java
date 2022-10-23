@@ -7,7 +7,9 @@ import java.util.Map;
 
 
 /**
- * Is a collection of articles, implements Observable so that observers will be notified of changes.
+ * Is a collection of articles
+ *
+ * @author David al Amiri
  */
 public class Articles {
 

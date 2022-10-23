@@ -39,10 +39,20 @@ public class SiteMenuController implements Observer {
         wms.registerObserver(this);
     }
 
+    /**
+     * Initializes the site menu.
+     * Loads all the sitecards
+     * @throws IOException
+     */
     public void initialize() throws IOException {
         loadCards();
     }
 
+    /**
+     * Loads all the site into cards in the menu.
+     *
+     * @throws IOException Throws exception if the fxml fails to load
+     */
     private void loadCards() throws IOException {
         siteCardHolderVBox.getChildren().clear();
         for (Site site : sites.getInList()){
@@ -57,6 +67,12 @@ public class SiteMenuController implements Observer {
         }
     }
 
+    /**
+     * Handles the event when a user clicks the create button in the menu
+     * Opens a modal with a form
+     * @param e
+     * @throws Exception Throws exception if the FXML fails to load
+     */
     public void createButton(ActionEvent e) throws Exception{
         Stage stage = StageDependencyInjection.load("fxml/siteViews/siteCreateModal.fxml");
 
@@ -66,6 +82,11 @@ public class SiteMenuController implements Observer {
         stage.show();
     }
 
+    /**
+     * Handles the event when a user clicks the back button in the menu
+     * Returns the user back to the main menu
+     * @throws Exception Throws exception if the FXML fails to load
+     */
     public void backBtnHandler() throws Exception{
         Parent root = ParentDependencyInjection.load("fxml/mainMenu.fxml");
 
@@ -73,6 +94,12 @@ public class SiteMenuController implements Observer {
         window.setScene(new Scene(root));
     }
 
+    /**
+     * Handles the event when a user clicks the open button in the menu
+     * Opens a modal with a form where the user can open a site by entering the site id
+     * @param e
+     * @throws IOException Throws exception if the FXML fails to load
+     */
     public void onOpen(ActionEvent e) throws IOException {
         Stage stage = StageDependencyInjection.load("fxml/siteViews/siteOpenDetailsModal.fxml");
 

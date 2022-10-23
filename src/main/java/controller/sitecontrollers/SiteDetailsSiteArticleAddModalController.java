@@ -37,6 +37,10 @@ public class SiteDetailsSiteArticleAddModalController {
         this.articles = wms.getArticles();
     }
 
+    /**
+     * Initializes the Site Article modal.
+     * Populates the listview with all the available articles in the wms.
+     */
     public void initialize(){
         chooseArticleListView.getItems().addAll(articles.getInList());
 
@@ -58,6 +62,10 @@ public class SiteDetailsSiteArticleAddModalController {
         });
     }
 
+    /**
+     * Handles the event when a user clicks save in the modal
+     * @param e
+     */
     public void onSave(ActionEvent e){
         if (current != null && !amountTextField.getText().isEmpty()){
             try {
@@ -66,14 +74,20 @@ public class SiteDetailsSiteArticleAddModalController {
                     ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
                     wms.updateSite();
                 } else {
+                    //TODO add error popup
                     System.out.println("Failed");
                 }
             } catch (NumberFormatException error){
+                //TODO add error popup
                 System.out.println("error number");
             }
         }
     }
 
+    /**
+     * Handles the event when a user clicks the cancel button in the modal
+     * @param e
+     */
     public void onCancel(ActionEvent e){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
