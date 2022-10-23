@@ -20,6 +20,7 @@ import persistence.UserDAO;
 import model.observer.Observer;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 public class UserMenuController implements Observer {
@@ -47,9 +48,19 @@ public class UserMenuController implements Observer {
     }
 
 
+    /*
+    public static int compare(User u1, User u2){
+        long l = (u2.getUserId() - u1.getUserId());
+        return (int) l;
+    }
+
+     */
+
     private void loadCards() throws IOException{
         userCardHolder.getChildren().clear();
-        for (User user : users.getInList()){
+        List<User> myUsers = users.getAllUsers();
+        //myUsers.sort((User u1, User u2)->UserMenuController.compare(u1,u2));
+        for (User user : myUsers){
             FXMLLoader cardLoader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/userViews/userDetailsMenuCard.fxml")));
             AnchorPane pane = cardLoader.load();
             UserMenuCardController cont =  cardLoader.getController();

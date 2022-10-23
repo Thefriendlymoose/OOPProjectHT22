@@ -33,6 +33,7 @@ public class MainMenuController {
 
 
     public void initialize(){
+        if (!session.hasAccess(Permission.ALL)){
             if (!session.hasAccess(Permission.SITE)){
                 menuSiteButton.setDisable(true);
             }
@@ -52,6 +53,7 @@ public class MainMenuController {
             if (!session.hasAccess(Permission.USER)){
                 menuUserButton.setDisable(true);
             }
+        }
     }
 
     public void articleBtnHandler() throws Exception {

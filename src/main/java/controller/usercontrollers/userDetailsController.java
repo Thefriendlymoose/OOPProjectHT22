@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import model.WMS;
 
 import model.user.Permission;
+import model.user.Role;
 import model.user.User;
 import model.user.Users;
 import persistence.UserDAO;
@@ -36,7 +37,7 @@ public class userDetailsController {
     private Label userIDLabel, firstNameLabel,lastNameLabel,userNameLabel,passwordLabel,StatusLabel, roleLabel;
 
     @FXML
-    private ComboBox<String> roleBox;
+    private ComboBox<Role> roleBox;
 
     @FXML
     private ComboBox<Boolean> statusBox;
@@ -66,7 +67,7 @@ public class userDetailsController {
             passwordField.setText(user.getPassword());
             statusBox.setValue(user.isStatus());
             statusBox.getItems().addAll(user.getAllStatus());
-            roleBox.setValue(user.getPermissions().getName());
+            roleBox.setValue(user.getPermissions());
         });
 
     }

@@ -47,7 +47,6 @@ public class CreateUserController {
     public void onSave(ActionEvent e) throws IOException {
         User newUser = new User(users.getNextUserID(), userNameField.getText(), passwordField.getText(),firstNameField.getText() + " " + lastNameField.getText()
         , statusBox.getValue(), roleBox.getValue());
-
         users.addUser(newUser);
         users.updateUser();
 
@@ -69,9 +68,8 @@ public class CreateUserController {
 
     public void initialize(){
         statusBox.getItems().setAll(true, false);
-        List<Permission> perms = new ArrayList<>(){
-            {add(Permission.ALL);add(Permission.SITE);}};
-        roleBox.getItems().addAll(new Role("admin","asf",perms));
+        roleBox.getItems().addAll(Role.getManager(),Role.getSalesPerson(),Role.getAdmin());
+
         userIDTextField.setText(Long.toString(UserDAO.getInstance().getNextId()));
     }
 

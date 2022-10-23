@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.WMS;
 import model.user.Permission;
+import model.user.Role;
 import model.user.User;
 import model.user.Users;
 
@@ -32,7 +33,7 @@ public class UserEditFormController {
     private Label userIDLabel, firstNameLabel,lastNameLabel,userNameLabel,passwordLabel,StatusLabel, roleLabel;
 
     @FXML
-    private ComboBox<String> roleBox;
+    private ComboBox<Role> roleBox;
 
     @FXML
     private ComboBox<Boolean> statusBox;
@@ -50,7 +51,6 @@ public class UserEditFormController {
 
 
 
-
     @FXML
     public void initialize() {
 
@@ -63,9 +63,13 @@ public class UserEditFormController {
             passwordField.setText(user.getPassword());
             statusBox.setValue(user.isStatus());
             statusBox.getItems().addAll(user.getAllStatus());
-            roleBox.setValue(user.getPermissions().getName());
+            roleBox.setValue(user.getPermissions());
             // tmp
-            roleBox.getItems().addAll("admin","manager","worker");
+            roleBox.getItems().addAll(
+                    user.getPermissions().getAdmin(),
+                    user.getPermissions().getManager(),
+                    user.getPermissions().getSalesPerson()
+                    );
 
         });
 
@@ -77,8 +81,7 @@ public class UserEditFormController {
         user.setUserName((userNameField.getText()));
         user.setPassword(passwordField.getText());
         user.setStatus(statusBox.getValue());
-        if (Objects.equals(roleBox.getValue(), "admin"))
-            user.setPermissions(user.getPermissions().getAdmin());
+        user.setPermissions(roleBox.getValue());
 
         users.updateUser();
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
