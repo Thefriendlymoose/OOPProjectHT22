@@ -17,7 +17,11 @@ import model.user.Users;
 import model.user.strategySort.IStrategySort;
 import model.user.strategySort.UserIDSortDown;
 import model.user.strategySort.ascending.FirstNameSortAscending;
+import model.user.strategySort.ascending.LastNameSortAscending;
+import model.user.strategySort.ascending.UserIDSortAscending;
 import model.user.strategySort.descending.FirstNameSortDescending;
+import model.user.strategySort.descending.LastNameSortDescending;
+import model.user.strategySort.descending.UserIDSortDescending;
 import persistence.IPersistence;
 import model.user.User;
 import persistence.UserDAO;
@@ -125,10 +129,14 @@ public class UserMenuController implements Observer {
         }
     }
 
-    public void userIDDown(ActionEvent actionEvent) {
+    public void userIDDown(ActionEvent actionEvent) throws IOException {
+        sortUser = new UserIDSortDescending();
+        loadCards(sortUser);
     }
 
-    public void userIDUp(ActionEvent actionEvent) {
+    public void userIDUp(ActionEvent actionEvent) throws IOException {
+        sortUser = new UserIDSortAscending();
+        loadCards(sortUser);
     }
     public void sortFirstNameUp(ActionEvent actionEvent) throws IOException {
         sortUser = new FirstNameSortAscending();
@@ -142,10 +150,12 @@ public class UserMenuController implements Observer {
     }
 
     public void sortLastNameUp(ActionEvent actionEvent) throws IOException {
-        sortUser = new FirstNameSortAscending();
+        sortUser = new LastNameSortAscending();
         loadCards(sortUser);
     }
 
-    public void sortLastNameDown(ActionEvent actionEvent) {
+    public void sortLastNameDown(ActionEvent actionEvent) throws IOException {
+        sortUser = new LastNameSortDescending();
+        loadCards(sortUser);
     }
 }
