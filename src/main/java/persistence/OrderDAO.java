@@ -12,6 +12,9 @@ import model.site.Site;
 import persistence.pojos.OrderJSON;
 import persistence.pojos.OrderRowJSON;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Reader;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
@@ -84,8 +87,26 @@ public final class OrderDAO implements IPersistence<Order> {
     }
 
     @Override
-    public void save(Order o) {
+    public void save(List<Order> list) {
+        SerializeBuilder sb = new SerializeBuilder();
+        sb.addUserSerializer();
+        sb.addLocalDateTimeSerializer();
+        sb.addCustomerSerializer();
+        sb.addOrderRowSerializer();
+        sb.addSiteSerializer();
+        Gson g = sb.getGson();
 
+        try{
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter writer = new BufferedWriter(fw);
+
+            g.toJson(list, writer);
+            writer.flush();
+            writer.close();
+            fw.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 
     @Override

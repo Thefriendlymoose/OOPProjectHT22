@@ -206,4 +206,6 @@ public class Article {
     public void setLastEdited(LocalDateTime lastEdited) {
         this.lastEdited = lastEdited;
     }
+
+
 }

@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import model.user.User;
 import persistence.pojos.UserJSON;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -47,8 +49,24 @@ public class UserDAO implements IPersistence<User> {
     }
 
     @Override
-    public void save(User o) {
+    public void save(List<User> list) {
+        SerializeBuilder sb = new SerializeBuilder();
 
+        Gson g = sb.getGson();
+
+        try {
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter writer = new BufferedWriter(fw);
+
+            g.toJson(list, writer);
+            writer.flush();
+            writer.close();
+            fw.close();
+
+        }
+        catch (java.io.IOException ioe){
+            System.out.println(ioe);
+        }
     }
 
     @Override

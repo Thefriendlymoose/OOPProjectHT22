@@ -4,8 +4,9 @@ public class SiteArticleJSON {
     private long articleId;
     private int amount;
 
-    public SiteArticleJSON() {
-
+    public SiteArticleJSON(long articleId, int amount) {
+        this.articleId = articleId;
+        this.amount = amount;
     }
 
     public long getArticleId() {

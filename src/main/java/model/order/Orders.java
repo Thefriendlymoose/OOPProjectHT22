@@ -49,14 +49,6 @@ public class Orders {
         return temp;
     }
 
-    /** all orders as an array.
-     *
-     * @return all orders as an array.
-     */
-    public List<Order> getAllOrders(){
-        return new ArrayList<>(orders.values());
-    }
-
     /**
      * Returns the sum of all orders given a specific status.
      *

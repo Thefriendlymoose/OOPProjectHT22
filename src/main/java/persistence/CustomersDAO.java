@@ -1,6 +1,9 @@
 package persistence;
 
 import com.google.gson.Gson;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -31,7 +34,6 @@ public final class CustomersDAO implements IPersistence<Customer> {
             for(CustomerJSON cj : customerJSONS) {
                 List<CustomerContact> customerContacts = Arrays.asList(cj.getCustomerContacts());
 
-
                 Customer customer = new Customer(customerContacts, cj.getBillingAddress(), cj.getShippingAddress(),
                         cj.getCustomerId(), cj.getCompanyOrgNumber(), cj.getCompanyName());
                 customers.put(cj.getCustomerId(), customer);
@@ -59,7 +61,7 @@ public final class CustomersDAO implements IPersistence<Customer> {
         customersFile = filePath;
     }
 
-    @Override
+
     public void save(Customer customer) {
         Long key = customer.getCustomerID();
         if(!customers.containsKey(key)) {
@@ -67,6 +69,28 @@ public final class CustomersDAO implements IPersistence<Customer> {
         }
     }
 
+
+    @Override
+    public void save(List<Customer> list) {
+        SerializeBuilder sb = new SerializeBuilder();
+        sb.addCustomerContactSerializer();
+        sb.addAddressSerializer();
+        Gson g = sb.getGson();
+
+        try {
+            FileWriter fw = new FileWriter(customersFile);
+            BufferedWriter writer = new BufferedWriter(fw);
+
+            g.toJson(list, writer);
+            writer.flush();
+            writer.close();
+            fw.close();
+
+        }
+        catch (java.io.IOException ioe){
+            System.out.println(ioe);
+        }
+    }
 
     @Override
     public List<Customer> getAll() {

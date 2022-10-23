@@ -5,7 +5,13 @@
     "password": "1234",
     "name": "Olof Persson",
     "status": true,
-    "permissions": ["ORDER", "USER", "SITE", "CUSTOMER", "ARTICLE"]
+    "permissions": [
+      "ORDER",
+      "USER",
+      "SITE",
+      "CUSTOMER",
+      "ARTICLE"
+    ]
   },
   {
     "userId": 2,
@@ -13,7 +19,11 @@
     "password": "1234",
     "name": "Ulla Ullman",
     "status": true,
-    "permissions": ["ORDER", "USER", "SITE"]
+    "permissions": [
+      "ORDER",
+      "USER",
+      "SITE"
+    ]
   },
   {
     "userId": 3,
@@ -21,7 +31,11 @@
     "password": "HelanGarHoppfallera",
     "name": "Elof Testman",
     "status": true,
-    "permissions": ["ORDER", "USER", "SITE"]
+    "permissions": [
+      "ORDER",
+      "USER",
+      "SITE"
+    ]
   },
   {
     "userId": 4,
@@ -29,7 +43,11 @@
     "password": "IronMaiden666",
     "name": "Saleh Sala",
     "status": true,
-    "permissions": ["ORDER", "USER", "SITE"]
+    "permissions": [
+      "ORDER",
+      "USER",
+      "SITE"
+    ]
   },
   {
     "userId": 5,
@@ -37,6 +55,10 @@
     "password": "AIKAIKAIK",
     "name": "Per Provman",
     "status": true,
-    "permissions": ["ORDER", "CUSTOMER", "ARTICLE"]
+    "permissions": [
+      "ORDER",
+      "CUSTOMER",
+      "ARTICLE"
+    ]
   }
 ]

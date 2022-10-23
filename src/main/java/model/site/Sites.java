@@ -30,14 +30,6 @@ public class Sites {
 
     /**
      *
-     * @return Returns all the sites in a map
-     */
-    public Map<Long, Site> getInMap(){
-        return sites;
-    }
-
-    /**
-     *
      * @return returns all the sites in a list
      */
     public List<Site> getInList() {

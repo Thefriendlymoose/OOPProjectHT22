@@ -70,7 +70,7 @@ public class SiteDetailsController implements Observer {
 
     private void loadSiteEmployeeCards() throws IOException {
         employeeVBox.getChildren().clear();
-        for(User user : site.getEmployees()){
+        for(User user : site.getSiteUsers()){
             ParentDependencyInjection.addInjectionMethod(
                     SiteDetailsUserCardController.class, params -> new SiteDetailsUserCardController(wms, site, user)
             );

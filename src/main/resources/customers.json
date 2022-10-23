@@ -1,30 +1,59 @@
 [
   {
-    "customerId" : 1,
-    "companyName" : "Foo Bar and Sons",
-    "companyOrgNumber" : 55603434,
-    "billingAddress" : {
-      "streetName" : "Foo street",
-      "streetNumber" : 69,
-      "postalCode" : 42069,
-      "city" : "Party Town",
-      "country" : "The Kingdom of Sweden"
+    "customerContacts": [
+      {
+        "contactPerson": "Hans Mohr",
+        "phoneNumber": "+46 123 45 67",
+        "email": "hansmohr@yahoo.se"
+      },
+      {
+        "contactPerson": "Sten Grus",
+        "phoneNumber": "+46 420 69 69",
+        "email": "bossman@foo.com"
+      }
+    ],
+    "billingAddress": {
+      "streetName": "Foo street",
+      "streetNumber": "69",
+      "postalCode": "42069",
+      "cityName": "Party Town",
+      "country": "The Kingdom of Sweden"
     },
-    "shippingAddress" : {
-      "streetName" : "Göteborgsgatan",
-      "streetNumber" : 1,
-      "postalCode" : 666,
-      "city" : "Götelaborg",
-      "country" : "Inte sverige ;)"
+    "shippingAddress": {
+      "streetName": "Göteborgsgatan",
+      "streetNumber": "1",
+      "postalCode": "666",
+      "cityName": "Götelaborg",
+      "country": "Inte sverige ;)"
     },
-    "customerContacts" : [{
-      "contactName" : "Hans Mohr",
-      "phone" : "+46 123 45 67",
-      "email" : "hansmohr@yahoo.se"
-    }, {
-      "contactName" : "Sten Grus",
-      "phone" : "+46 420 69 69",
-      "email" : "bossman@foo.com"
-    }]
+    "customerId": 1,
+    "companyOrgNumber": 55603434,
+    "companyName": "Foo Bar and Sons"
+  },
+  {
+    "customerContacts": [
+      {
+        "contactPerson": "Joseph Steelman",
+        "phoneNumber": "+46 420 69 69",
+        "email": "jbro@sovietskijsoiuz.sssr"
+      }
+    ],
+    "billingAddress": {
+      "streetName": "dfgadfg",
+      "streetNumber": "1231",
+      "postalCode": "123123",
+      "cityName": "afdgdfg",
+      "country": "adfgfg"
+    },
+    "shippingAddress": {
+      "streetName": "egerg",
+      "streetNumber": "1231",
+      "postalCode": "1231",
+      "cityName": "dgdfg",
+      "country": "sdfgsdfg"
+    },
+    "customerId": 2,
+    "companyOrgNumber": 123123,
+    "companyName": "Hi"
   }
 ]

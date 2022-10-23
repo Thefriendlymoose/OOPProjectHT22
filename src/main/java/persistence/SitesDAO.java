@@ -3,6 +3,7 @@ package persistence;
 // @todo justera importer när klasserna flyttas till ett paket per
 // funktionellt paket i applikationen
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import model.user.User;
 import model.article.Article;
 import model.site.Site;
@@ -10,6 +11,8 @@ import model.site.SiteArticle;
 import persistence.pojos.SiteArticleJSON;
 import persistence.pojos.SiteJSON;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -71,7 +74,23 @@ public final class SitesDAO implements IPersistence<Site> {
     }
 
     @Override
-    public void save(Site site) {
+    public void save(List<Site> list) {
+        SerializeBuilder sb = new SerializeBuilder();
+        sb.addSiteArticleSerializer();
+        sb.addUserSerializer();
+        Gson g = sb.getGson();
+
+        try{
+            FileWriter fw = new FileWriter(sitesFile);
+            BufferedWriter writer = new BufferedWriter(fw);
+
+            g.toJson(list, writer);
+            writer.flush();
+            writer.close();
+            fw.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
 
     }
 

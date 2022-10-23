@@ -8,9 +8,15 @@
       {
         "articleId": 1,
         "amount": 3
+      },
+      {
+        "articleId": 5,
+        "amount": 25
       }
     ],
-    "siteUsers": [1]
+    "siteUsers": [
+      1
+    ]
   },
   {
     "siteId": 2,
@@ -23,7 +29,9 @@
         "amount": 9
       }
     ],
-    "siteUsers": [2]
+    "siteUsers": [
+      2
+    ]
   },
   {
     "siteId": 3,
@@ -36,6 +44,8 @@
         "amount": 9
       }
     ],
-    "siteUsers": [3]
+    "siteUsers": [
+      3
+    ]
   }
 ]

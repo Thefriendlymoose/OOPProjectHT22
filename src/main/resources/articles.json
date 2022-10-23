@@ -5,8 +5,8 @@
     "description": "LED tak/vägglampa",
     "category": "Lighting",
     "status": "Active",
-    "cost": 25,
-    "sellPrice": 50,
+    "cost": 25.0,
+    "sellPrice": 50.0,
     "createdBy": 3,
     "createdOn": "2022-10-04T21:24:53.000029800",
     "lastEdited": "2022-10-04T21:24:53.000029800"
@@ -17,8 +17,8 @@
     "description": "klädd sängstomme med madrass",
     "category": "Beds",
     "status": "Active",
-    "cost": 25,
-    "sellPrice": 50,
+    "cost": 25.0,
+    "sellPrice": 50.0,
     "createdBy": 2,
     "createdOn": "2022-10-04T21:24:53.000029800",
     "lastEdited": "2022-10-04T21:24:53.000029800"
@@ -29,8 +29,8 @@
     "description": "Plafond",
     "category": "Lighting",
     "status": "Active",
-    "cost": 25,
-    "sellPrice": 50,
+    "cost": 25.0,
+    "sellPrice": 50.0,
     "createdBy": 4,
     "createdOn": "2022-10-04T21:24:53.000029800",
     "lastEdited": "2022-10-04T21:24:53.000029800"
@@ -41,8 +41,8 @@
     "description": "LED ljuslist för köksbänk. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sit amet sollicitudin tortor, a iaculis orci. Nam sed lorem cursus, aliquam sem vel, eleifend purus. Ut lacinia gravida dapibus. Integ",
     "category": "Lighting",
     "status": "Active",
-    "cost": 25,
-    "sellPrice": 50,
+    "cost": 25.0,
+    "sellPrice": 50.0,
     "createdBy": 3,
     "createdOn": "2022-10-04T21:24:53.000029800",
     "lastEdited": "2022-10-04T21:24:53.000029800"
@@ -53,8 +53,8 @@
     "description": "Korg",
     "category": "Storage",
     "status": "Active",
-    "cost": 25,
-    "sellPrice": 50,
+    "cost": 25.0,
+    "sellPrice": 50.0,
     "createdBy": 1,
     "createdOn": "2022-10-04T21:24:53.000029800",
     "lastEdited": "2022-10-04T21:24:53.000029800"
@@ -65,11 +65,10 @@
     "description": "servis 24 delar",
     "category": "Kitchen",
     "status": "Active",
-    "cost": 25,
-    "sellPrice": 50,
+    "cost": 25.0,
+    "sellPrice": 50.0,
     "createdBy": 2,
     "createdOn": "2022-10-04T21:24:53.000029800",
     "lastEdited": "2022-10-04T21:24:53.000029800"
-
   }
 ]
