@@ -94,19 +94,8 @@ public final class OrderDAO implements IPersistence<Order> {
         sb.addCustomerSerializer();
         sb.addArticleSerializer();
         sb.addSiteSerializer();
-        Gson g = sb.getGson();
-
-        try{
-            FileWriter fw = new FileWriter(file);
-            BufferedWriter writer = new BufferedWriter(fw);
-
-            g.toJson(list, writer);
-            writer.flush();
-            writer.close();
-            fw.close();
-        } catch (IOException e) {
-            System.out.println(e);
-        }
+        WriterHelper<Order> wh = new WriterHelper<>();
+        wh.WriteToFileSerializer(file, list, sb.getGson());
     }
 
     @Override

@@ -73,21 +73,8 @@ public final class CustomersDAO implements IPersistence<Customer> {
     @Override
     public void save(List<Customer> list) {
         SerializeBuilder sb = new SerializeBuilder();
-        Gson g = sb.getGson();
-
-        try {
-            FileWriter fw = new FileWriter(customersFile);
-            BufferedWriter writer = new BufferedWriter(fw);
-
-            g.toJson(list, writer);
-            writer.flush();
-            writer.close();
-            fw.close();
-
-        }
-        catch (java.io.IOException ioe){
-            System.out.println(ioe);
-        }
+        WriterHelper<Customer> wh = new WriterHelper<>();
+        wh.WriteToFileSerializer(customersFile, list, sb.getGson());
     }
 
     @Override

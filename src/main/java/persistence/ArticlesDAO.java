@@ -5,7 +5,6 @@ import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import com.google.gson.*;
@@ -75,22 +74,8 @@ public final class ArticlesDAO implements IPersistence<Article> {
         SerializeBuilder sb = new SerializeBuilder();
         sb.addUserSerializer();
         sb.addLocalDateTimeSerializer();
-
-        Gson g = sb.getGson();
-
-        try {
-            FileWriter fw = new FileWriter(articlesFile);
-            BufferedWriter writer = new BufferedWriter(fw);
-
-            g.toJson(list, writer);
-            writer.flush();
-            writer.close();
-            fw.close();
-
-        }
-        catch (java.io.IOException ioe){
-            System.out.println(ioe);
-        }
+        WriterHelper<Article> wh = new WriterHelper<>();
+        wh.WriteToFileSerializer(articlesFile, list, sb.getGson());
     }
 
     @Override

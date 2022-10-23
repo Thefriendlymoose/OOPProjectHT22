@@ -3,7 +3,6 @@ package persistence;
 // @todo justera importer när klasserna flyttas till ett paket per
 // funktionellt paket i applikationen
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import model.user.User;
 import model.article.Article;
 import model.site.Site;
@@ -11,8 +10,6 @@ import model.site.SiteArticle;
 import persistence.pojos.SiteArticleJSON;
 import persistence.pojos.SiteJSON;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -42,7 +39,7 @@ public final class SitesDAO implements IPersistence<Site> {
                 List<SiteArticle> siteArticles = new ArrayList<>();
 
                 for (SiteArticleJSON saj : sj.getSiteArticles()){
-                    siteArticles.add(new SiteArticle(articles.get(saj.getArticleId()), saj.getAmount()));
+                    siteArticles.add(new SiteArticle(articles.get(saj.getArticle()), saj.getAmount()));
                 }
 
                 List<User> siteUsers = new ArrayList<>();
@@ -78,20 +75,8 @@ public final class SitesDAO implements IPersistence<Site> {
         SerializeBuilder sb = new SerializeBuilder();
         sb.addArticleSerializer();
         sb.addUserSerializer();
-        Gson g = sb.getGson();
-
-        try{
-            FileWriter fw = new FileWriter(sitesFile);
-            BufferedWriter writer = new BufferedWriter(fw);
-
-            g.toJson(list, writer);
-            writer.flush();
-            writer.close();
-            fw.close();
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-
+        WriterHelper<Site> wh = new WriterHelper<>();
+        wh.WriteToFileSerializer(sitesFile, list, sb.getGson());
     }
 
     //@todo borde gå att ha koden i interfacet?

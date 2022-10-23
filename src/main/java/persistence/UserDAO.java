@@ -51,22 +51,8 @@ public class UserDAO implements IPersistence<User> {
     @Override
     public void save(List<User> list) {
         SerializeBuilder sb = new SerializeBuilder();
-
-        Gson g = sb.getGson();
-
-        try {
-            FileWriter fw = new FileWriter(file);
-            BufferedWriter writer = new BufferedWriter(fw);
-
-            g.toJson(list, writer);
-            writer.flush();
-            writer.close();
-            fw.close();
-
-        }
-        catch (java.io.IOException ioe){
-            System.out.println(ioe);
-        }
+        WriterHelper<User> wh = new WriterHelper<>();
+        wh.WriteToFileSerializer(file, list, sb.getGson());
     }
 
     @Override
