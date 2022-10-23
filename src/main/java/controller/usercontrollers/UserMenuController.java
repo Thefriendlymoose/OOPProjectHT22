@@ -14,6 +14,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.WMS;
 import model.user.Users;
+import model.user.strategySort.IStrategySort;
+import model.user.strategySort.UserIDSortDown;
+import model.user.strategySort.ascending.FirstNameSortAscending;
+import model.user.strategySort.descending.FirstNameSortDescending;
 import persistence.IPersistence;
 import model.user.User;
 import persistence.UserDAO;
@@ -28,6 +32,7 @@ public class UserMenuController implements Observer {
     private Button openButton, createButton, listButton, backButton;
     private WMS wms;
     private Users users;
+    private IStrategySort sortUser = new UserIDSortDown();
 
     public UserMenuController(WMS wms) {
         this.wms = wms;
@@ -43,7 +48,7 @@ public class UserMenuController implements Observer {
 
 
     public  void initialize() throws IOException {
-        loadCards();
+        loadCards(sortUser);
 
     }
 
@@ -56,10 +61,10 @@ public class UserMenuController implements Observer {
 
      */
 
-    private void loadCards() throws IOException{
+    private void loadCards(IStrategySort strategySort) throws IOException{
         userCardHolder.getChildren().clear();
         List<User> myUsers = users.getAllUsers();
-        //myUsers.sort((User u1, User u2)->UserMenuController.compare(u1,u2));
+        strategySort.sort(myUsers);
         for (User user : myUsers){
             FXMLLoader cardLoader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/userViews/userDetailsMenuCard.fxml")));
             AnchorPane pane = cardLoader.load();
@@ -82,6 +87,10 @@ public class UserMenuController implements Observer {
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }
+
+    
+    
+    
     public void createButton(ActionEvent e) throws Exception{
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/userViews/CreateUserMenu.fxml")));
             Stage stage = loader.load();
@@ -110,9 +119,33 @@ public class UserMenuController implements Observer {
     @Override
     public void update() {
         try {
-            loadCards();
+            loadCards(sortUser);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void userIDDown(ActionEvent actionEvent) {
+    }
+
+    public void userIDUp(ActionEvent actionEvent) {
+    }
+    public void sortFirstNameUp(ActionEvent actionEvent) throws IOException {
+        sortUser = new FirstNameSortAscending();
+        loadCards(sortUser);
+    }
+
+    public void sortFirstNameDown(ActionEvent actionEvent) throws IOException {
+        sortUser = new FirstNameSortDescending();
+        loadCards(sortUser);
+
+    }
+
+    public void sortLastNameUp(ActionEvent actionEvent) throws IOException {
+        sortUser = new FirstNameSortAscending();
+        loadCards(sortUser);
+    }
+
+    public void sortLastNameDown(ActionEvent actionEvent) {
     }
 }
