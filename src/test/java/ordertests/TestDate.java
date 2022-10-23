@@ -4,6 +4,7 @@ import model.order.DateFunctions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -18,28 +19,18 @@ public class TestDate {
 
 //    måste fixa test
     @Test
-    public void testValidDeadline(){
+    public void testValidDeadlineSameDay(){
 
-        int randomNum = ThreadLocalRandom.current().nextInt(-5, 5);
-        System.out.println(randomNum);
-        LocalDateTime orderDate = LocalDateTime.now();
-
-        LocalDateTime deadline = LocalDateTime.now().plusDays(randomNum);
-        assertTrue(isValidDeadline(orderDate,deadline));
+        LocalDateTime deadline = LocalDateTime.now().plusDays(0);
+        assertTrue(DateFunctions.isValidDeadline(deadline));
     }
 
 
     @Test
-    public void testValidDeadlineDateFactory(){
+    public void testValidDeadlineFutureDay(){
 
-        DateFunctions df = new DateFunctions();
-
-        int randomNum = ThreadLocalRandom.current().nextInt(-5, 5);
-        System.out.println(randomNum);
-        LocalDateTime orderDate = df.getOrderDate();
-
-        LocalDateTime deadline = LocalDateTime.now().plusDays(randomNum);
-        assertTrue(isValidDeadline(orderDate,deadline));
+        LocalDateTime deadline = LocalDateTime.now().plusDays(5);
+        assertTrue(DateFunctions.isValidDeadline(deadline));
     }
 
     @Test

@@ -113,7 +113,10 @@ class ArticlesDAOTest {
                 ArticleStatus.Active, Float.parseFloat("100"), Float.parseFloat("110"), testUser,
                 LocalDateTime.now(), LocalDateTime.now());
 
-        articlesDAO.save(testArticle);
+        List<Article> articles = new ArrayList<>();
+        articles.add(testArticle);
+
+        articlesDAO.save(articles);
 
         List<Article> testArticlesAfter = articlesDAO.getAll();
         assertTrue(testArticlesAfter.size()> testArticlesBefore.size());

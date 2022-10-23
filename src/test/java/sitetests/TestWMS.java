@@ -5,6 +5,7 @@ import model.article.Article;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
 import model.article.Articles;
+import model.customer.Customer;
 import model.customer.CustomerModel;
 import model.order.Order;
 import model.order.OrderRow;
@@ -45,7 +46,12 @@ public class TestWMS {
         Article art4 = new Article(articles.getNextId(), "test name", "test description", ArticleCategory.Kitchen, ArticleStatus.Limited, 25, 50, user, LocalDateTime.now(), LocalDateTime.now());
         articles.addArticle(art4);
 
-        CustomerModel customers = new CustomerModel(CustomersDAO.getInstance());
+
+
+        CustomerModel customers = new CustomerModel(new HashMap<>());
+        Customer cust1 = new Customer(new ArrayList<>(), null, null, customers.getNextId(), 24, "testName");
+        customers.saveCustomer(cust1);
+
 
         Sites sites = new Sites(new HashMap<>());
         List<SiteArticle> sa = new ArrayList<>();

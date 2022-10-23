@@ -33,12 +33,13 @@ public class TestOrderMethods {
 
 
 
-    @Test void totalRevenue(){
+    @Test
+    public void totalRevenue(){
         List<OrderRow> dummyOrderRows = new ArrayList<>();
         dummyOrderRows.add(orderRow1);
         dummyOrderRows.add(orderRow2);
 
-//        Order order1 = new Order(null,1,null, OrderStatus.ACTIVE,true,null,null,dummyOrderRows,null);
+        Order order1 = new Order(null,1,null, OrderStatus.ACTIVE,true,null,null,dummyOrderRows,null);
 
         assertEquals(order1.getTotalRevenue(),8);
     }

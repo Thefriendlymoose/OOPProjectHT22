@@ -16,7 +16,7 @@ public class CustomerCreateUnitTesting {
     public CustomerCreateUnitTesting(){
         dao = CustomersDAO.getInstance();
         dao.setCustomersFile("C:\\javadev\\OOPProjectHT22\\src\\test\\java\\customerTests\\dummyJsons\\customerTestData.json");
-        model = new CustomerModel(dao);
+        model = new CustomerModel(dao.getAllMap());
     }
 
     @Test

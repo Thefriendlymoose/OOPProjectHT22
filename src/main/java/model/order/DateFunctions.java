@@ -14,8 +14,8 @@ public class DateFunctions {
      * @param deadline the date which compares to today's date.
      * @return true if deadline is tomorrow or later, else false.
      */
-    public boolean isValidDeadline(LocalDateTime deadline){
-        return 1 <= deadline.toLocalDate().compareTo(LocalDateTime.now().toLocalDate());
+    public static boolean isValidDeadline(LocalDateTime deadline){
+        return 0 <= deadline.toLocalDate().compareTo(LocalDateTime.now().toLocalDate());
     }
 
     /**

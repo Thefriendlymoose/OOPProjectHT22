@@ -48,6 +48,7 @@ public class CustomerModel implements Observable {
 
     public void saveCustomer(Customer c){
         customers.put(c.getCustomerID(), c);
+        nextId = Collections.max(customers.keySet()) + 1;
         notifyObservers();
     }
 
@@ -62,6 +63,10 @@ public class CustomerModel implements Observable {
 
     public List<Customer> getCustomerList(){
         return new ArrayList<>(customers.values());
+    }
+
+    public Long getNextId() {
+        return nextId;
     }
 
     @Override
