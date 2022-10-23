@@ -6,7 +6,7 @@ import model.article.ArticleStatus;
 import model.user.Permission;
 import model.user.User;
 import org.junit.jupiter.api.*;
-import persistence.ArticlesDAO;
+import persistence.dataaccessobjects.ArticlesDAO;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

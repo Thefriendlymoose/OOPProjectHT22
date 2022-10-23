@@ -1,4 +1,4 @@
-package persistence;
+package persistence.dataaccessobjects;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -10,6 +10,9 @@ import java.util.*;
 import com.google.gson.*;
 import model.user.User;
 import model.article.Article;
+import persistence.IPersistence;
+import persistence.SerializeBuilder;
+import persistence.WriterHelper;
 import persistence.pojos.ArticleJSON;
 
 

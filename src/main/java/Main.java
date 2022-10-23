@@ -24,7 +24,7 @@ import model.customer.CustomerModel;
 import model.order.Orders;
 import model.site.Sites;
 import model.user.Users;
-import persistence.*;
+import persistence.dataaccessobjects.*;
 
 public class Main extends Application {
 

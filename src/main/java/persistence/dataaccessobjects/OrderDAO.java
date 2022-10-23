@@ -1,4 +1,4 @@
-package persistence;
+package persistence.dataaccessobjects;
 
 //import model.Order;
 
@@ -9,12 +9,12 @@ import model.customer.Customer;
 import model.order.Order;
 import model.order.OrderRow;
 import model.site.Site;
+import persistence.IPersistence;
+import persistence.SerializeBuilder;
+import persistence.WriterHelper;
 import persistence.pojos.OrderJSON;
 import persistence.pojos.OrderRowJSON;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.Reader;
 import java.lang.reflect.Type;
 import java.nio.file.Files;

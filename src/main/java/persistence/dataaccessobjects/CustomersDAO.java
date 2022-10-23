@@ -1,9 +1,7 @@
-package persistence;
+package persistence.dataaccessobjects;
 
 import com.google.gson.Gson;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,6 +9,9 @@ import java.util.*;
 import model.customer.Customer;
 
 import model.customer.CustomerContact;
+import persistence.IPersistence;
+import persistence.SerializeBuilder;
+import persistence.WriterHelper;
 import persistence.pojos.CustomerJSON;
 
 public final class CustomersDAO implements IPersistence<Customer> {

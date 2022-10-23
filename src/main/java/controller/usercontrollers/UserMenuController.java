@@ -16,7 +16,7 @@ import model.WMS;
 import model.user.Users;
 import persistence.IPersistence;
 import model.user.User;
-import persistence.UserDAO;
+import persistence.dataaccessobjects.UserDAO;
 import model.observer.Observer;
 
 import java.io.IOException;

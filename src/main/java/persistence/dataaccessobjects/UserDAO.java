@@ -1,11 +1,12 @@
-package persistence;
+package persistence.dataaccessobjects;
 
 import com.google.gson.Gson;
 import model.user.User;
+import persistence.IPersistence;
+import persistence.SerializeBuilder;
+import persistence.WriterHelper;
 import persistence.pojos.UserJSON;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
