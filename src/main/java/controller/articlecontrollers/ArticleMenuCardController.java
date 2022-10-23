@@ -24,9 +24,6 @@ public class ArticleMenuCardController {
     @FXML
     private Label cardNumberLabel, cardNameLabel, cardDescriptionLabel;
 
-    @FXML
-    private Button cardGoToButton;
-
     private Article article;
     private WMS wms;
 

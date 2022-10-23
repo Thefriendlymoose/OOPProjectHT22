@@ -29,9 +29,6 @@ public class SiteDetailsSiteArticleCardController {
     @FXML
     private Label cardAmountLabel;
 
-    @FXML
-    private Button cardGoToButton, deleteButton;
-
     private SiteArticle siteArticle;
     private Site site;
     private WMS wms;

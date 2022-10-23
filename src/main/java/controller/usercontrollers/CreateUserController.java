@@ -20,16 +20,7 @@ import java.util.function.Predicate;
 public class CreateUserController {
 
     @FXML
-    private Button saveButton,cancelButton;
-
-    @FXML
     private TextField userIDTextField, firstNameField, lastNameField, userNameField, passwordField;
-
-    @FXML
-    private TextArea descriptionTextArea;
-
-    @FXML
-    private Label userIDLabel, firstNameLabel,lastNameLabel,userNameLabel,passwordLabel,StatusLabel, roleLabel;
 
     @FXML
     private ComboBox <List<Permission>> roleBox;

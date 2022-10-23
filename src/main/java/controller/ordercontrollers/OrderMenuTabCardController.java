@@ -32,10 +32,6 @@ public class OrderMenuTabCardController {
     @FXML
     private Label deadline;
 
-
-    @FXML
-    private Button openButton;
-
     private Order order;
 
     private WMS wms;

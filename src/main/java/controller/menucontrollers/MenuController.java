@@ -1,4 +1,4 @@
-package controller;
+package controller.menucontrollers;
 
 import controller.dpi.ParentDependencyInjection;
 import javafx.event.ActionEvent;

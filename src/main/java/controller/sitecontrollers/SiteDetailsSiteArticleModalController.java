@@ -26,9 +26,6 @@ public class SiteDetailsSiteArticleModalController {
     @FXML
     private TextField amountTextField;
 
-    @FXML
-    private Button editButton, closeButton;
-
     private SiteArticle siteArticle;
     private Site site;
     private WMS wms;

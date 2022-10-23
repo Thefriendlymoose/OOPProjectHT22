@@ -36,9 +36,6 @@ public class SiteDetailsController implements Observer {
     @FXML
     private TextArea siteAddressTextArea;
 
-//    @FXML
-//    private Button editButton, closeButton, addStockButton, addEmployeeButton;
-
     @FXML
     private VBox stockVBox, employeeVBox;
 

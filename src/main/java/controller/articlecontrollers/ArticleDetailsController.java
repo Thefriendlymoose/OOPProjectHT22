@@ -21,22 +21,19 @@ import java.io.IOException;
  */
 public class ArticleDetailsController {
     @FXML
-    Label detailsTitleLabel, numberLabel, nameLabel, descriptionLabel, categoryLabel, statusLabel;
+    private Label detailsTitleLabel;
 
     @FXML
-    TextField numberTextField, nameTextField, costTextField, sellPriceTextField;
+    private TextField numberTextField, nameTextField, costTextField, sellPriceTextField;
 
     @FXML
-    TextArea descriptionTextArea;
+    private TextArea descriptionTextArea;
 
     @FXML
-    ComboBox<ArticleCategory> categoryComboBox;
+    private ComboBox<ArticleCategory> categoryComboBox;
 
     @FXML
-    ComboBox<ArticleStatus> statusComboBox;
-
-    @FXML
-    Button editButton, closeButton;
+    private ComboBox<ArticleStatus> statusComboBox;
 
     private Article article;
     private WMS wms;

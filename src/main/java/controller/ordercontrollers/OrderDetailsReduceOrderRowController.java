@@ -17,11 +17,6 @@ import java.util.Optional;
 
 public class OrderDetailsReduceOrderRowController {
 
-
-
-//    @FXML
-//    private Button confirmButton, cancelButton;
-
     @FXML
     private TextField amountTextField;
 

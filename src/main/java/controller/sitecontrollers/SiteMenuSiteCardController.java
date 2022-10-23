@@ -27,8 +27,6 @@ public class SiteMenuSiteCardController {
     @FXML
     private Label cardAmountLabel;
 
-    @FXML
-    private Button cardGoToButton;
     private WMS wms;
     private Site site;
 

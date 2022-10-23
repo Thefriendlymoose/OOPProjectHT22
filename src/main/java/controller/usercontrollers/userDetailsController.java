@@ -24,16 +24,7 @@ import java.util.Objects;
 public class userDetailsController {
 
     @FXML
-    private Button editButton,cancelButton;
-
-    @FXML
     private TextField userIDTextField, firstNameField, lastNameField, userNameField, passwordField;
-
-    @FXML
-    private TextArea descriptionTextArea;
-
-    @FXML
-    private Label userIDLabel, firstNameLabel,lastNameLabel,userNameLabel,passwordLabel,StatusLabel, roleLabel;
 
     @FXML
     private ComboBox<List<Permission>> roleBox;
