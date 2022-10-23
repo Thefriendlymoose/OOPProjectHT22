@@ -58,7 +58,7 @@
          <center>
             <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <content>
-                  <VBox fx:id="customerBox" prefHeight="742.0" prefWidth="470.0" />
+                  <VBox fx:id="customerBox" prefHeight="742.0" prefWidth="470.0" spacing="10.0" />
                </content>
                <padding>
                   <Insets bottom="15.0" left="15.0" top="15.0" />

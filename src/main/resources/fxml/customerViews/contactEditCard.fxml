@@ -6,29 +6,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="125.0" prefWidth="348.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customercontrollers.ContactEditCardController">
+<AnchorPane prefHeight="125.0" prefWidth="348.0" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customercontrollers.ContactEditCardController">
    <children>
-      <VBox layoutX="14.0" layoutY="14.0" prefHeight="94.0" prefWidth="139.0">
+      <VBox layoutX="14.0" layoutY="12.0" prefHeight="94.0" prefWidth="139.0" spacing="3.0">
          <children>
-            <TextField fx:id="name" editable="false" prefHeight="13.0" prefWidth="158.0" text="ContactName">
+            <TextField fx:id="name" editable="false" prefHeight="13.0" prefWidth="158.0" styleClass="generic-field" text="ContactName">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="number" editable="false" prefHeight="20.0" prefWidth="152.0" text="ContactNumber">
+            <TextField fx:id="number" editable="false" prefHeight="20.0" prefWidth="152.0" styleClass="generic-field" text="ContactNumber">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="email" editable="false" prefHeight="19.0" prefWidth="152.0" text="ContactEmail">
+            <TextField fx:id="email" editable="false" prefHeight="19.0" prefWidth="152.0" styleClass="generic-field" text="ContactEmail">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
          </children>
       </VBox>
-      <Button fx:id="editSaveButton" layoutX="166.0" layoutY="10.0" mnemonicParsing="false" onAction="#editContactHandler" prefHeight="94.0" prefWidth="80.0" text="Edit" />
+      <Button fx:id="editSaveButton" layoutX="165.0" layoutY="12.0" mnemonicParsing="false" onAction="#editContactHandler" prefHeight="102.0" prefWidth="80.0" styleClass="generic-button" text="Edit" />
       <Button fx:id="cancelButton" layoutX="254.0" layoutY="59.0" mnemonicParsing="false" onAction="#cancelHandler" prefHeight="46.0" prefWidth="80.0" text="Cancel" visible="false" />
-      <Button onAction="#deleteContactHandler" layoutX="254.0" layoutY="12.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="80.0" text="Delete" />
+      <Button layoutX="254.0" layoutY="12.0" mnemonicParsing="false" onAction="#deleteContactHandler" prefHeight="39.0" prefWidth="80.0" styleClass="generic-button" text="Delete" />
    </children>
 </AnchorPane>

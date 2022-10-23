@@ -11,15 +11,15 @@
    <scene>
       <Scene>
          <root>
-            <AnchorPane prefHeight="461.0" prefWidth="535.0">
+            <AnchorPane prefHeight="461.0" prefWidth="535.0" stylesheets="@../stylesheet.css">
                <children>
-                  <ScrollPane layoutX="31.0" layoutY="14.0" prefHeight="374.0" prefWidth="365.0">
+                  <ScrollPane layoutX="31.0" layoutY="14.0" prefHeight="374.0" prefWidth="365.0" styleClass="generic-field">
                      <content>
                         <VBox fx:id="contactBox" prefHeight="328.0" prefWidth="215.0" />
                      </content>
                   </ScrollPane>
-                  <Button layoutX="419.0" layoutY="184.0" mnemonicParsing="false" onAction="#addContactHandler" prefHeight="94.0" prefWidth="95.0" text="Add Contact" />
-                  <Button layoutX="31.0" layoutY="411.0" mnemonicParsing="false" onAction="#closeHandler" prefHeight="27.0" prefWidth="81.0" text="Close" />
+                  <Button layoutX="419.0" layoutY="184.0" mnemonicParsing="false" onAction="#addContactHandler" prefHeight="94.0" prefWidth="95.0" styleClass="generic-button" text="Add Contact" />
+                  <Button layoutX="31.0" layoutY="411.0" mnemonicParsing="false" onAction="#closeHandler" prefHeight="27.0" prefWidth="81.0" styleClass="generic-button" text="Close" />
                </children>
             </AnchorPane>
          </root>
