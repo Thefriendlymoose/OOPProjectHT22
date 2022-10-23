@@ -1,4 +1,4 @@
-package persistence;
+package persistence.dataaccessobjects;
 
 // @todo justera importer när klasserna flyttas till ett paket per
 // funktionellt paket i applikationen
@@ -7,6 +7,9 @@ import model.user.User;
 import model.article.Article;
 import model.site.Site;
 import model.site.SiteArticle;
+import persistence.IPersistence;
+import persistence.SerializeBuilder;
+import persistence.WriterHelper;
 import persistence.pojos.SiteArticleJSON;
 import persistence.pojos.SiteJSON;
 
@@ -39,7 +42,7 @@ public final class SitesDAO implements IPersistence<Site> {
                 List<SiteArticle> siteArticles = new ArrayList<>();
 
                 for (SiteArticleJSON saj : sj.getSiteArticles()){
-                    siteArticles.add(new SiteArticle(articles.get(saj.getArticleId()), saj.getAmount()));
+                    siteArticles.add(new SiteArticle(articles.get(saj.getArticle()), saj.getAmount()));
                 }
 
                 List<User> siteUsers = new ArrayList<>();
@@ -71,8 +74,12 @@ public final class SitesDAO implements IPersistence<Site> {
     }
 
     @Override
-    public void save(Site site) {
-
+    public void save(List<Site> list) {
+        SerializeBuilder sb = new SerializeBuilder();
+        sb.addArticleSerializer();
+        sb.addUserSerializer();
+        WriterHelper<Site> wh = new WriterHelper<>();
+        wh.WriteToFileSerializer(sitesFile, list, sb.getGson());
     }
 
     //@todo borde gå att ha koden i interfacet?

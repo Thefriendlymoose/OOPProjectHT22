@@ -6,11 +6,21 @@
     "maxCapacity": 500,
     "siteArticles": [
       {
-        "articleId": 1,
+        "article": 1,
         "amount": 3
+      },
+      {
+        "article": 5,
+        "amount": 20
+      },
+      {
+        "article": 4,
+        "amount": 5
       }
     ],
-    "siteUsers": [1]
+    "siteUsers": [
+      1
+    ]
   },
   {
     "siteId": 2,
@@ -19,11 +29,13 @@
     "maxCapacity": 600,
     "siteArticles": [
       {
-        "articleId": 6,
+        "article": 6,
         "amount": 9
       }
     ],
-    "siteUsers": [2]
+    "siteUsers": [
+      2
+    ]
   },
   {
     "siteId": 3,
@@ -32,10 +44,12 @@
     "maxCapacity": 700,
     "siteArticles": [
       {
-        "articleId": 6,
+        "article": 6,
         "amount": 9
       }
     ],
-    "siteUsers": [3]
+    "siteUsers": [
+      3
+    ]
   }
 ]

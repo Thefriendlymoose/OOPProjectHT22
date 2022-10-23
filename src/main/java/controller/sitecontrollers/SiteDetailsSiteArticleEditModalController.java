@@ -24,9 +24,6 @@ public class SiteDetailsSiteArticleEditModalController {
     @FXML
     private TextField amountTextField;
 
-//    @FXML
-//    private Button saveButton, cancelButton;
-
     private SiteArticle siteArticle;
     private Site site;
     private WMS wms;

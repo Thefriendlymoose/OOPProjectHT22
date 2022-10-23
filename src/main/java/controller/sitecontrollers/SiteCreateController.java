@@ -35,8 +35,6 @@ public class SiteCreateController {
     @FXML
     private TextArea siteAddressTextArea;
 
-//    @FXML
-//    private Button saveButton, cancelButton;
     private WMS wms;
     private Sites sites;
 

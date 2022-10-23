@@ -16,7 +16,7 @@ import model.site.Sites;
 import model.user.Permission;
 import model.user.User;
 import model.user.Users;
-import persistence.CustomersDAO;
+import persistence.dataaccessobjects.CustomersDAO;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

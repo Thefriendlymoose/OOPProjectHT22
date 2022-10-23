@@ -26,8 +26,6 @@ import java.io.IOException;
 public class SiteMenuController implements Observer {
     @FXML
     private Button backButton;
-//    @FXML
-//    private Button openButton, createButton;
 
     @FXML
     private VBox siteCardHolderVBox;

@@ -61,18 +61,18 @@ public class SiteTests {
     @Test
     public void addEmployee(){
         User user = new User(100, "1", "1", "test", true, null);
-        int beforeAdd = site.getEmployees().size();
+        int beforeAdd = site.getSiteUsers().size();
         site.addEmployee(user);
-        int afterAdd = site.getEmployees().size();
+        int afterAdd = site.getSiteUsers().size();
         assertEquals(beforeAdd + 1, afterAdd);
     }
 
     @Test
     public void addSameEmployee(){
-        int beforeAdd = site.getEmployees().size();
-        User user = site.getEmployees().stream().findFirst().get();
+        int beforeAdd = site.getSiteUsers().size();
+        User user = site.getSiteUsers().stream().findFirst().get();
         boolean b = site.addEmployee(user);
-        int afterAdd = site.getEmployees().size();
+        int afterAdd = site.getSiteUsers().size();
         assertEquals(beforeAdd, afterAdd);
         assertTrue(!b);
     }

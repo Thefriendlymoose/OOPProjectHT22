@@ -16,7 +16,7 @@ import model.WMS;
 import model.user.Users;
 import persistence.IPersistence;
 import model.user.User;
-import persistence.UserDAO;
+import persistence.dataaccessobjects.UserDAO;
 import model.observer.Observer;
 
 import java.io.IOException;
@@ -24,7 +24,7 @@ import java.util.Objects;
 
 public class UserMenuController implements Observer {
     @FXML
-    private Button openButton, createButton, listButton, backButton;
+    private Button backButton;
     private WMS wms;
     private Users users;
 

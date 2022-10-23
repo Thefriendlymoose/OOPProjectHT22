@@ -1,5 +1,5 @@
-import controller.MainMenuController;
-import controller.MenuController;
+import controller.menucontrollers.MainMenuController;
+import controller.menucontrollers.MenuController;
 import controller.SignInController;
 import controller.articlecontrollers.ArticleFormController;
 import controller.articlecontrollers.ArticleMenuController;
@@ -24,12 +24,11 @@ import model.customer.CustomerModel;
 import model.order.Orders;
 import model.site.Sites;
 import model.user.Users;
-import persistence.*;
+import persistence.dataaccessobjects.*;
 
 public class Main extends Application {
 
     private WMS wms;
-
 
     public static void main(String[] args){
         launch(args);
@@ -40,7 +39,7 @@ public class Main extends Application {
         Articles articles = new Articles(ArticlesDAO.getInstance().getAllMap());
         Orders orders = new Orders(OrderDAO.getInstance().getAllMap());
         Sites sites = new Sites(SitesDAO.getInstance().getAllMap());
-        CustomerModel customers = new CustomerModel(CustomersDAO.getInstance());
+        CustomerModel customers = new CustomerModel(CustomersDAO.getInstance().getAllMap());
         Users users = new Users(UserDAO.getInstance().getAllMap());
         this.wms = new WMS(articles, orders, sites, customers, users);
 
@@ -54,11 +53,18 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
 
+
+
     }
 
     @Override
     public void stop(){
         // should save to dao
+        ArticlesDAO.getInstance().save(wms.getArticles().getInList());
+        SitesDAO.getInstance().save(wms.getSites().getInList());
+        OrderDAO.getInstance().save(wms.getOrders().getInList());
+        UserDAO.getInstance().save(wms.getUsers().getInList());
+        CustomersDAO.getInstance().save(wms.getCustomerModel().getCustomerList());
     }
 
     private void setUpSceneDependencyInjector() {

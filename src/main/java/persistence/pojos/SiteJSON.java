@@ -13,9 +13,7 @@ public class SiteJSON {
 
 
     /* Tom konstruktor eftersom den ändå inte körs */
-    public SiteJSON(){
 
-    }
     public long getSiteId() {
         return siteId;
     }

@@ -24,8 +24,6 @@ import java.util.*;
 
 public class OrderFormModalController {
 
-//    @FXML
-//    private Label titleLabel;
     @FXML
     private TextField numberTextField;
     @FXML

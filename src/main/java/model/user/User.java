@@ -1,11 +1,9 @@
 package model.user;
 
-import model.observer.Observable;
-import model.observer.Observer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User implements Observable {
+public class User {
 
     private long userId;
     private String userName;
@@ -13,7 +11,6 @@ public class User implements Observable {
     private String name;
     private boolean status;
     private List<Permission> permissions;
-    private List<Observer> observers;
 
     public User(long userId, String userName, String password, String name, boolean status, List<Permission> permissions) {
         this.userId = checkNull("UserID is Null",userId);
@@ -22,7 +19,6 @@ public class User implements Observable {
         this.name = checkNull("Name",name);
         this.status = status;
         this.permissions = checkNull("permissions" ,permissions);
-        observers = new ArrayList<>();
     }
     private <T> T checkNull(String message, T object){
         if (object == null){
@@ -136,28 +132,6 @@ public class User implements Observable {
         return permissions.contains(permission);
     }
 
-
-    @Override
-    public void registerObserver(Observer o) {
-        observers.add(o);
-    }
-
-    @Override
-    public void unregisterObserver(Observer o) {
-        observers.remove(o);
-    }
-
-    @Override
-    public void unregisterAll() {
-        observers = new ArrayList<>();
-    }
-
-    @Override
-    public void notifyObservers() {
-        for (Observer o : observers){
-            o.update();
-        }
-    }
 
 
 }

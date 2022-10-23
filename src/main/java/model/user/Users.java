@@ -29,6 +29,7 @@ public class Users implements Observable {
     }
 
 
+
     public void addUser(User user){
         users.put(user.getUserId(), user);
         nextUserID++;

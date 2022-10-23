@@ -36,9 +36,6 @@ public class SiteDetailsController implements Observer {
     @FXML
     private TextArea siteAddressTextArea;
 
-//    @FXML
-//    private Button editButton, closeButton, addStockButton, addEmployeeButton;
-
     @FXML
     private VBox stockVBox, employeeVBox;
 
@@ -70,7 +67,7 @@ public class SiteDetailsController implements Observer {
 
     private void loadSiteEmployeeCards() throws IOException {
         employeeVBox.getChildren().clear();
-        for(User user : site.getEmployees()){
+        for(User user : site.getSiteUsers()){
             ParentDependencyInjection.addInjectionMethod(
                     SiteDetailsUserCardController.class, params -> new SiteDetailsUserCardController(wms, site, user)
             );

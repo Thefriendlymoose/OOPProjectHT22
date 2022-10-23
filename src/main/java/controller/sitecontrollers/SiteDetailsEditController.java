@@ -27,9 +27,6 @@ public class SiteDetailsEditController {
     @FXML
     private TextArea siteAddressTextArea;
 
-//    @FXML
-//    private Button saveButton, cancelButton;
-
     private Site site;
     private WMS wms;
     private Sites sites;

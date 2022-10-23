@@ -16,7 +16,7 @@ public class Site {
     private String siteAddress;
     private final int maxCapacity;
     private List<SiteArticle> siteArticles;
-    private List<User> employees;
+    private List<User> siteUsers;
 
 
 
@@ -35,7 +35,7 @@ public class Site {
         this.siteAddress = siteAddress;
         this.maxCapacity = maxCapacity;
         this.siteArticles = siteArticles;
-        this.employees = employees;
+        this.siteUsers = employees;
     }
 
     public long getSiteId() {
@@ -74,12 +74,12 @@ public class Site {
         this.siteArticles = siteArticles;
     }
 
-    public List<User> getEmployees() {
-        return employees;
+    public List<User> getSiteUsers() {
+        return siteUsers;
     }
 
-    public void setEmployees(List<User> employees) {
-        this.employees = employees;
+    public void setSiteUsers(List<User> siteUsers) {
+        this.siteUsers = siteUsers;
     }
 
 
@@ -119,13 +119,13 @@ public class Site {
         if (checkEmployeeInSite(user)){
             return false;
         } else {
-            employees.add(user);
+            siteUsers.add(user);
             return true;
         }
     }
 
     public void removeEmployee(User user){
-        employees.remove(user);
+        siteUsers.remove(user);
     }
 
     public boolean addSiteArticle(Article article, int amount){
@@ -165,7 +165,7 @@ public class Site {
      * @return returns true if user is already assigned to the site and false if they are not
      */
     public boolean checkEmployeeInSite(User user){
-        return employees.contains(user);
+        return siteUsers.contains(user);
     }
 
 

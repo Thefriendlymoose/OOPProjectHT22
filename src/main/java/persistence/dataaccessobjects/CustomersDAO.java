@@ -1,6 +1,7 @@
-package persistence;
+package persistence.dataaccessobjects;
 
 import com.google.gson.Gson;
+
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -8,6 +9,9 @@ import java.util.*;
 import model.customer.Customer;
 
 import model.customer.CustomerContact;
+import persistence.IPersistence;
+import persistence.SerializeBuilder;
+import persistence.WriterHelper;
 import persistence.pojos.CustomerJSON;
 
 public final class CustomersDAO implements IPersistence<Customer> {
@@ -30,7 +34,6 @@ public final class CustomersDAO implements IPersistence<Customer> {
             List<CustomerJSON> customerJSONS = Arrays.asList(gson.fromJson(reader, CustomerJSON[].class));
             for(CustomerJSON cj : customerJSONS) {
                 List<CustomerContact> customerContacts = Arrays.asList(cj.getCustomerContacts());
-
 
                 Customer customer = new Customer(customerContacts, cj.getBillingAddress(), cj.getShippingAddress(),
                         cj.getCustomerId(), cj.getCompanyOrgNumber(), cj.getCompanyName());
@@ -59,7 +62,7 @@ public final class CustomersDAO implements IPersistence<Customer> {
         customersFile = filePath;
     }
 
-    @Override
+
     public void save(Customer customer) {
         Long key = customer.getCustomerID();
         if(!customers.containsKey(key)) {
@@ -67,6 +70,13 @@ public final class CustomersDAO implements IPersistence<Customer> {
         }
     }
 
+
+    @Override
+    public void save(List<Customer> list) {
+        SerializeBuilder sb = new SerializeBuilder();
+        WriterHelper<Customer> wh = new WriterHelper<>();
+        wh.WriteToFileSerializer(customersFile, list, sb.getGson());
+    }
 
     @Override
     public List<Customer> getAll() {

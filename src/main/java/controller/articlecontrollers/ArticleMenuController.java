@@ -27,7 +27,7 @@ import java.util.List;
  */
 public class ArticleMenuController implements Observer {
     @FXML
-    private Button openArticleButton, createButton, listButton, backButton;
+    private Button backButton;
 
     @FXML
     private VBox articlesCardHolder;

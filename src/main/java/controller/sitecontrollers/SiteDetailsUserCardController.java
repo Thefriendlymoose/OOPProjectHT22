@@ -23,9 +23,6 @@ public class SiteDetailsUserCardController {
     @FXML
     private Label cardNameLabel;
 
-//    @FXML
-//    private Button cardGoToButton, deleteButton;
-
     private User user;
     private Site site;
     private WMS wms;

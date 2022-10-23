@@ -1,19 +1,20 @@
 package persistence.pojos;
 
 public class SiteArticleJSON {
-    private long articleId;
+    private long article;
     private int amount;
 
-    public SiteArticleJSON() {
-
+    public SiteArticleJSON(long articleId, int amount) {
+        this.article = articleId;
+        this.amount = amount;
     }
 
-    public long getArticleId() {
-        return articleId;
+    public long getArticle() {
+        return article;
     }
 
-    public void setArticleId(long articleId) {
-        this.articleId = articleId;
+    public void setArticle(long article) {
+        this.article = article;
     }
 
     public int getAmount() {

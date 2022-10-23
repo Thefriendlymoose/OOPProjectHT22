@@ -1,7 +1,10 @@
-package persistence;
+package persistence.dataaccessobjects;
 
 import com.google.gson.Gson;
 import model.user.User;
+import persistence.IPersistence;
+import persistence.SerializeBuilder;
+import persistence.WriterHelper;
 import persistence.pojos.UserJSON;
 
 import java.io.IOException;
@@ -47,8 +50,10 @@ public class UserDAO implements IPersistence<User> {
     }
 
     @Override
-    public void save(User o) {
-
+    public void save(List<User> list) {
+        SerializeBuilder sb = new SerializeBuilder();
+        WriterHelper<User> wh = new WriterHelper<>();
+        wh.WriteToFileSerializer(file, list, sb.getGson());
     }
 
     @Override

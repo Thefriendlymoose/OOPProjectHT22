@@ -3,7 +3,7 @@ package customertests;
 import model.customer.Customer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import persistence.CustomersDAO;
+import persistence.dataaccessobjects.CustomersDAO;
 import persistence.IPersistence;
 
 import java.util.List;

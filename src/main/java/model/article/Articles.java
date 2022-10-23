@@ -87,13 +87,6 @@ public class Articles {
         return new ArrayList<>(articles.values());
     }
 
-    /**
-     *
-     * @return returns a map of all the articles in the system
-     */
-    public Map<Long, Article> getInMap(){
-        return articles;
-    }
 
     /**
      *

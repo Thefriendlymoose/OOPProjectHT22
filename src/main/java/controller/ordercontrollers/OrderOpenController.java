@@ -27,9 +27,6 @@ public class OrderOpenController {
     @FXML
     private TextField searchField;
 
-//    @FXML
-//    private Button openButton;
-
     public OrderOpenController(WMS wms) {
         this.wms = wms;
         this.orders = wms.getOrders();

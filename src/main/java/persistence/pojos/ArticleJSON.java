@@ -18,8 +18,7 @@ public class ArticleJSON {
     private LocalDateTime createdOn;
     private LocalDateTime lastEdited;
 
-    public ArticleJSON(){
-    }
+
 
     public long getArticleId() {
         return articleId;

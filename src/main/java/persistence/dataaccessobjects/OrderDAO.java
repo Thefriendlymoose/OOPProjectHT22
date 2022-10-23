@@ -1,4 +1,4 @@
-package persistence;
+package persistence.dataaccessobjects;
 
 //import model.Order;
 
@@ -9,6 +9,9 @@ import model.customer.Customer;
 import model.order.Order;
 import model.order.OrderRow;
 import model.site.Site;
+import persistence.IPersistence;
+import persistence.SerializeBuilder;
+import persistence.WriterHelper;
 import persistence.pojos.OrderJSON;
 import persistence.pojos.OrderRowJSON;
 
@@ -84,8 +87,15 @@ public final class OrderDAO implements IPersistence<Order> {
     }
 
     @Override
-    public void save(Order o) {
-
+    public void save(List<Order> list) {
+        SerializeBuilder sb = new SerializeBuilder();
+        sb.addUserSerializer();
+        sb.addLocalDateTimeSerializer();
+        sb.addCustomerSerializer();
+        sb.addArticleSerializer();
+        sb.addSiteSerializer();
+        WriterHelper<Order> wh = new WriterHelper<>();
+        wh.WriteToFileSerializer(file, list, sb.getGson());
     }
 
     @Override

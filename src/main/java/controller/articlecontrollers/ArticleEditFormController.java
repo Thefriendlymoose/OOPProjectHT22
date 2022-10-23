@@ -21,22 +21,20 @@ import java.util.Optional;
 public class ArticleEditFormController {
 
     @FXML
-    Label titleLabel;
+    private Label titleLabel;
 
     @FXML
-    TextField numberTextField, nameTextField, costTextField, sellPriceTextField;
+    private TextField numberTextField, nameTextField, costTextField, sellPriceTextField;
 
     @FXML
-    TextArea descriptionTextArea;
+    private TextArea descriptionTextArea;
 
     @FXML
-    ComboBox<ArticleCategory> categoryComboBox;
+    private ComboBox<ArticleCategory> categoryComboBox;
 
     @FXML
-    ComboBox<ArticleStatus> statusComboBox;
+    private ComboBox<ArticleStatus> statusComboBox;
 
-    @FXML
-    Button saveButton, cancelButton;
 
     private Article article;
     private WMS wms;

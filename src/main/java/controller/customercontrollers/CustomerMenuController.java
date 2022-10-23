@@ -36,7 +36,7 @@ public class CustomerMenuController implements Observer {
     private VBox customerBox;
 
     @FXML
-    private Button openButton, createButton, backButton;
+    private Button backButton;
     private WMS wms;
     private CustomerModel model;
 
