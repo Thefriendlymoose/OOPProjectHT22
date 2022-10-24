@@ -5,6 +5,7 @@ import model.article.Article;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
 import model.article.Articles;
+import model.authentication.UserAuthentication;
 import model.customer.Customer;
 import model.customer.CustomerModel;
 import model.order.Order;
@@ -64,6 +65,8 @@ public class TestWMS {
         rows.add(new OrderRow(art, 25));
         Order order = new Order(user, orders.getNextOrderNumber(), customers.getCustomerById(1L), OrderStatus.ACTIVE, true, LocalDateTime.now(), LocalDateTime.now(), rows, site);
         orders.addOrder(order);
+
+        UserAuthentication ua = new UserAuthentication();
 
         this.wms = new WMS(articles, orders, sites, customers, users, ua);
     }
