@@ -21,6 +21,9 @@ import java.io.IOException;
  *  Controller when "Open Order" or "Open" button has been pressed in the Order Menu.
  *  The user may see what an Order consists of in this Modal, however all information is locked until
  *  "Edit" button is pressed.
+ *
+ * @author James Pålsson
+ * @author David al Amiri
  */
 
 public class OrderDetailsModalController implements Observer {

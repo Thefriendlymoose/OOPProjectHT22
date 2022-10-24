@@ -14,6 +14,8 @@ import java.util.List;
  * The Order class consists of all other classes that the WMS application is built around i.e., User, Customer,
  * Site and Article (found in OrderRows).
  *
+ * @author James Pålsson
+ * @author David al Amarai
  */
 
 public class Order {
@@ -166,6 +168,12 @@ public class Order {
         return sum;
     }
 
+    /**
+     * Checks if an article is in a OrderRow.
+     *
+     * @param article is the article which is being searched for
+     * @return true if it exists, otherwise false
+     */
 
     private boolean checkIfOrderRowExist(Article article) {
         for (OrderRow row : orderRows){
@@ -176,6 +184,13 @@ public class Order {
         return false;
     }
 
+    /**
+     * Adds article and an amount of that article to an OrderRow.
+     *
+     * @param article to be added
+     * @param amount number of the article which is added
+     */
+
     private void addToOrderRow(Article article, int amount) {
         for (OrderRow row : orderRows) {
             if (row.getArticle() == article) {
@@ -183,6 +198,14 @@ public class Order {
             }
         }
     }
+
+    /**
+     *
+     * @param sa
+     * @param amount
+     * @return
+     */
+
     public boolean addOrderRow(SiteArticle sa, int amount){
         if (sa.checkIfEnough(amount)){
             if (checkIfOrderRowExist(sa.getArticle())){

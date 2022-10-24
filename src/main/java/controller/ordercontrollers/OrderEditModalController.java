@@ -18,6 +18,8 @@ import java.util.*;
 /**
  * Controller for the editing an existing order.
  *
+ * @author James Pålsson
+ * @author David al Amiri
  */
 
 public class OrderEditModalController {

@@ -13,6 +13,8 @@ import java.util.Map;
  * A facade to order objects (Facade pattern), this enumerates every order uniquely
  * and makes orders observables (Observer pattern).
  *
+ * @author James Pålsson
+ * @author David al Amiri
  */
 public class Orders {
 
