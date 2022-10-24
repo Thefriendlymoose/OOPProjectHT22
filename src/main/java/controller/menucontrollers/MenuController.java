@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import model.WMS;
+import model.authentication.AuthenticationStatus;
 
 import java.io.IOException;
 
@@ -43,8 +44,8 @@ public class MenuController {
         }
     }
     public void onLogout(ActionEvent e) throws IOException {
-        if (wms.getSession() != null){
-            wms.setSession(null);
+        AuthenticationStatus status = wms.getUserAuthentication().logOut();
+        if (status == AuthenticationStatus.SUCCESS){
             Parent parent = ParentDependencyInjection.load("fxml/startScreen.fxml");
             Stage window = (Stage) test.getScene().getWindow();
             window.setScene(new Scene(parent));

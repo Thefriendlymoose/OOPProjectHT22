@@ -37,10 +37,6 @@ public class UserMenuController implements Observer {
     @FXML
     private VBox userCardHolder;
 
-
-    private IPersistence<User> testDao = UserDAO.getInstance();
-
-
     public  void initialize() throws IOException {
         loadCards();
 

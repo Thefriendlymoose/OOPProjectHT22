@@ -60,7 +60,7 @@ public class CreateUserController {
         List<Permission> perms = new ArrayList<>(){
             {add(Permission.ARTICLE);add(Permission.SITE);}};
         roleBox.getItems().addAll(perms);
-        userIDTextField.setText(Long.toString(UserDAO.getInstance().getNextId()));
+        userIDTextField.setText(Long.toString(users.getNextUserID()));
     }
 
 

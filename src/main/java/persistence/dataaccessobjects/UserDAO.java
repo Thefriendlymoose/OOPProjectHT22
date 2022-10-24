@@ -16,11 +16,10 @@ import java.util.*;
 public class UserDAO implements IPersistence<User> {
 
     private static UserDAO instance;
-
     private final String file = "src/main/resources/users.json";
     private Map<Long, User> users;
     private Gson gson = new Gson();
-    private long nextFreeId = 0;
+
     private UserDAO(){
         this.users = new HashMap<>();
 
@@ -31,9 +30,6 @@ public class UserDAO implements IPersistence<User> {
             for (UserJSON uj : userJSONS){
                 User user = new User(uj.getUserId(), uj.getUserName(), uj.getPassword(), uj.getName(), uj.isStatus(), uj.getPermissions());
                 users.put(uj.getUserId(), user);
-            }
-            if (users.size() > 0){
-                nextFreeId = Collections.max(users.keySet()) + 1;
             }
 
         } catch (IOException e) {
@@ -56,23 +52,10 @@ public class UserDAO implements IPersistence<User> {
         wh.WriteToFileSerializer(file, list, sb.getGson());
     }
 
-    @Override
-    public List<User> getAll() {
-        return new ArrayList<>(users.values());
-    }
 
     @Override
     public Map<Long, User> getAllMap() {
         return users;
     }
 
-    @Override
-    public long getNextId() {
-        return nextFreeId;
-    }
-
-    @Override
-    public User findById(long id) {
-        return users.get(id);
-    }
 }

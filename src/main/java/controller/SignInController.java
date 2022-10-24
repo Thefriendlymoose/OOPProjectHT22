@@ -48,11 +48,9 @@ public class SignInController {
             errorLabel.setText("Username or password field empty");
             errorLabel.setTextFill(Color.RED);
         } else {
-            UserAuthentication uAuth = new UserAuthentication();
-            AuthenticationStatus status = uAuth.logIn(userNameField.getText(), passWordField.getText(), users);
+            AuthenticationStatus status = wms.login(userNameField.getText(), passWordField.getText());
 
             if (status == AuthenticationStatus.SUCCESS){
-                wms.setSession(uAuth.getSession());
 
                 Parent root = ParentDependencyInjection.load("fxml/mainMenu.fxml");
 

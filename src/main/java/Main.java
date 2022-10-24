@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.WMS;
 import model.article.Articles;
+import model.authentication.UserAuthentication;
 import model.customer.CustomerModel;
 import model.order.Orders;
 import model.site.Sites;
@@ -56,7 +57,9 @@ public class Main extends Application {
         Sites sites = new Sites(SitesDAO.getInstance().getAllMap());
         CustomerModel customers = new CustomerModel(CustomersDAO.getInstance().getAllMap());
         Users users = new Users(UserDAO.getInstance().getAllMap());
-        this.wms = new WMS(articles, orders, sites, customers, users);
+        UserAuthentication ua = new UserAuthentication();
+        this.wms = new WMS(articles, orders, sites, customers, users, ua);
+
 
         setUpSceneDependencyInjector();
         setUpStageDependencyInjector();

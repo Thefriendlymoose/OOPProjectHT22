@@ -1,8 +1,10 @@
 package model;
 
 import model.article.Article;
+import model.authentication.AuthenticationStatus;
 import model.authentication.Session;
 import model.article.Articles;
+import model.authentication.UserAuthentication;
 import model.customer.CustomerModel;
 import model.observer.Observable;
 import model.observer.Observer;
@@ -22,16 +24,17 @@ public class WMS implements Observable {
     private Users users;
 
     private CustomerModel customerModel;
-    private Session session;
+    private UserAuthentication userAuthentication;
 
     private List<Observer> observers;
 
-    public WMS(Articles articles, Orders orders, Sites sites, CustomerModel customerModel, Users users) {
+    public WMS(Articles articles, Orders orders, Sites sites, CustomerModel customerModel, Users users, UserAuthentication ua) {
         this.articles = articles;
         this.orders = orders;
         this.sites = sites;
         this.customerModel = customerModel;
         this.users = users;
+        this.userAuthentication = ua;
         this.observers = new ArrayList<>();
     }
 
@@ -81,12 +84,16 @@ public class WMS implements Observable {
     }
     public CustomerModel getCustomerModel(){ return customerModel; }
 
-    public void setSession(Session session) {
-        this.session = session;
+    public UserAuthentication getUserAuthentication() {
+        return userAuthentication;
     }
 
     public Session getSession() {
-        return session;
+        return userAuthentication.getSession();
+    }
+
+    public AuthenticationStatus login(String user, String password){
+        return userAuthentication.logIn(user, password, users);
     }
 
     @Override

@@ -17,7 +17,6 @@ import model.site.Sites;
 import model.user.Permission;
 import model.user.User;
 import model.user.Users;
-import persistence.dataaccessobjects.CustomersDAO;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -66,7 +65,7 @@ public class TestWMS {
         Order order = new Order(user, orders.getNextOrderNumber(), customers.getCustomerById(1L), OrderStatus.ACTIVE, true, LocalDateTime.now(), LocalDateTime.now(), rows, site);
         orders.addOrder(order);
 
-        this.wms = new WMS(articles, orders, sites, customers, users);
+        this.wms = new WMS(articles, orders, sites, customers, users, ua);
     }
 
     public WMS getWMS(){

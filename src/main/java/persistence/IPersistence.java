@@ -9,9 +9,6 @@ import java.util.Map;
  */
 public interface IPersistence<T> {
     void save(List<T> items); // Svara med boolean?
-    List<T> getAll();
     Map<Long, T> getAllMap(); // K,V?
-    long getNextId();
-    T findById(long id);
 
 }

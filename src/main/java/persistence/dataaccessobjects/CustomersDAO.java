@@ -20,8 +20,6 @@ public final class CustomersDAO implements IPersistence<Customer> {
     private Map<Long, Customer> customers = new HashMap<>();
     private Gson gson = new Gson();
 
-    // refactor. Use strategy pattern maybe?
-    private long nextFreeId=0;
 
     private CustomersDAO() {
         readFile();
@@ -38,9 +36,6 @@ public final class CustomersDAO implements IPersistence<Customer> {
                 Customer customer = new Customer(customerContacts, cj.getBillingAddress(), cj.getShippingAddress(),
                         cj.getCustomerId(), cj.getCompanyOrgNumber(), cj.getCompanyName());
                 customers.put(cj.getCustomerId(), customer);
-            }
-            if(customers.size() > 0) {
-                nextFreeId= Collections.max(customers.keySet()) + 1;
             }
         } catch (Exception e){
             System.out.println(e);
@@ -78,30 +73,11 @@ public final class CustomersDAO implements IPersistence<Customer> {
         wh.WriteToFileSerializer(customersFile, list, sb.getGson());
     }
 
-    @Override
-    public List<Customer> getAll() {
-        return new ArrayList<>(this.customers.values());
-    }
 
     @Override
     public Map<Long, Customer> getAllMap() {
         return this.customers;
     }
 
-    @Override
-    public long getNextId() {
-        if (customers.isEmpty()){
-            return 1;
-        } else {
-            Set<Long> keys = customers.keySet();
-            long maxKeyVal = Collections.max(keys);
-            return maxKeyVal + 1;
-        }
-    }
-
-    @Override
-    public Customer findById(long id) {
-        return this.customers.get(id);
-    }
 
 }

@@ -24,7 +24,6 @@ public final class SitesDAO implements IPersistence<Site> {
     private static SitesDAO instance;
     private final String sitesFile="src/main/resources/sites.json";
     private Map<Long, Site> sites;
-    private long nextFreeId =0;
     private Gson gson = new Gson();
     private Map<Long, User> users;
     private Map<Long, Article> articles;
@@ -56,9 +55,7 @@ public final class SitesDAO implements IPersistence<Site> {
 
                 sites.put(site.getSiteId(), site);
 
-                if (sites.size() > 0 ){
-                    nextFreeId = Collections.max(sites.keySet()) + 1;
-                }
+
             }
 
         } catch (IOException e) {
@@ -82,26 +79,11 @@ public final class SitesDAO implements IPersistence<Site> {
         wh.WriteToFileSerializer(sitesFile, list, sb.getGson());
     }
 
-    //@todo borde gå att ha koden i interfacet?
-    @Override
-    public List<Site> getAll() {
-        //@todo sortera före retur
-        return new ArrayList<>(this.sites.values());
-    }
 
     @Override
     public Map<Long, Site> getAllMap() {
         return this.sites;
     }
 
-    @Override
-    public long getNextId() {
-        return this.nextFreeId;
-    }
-
-    @Override
-    public Site findById(long id) {
-        return this.sites.get(id);
-    }
 
 }

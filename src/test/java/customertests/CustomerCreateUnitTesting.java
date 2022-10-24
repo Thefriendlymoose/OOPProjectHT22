@@ -22,7 +22,7 @@ public class CustomerCreateUnitTesting {
     @Test
     public void createCustomerTest(){
         // this is the id that the customer should have
-        long nextFreeID = dao.getNextId();
+        long nextFreeID = model.getNextId();
         CustomerEditor ed = model.newCustomer();
         // the customer is not in the model yet
         Assertions.assertFalse(isFound(nextFreeID, model));

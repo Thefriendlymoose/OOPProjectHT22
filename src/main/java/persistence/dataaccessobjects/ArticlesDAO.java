@@ -21,7 +21,6 @@ public final class ArticlesDAO implements IPersistence<Article> {
     private final String articlesFile = "src/main/resources/articles.json";
     private Map<Long, Article> articles = new HashMap<>();
     private Gson gson;
-    private long nextFreeId = 0;
 
     private Map<Long, User> users = UserDAO.getInstance().getAllMap();
 
@@ -49,9 +48,7 @@ public final class ArticlesDAO implements IPersistence<Article> {
 
                 articles.put(article.getArticleId(), article);
             }
-            if(articles.size() > 0) {
-                nextFreeId = Collections.max(articles.keySet()) + 1;
-            }
+
         } catch (Exception e){
             System.out.println(e);
         }
@@ -82,23 +79,9 @@ public final class ArticlesDAO implements IPersistence<Article> {
     }
 
     @Override
-    public List<Article> getAll() {
-        return new ArrayList<>(this.articles.values());
-    }
-
-    @Override
     public Map<Long, Article> getAllMap() {
         return this.articles;
     }
 
-    @Override
-    public long getNextId() {
-        return this.nextFreeId;
-    }
-
-    @Override
-    public Article findById(long id) {
-        return this.articles.get(id);
-    }
 
 }
