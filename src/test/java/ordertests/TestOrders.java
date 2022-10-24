@@ -37,7 +37,7 @@ public class TestOrders {
         Site site = wms.getSites().getInList().stream().findFirst().get();
 
         int size = orders.getOrdersBySite(site).size();
-        assertEquals(size,2);
+        assertEquals(size,3);
     }
 
     @Test
