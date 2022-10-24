@@ -15,7 +15,7 @@ public class UserJSON {
     private String password;
     private String name;
     private boolean status;
-    private Role permissions;
+    private Role role;
 
     public long getUserId() {
         return userId;
@@ -57,13 +57,13 @@ public class UserJSON {
         this.status = status;
     }
 
-    public Role getPermissions() {
-        return permissions;
+    public Role getRole() {
+        return role;
     }
 
-    //public void setPermissions(List<Permission> permissions) {
-    //    this.permissions = permissions;
-    //}
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
 
 }

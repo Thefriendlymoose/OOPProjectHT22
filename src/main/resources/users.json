@@ -5,13 +5,13 @@
     "password": "1234",
     "name": "Olof Persson",
     "status": true,
-    "permissions":
-      {
-        "name": "admin",
-        "description": "Access to all parts of the program",
-        "permissions": ["ALL"]
-      }
-
+    "role": {
+      "description": "Access to all parts of the program",
+      "name": "admin",
+      "permissions": [
+        "ALL"
+      ]
+    }
   },
   {
     "userId": 2,
@@ -19,13 +19,15 @@
     "password": "1234",
     "name": "Ulla Ullman",
     "status": true,
-    "permissions":
-    {
-      "name": "manager",
+    "role": {
       "description": "Access to Orders, Users and Sites",
-      "permissions": ["ORDER","USER", "SITES"]
+      "name": "manager",
+      "permissions": [
+        "ORDER",
+        "USER",
+        "SITE"
+      ]
     }
-
   },
   {
     "userId": 3,
@@ -33,13 +35,15 @@
     "password": "HelanGarHoppfallera",
     "name": "Elof Testman",
     "status": true,
-    "permissions":
-    {
-      "name": "manager",
+    "role": {
       "description": "Access to Orders, Users and Sites",
-      "permissions": ["USER","ORDER","SITES"]
+      "name": "manager",
+      "permissions": [
+        "USER",
+        "ORDER",
+        "SITE"
+      ]
     }
-
   },
   {
     "userId": 4,
@@ -47,13 +51,15 @@
     "password": "IronMaiden666",
     "name": "Saleh Sala",
     "status": true,
-    "permissions":
-    {
-      "name": "manager",
+    "role": {
       "description": "Access to Orders, Users and Sites",
-      "permissions": ["USER","ORDER","SITES"]
+      "name": "manager",
+      "permissions": [
+        "USER",
+        "ORDER",
+        "SITE"
+      ]
     }
-
   },
   {
     "userId": 5,
@@ -61,12 +67,14 @@
     "password": "AIKAIKAIK",
     "name": "Per Provman",
     "status": true,
-    "permissions":
-    {
-      "name": "salesperson",
+    "role": {
       "description": "Access to Articles, Orders and Customers",
-      "permissions": ["ORDER","CUSTOMER","ARTICLE"]
+      "name": "salesperson",
+      "permissions": [
+        "ORDER",
+        "CUSTOMER",
+        "ARTICLE"
+      ]
     }
-
   }
 ]
