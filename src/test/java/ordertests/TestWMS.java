@@ -67,14 +67,17 @@ public class TestWMS {
 
         List<OrderRow> rows1 = new ArrayList<>();
         List<OrderRow> rows2 = new ArrayList<>();
-        rows1.add(new OrderRow(art, 26));
-        rows2.add(new OrderRow(art, 25));
+        rows1.add(new OrderRow(art, 1));
+        rows2.add(new OrderRow(art, 1));
 
         Order order1 = new Order(user, orders.getNextOrderNumber(), customers.getCustomerById(1L), OrderStatus.ACTIVE, true, LocalDateTime.now(), LocalDateTime.now(), rows1, site);
         orders.addOrder(order1);
 
         Order order2 = new Order(user, orders.getNextOrderNumber(), customers.getCustomerById(1L), OrderStatus.ACTIVE, true, LocalDateTime.now(), LocalDateTime.now(), rows2, site);
         orders.addOrder(order2);
+
+        Order order3 = new Order(user, orders.getNextOrderNumber(), customers.getCustomerById(1L), OrderStatus.FINISHED, true, LocalDateTime.now(), LocalDateTime.now(), rows2, site);
+        orders.addOrder(order3);
 
         UserAuthentication ua = new UserAuthentication();
 
