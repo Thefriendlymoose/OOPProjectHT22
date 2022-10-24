@@ -73,6 +73,7 @@ public class UserMenuCardController {
                     }
                 }
             });
+
             removeUserButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {

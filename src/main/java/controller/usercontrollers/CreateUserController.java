@@ -1,6 +1,7 @@
 package controller.usercontrollers;
 
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -47,6 +48,25 @@ public class CreateUserController {
         this.users = users;
     }
 
+    public void initialize(){
+        Platform.runLater(() -> {
+
+            statusBox.getItems().setAll(true, false);
+            roleBox.getItems().addAll(Role.getManager(), Role.getSalesPerson(), Role.getAdmin());
+            roleBox.valueProperty().addListener(new ChangeListener<Role>() {
+                @Override
+                public void changed(ObservableValue<? extends Role> observableValue, Role role, Role t1) {
+                    if (!(t1 == null)) {
+                        descriptionTextArea.setText(roleBox.getValue().getDescription());
+                    }
+
+                }
+            });
+
+            userIDTextField.setText(Long.toString(users.getNextUserID()));
+        }
+        );}
+
 
 
 
@@ -74,23 +94,7 @@ public class CreateUserController {
 
 
 
-    public void initialize(){
 
-        statusBox.getItems().setAll(true, false);
-        roleBox.getItems().addAll(Role.getManager(),Role.getSalesPerson(),Role.getAdmin());
-        roleBox.valueProperty().addListener(new ChangeListener<Role>() {
-            @Override
-            public void changed(ObservableValue<? extends Role> observableValue, Role role, Role t1) {
-                if (!(t1 == null)){
-                    descriptionTextArea.setText(roleBox.getValue().getDescription());
-                }
-
-            }
-        });
-        // TODO FIX BUGGED ATM
-
-        userIDTextField.setText(Long.toString(UserDAO.getInstance().getNextId()));
-    }
 
 
 
