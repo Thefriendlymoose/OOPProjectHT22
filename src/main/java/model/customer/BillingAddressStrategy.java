@@ -2,6 +2,7 @@ package model.customer;
 
 /**
  * Responsibility: a concrete strategy for setting an address in the editor
+ * Sets and gets the Billing Address
  * Used by: CustomerEditor
  * Uses: Customer
  * @author Simon Porsgaard / doktorjevksy
