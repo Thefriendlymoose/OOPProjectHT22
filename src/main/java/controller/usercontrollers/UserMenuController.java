@@ -14,12 +14,20 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.WMS;
 import model.user.Users;
+import model.user.strategySort.IStrategySort;
+import model.user.strategySort.ascending.FirstNameSortAscending;
+import model.user.strategySort.ascending.LastNameSortAscending;
+import model.user.strategySort.ascending.UserIDSortAscending;
+import model.user.strategySort.descending.FirstNameSortDescending;
+import model.user.strategySort.descending.LastNameSortDescending;
+import model.user.strategySort.descending.UserIDSortDescending;
 import persistence.IPersistence;
 import model.user.User;
 import persistence.dataaccessobjects.UserDAO;
 import model.observer.Observer;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 public class UserMenuController implements Observer {
@@ -27,6 +35,7 @@ public class UserMenuController implements Observer {
     private Button backButton;
     private WMS wms;
     private Users users;
+    private IStrategySort sortUser = new UserIDSortDescending();
 
     public UserMenuController(WMS wms) {
         this.wms = wms;
@@ -38,14 +47,16 @@ public class UserMenuController implements Observer {
     private VBox userCardHolder;
 
     public  void initialize() throws IOException {
-        loadCards();
+        loadCards(sortUser);
 
     }
 
 
-    private void loadCards() throws IOException{
+    private void loadCards(IStrategySort strategySort) throws IOException{
         userCardHolder.getChildren().clear();
-        for (User user : users.getInList()){
+        List<User> myUsers = users.getAllUsers();
+        strategySort.sort(myUsers);
+        for (User user : myUsers){
             FXMLLoader cardLoader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/userViews/userDetailsMenuCard.fxml")));
             AnchorPane pane = cardLoader.load();
             UserMenuCardController cont =  cardLoader.getController();
@@ -53,6 +64,7 @@ public class UserMenuController implements Observer {
             cont.setUser(user);
             cont.setUsers(users);
             cont.setWms(wms);
+
 
             userCardHolder.getChildren().add(pane);
         }
@@ -67,6 +79,10 @@ public class UserMenuController implements Observer {
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }
+
+    
+    
+    
     public void createButton(ActionEvent e) throws Exception{
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/userViews/CreateUserMenu.fxml")));
             Stage stage = loader.load();
@@ -95,9 +111,39 @@ public class UserMenuController implements Observer {
     @Override
     public void update() {
         try {
-            loadCards();
+            loadCards(sortUser);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void userIDDown(ActionEvent actionEvent) throws IOException {
+        sortUser = new UserIDSortDescending();
+        loadCards(sortUser);
+    }
+
+    public void userIDUp(ActionEvent actionEvent) throws IOException {
+        sortUser = new UserIDSortAscending();
+        loadCards(sortUser);
+    }
+    public void sortFirstNameUp(ActionEvent actionEvent) throws IOException {
+        sortUser = new FirstNameSortAscending();
+        loadCards(sortUser);
+    }
+
+    public void sortFirstNameDown(ActionEvent actionEvent) throws IOException {
+        sortUser = new FirstNameSortDescending();
+        loadCards(sortUser);
+
+    }
+
+    public void sortLastNameUp(ActionEvent actionEvent) throws IOException {
+        sortUser = new LastNameSortAscending();
+        loadCards(sortUser);
+    }
+
+    public void sortLastNameDown(ActionEvent actionEvent) throws IOException {
+        sortUser = new LastNameSortDescending();
+        loadCards(sortUser);
     }
 }

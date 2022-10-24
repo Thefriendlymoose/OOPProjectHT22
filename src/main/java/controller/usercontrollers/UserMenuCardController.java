@@ -42,7 +42,7 @@ public class UserMenuCardController {
         Platform.runLater(() -> {
             cardUserIDLabel.setText(cardUserIDLabel.getText() + user.getUserId());
             cardNameLabel.setText(cardNameLabel.getText() + user.getName());
-            cardPremissionLabel.setText(cardPremissionLabel.getText() + user.getPermissions());
+            cardPremissionLabel.setText(cardPremissionLabel.getText() + user.getRole());
 
 
 
@@ -73,6 +73,7 @@ public class UserMenuCardController {
                     }
                 }
             });
+
             removeUserButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {

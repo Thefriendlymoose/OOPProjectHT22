@@ -16,6 +16,7 @@ import model.site.Site;
 import model.site.SiteArticle;
 import model.site.Sites;
 import model.user.Permission;
+import model.user.Role;
 import model.user.User;
 import model.user.Users;
 
@@ -28,10 +29,8 @@ public class TestWMS {
     private WMS wms;
 
     public TestWMS(){
-        List<Permission> p = new ArrayList<>();
-        p.add(Permission.SITE);
         Users users = new Users(new HashMap<>());
-        User user = new User(users.getNextUserID(), "testuser", "1234", "test name", true, p);
+        User user = new User(users.getNextUserID(), "testuser", "1234", "test name", true, Role.getAdmin());
         users.addUser(user);
 
         Articles articles = new Articles(new HashMap<>());

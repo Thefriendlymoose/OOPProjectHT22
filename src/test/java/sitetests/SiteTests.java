@@ -5,6 +5,7 @@ import model.article.Article;
 import model.site.Site;
 import model.site.SiteArticle;
 import model.user.Permission;
+import model.user.Role;
 import model.user.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -61,9 +62,7 @@ public class SiteTests {
 
     @Test
     public void addEmployee(){
-        List<Permission> perms = new ArrayList<>();
-        perms.add(Permission.SITE);
-        User user = new User(100, "1", "1", "test", true, perms);
+        User user = new User(100, "1", "1", "test", true, Role.getAdmin());
         int beforeAdd = site.getSiteUsers().size();
         site.addEmployee(user);
         int afterAdd = site.getSiteUsers().size();
