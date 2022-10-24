@@ -1,7 +1,9 @@
 package authenticationtests;
 
 import model.authentication.AuthenticationStatus;
+import model.authentication.Session;
 import model.authentication.UserAuthentication;
+import model.user.Permission;
 import model.user.Role;
 import model.user.User;
 import model.user.Users;
@@ -57,7 +59,7 @@ public class AuthenticationTests {
 
     @Test
     public void logOutSuccess(){
-        AuthenticationStatus status = ua.logIn("testuser", "fel", users);
+        AuthenticationStatus status = ua.logIn("testuser", "1234", users);
         AuthenticationStatus status2 = ua.logOut();
         assertEquals(status, AuthenticationStatus.SUCCESS);
         assertEquals(status2, AuthenticationStatus.SUCCESS);
@@ -69,6 +71,13 @@ public class AuthenticationTests {
         AuthenticationStatus status = ua.logOut();
         assertEquals(status, AuthenticationStatus.NO_CURRENT_USER);
         assertTrue(ua.getSession() == null);
+    }
+
+    @Test
+    public void checkPermission(){
+        ua.logIn("testuser", "1234", users);
+        Session sesh = ua.getSession();
+        assertTrue(sesh.hasAccess(Permission.ALL));
     }
 
 
