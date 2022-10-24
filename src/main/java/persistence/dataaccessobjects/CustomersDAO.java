@@ -14,6 +14,9 @@ import persistence.SerializeBuilder;
 import persistence.WriterHelper;
 import persistence.pojos.CustomerJSON;
 
+/**
+ * Data Access Object which handles loading/saving Customer data from/to JSON
+ */
 public final class CustomersDAO implements IPersistence<Customer> {
     private static CustomersDAO instance = null;
     private  String customersFile = "src/main/resources/customers.json";
@@ -25,7 +28,7 @@ public final class CustomersDAO implements IPersistence<Customer> {
         readFile();
     }
 
-    // so that testing can be done on dummy data
+
     public void readFile(){
         try {
             Reader reader = Files.newBufferedReader(Path.of(customersFile));
@@ -65,7 +68,10 @@ public final class CustomersDAO implements IPersistence<Customer> {
         }
     }
 
-
+    /**
+     * Serializes a list of customers into JSON
+     * @param list
+     */
     @Override
     public void save(List<Customer> list) {
         SerializeBuilder sb = new SerializeBuilder();

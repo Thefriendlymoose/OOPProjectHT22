@@ -22,6 +22,9 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.*;
 
+/**
+ * Data Access Object which handles loading/saving order data from/to JSON
+ */
 public final class OrderDAO implements IPersistence<Order> {
 
     private static OrderDAO instance;
@@ -82,6 +85,10 @@ public final class OrderDAO implements IPersistence<Order> {
         return instance;
     }
 
+    /**
+     * Serializes and saves a list of orders into a JSON file
+     * @param list
+     */
     @Override
     public void save(List<Order> list) {
         SerializeBuilder sb = new SerializeBuilder();

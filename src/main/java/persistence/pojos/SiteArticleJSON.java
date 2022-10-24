@@ -1,5 +1,8 @@
 package persistence.pojos;
 
+/**
+ * SiteArticle POJO data class used temporarily when deserializing from JSON
+ */
 public class SiteArticleJSON {
     private long article;
     private int amount;

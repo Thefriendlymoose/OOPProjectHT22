@@ -15,7 +15,9 @@ import persistence.SerializeBuilder;
 import persistence.WriterHelper;
 import persistence.pojos.ArticleJSON;
 
-
+/**
+ * Data Access Object which handles loading and saving articles to/from JSON
+ */
 public final class ArticlesDAO implements IPersistence<Article> {
     private static ArticlesDAO instance;
     private final String articlesFile = "src/main/resources/articles.json";
@@ -23,11 +25,6 @@ public final class ArticlesDAO implements IPersistence<Article> {
     private Gson gson;
 
     private Map<Long, User> users = UserDAO.getInstance().getAllMap();
-
-    /**
-     * Inner class for json export of formatted datetime values
-     * Source <a href="https://www.javaguides.net/2019/11/gson-localdatetime-localdate.html">Java Guides</a>
-     */
 
     private ArticlesDAO() {
         gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
@@ -66,7 +63,7 @@ public final class ArticlesDAO implements IPersistence<Article> {
     }
 
     /**
-     * Save article data to a json file
+     * Serializes a list of articles into JSON
      * @param
      */
     @Override

@@ -9,6 +9,10 @@ import model.user.User;
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 
+/**
+ * Creates a custom GSON with the required custom serializers.
+ * @author David al Amiri
+ */
 public class SerializeBuilder {
     private GsonBuilder gb;
 

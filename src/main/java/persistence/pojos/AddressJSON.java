@@ -1,5 +1,8 @@
 package persistence.pojos;
 
+/**
+ * Address POJO data class which is used temporarily when deserializing a customer.
+ */
 public class AddressJSON {
     private String streetName;
     private int streetNumber;

@@ -5,6 +5,9 @@ import model.article.ArticleStatus;
 
 import java.time.LocalDateTime;
 
+/**
+ * Article POJO data class used temporarily when deserializing articles from JSON
+ */
 public class ArticleJSON {
 
     private long articleId;

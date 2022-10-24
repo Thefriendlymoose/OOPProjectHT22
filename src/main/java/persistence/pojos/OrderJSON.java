@@ -5,6 +5,9 @@ import model.order.OrderStatus;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Order POJO data class used temporarily when deserializing an order from JSON
+ */
 public class OrderJSON {
     private long orderNumber;
     private long user;

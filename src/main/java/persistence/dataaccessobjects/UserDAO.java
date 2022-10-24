@@ -13,6 +13,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
+/**
+ * Data Access Object which handles loading/saving user data from/to JSON
+ */
 public class UserDAO implements IPersistence<User> {
 
     private static UserDAO instance;
@@ -45,6 +48,10 @@ public class UserDAO implements IPersistence<User> {
         return instance;
     }
 
+    /**
+     * Serializes and saves a list of users into a JSON file
+     * @param list
+     */
     @Override
     public void save(List<User> list) {
         SerializeBuilder sb = new SerializeBuilder();

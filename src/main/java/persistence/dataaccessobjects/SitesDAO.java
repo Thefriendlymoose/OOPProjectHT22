@@ -1,7 +1,5 @@
 package persistence.dataaccessobjects;
 
-// @todo justera importer när klasserna flyttas till ett paket per
-// funktionellt paket i applikationen
 import com.google.gson.Gson;
 import model.user.User;
 import model.article.Article;
@@ -19,6 +17,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
+/**
+ * Data Access Object which handles loading/saving site data to/from JSON
+ */
 public final class SitesDAO implements IPersistence<Site> {
 
     private static SitesDAO instance;
@@ -70,6 +71,10 @@ public final class SitesDAO implements IPersistence<Site> {
         return instance;
     }
 
+    /**
+     * Serializes and saves a list of sites to a JSON file
+     * @param list
+     */
     @Override
     public void save(List<Site> list) {
         SerializeBuilder sb = new SerializeBuilder();
