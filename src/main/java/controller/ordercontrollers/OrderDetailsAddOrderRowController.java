@@ -13,6 +13,8 @@ import java.util.Optional;
 
 /**
  * Controller when the user is in the process of creating or editing and Order.
+ * @author James Pålsson
+ * @author David al Amiri
  */
 
 public class OrderDetailsAddOrderRowController {

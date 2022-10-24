@@ -14,6 +14,8 @@ import java.util.List;
  * The Order class consists of all other classes that the WMS application is built around i.e., User, Customer,
  * Site and Article (found in OrderRows).
  *
+ * @author James Pålsson
+ * @author David al Amarai
  */
 
 public class Order {
@@ -166,6 +168,12 @@ public class Order {
         return sum;
     }
 
+    /**
+     * Checks if an article is in a OrderRow.
+     *
+     * @param article is the article which is being searched for
+     * @return true if it exists, otherwise false
+     */
 
     private boolean checkIfOrderRowExist(Article article) {
         for (OrderRow row : orderRows){
@@ -176,6 +184,13 @@ public class Order {
         return false;
     }
 
+    /**
+     * Adds article and an amount of that article to an OrderRow.
+     *
+     * @param article to be added
+     * @param amount number of the article which is added
+     */
+
     private void addToOrderRow(Article article, int amount) {
         for (OrderRow row : orderRows) {
             if (row.getArticle() == article) {
@@ -183,6 +198,16 @@ public class Order {
             }
         }
     }
+
+    /**
+     * Adds Site article and an amount of that site article to an OrderRow,
+     * if possible.
+     *
+     * @param sa is Site Article to be added
+     * @param amount number of the Site article sa which is added
+     * @return true if possible to add, other false
+     */
+
     public boolean addOrderRow(SiteArticle sa, int amount){
         if (sa.checkIfEnough(amount)){
             if (checkIfOrderRowExist(sa.getArticle())){
@@ -192,11 +217,18 @@ public class Order {
             }
             sa.decreaseAmount(amount);
             return true;
-
         } else {
             return false;
         }
     }
+
+    /**
+     * Reduces the amount of an Article in an Order Row, if possible.
+     *
+     * @param or is the Order Row to be reduced
+     * @param amount number of the  sa which is added
+     * @return true if possible to reduce, otherwise false
+     */
 
     public boolean reduceOrderRow(OrderRow or, int amount) {
         Article art = or.getArticle();

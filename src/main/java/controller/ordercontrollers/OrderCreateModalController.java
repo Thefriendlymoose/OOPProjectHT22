@@ -17,6 +17,8 @@ import java.io.IOException;
 
 /**
  * Controller for choosing what Site the user wants to create the Order at.
+ * @author James Pålsson
+ * @author David al Amiri
  */
 
 public class OrderCreateModalController {

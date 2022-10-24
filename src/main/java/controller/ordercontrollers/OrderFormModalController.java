@@ -20,6 +20,9 @@ import java.util.*;
 
 /**
  * Controller for creating an Order, which is accessed by pressing the "Create Order" button.
+ *
+ * @author James Pålsson
+ * @author David al Amiri
  */
 
 public class OrderFormModalController {

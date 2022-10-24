@@ -17,7 +17,6 @@ public class TestDate {
         return 1 >= deadline.compareTo(orderDate);
     }
 
-//    måste fixa test
     @Test
     public void testValidDeadlineSameDay(){
 

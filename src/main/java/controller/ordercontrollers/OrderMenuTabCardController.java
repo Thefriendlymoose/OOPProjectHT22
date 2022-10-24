@@ -17,6 +17,9 @@ import java.io.IOException;
 /**
  * Controller for the opening an order by pressing an "Open" button in the OrderMenu
  * on the Order cards.
+ *
+ * @author James Pålsson
+ * @author David al Amiri
  */
 
 public class OrderMenuTabCardController {

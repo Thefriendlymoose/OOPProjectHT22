@@ -3,6 +3,8 @@ import java.time.LocalDateTime;
 
 /**
  * This class act as a help function when creating dates or verifying that they are valid.
+ *
+ * @author James Pålsson
  */
 public class DateFunctions {
 
