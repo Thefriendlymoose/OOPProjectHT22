@@ -1,4 +1,4 @@
-package model.command;
+package controller.customercontrollers.command;
 
 public interface ICommand {
 

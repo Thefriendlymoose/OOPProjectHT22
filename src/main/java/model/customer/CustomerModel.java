@@ -46,25 +46,50 @@ public class CustomerModel implements Observable {
 
     public CustomerEditor editCustomer(Customer c){ return new CustomerEditor(c, this);}
 
+    /**
+     * Saves the customer to the loaded Customer Map and updates the next viable ID number
+     * Notifies observers
+     *
+     * @param c the customer to be saved
+     */
     public void saveCustomer(Customer c){
         customers.put(c.getCustomerID(), c);
         nextId = Collections.max(customers.keySet()) + 1;
         notifyObservers();
     }
 
+    /**
+     * Removes a customer from the loaded Customer Map
+     * Notifies the observers
+     * @param c Customer to be removed
+     */
+
     public void removeCustomer(Customer c){
         customers.remove(c.getCustomerID());
         notifyObservers();
     }
 
+    /**
+     * Retrieves the customer with the ID number passed in as an argument
+     * @param id Customer ID number
+     * @return Customer or null
+     */
     public Customer getCustomerById(Long id){
         return customers.get(id);
     }
 
+    /**
+     * Get the customers as a List
+     * @return all values in the Customer Map
+     */
     public List<Customer> getCustomerList(){
         return new ArrayList<>(customers.values());
     }
 
+    /**
+     *
+     * @return a free Customer ID
+     */
     public Long getNextId() {
         return nextId;
     }

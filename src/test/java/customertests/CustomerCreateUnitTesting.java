@@ -15,7 +15,7 @@ public class CustomerCreateUnitTesting {
 
     public CustomerCreateUnitTesting(){
         dao = CustomersDAO.getInstance();
-        dao.setCustomersFile("C:\\javadev\\OOPProjectHT22\\src\\test\\java\\customerTests\\dummyJsons\\customerTestData.json");
+        dao.setCustomersFile("src/test/java/customertests/dummyJsons/customerTestData.json");
         model = new CustomerModel(dao.getAllMap());
     }
 
@@ -50,7 +50,7 @@ public class CustomerCreateUnitTesting {
 
         ed.removeContact(contact);
         // the contact is removed
-        Assertions.assertTrue(!cs.contains(contact));
+        Assertions.assertFalse(cs.contains(contact));
 
     }
 
@@ -66,8 +66,8 @@ public class CustomerCreateUnitTesting {
         Customer c = ed.getCustomer();
 
         // addresses are added
-        Assertions.assertTrue(c.getBillingAddress() == a1);
-        Assertions.assertTrue(c.getShippingAddress() == a2);
+        Assertions.assertSame(c.getBillingAddress(), a1);
+        Assertions.assertSame(c.getShippingAddress(), a2);
     }
 
     private boolean isFound(long id, CustomerModel model){

@@ -4,8 +4,8 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import model.command.ICommand;
-import model.command.customercommands.SetEditable;
+import controller.customercontrollers.command.ICommand;
+import controller.customercontrollers.command.customercommands.SetEditable;
 import model.customer.CustomerContact;
 import model.customer.CustomerEditor;
 
@@ -46,6 +46,10 @@ public class ContactEditCardController {
         this.editor = editor;
     }
 
+    /**
+     * Sets the command that determines the behaviour of the Edit/Save button
+     * @param command
+     */
     public void setCommand(ICommand command){
         this.command = command;
     }

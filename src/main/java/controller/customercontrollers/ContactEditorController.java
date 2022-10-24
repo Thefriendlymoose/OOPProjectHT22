@@ -41,6 +41,11 @@ public class ContactEditorController implements Observer {
         this.editor = editor;
     }
 
+    /**
+     * Reroutes the user to the Contact create view, where the user may create a new CustomerContact
+     * @param actionEvent Add (Contact) button is pressed
+     * @throws IOException throws exception when FXML fails to load
+     */
     public void addContactHandler(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/customerViews/contactCreate.fxml"));
         Stage stage = loader.load();
@@ -53,13 +58,19 @@ public class ContactEditorController implements Observer {
         stage.show();
     }
 
+    /**
+     * Closes the window
+     * @param actionEvent Close button is pressed
+     */
     public void closeHandler(ActionEvent actionEvent) {
         editor.unregisterObserver(this);
         ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
     }
 
 
-
+    /**
+     * Updates the view with the current CustomerContacts in the Customer that is in the editor
+     */
     @Override
     public void update() {
         try {

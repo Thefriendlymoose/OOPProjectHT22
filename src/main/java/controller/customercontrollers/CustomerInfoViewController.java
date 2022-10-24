@@ -49,6 +49,9 @@ public class CustomerInfoViewController implements Observer {
         this.model = model;
     }
 
+    /**
+     * Repaints the window with the current information stored in the Customer
+     */
     @Override
     public void update(){
         customerIdLabel.setText(Long.toString(customer.getCustomerID()));
@@ -67,6 +70,12 @@ public class CustomerInfoViewController implements Observer {
         }
     }
 
+    /**
+     * Reroutes the user to the Customer Edit window, where the Customer may be editet
+     * @param actionEvent Edit button is pressed
+     * @throws IOException throws exception if FXML fails to load
+     */
+
     public void editButtonHandler(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/customerViews/customerEdit.fxml"));
         Stage stage = loader.load();
@@ -81,11 +90,19 @@ public class CustomerInfoViewController implements Observer {
         stage.show();
     }
 
+    /**
+     * Closes the window
+     * @param actionEvent Closed button is pressed
+     */
     public void closeButtonHandler(ActionEvent actionEvent) {
         model.unregisterObserver(this);
         ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).close();
     }
 
+    /**
+     * Deletes the Customer in the Customer Model
+     * @param actionEvent Delete button is pressed
+     */
     public void deleteCustomerHandler(ActionEvent actionEvent) {
         model.removeCustomer(customer);
         model.unregisterObserver(this);
