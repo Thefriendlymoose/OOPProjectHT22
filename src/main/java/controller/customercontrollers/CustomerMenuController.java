@@ -50,12 +50,25 @@ public class CustomerMenuController implements Observer {
         Platform.runLater(() -> update());
     }
 
+    /**
+     * Is triggered by the event of a user pressing the Back button in the main Customer View window
+     * Leads the user back to the Main Menu
+     * @throws Exception Throws an exception when the FXML fails to load
+     */
+
     public void backBtnHandler() throws Exception{
         Parent root = ParentDependencyInjection.load("fxml/mainMenu.fxml");
         model.unregisterObserver(this);
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }
+
+    /**
+     * Opens the CustomerEditor view in a modal window
+     *
+     * @param e Create Button is pressed
+     * @throws IOException Trows an exception when the FXML fails to load
+     */
 
     public void createBtnHandler(ActionEvent e) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/customerViews/customerEdit.fxml"));
@@ -65,13 +78,15 @@ public class CustomerMenuController implements Observer {
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
         CustomerEditController cont = loader.getController();
 
-        //TODO change this nonsense or maybe not?
         CustomerEditor editor = model.newCustomer();
         editor.registerObserver(cont);
         cont.setEditor(editor);
         stage.show();
     }
 
+    /**
+     * Repaints the list of Customers currently present in the Customer Model
+     */
     @Override
     public void update() {
         try {
