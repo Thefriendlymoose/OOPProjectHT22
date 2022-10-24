@@ -8,6 +8,8 @@ import java.util.List;
 
 /**
  * Represents a site/warehouse
+ *
+ * @author David al Amiri
  */
 public class Site {
 
@@ -16,7 +18,7 @@ public class Site {
     private String siteAddress;
     private final int maxCapacity;
     private List<SiteArticle> siteArticles;
-    private List<User> employees;
+    private List<User> siteUsers;
 
 
 
@@ -35,15 +37,11 @@ public class Site {
         this.siteAddress = siteAddress;
         this.maxCapacity = maxCapacity;
         this.siteArticles = siteArticles;
-        this.employees = employees;
+        this.siteUsers = employees;
     }
 
     public long getSiteId() {
         return siteId;
-    }
-
-    public void setSiteId(long siteId) {
-        this.siteId = siteId;
     }
 
     public String getSiteName() {
@@ -70,16 +68,8 @@ public class Site {
         return siteArticles;
     }
 
-    public void setSiteArticles(List<SiteArticle> siteArticles) {
-        this.siteArticles = siteArticles;
-    }
-
-    public List<User> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<User> employees) {
-        this.employees = employees;
+    public List<User> getSiteUsers() {
+        return siteUsers;
     }
 
 
@@ -119,13 +109,13 @@ public class Site {
         if (checkEmployeeInSite(user)){
             return false;
         } else {
-            employees.add(user);
+            siteUsers.add(user);
             return true;
         }
     }
 
     public void removeEmployee(User user){
-        employees.remove(user);
+        siteUsers.remove(user);
     }
 
     public boolean addSiteArticle(Article article, int amount){
@@ -155,8 +145,13 @@ public class Site {
         siteArticles.remove(sa);
     }
 
-    public void editSiteArticle(SiteArticle sa, int amount){
-        sa.setAmount(amount);
+    public boolean editSiteArticle(SiteArticle sa, int amount){
+        if (isOverCapacity(sa, amount)){
+            return false;
+        } else {
+            sa.setAmount(amount);
+            return true;
+        }
     }
 
     /**
@@ -165,7 +160,7 @@ public class Site {
      * @return returns true if user is already assigned to the site and false if they are not
      */
     public boolean checkEmployeeInSite(User user){
-        return employees.contains(user);
+        return siteUsers.contains(user);
     }
 
 

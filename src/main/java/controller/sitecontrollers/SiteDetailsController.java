@@ -36,9 +36,6 @@ public class SiteDetailsController implements Observer {
     @FXML
     private TextArea siteAddressTextArea;
 
-//    @FXML
-//    private Button editButton, closeButton, addStockButton, addEmployeeButton;
-
     @FXML
     private VBox stockVBox, employeeVBox;
 
@@ -52,6 +49,9 @@ public class SiteDetailsController implements Observer {
     }
 
 
+    /**
+     * Initializes the fields in the form with the data from the provided site.
+     */
     @FXML
     public void initialize(){
         detailsTitleLabel.setText(detailsTitleLabel.getText() + site.getSiteId());
@@ -68,9 +68,13 @@ public class SiteDetailsController implements Observer {
         }
     }
 
+    /**
+     * Loads the employees cards in a tab
+     * @throws IOException throws exception if FXML fails to load
+     */
     private void loadSiteEmployeeCards() throws IOException {
         employeeVBox.getChildren().clear();
-        for(User user : site.getEmployees()){
+        for(User user : site.getSiteUsers()){
             ParentDependencyInjection.addInjectionMethod(
                     SiteDetailsUserCardController.class, params -> new SiteDetailsUserCardController(wms, site, user)
             );
@@ -80,6 +84,11 @@ public class SiteDetailsController implements Observer {
             employeeVBox.getChildren().add(pane);
         }
     }
+
+    /**
+     * loads the sitearticle cards in a tab
+     * @throws IOException throws exception if FXML fails to load
+     */
     private void loadSiteArticleCards() throws IOException {
         stockVBox.getChildren().clear();
         for(SiteArticle siteArticle : site.getSiteArticles()){
@@ -93,6 +102,11 @@ public class SiteDetailsController implements Observer {
         }
     }
 
+    /**
+     * Handles the event if the user clicks the edit button
+     * @param e
+     * @throws IOException throws exception if the fxml for the edit modal fails to load.
+     */
     public void editHandler(ActionEvent e) throws IOException {
         StageDependencyInjection.addInjectionMethod(
                 SiteDetailsEditController.class, params -> new SiteDetailsEditController(wms, site)
@@ -107,11 +121,20 @@ public class SiteDetailsController implements Observer {
 
     }
 
+    /**
+     * Handles the event when a user clicks the close button
+     * @param e
+     */
     public void closeHandler(ActionEvent e) {
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
         wms.updateSite();
     }
 
+    /**
+     * Handles the event when a user clicks add stock item.
+     * @param e
+     * @throws IOException throws exception if the fxml fails to load
+     */
     public void onStockAdd(ActionEvent e) throws IOException {
         StageDependencyInjection.addInjectionMethod(
                 SiteDetailsSiteArticleAddModalController.class, params -> new SiteDetailsSiteArticleAddModalController(wms, site)
@@ -125,6 +148,11 @@ public class SiteDetailsController implements Observer {
         stage.show();
     }
 
+    /**
+     * Handles the event when a user clicks the add employee button.
+     * @param e
+     * @throws IOException throws exception if the fxml fails to load
+     */
     public void onEmployeeAdd(ActionEvent e) throws IOException {
         StageDependencyInjection.addInjectionMethod(
                 SiteDetailsUserAddModalController.class, params -> new SiteDetailsUserAddModalController(wms, site)

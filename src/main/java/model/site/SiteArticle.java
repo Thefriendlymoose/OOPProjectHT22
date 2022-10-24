@@ -4,6 +4,8 @@ import model.article.Article;
 
 /**
  * Class represents inventory of an article in a site.
+ *
+ * @author David al Amiri
  */
 public class SiteArticle {
     private Article article;

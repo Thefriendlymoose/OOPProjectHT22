@@ -22,9 +22,6 @@ public class SiteDetailsUserAddModalController {
     @FXML
     private ListView<User> chooseUserListView;
 
-//    @FXML
-//    private Button saveButton, CancelButton;
-
     private User current;
 
     private Site site;
@@ -37,6 +34,9 @@ public class SiteDetailsUserAddModalController {
         this.users = wms.getUsers();
     }
 
+    /**
+     * Initializes the listview with all available users in wms
+     */
     public void initialize(){
         chooseUserListView.getItems().addAll(users.getAllUsers());
 
@@ -58,15 +58,26 @@ public class SiteDetailsUserAddModalController {
         });
     }
 
+    /**
+     * Handles the event when the user clicks save in the modal
+     * Saves the user to the site if it is not already in the site
+     * @param e
+     */
     public void onSave(ActionEvent e){
         if (site.addEmployee(current)){
             ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
             wms.updateSite();
         } else {
+            //TODO add popup which informs user that selected already in site
             System.out.println("Employee already in site");
         }
     }
 
+    /**
+     * Handles the event where a user clicks cancel in the modal
+     * Opens a modal where the user is asked to confirm cancellation or return
+     * @param e
+     */
     public void onCancel(ActionEvent e){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");

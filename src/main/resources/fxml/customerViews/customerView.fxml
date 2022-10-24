@@ -17,7 +17,7 @@
    <scene>
       <Scene>
          <root>
-            <AnchorPane prefHeight="676.0" prefWidth="600.0">
+            <AnchorPane prefHeight="676.0" prefWidth="600.0" stylesheets="@../stylesheet.css">
                <children>
                   <TabPane prefHeight="700.0" prefWidth="652.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
@@ -29,17 +29,17 @@
                                        <children>
                                           <VBox prefHeight="231.0" prefWidth="130.0">
                                              <children>
-                                                <Label text="Customer ID">
+                                                <Label styleClass="generic-form-label" text="Customer ID">
                                                    <font>
                                                       <Font size="19.0" />
                                                    </font>
                                                 </Label>
-                                                <Label text="Company">
+                                                <Label styleClass="generic-form-label" text="Company">
                                                    <font>
                                                       <Font size="19.0" />
                                                    </font>
                                                 </Label>
-                                                <Label text="Org nr">
+                                                <Label styleClass="generic-form-label" text="Org nr">
                                                    <font>
                                                       <Font size="19.0" />
                                                    </font>
@@ -48,17 +48,17 @@
                                           </VBox>
                                           <VBox prefHeight="231.0" prefWidth="184.0">
                                              <children>
-                                                <Label fx:id="customerIdLabel" text="CustomerIDLabel">
+                                                <Label fx:id="customerIdLabel" styleClass="generic-form-label" text="CustomerIDLabel">
                                                    <font>
                                                       <Font size="19.0" />
                                                    </font>
                                                 </Label>
-                                                <Label fx:id="companyNameLabel" text="CompanyNameLabel">
+                                                <Label fx:id="companyNameLabel" styleClass="generic-form-label" text="CompanyNameLabel">
                                                    <font>
                                                       <Font size="19.0" />
                                                    </font>
                                                 </Label>
-                                                <Label fx:id="orgNrLabel" text="OrgNrLabel">
+                                                <Label fx:id="orgNrLabel" styleClass="generic-form-label" text="OrgNrLabel">
                                                    <font>
                                                       <Font size="19.0" />
                                                    </font>
@@ -69,12 +69,12 @@
                                     </HBox>
                                     <VBox layoutX="14.0" layoutY="105.0" prefHeight="149.0" prefWidth="311.0">
                                        <children>
-                                          <Label text="Shipping Address">
+                                          <Label styleClass="generic-form-label" text="Shipping Address">
                                              <font>
                                                 <Font size="19.0" />
                                              </font>
                                           </Label>
-                                          <ScrollPane>
+                                          <ScrollPane styleClass="generic-field">
                                              <content>
                                                 <Label fx:id="shippingAddressLabel" text="sAddressLabel">
                                                    <font>
@@ -87,12 +87,12 @@
                                     </VBox>
                                     <VBox layoutX="14.0" layoutY="254.0" prefHeight="2000" prefWidth="323.0">
                                        <children>
-                                          <Label text="Billing Address">
+                                          <Label styleClass="generic-form-label" text="Billing Address">
                                              <font>
                                                 <Font size="19.0" />
                                              </font>
                                           </Label>
-                                          <ScrollPane>
+                                          <ScrollPane styleClass="generic-field">
                                              <content>
                                                 <Label fx:id="billingAddressLabel" text="bAddressLabel">
                                                    <font>
@@ -105,23 +105,23 @@
                                     </VBox>
                                     <VBox layoutX="15.0" layoutY="455.0" prefHeight="200.0" prefWidth="323.0">
                                        <children>
-                                          <Label text="Contacts">
+                                          <Label styleClass="generic-form-label" text="Contacts">
                                              <font>
                                                 <Font size="19.0" />
                                              </font>
                                           </Label>
                                           <ScrollPane prefHeight="172.0" prefWidth="254.0">
                                              <content>
-                                                <VBox fx:id="contactBox" prefHeight="200.0" prefWidth="544.0" />
+                                                <VBox fx:id="contactBox" prefHeight="200.0" prefWidth="544.0" styleClass="generic-field" />
                                              </content>
                                           </ScrollPane>
                                        </children>
                                     </VBox>
                                     <ButtonBar layoutX="378.0" layoutY="605.0" prefHeight="40.0" prefWidth="190.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="378.0">
                                       <buttons>
-                                        <Button fx:id="editButton" mnemonicParsing="false" prefHeight="27.0" text="Edit" onAction="#editButtonHandler" />
-                                          <Button mnemonicParsing="false" onAction="#deleteCustomerHandler" text="DELETE" />
-                                          <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeButtonHandler" prefHeight="27.0" prefWidth="121.0" text="Close" />
+                                        <Button fx:id="editButton" mnemonicParsing="false" onAction="#editButtonHandler" prefHeight="27.0" styleClass="generic-button" text="Edit" />
+                                          <Button mnemonicParsing="false" onAction="#deleteCustomerHandler" styleClass="generic-button" text="DELETE" />
+                                          <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeButtonHandler" prefHeight="27.0" prefWidth="121.0" styleClass="generic-button" text="Close" />
                                       </buttons>
                                     </ButtonBar>
                                  </children>

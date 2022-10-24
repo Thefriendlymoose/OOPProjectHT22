@@ -2,6 +2,9 @@ package persistence.pojos;
 
 import java.util.List;
 
+/**
+ * Site POJO data class used temporarily when deserializing a site from JSON
+ */
 public class SiteJSON {
 
     private long siteId;
@@ -11,11 +14,6 @@ public class SiteJSON {
     private List<SiteArticleJSON> siteArticles;
     private List<Long> siteUsers;
 
-
-    /* Tom konstruktor eftersom den ändå inte körs */
-    public SiteJSON(){
-
-    }
     public long getSiteId() {
         return siteId;
     }

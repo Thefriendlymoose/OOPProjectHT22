@@ -7,57 +7,20 @@ import java.time.LocalDateTime;
 
 /**
  * Article Class
+ *
+ * @author David Al Amiri
  */
 public class Article {
 
-    /**
-     * unique id of an article
-     */
     private final long articleId;
-
-    /**
-     * The name of an article
-     */
     private String articleName;
-
-    /**
-     * Description of an article
-     */
     private String description;
-
-    /**
-     * Category of an article, uses the ArticleCategory enum
-     */
     private ArticleCategory category;
-
-    /**
-     * Status of an article, could be active, limited, discontinued
-     */
     private ArticleStatus status;
-
-    /**
-     * The cost of the article
-     */
     private float cost;
-
-    /**
-     * The price when an item of the article is sold
-     */
     private float sellPrice;
-
-    /**
-     * Shows which user created the article
-     */
     private User createdBy;
-
-    /**
-     * Shows the date the article was created
-     */
     private LocalDateTime createdOn;
-
-    /**
-     * Shows the latest date when an article was edited
-     */
     private LocalDateTime lastEdited;
 
 
@@ -206,4 +169,6 @@ public class Article {
     public void setLastEdited(LocalDateTime lastEdited) {
         this.lastEdited = lastEdited;
     }
+
+
 }

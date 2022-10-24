@@ -13,12 +13,11 @@ import java.util.Optional;
 
 /**
  * Controller when the user is in the process of creating or editing and Order.
+ * @author James Pålsson
+ * @author David al Amiri
  */
 
 public class OrderDetailsAddOrderRowController {
-
-//    @FXML
-//    private Button addArticleButton, cancelButton;
 
     @FXML
     private TextField amountTextField;
@@ -96,7 +95,6 @@ public class OrderDetailsAddOrderRowController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.CANCEL){
-            System.out.println("Clicked Cancel");
         } else {
             ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
         }

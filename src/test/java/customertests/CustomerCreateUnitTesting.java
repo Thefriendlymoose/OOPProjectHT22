@@ -4,7 +4,7 @@ package customertests;
 import model.customer.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import persistence.CustomersDAO;
+import persistence.dataaccessobjects.CustomersDAO;
 
 import java.util.List;
 
@@ -16,13 +16,13 @@ public class CustomerCreateUnitTesting {
     public CustomerCreateUnitTesting(){
         dao = CustomersDAO.getInstance();
         dao.setCustomersFile("C:\\javadev\\OOPProjectHT22\\src\\test\\java\\customerTests\\dummyJsons\\customerTestData.json");
-        model = new CustomerModel(dao);
+        model = new CustomerModel(dao.getAllMap());
     }
 
     @Test
     public void createCustomerTest(){
         // this is the id that the customer should have
-        long nextFreeID = dao.getNextId();
+        long nextFreeID = model.getNextId();
         CustomerEditor ed = model.newCustomer();
         // the customer is not in the model yet
         Assertions.assertFalse(isFound(nextFreeID, model));

@@ -1,4 +1,4 @@
-package controller;
+package controller.menucontrollers;
 
 import controller.dpi.ParentDependencyInjection;
 import javafx.event.ActionEvent;
@@ -10,9 +10,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import model.WMS;
+import model.authentication.AuthenticationStatus;
 
 import java.io.IOException;
 
+/**
+ * Controller for the menubar
+ *
+ * @author David al Amiri
+ */
 public class MenuController {
 
     @FXML
@@ -38,8 +44,8 @@ public class MenuController {
         }
     }
     public void onLogout(ActionEvent e) throws IOException {
-        if (wms.getSession() != null){
-            wms.setSession(null);
+        AuthenticationStatus status = wms.getUserAuthentication().logOut();
+        if (status == AuthenticationStatus.SUCCESS){
             Parent parent = ParentDependencyInjection.load("fxml/startScreen.fxml");
             Stage window = (Stage) test.getScene().getWindow();
             window.setScene(new Scene(parent));

@@ -7,21 +7,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.stage.Stage?>
 
-
 <Stage xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customercontrollers.ContactCreateController">
    <scene>
       <Scene>
          <root>
-            <AnchorPane prefHeight="277.0" prefWidth="242.0">
+            <AnchorPane prefHeight="277.0" prefWidth="242.0" stylesheets="@../stylesheet.css">
                <children>
-                  <Label layoutX="23.0" layoutY="25.0" text="Name" />
-                  <TextField fx:id="nameField" layoutX="23.0" layoutY="44.0" prefHeight="27.0" prefWidth="198.0" text="Joseph Steelman" />
-                  <Label layoutX="21.0" layoutY="87.0" prefHeight="19.0" prefWidth="94.0" text="Phone number" />
-                  <TextField fx:id="phoneField" layoutX="23.0" layoutY="106.0" prefHeight="27.0" prefWidth="200.0" text="+46 420 69 69" />
-                  <Label layoutX="22.0" layoutY="147.0" prefWidth="37.0" text="Email" />
-                  <TextField fx:id="emailField" layoutX="23.0" layoutY="166.0" prefHeight="27.0" prefWidth="203.0" text="jbro@sovietskijsoiuz.sssr" />
-                  <Button onAction="#addContactHandler" layoutX="23.0" layoutY="228.0" mnemonicParsing="false" text="Add Contact" />
-                  <Button onAction="#cancelHandler" layoutX="129.0" layoutY="228.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="80.0" text="Cancel" />
+                  <Label layoutX="23.0" layoutY="17.0" styleClass="generic-form-label" text="Name" />
+                  <TextField fx:id="nameField" layoutX="23.0" layoutY="44.0" prefHeight="27.0" prefWidth="198.0" styleClass="generic-field" text="Joseph Steelman" />
+                  <Label layoutX="24.0" layoutY="79.0" prefHeight="27.0" prefWidth="133.0" styleClass="generic-form-label" text="Phone number" />
+                  <TextField fx:id="phoneField" layoutX="23.0" layoutY="106.0" prefHeight="27.0" prefWidth="200.0" styleClass="generic-field" text="+46 420 69 69" />
+                  <Label layoutX="23.0" layoutY="139.0" prefHeight="27.0" prefWidth="47.0" styleClass="generic-form-label" text="Email" />
+                  <TextField fx:id="emailField" layoutX="23.0" layoutY="166.0" prefHeight="27.0" prefWidth="203.0" styleClass="generic-field" text="jbro@sovietskijsoiuz.sssr" />
+                  <Button layoutX="23.0" layoutY="228.0" mnemonicParsing="false" onAction="#addContactHandler" styleClass="generic-button" text="Add Contact" />
+                  <Button layoutX="129.0" layoutY="228.0" mnemonicParsing="false" onAction="#cancelHandler" prefHeight="27.0" prefWidth="80.0" styleClass="generic-button" text="Cancel" />
                </children>
             </AnchorPane>
          </root>

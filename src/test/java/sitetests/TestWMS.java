@@ -5,6 +5,8 @@ import model.article.Article;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
 import model.article.Articles;
+import model.authentication.UserAuthentication;
+import model.customer.Customer;
 import model.customer.CustomerModel;
 import model.order.Order;
 import model.order.OrderRow;
@@ -16,7 +18,6 @@ import model.site.Sites;
 import model.user.Permission;
 import model.user.User;
 import model.user.Users;
-import persistence.CustomersDAO;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -45,7 +46,12 @@ public class TestWMS {
         Article art4 = new Article(articles.getNextId(), "test name", "test description", ArticleCategory.Kitchen, ArticleStatus.Limited, 25, 50, user, LocalDateTime.now(), LocalDateTime.now());
         articles.addArticle(art4);
 
-        CustomerModel customers = new CustomerModel(CustomersDAO.getInstance());
+
+
+        CustomerModel customers = new CustomerModel(new HashMap<>());
+        Customer cust1 = new Customer(new ArrayList<>(), null, null, customers.getNextId(), 24, "testName");
+        customers.saveCustomer(cust1);
+
 
         Sites sites = new Sites(new HashMap<>());
         List<SiteArticle> sa = new ArrayList<>();
@@ -60,7 +66,9 @@ public class TestWMS {
         Order order = new Order(user, orders.getNextOrderNumber(), customers.getCustomerById(1L), OrderStatus.ACTIVE, true, LocalDateTime.now(), LocalDateTime.now(), rows, site);
         orders.addOrder(order);
 
-        this.wms = new WMS(articles, orders, sites, customers, users);
+        UserAuthentication ua = new UserAuthentication();
+
+        this.wms = new WMS(articles, orders, sites, customers, users, ua);
     }
 
     public WMS getWMS(){

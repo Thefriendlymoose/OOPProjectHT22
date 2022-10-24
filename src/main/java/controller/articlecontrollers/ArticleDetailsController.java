@@ -18,25 +18,24 @@ import java.io.IOException;
 /**
  * Controller for the view which shows the article details
  * Using to show data of existing articles.
+ *
+ * @author David al Amiri
  */
 public class ArticleDetailsController {
     @FXML
-    Label detailsTitleLabel, numberLabel, nameLabel, descriptionLabel, categoryLabel, statusLabel;
+    private Label detailsTitleLabel;
 
     @FXML
-    TextField numberTextField, nameTextField, costTextField, sellPriceTextField;
+    private TextField numberTextField, nameTextField, costTextField, sellPriceTextField;
 
     @FXML
-    TextArea descriptionTextArea;
+    private TextArea descriptionTextArea;
 
     @FXML
-    ComboBox<ArticleCategory> categoryComboBox;
+    private ComboBox<ArticleCategory> categoryComboBox;
 
     @FXML
-    ComboBox<ArticleStatus> statusComboBox;
-
-    @FXML
-    Button editButton, closeButton;
+    private ComboBox<ArticleStatus> statusComboBox;
 
     private Article article;
     private WMS wms;
@@ -46,6 +45,9 @@ public class ArticleDetailsController {
         this.article = article;
     }
 
+    /**
+     * Initializes the form with the data from an article.
+     */
     @FXML
     public void initialize(){
         detailsTitleLabel.setText(detailsTitleLabel.getText() + article.getArticleId());
@@ -60,6 +62,11 @@ public class ArticleDetailsController {
         sellPriceTextField.setText(String.valueOf(article.getSellPrice()));
     }
 
+    /**
+     * Handler for the edit button which exists in this form
+     * @param e event from button press
+     * @throws IOException throws exception if the FXML fails to load.
+     */
     public void editHandler(ActionEvent e) throws IOException {
         Callback<Class<?>, Object> test = param -> new ArticleEditFormController(wms, article);
 
@@ -77,6 +84,10 @@ public class ArticleDetailsController {
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
     }
 
+    /**
+     * closes the details modal
+     * @param e event from button press
+     */
     public void closeHandler(ActionEvent e) {
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
     }

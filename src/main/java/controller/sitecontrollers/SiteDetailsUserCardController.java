@@ -23,9 +23,6 @@ public class SiteDetailsUserCardController {
     @FXML
     private Label cardNameLabel;
 
-//    @FXML
-//    private Button cardGoToButton, deleteButton;
-
     private User user;
     private Site site;
     private WMS wms;
@@ -36,16 +33,30 @@ public class SiteDetailsUserCardController {
         this.user = user;
     }
 
+    /**
+     * Initializes the card label with data from the user
+     */
     @FXML
     public void initialize(){
         cardNameLabel.setText(cardNameLabel.getText() + user.getName());
 
     }
 
+    /**
+     * Handles the event when a user clicks on the goto button in the modal
+     * Opens user details modal
+     * @param e
+     */
     public void onGoTo(ActionEvent e){
         System.out.println("open user details window");
     }
 
+    /**
+     * Handles the event when a user clicks on the delete button in the modal
+     * Deletes the user from the site
+     * Prompts the user to confirm deletion or to cancel the deletion
+     * @param e
+     */
     public void onDelete(ActionEvent e) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm Deletion");

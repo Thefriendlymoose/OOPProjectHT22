@@ -33,6 +33,16 @@ public class SiteOpenDetailsController {
         this.sites = wms.getSites();
     }
 
+    /**
+     * Handles the event when a user clicks the open button.
+     * Parses the string that is returned by the TextField into a long.
+     * If the parse fails then the user is informed to only provide a number
+     * If the parse succeeds then gets the site from sites.
+     * If no site is returned then user is informed that a site could not be found
+     * If site is returned then the site details modal is opened
+     * @param e
+     * @throws IOException Throws exception if FXML fails to load.
+     */
     public void onOpen(ActionEvent e) throws IOException {
 
         try {
@@ -57,7 +67,7 @@ public class SiteOpenDetailsController {
             }
 
         } catch (NumberFormatException error){
-            warningLabel.setText("Article ID needs to only contain numbers");
+            warningLabel.setText("Site ID needs to only contain numbers");
         }
     }
 

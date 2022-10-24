@@ -7,6 +7,8 @@ import model.user.Users;
 
 /**
  * Class is used to log in/out user from the system
+ *
+ * @author David al Amiri
  */
 public class UserAuthentication {
 

@@ -8,10 +8,7 @@ import java.util.Map;
  * @param <T> Business object class to be stored on disk
  */
 public interface IPersistence<T> {
-    void save(T o); // Svara med boolean?
-    List<T> getAll();
+    void save(List<T> items); // Svara med boolean?
     Map<Long, T> getAllMap(); // K,V?
-    long getNextId();
-    T findById(long id);
 
 }

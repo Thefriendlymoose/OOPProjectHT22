@@ -27,9 +27,6 @@ public class SiteDetailsEditController {
     @FXML
     private TextArea siteAddressTextArea;
 
-//    @FXML
-//    private Button saveButton, cancelButton;
-
     private Site site;
     private WMS wms;
     private Sites sites;
@@ -48,6 +45,7 @@ public class SiteDetailsEditController {
         siteAddressTextArea.setText(site.getSiteAddress());
     }
 
+    //TODO move stuff to the model?
     public void onSave(ActionEvent e){
         site.setSiteName(nameTextField.getText());
         site.setSiteAddress(siteAddressTextArea.getText());

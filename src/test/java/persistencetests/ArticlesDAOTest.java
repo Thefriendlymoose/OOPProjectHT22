@@ -6,7 +6,7 @@ import model.article.ArticleStatus;
 import model.user.Permission;
 import model.user.User;
 import org.junit.jupiter.api.*;
-import persistence.ArticlesDAO;
+import persistence.dataaccessobjects.ArticlesDAO;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -97,48 +97,6 @@ class ArticlesDAOTest {
     }
 
     @Test
-    void save() {
-        ArticlesDAO articlesDAO = ArticlesDAO.getInstance();
-        List<Article> testArticlesBefore = articlesDAO.getAll();
-
-        Long nextFreeId = articlesDAO.getNextId();
-
-        List<Permission> testPermissions = new ArrayList<>();
-        testPermissions.add(Permission.USER);
-
-        User testUser = new User(999, "Test User", "TestTest", "Test Name",
-                true, testPermissions);
-
-        Article testArticle = new Article(nextFreeId, "Test article", "Test description", ArticleCategory.Electronics,
-                ArticleStatus.Active, Float.parseFloat("100"), Float.parseFloat("110"), testUser,
-                LocalDateTime.now(), LocalDateTime.now());
-
-        articlesDAO.save(testArticle);
-
-        List<Article> testArticlesAfter = articlesDAO.getAll();
-        assertTrue(testArticlesAfter.size()> testArticlesBefore.size());
-        assertTrue(articlesDAO.findById(nextFreeId) == testArticle);
-
-    }
-
-    /**
-     * Basic checks of size etc.
-     */
-    @Test
-    void getAll() {
-
-        ArticlesDAO articlesDAO = ArticlesDAO.getInstance();
-        List<Article> articles = articlesDAO.getAll();
-        // Sort the list
-        articles.sort(Comparator.comparing((Article a) -> (valueOf(a.getArticleId()))));
-
-        assertTrue(articles.size() == idList.size());
-        for(Article article : articles){
-            assertTrue(idList.contains(article.getArticleId()));
-        }
-    }
-
-    @Test
     void getAllMap() {
         ArticlesDAO articlesDAO = ArticlesDAO.getInstance();
         Map<Long, Article> articles = articlesDAO.getAllMap();
@@ -149,16 +107,4 @@ class ArticlesDAOTest {
         }
     }
 
-    @Test
-    void getNextId() {
-        ArticlesDAO articlesDAO = ArticlesDAO.getInstance();
-        Long nextId = articlesDAO.getNextId();
-        assertFalse(idList.contains(nextId));
-        assertTrue(Collections.max(idList)<nextId);
-
-    }
-
-    @Test
-    void findById() {
-    }
 }

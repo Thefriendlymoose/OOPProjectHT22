@@ -4,6 +4,9 @@ import model.article.Article;
 
 /**
  * The part of Order which has the Article and amount of that Article.
+ *
+ * @author James Pålsson
+ * @author David al Amiri
  */
 
 public class OrderRow {

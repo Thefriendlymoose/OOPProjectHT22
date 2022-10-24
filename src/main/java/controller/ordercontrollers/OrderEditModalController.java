@@ -18,6 +18,8 @@ import java.util.*;
 /**
  * Controller for the editing an existing order.
  *
+ * @author James Pålsson
+ * @author David al Amiri
  */
 
 public class OrderEditModalController {
@@ -39,10 +41,6 @@ public class OrderEditModalController {
 
     private LocalDateTime deadline;
 
-//    @FXML
-//    private Button addOrderRowButton, saveButton, cancelButton;
-//    @FXML
-//    private ListView<OrderRow> orderRowListView;
 
     private Order order;
     private WMS wms;
@@ -72,21 +70,6 @@ public class OrderEditModalController {
         customerComboBox.setValue(order.getCustomer());
         customerComboBox.getItems().addAll(customers.getCustomerList());
 
-/*
-        orderRowListView.setItems(addedRows);
-        orderRowListView.setCellFactory(param -> new ListCell<OrderRow>(){
-            @Override
-            protected void updateItem(OrderRow s, boolean empty){
-                super.updateItem(s, empty);
-
-                if(empty || s == null || s.getArticle() == null){
-                    setText(null);
-                } else {
-                    setText(s.getArticle().getArticleName() + " " + s.getAmount() + "x");
-                }
-            }
-        });
-*/
         priorityComboBox.getItems().addAll(orders.getAllPriorities());
 
         List<OrderStatus> orderStatusList = new ArrayList<>(EnumSet.allOf(OrderStatus.class));
@@ -128,18 +111,6 @@ public class OrderEditModalController {
      * @throws IOException throws is stage doesn't exist.
      */
 
-/*    public void onAddOrderRowButton(ActionEvent e) throws IOException {
-        StageDependencyInjection.addInjectionMethod(
-                OrderDetailsAddModalController.class, params -> new OrderDetailsAddModalController(order.getSite(), addedRows)
-        );
-
-        Stage stage = StageDependencyInjection.load("fxml/orderViews/orderDetailsAddOrderRow.fxml");
-
-        stage.setTitle("Choose Article and Amount");
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(((Node)e.getSource()).getScene().getWindow());
-        stage.show();
-    }*/
 
 
     public void onCancel(ActionEvent e){
@@ -180,7 +151,6 @@ public class OrderEditModalController {
      */
 
     public void saveOrder(ActionEvent e){
-        System.out.println("before: " + orders.getInList().size());
         try {
             if (df.isValidDeadline(deadline)){
                 order.setCustomer(customerComboBox.getValue());
@@ -190,11 +160,10 @@ public class OrderEditModalController {
                 ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
                 wms.updateOrder();
             } else {
-                System.out.println("your date is bajs");
+
             }
-            System.out.println("after: " + orders.getInList().size());
         } catch(NullPointerException np){
-            System.out.println("Future deadlines only!");
+
         }
     }
 

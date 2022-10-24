@@ -34,6 +34,12 @@ public class ArticleOpenDetailsModalController {
         this.wms = wms;
     }
 
+    /**
+     * Handles the event when the user presses to open an article.
+     * Parses the string which is returned from the search field and tries to find the article in the wms.
+     * @param e
+     * @throws IOException
+     */
     public void modalOpenArticleButtonHandler(ActionEvent e) throws IOException {
 
         try {

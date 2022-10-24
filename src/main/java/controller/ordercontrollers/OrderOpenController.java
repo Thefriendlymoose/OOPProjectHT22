@@ -18,6 +18,9 @@ import java.io.IOException;
 /**
  * Controller for opening an order by pressing the "Open Order" button in the OrderMenu
  * on the top left, after having provided an order number in the text field.
+ *
+ * @author James Pålsson
+ * @author David al Amiri
  */
 
 public class OrderOpenController {
@@ -26,9 +29,6 @@ public class OrderOpenController {
     private Orders orders;
     @FXML
     private TextField searchField;
-
-//    @FXML
-//    private Button openButton;
 
     public OrderOpenController(WMS wms) {
         this.wms = wms;

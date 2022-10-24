@@ -5,6 +5,9 @@ import model.article.ArticleStatus;
 
 import java.time.LocalDateTime;
 
+/**
+ * Article POJO data class used temporarily when deserializing articles from JSON
+ */
 public class ArticleJSON {
 
     private long articleId;
@@ -18,8 +21,7 @@ public class ArticleJSON {
     private LocalDateTime createdOn;
     private LocalDateTime lastEdited;
 
-    public ArticleJSON(){
-    }
+
 
     public long getArticleId() {
         return articleId;

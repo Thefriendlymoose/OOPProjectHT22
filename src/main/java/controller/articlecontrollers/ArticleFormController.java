@@ -20,22 +20,19 @@ import java.util.Optional;
 public class ArticleFormController {
 
     @FXML
-    Label titleLabel;
+    private Label titleLabel;
 
     @FXML
-    TextField numberTextField, nameTextField, costTextField, sellPriceTextField;
+    private TextField numberTextField, nameTextField, costTextField, sellPriceTextField;
 
     @FXML
-    TextArea descriptionTextArea;
+    private TextArea descriptionTextArea;
 
     @FXML
-    ComboBox<ArticleCategory> categoryComboBox;
+    private ComboBox<ArticleCategory> categoryComboBox;
 
     @FXML
-    ComboBox<ArticleStatus> statusComboBox;
-
-    @FXML
-    Button saveButton, cancelButton;
+    private ComboBox<ArticleStatus> statusComboBox;
 
     private WMS wms;
     private Articles articles;
@@ -45,6 +42,9 @@ public class ArticleFormController {
         this.articles = wms.getArticles();
     }
 
+    /**
+     * Initializes the form with data
+     */
     @FXML
     public void initialize(){
         titleLabel.setText("Create Article");
@@ -53,6 +53,10 @@ public class ArticleFormController {
         statusComboBox.getItems().setAll(articles.getStatus());
     }
 
+    /**
+     * Handles the event when the save button in the form is pressed
+     * @param e
+     */
     public void onSave(ActionEvent e){
         // TODO: Need to check all fields, then create new object from data?
 
@@ -70,6 +74,11 @@ public class ArticleFormController {
 
     }
 
+    /**
+     * Handles the event when the cancel button in the form is pressed.
+     * Sends a confirmation modal to the user to confirm cancellation
+     * @param e
+     */
     public void onCancel(ActionEvent e){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");

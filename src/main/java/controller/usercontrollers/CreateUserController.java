@@ -13,14 +13,13 @@ import model.user.Permission;
 import model.user.Role;
 import model.user.User;
 import model.user.Users;
-import persistence.UserDAO;
+import persistence.dataaccessobjects.UserDAO;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 public class CreateUserController {
 

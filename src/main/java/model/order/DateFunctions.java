@@ -3,10 +3,10 @@ import java.time.LocalDateTime;
 
 /**
  * This class act as a help function when creating dates or verifying that they are valid.
+ *
+ * @author James Pålsson
  */
 public class DateFunctions {
-
-    private final LocalDateTime orderDate = LocalDateTime.now();
 
     /**
      * Checks if deadline date is set before today or earlier.
@@ -14,8 +14,8 @@ public class DateFunctions {
      * @param deadline the date which compares to today's date.
      * @return true if deadline is tomorrow or later, else false.
      */
-    public boolean isValidDeadline(LocalDateTime deadline){
-        return 1 <= deadline.toLocalDate().compareTo(LocalDateTime.now().toLocalDate());
+    public static boolean isValidDeadline(LocalDateTime deadline){
+        return 0 <= deadline.toLocalDate().compareTo(LocalDateTime.now().toLocalDate());
     }
 
     /**
@@ -43,8 +43,5 @@ public class DateFunctions {
         return LocalDateTime.now();
     }
 
-    public LocalDateTime getOrderDate(){
-        return orderDate;
-    }
 
 }

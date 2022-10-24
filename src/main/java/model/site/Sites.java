@@ -7,6 +7,8 @@ import java.util.Map;
 
 /**
  * Models a collection of sites
+ *
+ * @author David al Amiri
  */
 public class Sites {
 
@@ -30,14 +32,6 @@ public class Sites {
 
     /**
      *
-     * @return Returns all the sites in a map
-     */
-    public Map<Long, Site> getInMap(){
-        return sites;
-    }
-
-    /**
-     *
      * @return returns all the sites in a list
      */
     public List<Site> getInList() {
@@ -51,10 +45,6 @@ public class Sites {
     public void addSite(Site site){
         sites.put(site.getSiteId(), site);
         nextId++;
-    }
-
-    public void removeSite(Site site){
-        sites.remove(site.getSiteId());
     }
 
     public Long getNextId(){

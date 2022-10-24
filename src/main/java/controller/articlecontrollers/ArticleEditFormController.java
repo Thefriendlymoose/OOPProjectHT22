@@ -10,6 +10,7 @@ import model.article.Article;
 import model.article.ArticleCategory;
 import model.article.ArticleStatus;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 /**
@@ -21,22 +22,20 @@ import java.util.Optional;
 public class ArticleEditFormController {
 
     @FXML
-    Label titleLabel;
+    private Label titleLabel;
 
     @FXML
-    TextField numberTextField, nameTextField, costTextField, sellPriceTextField;
+    private TextField numberTextField, nameTextField, costTextField, sellPriceTextField;
 
     @FXML
-    TextArea descriptionTextArea;
+    private TextArea descriptionTextArea;
 
     @FXML
-    ComboBox<ArticleCategory> categoryComboBox;
+    private ComboBox<ArticleCategory> categoryComboBox;
 
     @FXML
-    ComboBox<ArticleStatus> statusComboBox;
+    private ComboBox<ArticleStatus> statusComboBox;
 
-    @FXML
-    Button saveButton, cancelButton;
 
     private Article article;
     private WMS wms;
@@ -46,6 +45,9 @@ public class ArticleEditFormController {
         this.article = article;
     }
 
+    /**
+     * Initializes the form with data from the provided article.
+     */
     @FXML
     public void initialize(){
         titleLabel.setText("Edit Article: " + article.getArticleId());
@@ -60,6 +62,10 @@ public class ArticleEditFormController {
         sellPriceTextField.setText(String.valueOf(article.getSellPrice()));
     }
 
+    /**
+     * Handles the event when the save button in the form is pressed
+     * @param e
+     */
     public void onSave(ActionEvent e){
         // TODO: Need to check all fields, then create new object from data?
         if (nameTextField.getText().isEmpty() || nameTextField.getText().isEmpty() || descriptionTextArea.getText().isEmpty() || categoryComboBox.getValue() == null || statusComboBox.getValue() == null){
@@ -71,6 +77,7 @@ public class ArticleEditFormController {
             article.setStatus(statusComboBox.getValue());
             article.setCost(Float.parseFloat(costTextField.getText()));
             article.setSellPrice(Float.parseFloat(sellPriceTextField.getText()));
+            article.setLastEdited(LocalDateTime.now());
 
             wms.updateArticle();
 
@@ -78,6 +85,11 @@ public class ArticleEditFormController {
         }
     }
 
+    /**
+     * Handles the event when the cancel button in the form is pressed.
+     * Sends a confirmation modal to the user to confirm cancellation
+     * @param e
+     */
     public void onCancel(ActionEvent e){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");

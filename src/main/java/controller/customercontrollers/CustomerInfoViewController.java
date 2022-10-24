@@ -33,9 +33,6 @@ public class CustomerInfoViewController implements Observer {
     @FXML
     private VBox contactBox;
 
-    @FXML
-    private Button editButton, closeButton;
-
     private Customer customer;
     private CustomerModel model;
 

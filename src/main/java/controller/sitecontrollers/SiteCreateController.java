@@ -35,8 +35,6 @@ public class SiteCreateController {
     @FXML
     private TextArea siteAddressTextArea;
 
-//    @FXML
-//    private Button saveButton, cancelButton;
     private WMS wms;
     private Sites sites;
 
@@ -49,6 +47,7 @@ public class SiteCreateController {
         numberTextField.setText(Long.toString(sites.getNextId()));
     }
 
+    //TODO saving needs to be checked in the model
     public void onSave(ActionEvent e) throws IOException {
         Site newSite = new Site(sites.getNextId(), nameTextField.getText(), siteAddressTextArea.getText(),Integer.parseInt(maxCapacityTextField.getText()), new ArrayList<SiteArticle>(), new ArrayList<User>());
 

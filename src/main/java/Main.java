@@ -1,5 +1,5 @@
-import controller.MainMenuController;
-import controller.MenuController;
+import controller.menucontrollers.MainMenuController;
+import controller.menucontrollers.MenuController;
 import controller.SignInController;
 import controller.articlecontrollers.ArticleFormController;
 import controller.articlecontrollers.ArticleMenuController;
@@ -20,29 +20,46 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.WMS;
 import model.article.Articles;
+import model.authentication.UserAuthentication;
 import model.customer.CustomerModel;
 import model.order.Orders;
 import model.site.Sites;
 import model.user.Users;
-import persistence.*;
+import persistence.dataaccessobjects.*;
 
+/**
+ * The main class which is run when the application is started.
+ *
+ * @author David al Amiri
+ * @author James Pålsson
+ * @author Simon Porsgaard
+ * @author Alexander Hyyppa
+ */
 public class Main extends Application {
 
     private WMS wms;
-
 
     public static void main(String[] args){
         launch(args);
     }
 
+    /**
+     * Is responsible to start the program.
+     * It gets all the saved data and initializes a new WMS object.
+     * It also sets up the dependencyInjectors for the controllers
+     * @param stage
+     * @throws Exception throws exception if the FXML fails to load.
+     */
     @Override
     public void start(Stage stage) throws Exception {
         Articles articles = new Articles(ArticlesDAO.getInstance().getAllMap());
         Orders orders = new Orders(OrderDAO.getInstance().getAllMap());
         Sites sites = new Sites(SitesDAO.getInstance().getAllMap());
-        CustomerModel customers = new CustomerModel(CustomersDAO.getInstance());
+        CustomerModel customers = new CustomerModel(CustomersDAO.getInstance().getAllMap());
         Users users = new Users(UserDAO.getInstance().getAllMap());
-        this.wms = new WMS(articles, orders, sites, customers, users);
+        UserAuthentication ua = new UserAuthentication();
+        this.wms = new WMS(articles, orders, sites, customers, users, ua);
+
 
         setUpSceneDependencyInjector();
         setUpStageDependencyInjector();
@@ -53,14 +70,26 @@ public class Main extends Application {
         stage.setTitle("WMS");
         stage.setScene(scene);
         stage.show();
-
     }
 
+    /**
+     * the stop method is run when the application is closed
+     * Stop is responsible to send the save command to the DAOs.
+     */
     @Override
     public void stop(){
         // should save to dao
+        ArticlesDAO.getInstance().save(wms.getArticles().getInList());
+        SitesDAO.getInstance().save(wms.getSites().getInList());
+        OrderDAO.getInstance().save(wms.getOrders().getInList());
+        UserDAO.getInstance().save(wms.getUsers().getInList());
+        CustomersDAO.getInstance().save(wms.getCustomerModel().getCustomerList());
     }
 
+    /**
+     * Sets up dependency injection for controllers that only need the wms injected.
+     * Specifically for views that are nodes and not stages.
+     */
     private void setUpSceneDependencyInjector() {
         //Factories
         Callback<Class<?>, Object> signInControllerFactory = param -> new SignInController(wms);
@@ -107,6 +136,10 @@ public class Main extends Application {
         );
     }
 
+    /**
+     * Sets up dependency injection for controllers that only need the wms injected.
+     * Specifically for views that are stages.
+     */
     private void setUpStageDependencyInjector() {
         //Factories
         //Article

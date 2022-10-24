@@ -4,6 +4,7 @@ import model.WMS;
 import model.article.Article;
 import model.site.Site;
 import model.site.SiteArticle;
+import model.user.Permission;
 import model.user.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -60,19 +61,21 @@ public class SiteTests {
 
     @Test
     public void addEmployee(){
-        User user = new User(100, "1", "1", "test", true, null);
-        int beforeAdd = site.getEmployees().size();
+        List<Permission> perms = new ArrayList<>();
+        perms.add(Permission.SITE);
+        User user = new User(100, "1", "1", "test", true, perms);
+        int beforeAdd = site.getSiteUsers().size();
         site.addEmployee(user);
-        int afterAdd = site.getEmployees().size();
+        int afterAdd = site.getSiteUsers().size();
         assertEquals(beforeAdd + 1, afterAdd);
     }
 
     @Test
     public void addSameEmployee(){
-        int beforeAdd = site.getEmployees().size();
-        User user = site.getEmployees().stream().findFirst().get();
+        int beforeAdd = site.getSiteUsers().size();
+        User user = site.getSiteUsers().stream().findFirst().get();
         boolean b = site.addEmployee(user);
-        int afterAdd = site.getEmployees().size();
+        int afterAdd = site.getSiteUsers().size();
         assertEquals(beforeAdd, afterAdd);
         assertTrue(!b);
     }

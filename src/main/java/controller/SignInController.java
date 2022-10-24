@@ -15,6 +15,11 @@ import model.authentication.UserAuthentication;
 import model.WMS;
 import model.user.Users;
 
+/**
+ * Controller for the view which shows the login screen
+ *
+ * @author David al Amiri
+ */
 public class SignInController {
 
     @FXML
@@ -40,26 +45,24 @@ public class SignInController {
 
     public void handleBtnSignIn() throws Exception {
         if (userNameField.getText().isEmpty() || passWordField.getText().equals("")){
-            errorLabel.setText("Username or password field empty");
-            errorLabel.setTextFill(Color.RED);
+            setLabel("Username or password field empty", Color.RED);
         } else {
-            UserAuthentication uAuth = new UserAuthentication();
-            AuthenticationStatus status = uAuth.logIn(userNameField.getText(), passWordField.getText(), users);
-
+            AuthenticationStatus status = wms.login(userNameField.getText(), passWordField.getText());
             if (status == AuthenticationStatus.SUCCESS){
-                wms.setSession(uAuth.getSession());
-
                 Parent root = ParentDependencyInjection.load("fxml/mainMenu.fxml");
 
                 Stage window = (Stage) btnSignIn.getScene().getWindow();
                 window.setScene(new Scene(root));
-                errorLabel.setText("Logging in...");
-                errorLabel.setTextFill(Color.GREEN);
+                setLabel("Logging in...", Color.GREEN);
             } else {
-                errorLabel.setText("Username or password incorrect");
-                errorLabel.setTextFill(Color.RED);
+                setLabel("Username or password incorrect", Color.RED);
             }
         }
+    }
+
+    private void setLabel(String text, Color color) {
+        errorLabel.setText(text);
+        errorLabel.setTextFill(color);
     }
 
 

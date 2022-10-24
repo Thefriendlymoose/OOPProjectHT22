@@ -1,4 +1,4 @@
-package persistence;
+package persistence.dataaccessobjects;
 
 //import model.Order;
 
@@ -9,6 +9,9 @@ import model.customer.Customer;
 import model.order.Order;
 import model.order.OrderRow;
 import model.site.Site;
+import persistence.IPersistence;
+import persistence.SerializeBuilder;
+import persistence.WriterHelper;
 import persistence.pojos.OrderJSON;
 import persistence.pojos.OrderRowJSON;
 
@@ -19,6 +22,9 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.*;
 
+/**
+ * Data Access Object which handles loading/saving order data from/to JSON
+ */
 public final class OrderDAO implements IPersistence<Order> {
 
     private static OrderDAO instance;
@@ -27,7 +33,6 @@ public final class OrderDAO implements IPersistence<Order> {
     private Map<Long, Order> orders;
 
     private Gson gson;
-    private long nextFreeId = 0;
 
     private Map<Long, User> users;
     private Map<Long, Customer> customer;
@@ -68,9 +73,6 @@ public final class OrderDAO implements IPersistence<Order> {
 
                 orders.put(order.getOrderNumber(), order);
             }
-            if (orders.size() > 0 ){
-                nextFreeId = Collections.max(orders.keySet()) + 1;
-            }
         } catch (Exception e){
             System.out.println(e);
         }
@@ -83,14 +85,20 @@ public final class OrderDAO implements IPersistence<Order> {
         return instance;
     }
 
+    /**
+     * Serializes and saves a list of orders into a JSON file
+     * @param list
+     */
     @Override
-    public void save(Order o) {
-
-    }
-
-    @Override
-    public List<Order> getAll() {
-        return new ArrayList<>(orders.values());
+    public void save(List<Order> list) {
+        SerializeBuilder sb = new SerializeBuilder();
+        sb.addUserSerializer();
+        sb.addLocalDateTimeSerializer();
+        sb.addCustomerSerializer();
+        sb.addArticleSerializer();
+        sb.addSiteSerializer();
+        WriterHelper<Order> wh = new WriterHelper<>();
+        wh.writeToFileSerializer(file, list, sb.getGson());
     }
 
     @Override
@@ -98,15 +106,6 @@ public final class OrderDAO implements IPersistence<Order> {
         return orders;
     }
 
-    @Override
-    public long getNextId() {
-        return this.nextFreeId;
-    }
-
-    @Override
-    public Order findById(long id) {
-        return orders.get(id);
-    }
 
 
 }

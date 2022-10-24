@@ -1,5 +1,8 @@
 package persistence.pojos;
 
+/**
+ * OrderRow POJO data class used temporarily when deserializing from JSON
+ */
 public class OrderRowJSON {
     private long article;
     private int amount;

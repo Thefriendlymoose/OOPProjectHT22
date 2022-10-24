@@ -1,7 +1,10 @@
-package persistence;
+package persistence.dataaccessobjects;
 
 import com.google.gson.Gson;
 import model.user.User;
+import persistence.IPersistence;
+import persistence.SerializeBuilder;
+import persistence.WriterHelper;
 import persistence.pojos.UserJSON;
 
 import java.io.IOException;
@@ -10,14 +13,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
+/**
+ * Data Access Object which handles loading/saving user data from/to JSON
+ */
 public class UserDAO implements IPersistence<User> {
 
     private static UserDAO instance;
-
     private final String file = "src/main/resources/users.json";
     private Map<Long, User> users;
     private Gson gson = new Gson();
-    private long nextFreeId = 0;
+
     private UserDAO(){
         this.users = new HashMap<>();
 
@@ -28,9 +33,6 @@ public class UserDAO implements IPersistence<User> {
             for (UserJSON uj : userJSONS){
                 User user = new User(uj.getUserId(), uj.getUserName(), uj.getPassword(), uj.getName(), uj.isStatus(), uj.getPermissions());
                 users.put(uj.getUserId(), user);
-            }
-            if (users.size() > 0){
-                nextFreeId = Collections.max(users.keySet()) + 1;
             }
 
         } catch (IOException e) {
@@ -46,28 +48,21 @@ public class UserDAO implements IPersistence<User> {
         return instance;
     }
 
+    /**
+     * Serializes and saves a list of users into a JSON file
+     * @param list
+     */
     @Override
-    public void save(User o) {
-
+    public void save(List<User> list) {
+        SerializeBuilder sb = new SerializeBuilder();
+        WriterHelper<User> wh = new WriterHelper<>();
+        wh.writeToFileSerializer(file, list, sb.getGson());
     }
 
-    @Override
-    public List<User> getAll() {
-        return new ArrayList<>(users.values());
-    }
 
     @Override
     public Map<Long, User> getAllMap() {
         return users;
     }
 
-    @Override
-    public long getNextId() {
-        return nextFreeId;
-    }
-
-    @Override
-    public User findById(long id) {
-        return users.get(id);
-    }
 }

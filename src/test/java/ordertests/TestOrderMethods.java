@@ -33,12 +33,13 @@ public class TestOrderMethods {
 
 
 
-    @Test void totalRevenue(){
+    @Test
+    public void totalRevenue(){
         List<OrderRow> dummyOrderRows = new ArrayList<>();
         dummyOrderRows.add(orderRow1);
         dummyOrderRows.add(orderRow2);
 
-//        Order order1 = new Order(null,1,null, OrderStatus.ACTIVE,true,null,null,dummyOrderRows,null);
+        Order order1 = new Order(null,1,null, OrderStatus.ACTIVE,true,null,null,dummyOrderRows,null);
 
         assertEquals(order1.getTotalRevenue(),8);
     }
@@ -97,6 +98,7 @@ public class TestOrderMethods {
 
     @Test
     public void reducingOrderRow2(){
+
 //        Test to satisfy
 //        if (or.getAmount() < amount || amount < 0){
 //            return false;
@@ -133,18 +135,5 @@ public class TestOrderMethods {
         assert(!order1.reduceOrderRow(orderRow3,999999999));
 }
 
-//    @Test
-//    public void reducingOrderRow4(){
-//        List<OrderRow> dummyOrderRows = new ArrayList<>();
-//        dummyOrderRows.add(orderRow1);
-//        dummyOrderRows.add(orderRow2);
-//
-////      else {
-////            or.reduceAmount(amount);
-////            return site.addSiteArticle(art, amount);
-////           }
-//
-//        Order order1 = new Order(null,1,null, OrderStatus.ACTIVE,true,null,null,dummyOrderRows,null);
-//    }
 
 }

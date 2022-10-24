@@ -28,11 +28,11 @@ import java.util.List;
 /**
  * Controller for the OrderMenu, is also the observer (Observer pattern).
  *
+ * @author James Pålsson
+ * @author David al Amiri
  */
 
 public class OrderMenuController implements Observer{
-//    @FXML
-//    private Button openButton, createButton, listButton, backButton;
     @FXML
     private Button backButton;
 

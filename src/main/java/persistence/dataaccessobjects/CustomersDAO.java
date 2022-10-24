@@ -1,6 +1,7 @@
-package persistence;
+package persistence.dataaccessobjects;
 
 import com.google.gson.Gson;
+
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -8,22 +9,26 @@ import java.util.*;
 import model.customer.Customer;
 
 import model.customer.CustomerContact;
+import persistence.IPersistence;
+import persistence.SerializeBuilder;
+import persistence.WriterHelper;
 import persistence.pojos.CustomerJSON;
 
+/**
+ * Data Access Object which handles loading/saving Customer data from/to JSON
+ */
 public final class CustomersDAO implements IPersistence<Customer> {
     private static CustomersDAO instance = null;
     private  String customersFile = "src/main/resources/customers.json";
     private Map<Long, Customer> customers = new HashMap<>();
     private Gson gson = new Gson();
 
-    // refactor. Use strategy pattern maybe?
-    private long nextFreeId=0;
 
     private CustomersDAO() {
         readFile();
     }
 
-    // so that testing can be done on dummy data
+
     public void readFile(){
         try {
             Reader reader = Files.newBufferedReader(Path.of(customersFile));
@@ -31,13 +36,9 @@ public final class CustomersDAO implements IPersistence<Customer> {
             for(CustomerJSON cj : customerJSONS) {
                 List<CustomerContact> customerContacts = Arrays.asList(cj.getCustomerContacts());
 
-
                 Customer customer = new Customer(customerContacts, cj.getBillingAddress(), cj.getShippingAddress(),
                         cj.getCustomerId(), cj.getCompanyOrgNumber(), cj.getCompanyName());
                 customers.put(cj.getCustomerId(), customer);
-            }
-            if(customers.size() > 0) {
-                nextFreeId= Collections.max(customers.keySet()) + 1;
             }
         } catch (Exception e){
             System.out.println(e);
@@ -59,7 +60,7 @@ public final class CustomersDAO implements IPersistence<Customer> {
         customersFile = filePath;
     }
 
-    @Override
+
     public void save(Customer customer) {
         Long key = customer.getCustomerID();
         if(!customers.containsKey(key)) {
@@ -67,31 +68,22 @@ public final class CustomersDAO implements IPersistence<Customer> {
         }
     }
 
-
+    /**
+     * Serializes a list of customers into JSON
+     * @param list
+     */
     @Override
-    public List<Customer> getAll() {
-        return new ArrayList<>(this.customers.values());
+    public void save(List<Customer> list) {
+        SerializeBuilder sb = new SerializeBuilder();
+        WriterHelper<Customer> wh = new WriterHelper<>();
+        wh.writeToFileSerializer(customersFile, list, sb.getGson());
     }
+
 
     @Override
     public Map<Long, Customer> getAllMap() {
         return this.customers;
     }
 
-    @Override
-    public long getNextId() {
-        if (customers.isEmpty()){
-            return 1;
-        } else {
-            Set<Long> keys = customers.keySet();
-            long maxKeyVal = Collections.max(keys);
-            return maxKeyVal + 1;
-        }
-    }
-
-    @Override
-    public Customer findById(long id) {
-        return this.customers.get(id);
-    }
 
 }

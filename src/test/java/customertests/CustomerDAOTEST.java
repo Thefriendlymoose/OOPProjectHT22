@@ -1,28 +1,30 @@
 package customertests;
 
 import model.customer.Customer;
+import model.customer.CustomerModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import persistence.CustomersDAO;
+import persistence.dataaccessobjects.CustomersDAO;
 import persistence.IPersistence;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class CustomerDAOTEST {
 
-    IPersistence<Customer> dao = CustomersDAO.getInstance();
+    CustomerModel cm = new CustomerModel(new HashMap<>());
 
     @Test
     public void uniqueIDTest(){
-        long id = dao.getNextId();
+        long id = cm.getNextId();
         Customer newCustomer = new Customer(id, 1234);
-        dao.save(newCustomer);
+        cm.saveCustomer(newCustomer);
 
-        long id2 = dao.getNextId();
+        long id2 = cm.getNextId();
         Customer anotherCustomer = new Customer(id2, 4321);
-        dao.save(anotherCustomer);
+        cm.saveCustomer(anotherCustomer);
 
-        List<Customer> customers = dao.getAll();
+        List<Customer> customers = cm.getCustomerList();
         Assertions.assertTrue(newCustomer.getCustomerID() != anotherCustomer.getCustomerID());
     }
 }

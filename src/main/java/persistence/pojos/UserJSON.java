@@ -5,7 +5,9 @@ import model.user.Role;
 
 import java.util.List;
 
-//User(1,"Olofsson","Olof321", "Olof", [USER], true)
+/**
+ * User POJO data class used temporarily when deserializing a User from JSON
+ */
 public class UserJSON {
 
     private long userId;
@@ -14,10 +16,6 @@ public class UserJSON {
     private String name;
     private boolean status;
     private Role permissions;
-
-    public UserJSON() {
-
-    }
 
     public long getUserId() {
         return userId;

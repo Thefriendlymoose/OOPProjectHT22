@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class User implements Observable {
+public class User {
 
     private long userId;
     private String userName;
@@ -16,7 +16,7 @@ public class User implements Observable {
     private Role role;
     private List<Observer> observers;
 
-    public User(long userId, String userName, String password, String name, boolean status, Role role) {
+    public User(long userId, String userName, String password, String name, boolean status, List<Permission> permissions) {
         this.userId = checkNull("UserID is Null",userId);
         this.userName = checkNull("UserName",userName);
         this.password = checkNull("Password is null" ,password);
@@ -106,28 +106,6 @@ public class User implements Observable {
 
 
 
-
-    @Override
-    public void registerObserver(Observer o) {
-        observers.add(o);
-    }
-
-    @Override
-    public void unregisterObserver(Observer o) {
-        observers.remove(o);
-    }
-
-    @Override
-    public void unregisterAll() {
-        observers = new ArrayList<>();
-    }
-
-    @Override
-    public void notifyObservers() {
-        for (Observer o : observers){
-            o.update();
-        }
-    }
 
 
 }

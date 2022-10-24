@@ -13,12 +13,13 @@ import java.util.Map;
  * A facade to order objects (Facade pattern), this enumerates every order uniquely
  * and makes orders observables (Observer pattern).
  *
+ * @author James Pålsson
+ * @author David al Amiri
  */
 public class Orders {
 
     private Map<Long, Order> orders;
     private Long nextOrderNumber;
-    private List<Observer> observers;
 
     public Orders(Map<Long, Order> orders){
         this.orders = orders;
@@ -27,8 +28,6 @@ public class Orders {
         } else {
             nextOrderNumber = Collections.max(orders.keySet()) + 1;
         }
-
-        observers = new ArrayList<>();
     }
 
     /**
@@ -47,14 +46,6 @@ public class Orders {
             }
         }
         return temp;
-    }
-
-    /** all orders as an array.
-     *
-     * @return all orders as an array.
-     */
-    public List<Order> getAllOrders(){
-        return new ArrayList<>(orders.values());
     }
 
     /**
@@ -150,43 +141,10 @@ public class Orders {
         nextOrderNumber++;
     }
 
-    /**
-     * Removes an order object from orders.
-     *
-     * @param order is the order which is removed.
-     */
-
-    public void removeOrder(Order order){
-        orders.remove(order.getOrderNumber());
-    }
-
-    /**
-     * Returns the unique next OrderNumber.
-     *
-     * @return the unique next OrderNUmber.
-     */
     public Long getNextOrderNumber(){
         return nextOrderNumber;
     }
 
-    /**
-     * Notifies all observers that a change has been made (Observer pattern).
-     *
-     */
-
-
-    /** Returns a string containing information about order objects in Orders.
-     *
-     * @return a string containing information about order objects in Orders.
-     */
-    @Override
-    public String toString() {
-        return "Orders{" +
-                "orders=" + orders +
-                ", nextOrderNumber=" + nextOrderNumber +
-                ", observers=" + observers +
-                '}';
-    }
 
     /**
      * Returns a Boolean array of {true, false}.

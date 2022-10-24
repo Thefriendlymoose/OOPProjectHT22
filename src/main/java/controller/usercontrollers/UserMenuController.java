@@ -23,7 +23,7 @@ import model.user.strategySort.descending.LastNameSortDescending;
 import model.user.strategySort.descending.UserIDSortDescending;
 import persistence.IPersistence;
 import model.user.User;
-import persistence.UserDAO;
+import persistence.dataaccessobjects.UserDAO;
 import model.observer.Observer;
 
 import java.io.IOException;
@@ -32,7 +32,7 @@ import java.util.Objects;
 
 public class UserMenuController implements Observer {
     @FXML
-    private Button openButton, createButton, listButton, backButton;
+    private Button backButton;
     private WMS wms;
     private Users users;
     private IStrategySort sortUser = new UserIDSortDescending();
@@ -45,10 +45,6 @@ public class UserMenuController implements Observer {
 
     @FXML
     private VBox userCardHolder;
-
-
-    private IPersistence<User> testDao = UserDAO.getInstance();
-
 
     public  void initialize() throws IOException {
         loadCards(sortUser);

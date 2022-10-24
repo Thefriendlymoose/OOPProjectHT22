@@ -27,7 +27,7 @@ import java.util.List;
  */
 public class ArticleMenuController implements Observer {
     @FXML
-    private Button openArticleButton, createButton, listButton, backButton;
+    private Button backButton;
 
     @FXML
     private VBox articlesCardHolder;
@@ -41,10 +41,19 @@ public class ArticleMenuController implements Observer {
         wms.registerObserver(this);
     }
 
+    /**
+     * Initializes the cards in the view.
+     * Creates a card for each article in the wms
+     * @throws IOException
+     */
     public void initialize() throws IOException {
         loadCards();
     }
 
+    /**
+     * Creates and adds a card with data from the articles in the wms.
+     * @throws IOException throws an expection when the FXML fails to load
+     */
     private void loadCards() throws IOException {
         List<Article> arts = articles.getInList();
         articlesCardHolder.getChildren().clear();
@@ -61,12 +70,22 @@ public class ArticleMenuController implements Observer {
         }
     }
 
+    /**
+     * Handles the event when a user presses the back button which takes the user back to the main menu.
+     * @throws Exception throws an execution when the FXML fails to load.
+     */
     public void backBtnHandler() throws Exception{
         Parent root = ParentDependencyInjection.load("fxml/mainMenu.fxml");
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }
 
+    /**
+     * Handles the event when a user presses the open button.
+     * Opens a new modal where the user can input an article id to open the requested article
+     * @param e
+     * @throws IOException
+     */
     public void openButtonHandler(ActionEvent e) throws IOException {
         Stage stage = StageDependencyInjection.load("fxml/articleViews/articleOpenDetailsModal.fxml");
         stage.setTitle("Open Article");
@@ -75,6 +94,12 @@ public class ArticleMenuController implements Observer {
         stage.show();
     }
 
+    /**
+     * Handles the event when a user presses the create button.
+     * Opens a new modal with an article form
+     * @param e
+     * @throws IOException
+     */
     public void createButtonHandler(ActionEvent e) throws IOException {
         Stage stage = StageDependencyInjection.load("fxml/articleViews/articleFormModal.fxml");
         stage.setTitle("Create Article");
@@ -82,7 +107,6 @@ public class ArticleMenuController implements Observer {
         stage.initOwner(((Node)e.getSource()).getScene().getWindow());
         stage.show();
     }
-
 
     @Override
     public void update() {

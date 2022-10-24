@@ -1,24 +1,27 @@
 package persistence.pojos;
 
+/**
+ * CustomerContact POJO data class used temporarily when deserializing a customer from JSON
+ */
 public class CustomerContactJSON {
-    private String contactName;
-    private String phone;
+    private String contactPerson;
+    private String phoneNumber;
     private String email;
 
-    public String getContactName() {
-        return contactName;
+    public String getContactPerson() {
+        return contactPerson;
     }
 
-    public void setContactName(String contactName) {
-        this.contactName = contactName;
+    public void setContactPerson(String contactPerson) {
+        this.contactPerson = contactPerson;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {

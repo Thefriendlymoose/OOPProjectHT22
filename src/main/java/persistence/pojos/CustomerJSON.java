@@ -3,6 +3,9 @@ package persistence.pojos;
 import model.customer.Address;
 import model.customer.CustomerContact;
 
+/**
+ * Customer POJO data class used temporarily when deserializing a customer from JSON
+ */
 public class CustomerJSON {
     private long customerId;
     private String companyName;

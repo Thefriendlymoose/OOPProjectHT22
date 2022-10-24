@@ -1,4 +1,4 @@
-package controller;
+package controller.menucontrollers;
 
 
 import controller.dpi.ParentDependencyInjection;
@@ -11,6 +11,11 @@ import model.authentication.Session;
 import model.WMS;
 import model.user.Permission;
 
+/**
+ * Controller for the view which shows the main menu.
+ *
+ * @author David al Amiri
+ */
 public class MainMenuController {
     @FXML
     private Button menuSiteButton;

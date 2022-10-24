@@ -20,12 +20,13 @@ import java.util.*;
 
 /**
  * Controller for creating an Order, which is accessed by pressing the "Create Order" button.
+ *
+ * @author James Pålsson
+ * @author David al Amiri
  */
 
 public class OrderFormModalController {
 
-//    @FXML
-//    private Label titleLabel;
     @FXML
     private TextField numberTextField;
     @FXML
@@ -118,7 +119,7 @@ public class OrderFormModalController {
         orderDate = df.createOrderDate();
 
         if(df.isValidDeadline(deadline)){
-            System.out.println("Deadline: " + deadline.getDayOfMonth() + "-"+ deadline.getMonthValue() + "-" + deadline.getYear());
+//            System.out.println("Deadline: " + deadline.getDayOfMonth() + "-"+ deadline.getMonthValue() + "-" + deadline.getYear());
         }
     }
 
@@ -130,22 +131,21 @@ public class OrderFormModalController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.CANCEL){
-            System.out.println("Clicked Cancel");
         } else {
             ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
         }
     }
 
     public void setPriorityComboBox(){
-        System.out.println("Priority: "+ priorityComboBox.getValue());
+//        System.out.println("Priority: "+ priorityComboBox.getValue());
     }
 
     public void setStatusComboBox(){
-        System.out.println("Status: "+ statusComboBox.getValue());
+//        System.out.println("Status: "+ statusComboBox.getValue());
     }
 
     public void setCustomerComboBox(){
-        System.out.println("Customer: "+ customerComboBox.getValue().getCompanyName());
+//        System.out.println("Customer: "+ customerComboBox.getValue().getCompanyName());
     }
 
 }

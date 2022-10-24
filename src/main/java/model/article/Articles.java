@@ -7,7 +7,9 @@ import java.util.Map;
 
 
 /**
- * Is a collection of articles, implements Observable so that observers will be notified of changes.
+ * Is a collection of articles
+ *
+ * @author David al Amiri
  */
 public class Articles {
 
@@ -87,13 +89,6 @@ public class Articles {
         return new ArrayList<>(articles.values());
     }
 
-    /**
-     *
-     * @return returns a map of all the articles in the system
-     */
-    public Map<Long, Article> getInMap(){
-        return articles;
-    }
 
     /**
      *
