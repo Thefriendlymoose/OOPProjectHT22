@@ -110,4 +110,24 @@ public class CustomerMenuController implements Observer {
             customerBox.getChildren().add(pane);
         }
     }
+
+    /**
+     * Opens search window for Customers
+     * @param actionEvent open button is pressed
+     * @throws IOException throws exception if FXML fails to load
+     */
+
+    public void openButtonHandler(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/customerViews/customerSearchWindow.fxml"));
+        Stage stage = loader.load();
+        CustomerSearchController cont = loader.getController();
+        cont.setModel(model);
+
+        stage.setTitle("Search for Customer");
+
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
+
+        stage.show();
+    }
 }
