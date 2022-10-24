@@ -96,10 +96,6 @@ public class Order {
         this.user = user;
     }
 
-    public void setOrderNumber(long orderNumber) {
-        this.orderNumber = orderNumber;
-    }
-
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
@@ -112,16 +108,8 @@ public class Order {
         this.priority = priority;
     }
 
-    public void setOrderDate(LocalDateTime orderDate) {
-        this.orderDate = orderDate;
-    }
-
     public void setDeadline(LocalDateTime deadline) {
         this.deadline = deadline;
-    }
-
-    public void setOrderRows(List<OrderRow> orderRows) {
-        this.orderRows = orderRows;
     }
 
     public void setSite(Site site) {

@@ -8,8 +8,6 @@ import java.time.LocalDateTime;
  */
 public class DateFunctions {
 
-    private final LocalDateTime orderDate = LocalDateTime.now();
-
     /**
      * Checks if deadline date is set before today or earlier.
      *
@@ -45,8 +43,5 @@ public class DateFunctions {
         return LocalDateTime.now();
     }
 
-    public LocalDateTime getOrderDate(){
-        return orderDate;
-    }
 
 }

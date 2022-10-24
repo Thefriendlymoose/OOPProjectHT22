@@ -47,10 +47,6 @@ public class Sites {
         nextId++;
     }
 
-    public void removeSite(Site site){
-        sites.remove(site.getSiteId());
-    }
-
     public Long getNextId(){
         return nextId;
     }
