@@ -76,10 +76,6 @@ public class Order {
         return priority;
     }
 
-    public LocalDateTime getOrderDate() {
-        return orderDate;
-    }
-
     public LocalDateTime getDeadline() {
         return deadline;
     }
@@ -233,4 +229,5 @@ public class Order {
         }
 
     }
+
 }
