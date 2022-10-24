@@ -16,6 +16,10 @@
       {
         "article": 4,
         "amount": 5
+      },
+      {
+        "article": 6,
+        "amount": 25
       }
     ],
     "siteUsers": [
