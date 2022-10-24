@@ -138,9 +138,14 @@ public class Orders {
      */
     public void addOrder(Order order){
         orders.put(order.getOrderNumber(), order);
-        nextOrderNumber++;
+        nextOrderNumber = Collections.max(orders.keySet()) + 1;
     }
 
+    /**
+     * Returns the unique next OrderNumber.
+     *
+     * @return the unique next OrderNUmber.
+     */
     public Long getNextOrderNumber(){
         return nextOrderNumber;
     }

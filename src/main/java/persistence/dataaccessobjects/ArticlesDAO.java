@@ -22,11 +22,9 @@ public final class ArticlesDAO implements IPersistence<Article> {
     private static ArticlesDAO instance;
     private final String articlesFile = "src/main/resources/articles.json";
     private Map<Long, Article> articles = new HashMap<>();
-    private Gson gson;
-    private Map<Long, User> users = UserDAO.getInstance().getAllMap();
 
     private ArticlesDAO() {
-        gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
+        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
             @Override
             public LocalDateTime deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 
@@ -39,12 +37,13 @@ public final class ArticlesDAO implements IPersistence<Article> {
             Reader reader = Files.newBufferedReader(Path.of(articlesFile));
             List<ArticleJSON> articleJSONS = Arrays.asList(gson.fromJson(reader, ArticleJSON[].class));
             for(ArticleJSON aj : articleJSONS) {
+                Map<Long, User> users = UserDAO.getInstance().getAllMap();
                 Article article = new Article(aj.getArticleId(), aj.getArticleName(), aj.getDescription(),
                         aj.getCategory(), aj.getStatus(), aj.getCost(), aj.getSellPrice(), users.get(aj.getCreatedBy()), aj.getCreatedOn(), aj.getLastEdited());
 
                 articles.put(article.getArticleId(), article);
             }
-
+            reader.close();
         } catch (Exception e){
             System.out.println(e);
         }

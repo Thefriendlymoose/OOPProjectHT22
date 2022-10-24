@@ -21,9 +21,7 @@ import model.user.strategySort.ascending.UserIDSortAscending;
 import model.user.strategySort.descending.FirstNameSortDescending;
 import model.user.strategySort.descending.LastNameSortDescending;
 import model.user.strategySort.descending.UserIDSortDescending;
-import persistence.IPersistence;
 import model.user.User;
-import persistence.dataaccessobjects.UserDAO;
 import model.observer.Observer;
 
 import java.io.IOException;

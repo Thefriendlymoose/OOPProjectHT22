@@ -77,6 +77,11 @@ public class CustomerEditController implements Observer {
         stage.show();
     }
 
+    /**
+     * Reroutes the user to the Contact Edit window
+     * @param e Edit (Contact) button is pressed
+     * @throws IOException throws an exception when FXML fails to load
+     */
     public void addContactHandler(ActionEvent e) throws IOException{
         //Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/customerViews/contactCreate.fxml")));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/customerViews/contactEditorView.fxml"));
@@ -91,6 +96,10 @@ public class CustomerEditController implements Observer {
         stage.show();
     }
 
+    /**
+     * Sets all the fields in the Customer, saves and closes the window
+     * @param e Save button is pressed
+     */
     // TODO validate fields
     public void saveBtnHandler(ActionEvent e) {
         editor.setCompanyName(companyNameField.getText());
@@ -100,6 +109,10 @@ public class CustomerEditController implements Observer {
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
     }
 
+    /**
+     * Updates the view with the current Customer information
+     * present in the Customer in the CustomerEditor
+     */
     @Override
     public void update() {
         Customer c = editor.getCustomer();

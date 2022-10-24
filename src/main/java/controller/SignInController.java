@@ -33,13 +33,10 @@ public class SignInController {
 
     @FXML
     private Label errorLabel;
-
-    private Users users;
     private WMS wms;
 
     public SignInController(WMS wms) {
         this.wms = wms;
-        this.users = wms.getUsers();
     }
 
 

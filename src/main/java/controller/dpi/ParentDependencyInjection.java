@@ -19,6 +19,11 @@ public class ParentDependencyInjection {
      */
     private static final Map<Class<?>, Callback<Class<?>, Object>> injectionMethods = new HashMap<>();
 
+
+    private ParentDependencyInjection(){
+
+    }
+
     public static Parent load(String location) throws IOException {
         FXMLLoader loader = getLoader(location);
         return loader.load();

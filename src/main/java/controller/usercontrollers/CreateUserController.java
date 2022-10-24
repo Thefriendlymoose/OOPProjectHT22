@@ -9,16 +9,11 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import model.user.Permission;
 import model.user.Role;
 import model.user.User;
 import model.user.Users;
-import persistence.dataaccessobjects.UserDAO;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -27,16 +22,10 @@ import java.util.Optional;
 public class CreateUserController {
 
     @FXML
-    private Button saveButton,cancelButton;
-
-    @FXML
     private TextField userIDTextField, firstNameField, lastNameField, userNameField, passwordField;
 
     @FXML
     private TextArea descriptionTextArea;
-
-    @FXML
-    private Label userIDLabel, firstNameLabel,lastNameLabel,userNameLabel,passwordLabel,StatusLabel, roleLabel;
 
     @FXML
     private ComboBox <Role> roleBox;

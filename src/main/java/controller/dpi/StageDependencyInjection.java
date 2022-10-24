@@ -19,6 +19,9 @@ public class StageDependencyInjection {
      */
     private static final Map<Class<?>, Callback<Class<?>, Object>> injectionMethods = new HashMap<>();
 
+    private StageDependencyInjection(){
+
+    }
     public static Stage load(String location) throws IOException {
         FXMLLoader loader = getLoader(location);
         return loader.load();

@@ -1,8 +1,8 @@
-package model.command.customercommands;
+package controller.customercontrollers.command.customercommands;
 
 import controller.customercontrollers.ContactEditCardController;
+import controller.customercontrollers.command.ICommand;
 import javafx.scene.control.TextField;
-import model.command.ICommand;
 
 import java.util.List;
 

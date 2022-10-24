@@ -68,7 +68,7 @@ public class UserMenuCardController {
                             throw new RuntimeException(e);
                         }
 
-                        userDetailsController cont = loader.getController();
+                        UserDetailsController cont = loader.getController();
 
                         cont.setUser(user);
                         cont.setUsers(users);

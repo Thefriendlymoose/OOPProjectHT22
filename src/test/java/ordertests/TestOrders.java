@@ -1,13 +1,23 @@
 package ordertests;
 
 import model.WMS;
+import model.customer.Customer;
+import model.order.Order;
 import model.order.OrderStatus;
 import model.site.Site;
+import model.user.Role;
+import model.user.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import model.order.Orders;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class TestOrders {
@@ -27,7 +37,7 @@ public class TestOrders {
         Site site = wms.getSites().getInList().stream().findFirst().get();
 
         int size = orders.getOrdersBySite(site).size();
-        assertEquals(size,2);
+        assertEquals(size,3);
     }
 
     @Test
@@ -53,6 +63,50 @@ public class TestOrders {
         assertEquals(totalProfitActiveStatus,50.0);
     }
 
+    @Test
+    public void testGetOrdersByCustomer(){
+        Orders orders = wms.getOrders();
+        Customer cust1 = wms.getCustomerModel().getCustomerList().stream().findFirst().get();
 
+        List<Order> ords = wms.getOrders().getInList().stream().collect(Collectors.toList());
+
+        assertEquals(orders.getOrdersByCustomer(cust1),ords);
+    }
+
+    @Test
+    public void testCheckIfExist(){
+        Orders orders = wms.getOrders();
+        assertTrue(orders.checkIfExist(1L));
+    }
+
+    @Test
+    public void testFindById(){
+        Orders orders = wms.getOrders();
+        Order order = wms.getOrders().getInList().stream().findFirst().get();
+        assertEquals(orders.findById(1L),order);
+    }
+
+    @Test
+    public void testAddOrder(){
+        Orders orders = wms.getOrders();
+        int sizeBefore = orders.getInList().size();
+
+
+        Site site = new Site(9, "test site", "test site address", 500, null, null);
+        Customer cust1 = new Customer(new ArrayList<>(), null, null, 9, 24, "testName");
+        User user = new User(9, "testuser", "1234", "test name", true, Role.getAdmin());
+        Order order1 = new Order(user, orders.getNextOrderNumber(), cust1, OrderStatus.ACTIVE, true, LocalDateTime.now(), LocalDateTime.now(), null, site);
+        orders.addOrder(order1);
+        int sizeAfter = orders.getInList().size();
+
+
+        assertTrue(sizeBefore == sizeAfter - 1);
+    }
+
+    @Test
+    public void testGetNextOrderNumber(){
+        Orders orders = wms.getOrders();
+        assertEquals(orders.getNextOrderNumber(),1001);
+    }
 
 }

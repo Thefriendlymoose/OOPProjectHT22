@@ -10,7 +10,7 @@ import java.util.List;
  * Responsibility: encapsulating the process of manipulating data in a Customer object
  * Used by: CustomerEditor, CustomerModel, CustomerEditController,
  *          ContactEditController, AddressCreateController, ContactEditCardController
- * Uses: Customer, CustomerModel, AddressStrategy, Observer
+ * Uses: Customer, CustomerModel, AddressStrategy
  * @author Simon Porsgaard / doktorjevksy
  */
 
@@ -58,8 +58,8 @@ public class CustomerEditor implements Observable {
     }
 
     /**
-     *
-     * @return the address according to current strategy
+     * Gets the address accosrding to the current AddressStrategy
+     * @return the address to get
      */
 
     public Address getAddress(){
@@ -67,18 +67,30 @@ public class CustomerEditor implements Observable {
     }
 
     /**
-     *
-     * @param address returns the address according to current strategy
+     * Sets the address according to the current AddressStrategy
+     * Notifies observers
+     * @param address the address to be set
      */
     public void setAddress(Address address){
         strategy.setAddress(address);
         notifyObservers();
     }
 
+    /**
+     * Adds a contact to the Customer's Contact List
+     * Notifies Observers
+     * @param contact contact to be added
+     */
     public void addContact(CustomerContact contact){
         customer.addCustomerContact(contact);
         notifyObservers();
     }
+
+    /**
+     * Removes a contact from the Customer's Contact List
+     * Notifies Observers
+     * @param contact contact to be removed
+     */
 
     public void removeContact(CustomerContact contact){
         customer.removeCustomerContact(contact);
@@ -89,6 +101,11 @@ public class CustomerEditor implements Observable {
         return customer.getContacts();
     }
 
+
+    /**
+     * Saves all the edits made on the Customer
+     * Notifies observers
+     */
 
     public void save(){
         model.saveCustomer(customer);

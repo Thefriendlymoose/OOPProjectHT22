@@ -4,7 +4,6 @@ import model.WMS;
 import model.article.Article;
 import model.site.Site;
 import model.site.SiteArticle;
-import model.user.Permission;
 import model.user.Role;
 import model.user.User;
 import org.junit.jupiter.api.BeforeEach;

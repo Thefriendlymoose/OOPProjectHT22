@@ -14,7 +14,9 @@ import model.customer.CustomerModel;
 import java.io.IOException;
 
 /**
- * Responsibility: displaying a single customer card
+ * Responsibility: displaying a single customer card, witch is a peek view of a Customer, where
+ * only the name and ID number is visible. For more customer information, the user can choose to open
+ * the Customer by pressing the Open button
  * Used by: CustomerMenuController
  * Uses: Customer, CustomerModel
  * @author Simon Porsgaard / doktorjevksy
@@ -35,6 +37,9 @@ public class CustomerCardController {
         customer = c;
     }
 
+    /**
+     * initializes the Customer Card with name and ID number
+     */
     public void initialize(){
         Platform.runLater(() -> {
             idLabel.setText(Long.toString(customer.getCustomerID()));
@@ -46,6 +51,11 @@ public class CustomerCardController {
         this.model = model;
     }
 
+    /**
+     * Reroutes the user to the Customer Info window
+     * @param actionEvent Open button is pressed
+     * @throws IOException throws exception when FXML fails to load
+     */
     public void openButtonHandler(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/customerViews/customerView.fxml"));
         Stage stage = loader.load();

@@ -22,6 +22,7 @@ public class WriterHelper<T> {
             writer.flush();
             writer.close();
             fw.close();
+            writer.close();
 
         }
         catch (java.io.IOException ioe){

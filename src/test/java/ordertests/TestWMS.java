@@ -15,7 +15,6 @@ import model.order.Orders;
 import model.site.Site;
 import model.site.SiteArticle;
 import model.site.Sites;
-import model.user.Permission;
 import model.user.Role;
 import model.user.User;
 import model.user.Users;
@@ -75,7 +74,7 @@ public class TestWMS {
         Order order2 = new Order(user, orders.getNextOrderNumber(), customers.getCustomerById(1L), OrderStatus.ACTIVE, true, LocalDateTime.now(), LocalDateTime.now(), rows2, site);
         orders.addOrder(order2);
 
-        Order order3 = new Order(user, orders.getNextOrderNumber(), customers.getCustomerById(1L), OrderStatus.FINISHED, true, LocalDateTime.now(), LocalDateTime.now(), rows2, site);
+        Order order3 = new Order(user, 1000, customers.getCustomerById(1L), OrderStatus.FINISHED, true, LocalDateTime.now(), LocalDateTime.now(), rows2, site);
         orders.addOrder(order3);
 
         UserAuthentication ua = new UserAuthentication();

@@ -134,8 +134,12 @@ public class User {
 
         String firstOrLastName =nameList[i];
         return firstOrLastName;
-    };
+    }
 
+
+    public boolean isPasswordCorrect(User user){
+        return user.getPassword().equals(this.password);
+    }
 
 
 
