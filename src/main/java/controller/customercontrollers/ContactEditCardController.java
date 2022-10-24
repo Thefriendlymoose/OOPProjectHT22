@@ -46,6 +46,10 @@ public class ContactEditCardController {
         this.editor = editor;
     }
 
+    /**
+     * Sets the command that determines the behaviour of the Edit/Save button
+     * @param command
+     */
     public void setCommand(ICommand command){
         this.command = command;
     }
