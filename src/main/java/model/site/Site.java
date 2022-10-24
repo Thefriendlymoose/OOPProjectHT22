@@ -44,10 +44,6 @@ public class Site {
         return siteId;
     }
 
-    public void setSiteId(long siteId) {
-        this.siteId = siteId;
-    }
-
     public String getSiteName() {
         return siteName;
     }
@@ -72,16 +68,8 @@ public class Site {
         return siteArticles;
     }
 
-    public void setSiteArticles(List<SiteArticle> siteArticles) {
-        this.siteArticles = siteArticles;
-    }
-
     public List<User> getSiteUsers() {
         return siteUsers;
-    }
-
-    public void setSiteUsers(List<User> siteUsers) {
-        this.siteUsers = siteUsers;
     }
 
 
