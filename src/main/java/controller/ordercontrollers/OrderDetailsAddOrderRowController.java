@@ -95,7 +95,6 @@ public class OrderDetailsAddOrderRowController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.CANCEL){
-            System.out.println("Clicked Cancel");
         } else {
             ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
         }
