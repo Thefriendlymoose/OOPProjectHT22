@@ -56,7 +56,7 @@ public class UserDAO implements IPersistence<User> {
     public void save(List<User> list) {
         SerializeBuilder sb = new SerializeBuilder();
         WriterHelper<User> wh = new WriterHelper<>();
-        wh.WriteToFileSerializer(file, list, sb.getGson());
+        wh.writeToFileSerializer(file, list, sb.getGson());
     }
 
 

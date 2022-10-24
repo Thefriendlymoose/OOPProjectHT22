@@ -76,7 +76,7 @@ public final class CustomersDAO implements IPersistence<Customer> {
     public void save(List<Customer> list) {
         SerializeBuilder sb = new SerializeBuilder();
         WriterHelper<Customer> wh = new WriterHelper<>();
-        wh.WriteToFileSerializer(customersFile, list, sb.getGson());
+        wh.writeToFileSerializer(customersFile, list, sb.getGson());
     }
 
 
