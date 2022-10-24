@@ -46,6 +46,10 @@ public class CreateUserController {
     public void setUsers(Users users) {
         this.users = users;
     }
+
+
+
+
     public void onSave(ActionEvent e) throws IOException {
         User newUser = new User(users.getNextUserID(), userNameField.getText(), passwordField.getText(),firstNameField.getText() + " " + lastNameField.getText()
         , statusBox.getValue(), roleBox.getValue());
@@ -71,6 +75,7 @@ public class CreateUserController {
 
 
     public void initialize(){
+
         statusBox.getItems().setAll(true, false);
         roleBox.getItems().addAll(Role.getManager(),Role.getSalesPerson(),Role.getAdmin());
         roleBox.valueProperty().addListener(new ChangeListener<Role>() {
@@ -82,8 +87,8 @@ public class CreateUserController {
 
             }
         });
-        if(!(roleBox.getValue() == null))
-            descriptionTextArea.setText(roleBox.getValue().getDescription());
+        // TODO FIX BUGGED ATM
+
         userIDTextField.setText(Long.toString(UserDAO.getInstance().getNextId()));
     }
 

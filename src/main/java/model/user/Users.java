@@ -36,13 +36,12 @@ public class Users implements Observable {
         nextUserID++;
         notifyObservers();
     }
+
     public Boolean isUserOK(User user){
         for(User u : getAllUsers()){
             if (u.getUserName() == user.getUserName())
                 return true;
         }
-
-
         return false;
     }
 
@@ -57,9 +56,6 @@ public class Users implements Observable {
         return nextUserID;
     }
 
-    public Permission[] getPermissions(){
-        return Permission.values();
-    }
 
     public List<User> getInList() {
         return new ArrayList<>(users.values());

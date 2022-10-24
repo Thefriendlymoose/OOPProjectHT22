@@ -56,14 +56,6 @@ public class UserMenuController implements Observer {
     }
 
 
-    /*
-    public static int compare(User u1, User u2){
-        long l = (u2.getUserId() - u1.getUserId());
-        return (int) l;
-    }
-
-     */
-
     private void loadCards(IStrategySort strategySort) throws IOException{
         userCardHolder.getChildren().clear();
         List<User> myUsers = users.getAllUsers();
@@ -76,6 +68,7 @@ public class UserMenuController implements Observer {
             cont.setUser(user);
             cont.setUsers(users);
             cont.setWms(wms);
+
 
             userCardHolder.getChildren().add(pane);
         }
