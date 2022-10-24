@@ -23,7 +23,6 @@ public final class ArticlesDAO implements IPersistence<Article> {
     private final String articlesFile = "src/main/resources/articles.json";
     private Map<Long, Article> articles = new HashMap<>();
     private Gson gson;
-
     private Map<Long, User> users = UserDAO.getInstance().getAllMap();
 
     private ArticlesDAO() {
@@ -72,7 +71,7 @@ public final class ArticlesDAO implements IPersistence<Article> {
         sb.addUserSerializer();
         sb.addLocalDateTimeSerializer();
         WriterHelper<Article> wh = new WriterHelper<>();
-        wh.WriteToFileSerializer(articlesFile, list, sb.getGson());
+        wh.writeToFileSerializer(articlesFile, list, sb.getGson());
     }
 
     @Override

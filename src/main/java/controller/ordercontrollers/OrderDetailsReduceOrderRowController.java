@@ -72,15 +72,12 @@ public class OrderDetailsReduceOrderRowController {
             try {
                 int amount = Integer.parseInt(amountTextField.getText());
                 if (order.reduceOrderRow(current, amount)) {
-                    System.out.println("success");
+
                     ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
                     wms.updateOrder();
-                } else {
-                    System.out.println("Failed");
                 }
-
             } catch (NumberFormatException error){
-                System.out.println("error number");
+
             }
         }
     }
@@ -93,7 +90,7 @@ public class OrderDetailsReduceOrderRowController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.CANCEL){
-            System.out.println("Clicked Cancel");
+
         } else {
             ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
         }

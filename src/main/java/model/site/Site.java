@@ -21,7 +21,6 @@ public class Site {
     private List<User> siteUsers;
 
 
-
     /**
      *
      * @param siteId Id of site

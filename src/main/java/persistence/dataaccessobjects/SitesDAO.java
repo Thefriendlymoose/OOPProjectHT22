@@ -81,7 +81,7 @@ public final class SitesDAO implements IPersistence<Site> {
         sb.addArticleSerializer();
         sb.addUserSerializer();
         WriterHelper<Site> wh = new WriterHelper<>();
-        wh.WriteToFileSerializer(sitesFile, list, sb.getGson());
+        wh.writeToFileSerializer(sitesFile, list, sb.getGson());
     }
 
 

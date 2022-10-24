@@ -113,8 +113,6 @@ public class CustomerEditor implements Observable {
     }
 
 
-
-
     @Override
     public void registerObserver(Observer o) {
         observers.add(o);

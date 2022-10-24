@@ -107,11 +107,4 @@ class ArticlesDAOTest {
         }
     }
 
-    @Test
-    void getNextId() {
-
-    }
-    @Test
-    void findById() {
-    }
 }

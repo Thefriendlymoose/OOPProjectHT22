@@ -1,4 +1,4 @@
-package sitetests;
+package ordertests;
 
 import model.WMS;
 import model.article.Article;
@@ -57,13 +57,26 @@ public class TestWMS {
         sa.add(new SiteArticle(art, 25));
         List<User> emp = new ArrayList<>();
         emp.add(user);
+
         Site site = new Site(sites.getNextId(), "test site", "test site address", 500, sa, emp);
 
+        sites.addSite(site);
+
         Orders orders = new Orders(new HashMap<>());
-        List<OrderRow> rows = new ArrayList<>();
-        rows.add(new OrderRow(art, 25));
-        Order order = new Order(user, orders.getNextOrderNumber(), customers.getCustomerById(1L), OrderStatus.ACTIVE, true, LocalDateTime.now(), LocalDateTime.now(), rows, site);
-        orders.addOrder(order);
+
+        List<OrderRow> rows1 = new ArrayList<>();
+        List<OrderRow> rows2 = new ArrayList<>();
+        rows1.add(new OrderRow(art, 1));
+        rows2.add(new OrderRow(art, 1));
+
+        Order order1 = new Order(user, orders.getNextOrderNumber(), customers.getCustomerById(1L), OrderStatus.ACTIVE, true, LocalDateTime.now(), LocalDateTime.now(), rows1, site);
+        orders.addOrder(order1);
+
+        Order order2 = new Order(user, orders.getNextOrderNumber(), customers.getCustomerById(1L), OrderStatus.ACTIVE, true, LocalDateTime.now(), LocalDateTime.now(), rows2, site);
+        orders.addOrder(order2);
+
+        Order order3 = new Order(user, 1000, customers.getCustomerById(1L), OrderStatus.FINISHED, true, LocalDateTime.now(), LocalDateTime.now(), rows2, site);
+        orders.addOrder(order3);
 
         UserAuthentication ua = new UserAuthentication();
 

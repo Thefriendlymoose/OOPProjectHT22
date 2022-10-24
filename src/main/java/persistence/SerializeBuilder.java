@@ -68,9 +68,6 @@ public class SerializeBuilder {
         });
     }
 
-
-
-
     public Gson getGson(){
         return gb.serializeNulls().setPrettyPrinting().create();
     }

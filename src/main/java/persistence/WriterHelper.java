@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class WriterHelper<T> {
 
-    public void WriteToFileSerializer(String file, List<T> list, Gson g){
+    public void writeToFileSerializer(String file, List<T> list, Gson g){
 
         try {
             FileWriter fw = new FileWriter(file);
