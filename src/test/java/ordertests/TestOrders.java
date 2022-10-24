@@ -13,6 +13,8 @@ import model.order.Orders;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -64,6 +66,11 @@ public class TestOrders {
     @Test
     public void testGetOrdersByCustomer(){
         Orders orders = wms.getOrders();
+        Customer cust1 = wms.getCustomerModel().getCustomerList().stream().findFirst().get();
+
+        List<Order> ords = wms.getOrders().getInList().stream().collect(Collectors.toList());
+
+        assertEquals(orders.getOrdersByCustomer(cust1),ords);
     }
 
     @Test
