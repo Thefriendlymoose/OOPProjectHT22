@@ -6,7 +6,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.bson.Document;
 
-
+/**
+ * Controller for opening a user based on userID
+ */
 public class OpenUserController {
 
     @FXML

@@ -6,12 +6,21 @@ import model.observer.Observer;
 
 import java.util.*;
 
+/***
+ * A collection of Users
+ */
+
 public class Users implements Observable {
 
 
     private Map<Long, User> users;
     private Long nextUserID;
     private List<Observer> observers;
+
+    /**
+     * Constructor of users
+     * @param users Takes a Map of userIds and users
+     */
 
     public Users(Map<Long, User> users){
         this.users = users;
@@ -24,31 +33,33 @@ public class Users implements Observable {
     }
 
 
+    /**
+     *
+     * @return all the users from the users map
+     */
     public List<User> getAllUsers(){
         return new ArrayList<>(users.values());
     }
 
 
-
+    /**
+     * Adds a user to users and increments userID by one
+     * @param user to be added to users
+     */
     public void addUser(User user){
-        if (isUserOK(user))
-            return;
         users.put(user.getUserId(), user);
         nextUserID++;
         notifyObservers();
     }
 
-    public Boolean isUserOK(User user){
-        for(User u : getAllUsers()){
-            if (u.getUserName() == user.getUserName())
-                return true;
-        }
-        return false;
-    }
 
 
 
 
+    /**
+     * removes a user from users
+     * @param user the user to be removed
+     */
     public void removeUser(User user){
         users.remove(user.getUserId());
         notifyObservers(); }
@@ -66,6 +77,11 @@ public class Users implements Observable {
         notifyObservers();
     }
 
+    /**
+     * Gets a user based on the given usersName
+     * @param userName the user Name to be searched with
+     * @return the user found
+     */
     public User returnUserByUsername(String userName){
         for (User user : users.values()){
             if (user.getUserName().equals(userName)){

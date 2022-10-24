@@ -21,6 +21,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Controller used for when creating users
+ */
 public class CreateUserController {
 
     @FXML
@@ -47,11 +50,18 @@ public class CreateUserController {
         this.users = users;
     }
 
+    /**
+     * initializes the form for creating Users
+     */
+
     public void initialize(){
         Platform.runLater(() -> {
 
             statusBox.getItems().setAll(true, false);
             roleBox.getItems().addAll(Role.getManager(), Role.getSalesPerson(), Role.getAdmin());
+                    /**
+                     * Listener for when combobox Changes role and gives the right role Description
+                     */
             roleBox.valueProperty().addListener(new ChangeListener<Role>() {
                 @Override
                 public void changed(ObservableValue<? extends Role> observableValue, Role role, Role t1) {
@@ -67,7 +77,11 @@ public class CreateUserController {
         );}
 
 
-
+    /**
+     * Handler for when user presses save
+     * @param e event from button pressed
+     * @throws IOException
+     */
 
     public void onSave(ActionEvent e) throws IOException {
         User newUser = new User(users.getNextUserID(), userNameField.getText(), passwordField.getText(),firstNameField.getText() + " " + lastNameField.getText()
@@ -77,6 +91,11 @@ public class CreateUserController {
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
 
     }
+
+    /**
+     * Handler for when user presses cancel
+     * @param e event from button pressed
+     */
     public void onCancel(ActionEvent e){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");

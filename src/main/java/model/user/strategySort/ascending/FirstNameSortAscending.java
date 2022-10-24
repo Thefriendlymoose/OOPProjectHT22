@@ -4,6 +4,9 @@ import model.user.User;
 import model.user.strategySort.IStrategySort;
 
 import java.util.List;
+/**
+ * A class used when sorting FirstName in ascending order
+ */
 
 public class FirstNameSortAscending implements IStrategySort {
 

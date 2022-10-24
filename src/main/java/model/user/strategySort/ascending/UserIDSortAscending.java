@@ -5,6 +5,10 @@ import model.user.strategySort.IStrategySort;
 
 import java.util.List;
 
+/**
+ * A class used when sorting UserID in ascending order
+ */
+
 public class UserIDSortAscending implements IStrategySort {
     @Override
     public void sort(List<User> users) {

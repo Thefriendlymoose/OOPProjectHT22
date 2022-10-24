@@ -18,6 +18,9 @@ import model.user.Users;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Controller for card for users
+ */
 public class UserMenuCardController {
 
     @FXML
@@ -37,7 +40,9 @@ public class UserMenuCardController {
     public void setUsers(Users users) {this.users = users;}
 
 
-
+    /**
+     * intializes the user cards
+     */
     public void initialize(){
         Platform.runLater(() -> {
             cardUserIDLabel.setText(cardUserIDLabel.getText() + user.getUserId());
@@ -45,7 +50,9 @@ public class UserMenuCardController {
             cardPremissionLabel.setText(cardPremissionLabel.getText() + user.getRole());
 
 
-
+            /**
+             * transfers the user to details form if it's not the same user
+             */
             editUserButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {
@@ -74,6 +81,9 @@ public class UserMenuCardController {
                 }
             });
 
+            /**
+             * removes the selected user on press
+             */
             removeUserButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent actionEvent) {

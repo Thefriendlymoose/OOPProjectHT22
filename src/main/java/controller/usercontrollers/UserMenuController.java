@@ -30,6 +30,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Controller for user menu
+ */
 public class UserMenuController implements Observer {
     @FXML
     private Button backButton;
@@ -46,12 +49,21 @@ public class UserMenuController implements Observer {
     @FXML
     private VBox userCardHolder;
 
+    /**
+     * initailizes the user cards
+     * @throws IOException
+     */
     public  void initialize() throws IOException {
         loadCards(sortUser);
 
     }
 
 
+    /**
+     * Loads the cards to user menu based on an order by the sort
+     * @param strategySort the sort in which they will be ordered in
+     * @throws IOException
+     */
     private void loadCards(IStrategySort strategySort) throws IOException{
         userCardHolder.getChildren().clear();
         List<User> myUsers = users.getAllUsers();
@@ -71,18 +83,23 @@ public class UserMenuController implements Observer {
     }
 
 
-
-
-
+    /**
+     * When user presses the back button
+     * @throws Exception
+     */
     public void backBtnHandler() throws Exception{
         Parent root = ParentDependencyInjection.load("fxml/mainMenu.fxml");
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }
 
-    
-    
-    
+
+    /**
+     * When the user presses the create button
+     * Transfers the user to create Controller
+     * @param e when create button is pressed
+     * @throws Exception
+     */
     public void createButton(ActionEvent e) throws Exception{
             FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("../../fxml/userViews/CreateUserMenu.fxml")));
             Stage stage = loader.load();
@@ -93,6 +110,12 @@ public class UserMenuController implements Observer {
             stage.initOwner(((Node)e.getSource()).getScene().getWindow() );
             stage.show();}
 
+    /**
+     * When the user presses the open button
+     * transfers the user to open user details controller
+     * @param e when open button is pressed
+     * @throws Exception
+     */
     public void openButton(ActionEvent e) throws Exception{
 
         Stage stage = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxml/userViews/openUser.fxml")));
@@ -108,6 +131,7 @@ public class UserMenuController implements Observer {
 
     }
 
+
     @Override
     public void update() {
         try {
@@ -116,31 +140,68 @@ public class UserMenuController implements Observer {
             throw new RuntimeException(e);
         }
     }
+    //All the different sorts based
 
+    /**
+     * Handler for when userIDDown button is pressed
+     * Sorts the users by userID
+     * @param actionEvent when userIDDown button is pressed
+     * @throws IOException
+     */
     public void userIDDown(ActionEvent actionEvent) throws IOException {
         sortUser = new UserIDSortDescending();
         loadCards(sortUser);
     }
+    /**
+     * Handler for when userIDUp button is pressed
+     * Sorts the users by userID
+     * @param actionEvent when userIDDown button is pressed
+     * @throws IOException
+     */
 
     public void userIDUp(ActionEvent actionEvent) throws IOException {
         sortUser = new UserIDSortAscending();
         loadCards(sortUser);
     }
+    /**
+     * Handler for when sortFirstNameUp button is pressed
+     * Sorts the users by FirstName
+     * @param actionEvent when FirstNameUp button is pressed
+     * @throws IOException
+     */
     public void sortFirstNameUp(ActionEvent actionEvent) throws IOException {
         sortUser = new FirstNameSortAscending();
         loadCards(sortUser);
     }
+    /**
+     * Handler for when sortFirstNameDown button is pressed
+     * Sorts the users by FirstName
+     * @param actionEvent when FirstNameDown button is pressed
+     * @throws IOException
+     */
 
     public void sortFirstNameDown(ActionEvent actionEvent) throws IOException {
         sortUser = new FirstNameSortDescending();
         loadCards(sortUser);
 
     }
+    /**
+     * Handler for when sortLastNameUp button is pressed
+     * Sorts the users by LastName
+     * @param actionEvent when LastNameUp button is pressed
+     * @throws IOException
+     */
 
     public void sortLastNameUp(ActionEvent actionEvent) throws IOException {
         sortUser = new LastNameSortAscending();
         loadCards(sortUser);
     }
+    /**
+     * Handler for when sortLastNameDown button is pressed
+     * Sorts the users by LastName
+     * @param actionEvent when LastNameDown button is pressed
+     * @throws IOException
+     */
 
     public void sortLastNameDown(ActionEvent actionEvent) throws IOException {
         sortUser = new LastNameSortDescending();

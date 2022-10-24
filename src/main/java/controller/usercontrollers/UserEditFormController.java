@@ -20,6 +20,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Controller for editing user details
+ */
 public class UserEditFormController {
 
     @FXML
@@ -51,9 +54,9 @@ public class UserEditFormController {
     }
 
 
-
-
-
+    /**
+     * initializes the editing form
+     */
     @FXML
     public void initialize() {
 
@@ -87,6 +90,13 @@ public class UserEditFormController {
         });
 
     }
+
+    /**
+     * Handler for when the save button is pressed
+     * Saves the changes made to user
+     * @param e save button pressed
+     * @throws IOException
+     */
     public void onSave(ActionEvent e) throws IOException {
         // temp
 
@@ -100,6 +110,13 @@ public class UserEditFormController {
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
 
     }
+
+    /**
+     * Handler for when the cancel button is pressed
+     * Prompts the user first if they are sure
+     * If yes closes the edit user controller window
+     * @param e when cancle button is pressed
+     */
     public void onCancel(ActionEvent e){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");

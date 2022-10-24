@@ -17,6 +17,9 @@ import model.user.Users;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Controller viewing a users detalis
+ */
 public class userDetailsController {
 
     @FXML
@@ -48,8 +51,9 @@ public class userDetailsController {
     }
 
 
-
-
+    /**
+     * Initializes the details form
+     */
     @FXML
     public void initialize() {
 
@@ -68,6 +72,13 @@ public class userDetailsController {
 
     }
 
+    /**
+     * Hanled for when user presses the edit button
+     * Takes the user to userEditController
+     * @param e when edit button is pressed
+     * @throws IOException
+     */
+
     public void edit(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../fxml/userViews/userEditor.fxml"));
         Stage stage = loader.load();
@@ -80,6 +91,13 @@ public class userDetailsController {
 
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
     }
+
+    /**
+     * Handler for when the user presses the cancel button
+     * Close the window on action
+     * @param e when cancel button is pressed
+     * @throws IOException
+     */
     public void cancel(ActionEvent e) throws IOException{
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
 

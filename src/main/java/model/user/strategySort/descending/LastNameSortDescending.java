@@ -5,6 +5,9 @@ import model.user.strategySort.IStrategySort;
 
 import java.util.List;
 
+/**
+ * A class used when sorting LastName in descending order
+ */
 public class LastNameSortDescending implements IStrategySort {
     @Override
     public void sort(List<User> users) {
