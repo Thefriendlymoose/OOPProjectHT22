@@ -21,8 +21,8 @@ public class Role {
 
     public static Role getManager(){
         Role role = new Role();
-        role.name = "Manager";
-        role.description = "asdf";
+        role.name = "manager";
+        role.description = "Access to Orders, Users and Sites";
         role.permissions.add(Permission.ORDER);
         role.permissions.add(Permission.USER);
         role.permissions.add(Permission.SITE);
@@ -37,8 +37,8 @@ public class Role {
     }
     public static Role getSalesPerson(){
         Role role = new Role();
-        role.name = "SalesPerson";
-        role.description = "Access to Article";
+        role.name = "salesperson";
+        role.description = "Access to Articles, Orders and Customers";
         role.permissions.add(Permission.CUSTOMER);
         role.permissions.add(Permission.ARTICLE);
         role.permissions.add(Permission.ORDER);
@@ -46,33 +46,7 @@ public class Role {
     }
 
 
-    /*
-    public Role getManager(){
-        this.name = "Manager";
-        this.description = "asdf";
-        this.permissions.add(Permission.ORDER);
-        this.permissions.add(Permission.USER);
-        this.permissions.add(Permission.SITE);
-        return this;
 
-    }
-
-    public Role getAdmin(){
-        this.name = "admin";
-        this.description = "Access to all parts of the program";
-        this.permissions.add(Permission.ALL);;
-        return this;
-    }
-    public Role getSalesPerson(){
-        this.name = "SalesPerson";
-        this.description = "Access to Article";
-        this.permissions.add(Permission.CUSTOMER);
-        this.permissions.add(Permission.ARTICLE);
-        this.permissions.add(Permission.ORDER);
-        return this;
-    }
-
-     */
 
     public boolean hasPermission(Permission permission){
         if (permission == Permission.ALL)

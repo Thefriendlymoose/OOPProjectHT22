@@ -1,6 +1,8 @@
 package controller.usercontrollers;
 
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -49,6 +51,7 @@ public class CreateUserController {
         , statusBox.getValue(), roleBox.getValue());
         users.addUser(newUser);
         users.updateUser();
+        ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
 
     }
     public void onCancel(ActionEvent e){
@@ -66,10 +69,21 @@ public class CreateUserController {
     }
 
 
+
     public void initialize(){
         statusBox.getItems().setAll(true, false);
         roleBox.getItems().addAll(Role.getManager(),Role.getSalesPerson(),Role.getAdmin());
+        roleBox.valueProperty().addListener(new ChangeListener<Role>() {
+            @Override
+            public void changed(ObservableValue<? extends Role> observableValue, Role role, Role t1) {
+                if (!(t1 == null)){
+                    descriptionTextArea.setText(roleBox.getValue().getDescription());
+                }
 
+            }
+        });
+        if(!(roleBox.getValue() == null))
+            descriptionTextArea.setText(roleBox.getValue().getDescription());
         userIDTextField.setText(Long.toString(UserDAO.getInstance().getNextId()));
     }
 

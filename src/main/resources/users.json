@@ -8,7 +8,7 @@
     "permissions":
       {
         "name": "admin",
-        "description": "asdf",
+        "description": "Access to all parts of the program",
         "permissions": ["ALL"]
       }
 
@@ -21,8 +21,8 @@
     "status": true,
     "permissions":
     {
-      "name": "Manager",
-      "description": "Access to most part",
+      "name": "manager",
+      "description": "Access to Orders, Users and Sites",
       "permissions": ["ORDER","USER", "SITES"]
     }
 
@@ -35,8 +35,8 @@
     "status": true,
     "permissions":
     {
-      "name": "Manager",
-      "description": "Access to most part ",
+      "name": "manager",
+      "description": "Access to Orders, Users and Sites",
       "permissions": ["USER","ORDER","SITES"]
     }
 
@@ -49,8 +49,8 @@
     "status": true,
     "permissions":
     {
-      "name": "Manager",
-      "description": "Access to most part",
+      "name": "manager",
+      "description": "Access to Orders, Users and Sites",
       "permissions": ["USER","ORDER","SITES"]
     }
 
@@ -63,8 +63,8 @@
     "status": true,
     "permissions":
     {
-      "name": "SalesPerson",
-      "description": "asdf",
+      "name": "salesperson",
+      "description": "Access to Articles, Orders and Customers",
       "permissions": ["ORDER","CUSTOMER","ARTICLE"]
     }
 

@@ -67,7 +67,8 @@ public class userDetailsController {
             passwordField.setText(user.getPassword());
             statusBox.setValue(user.isStatus());
             statusBox.getItems().addAll(user.getAllStatus());
-            roleBox.setValue(user.getPermissions());
+            roleBox.setValue(user.getRole());
+            descriptionTextArea.setText(roleBox.getValue().getDescription());
         });
 
     }

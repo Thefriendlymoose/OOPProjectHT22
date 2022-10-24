@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 import model.WMS;
 import model.user.Users;
 import model.user.strategySort.IStrategySort;
-import model.user.strategySort.UserIDSortDown;
 import model.user.strategySort.ascending.FirstNameSortAscending;
 import model.user.strategySort.ascending.LastNameSortAscending;
 import model.user.strategySort.ascending.UserIDSortAscending;
@@ -36,7 +35,7 @@ public class UserMenuController implements Observer {
     private Button openButton, createButton, listButton, backButton;
     private WMS wms;
     private Users users;
-    private IStrategySort sortUser = new UserIDSortDown();
+    private IStrategySort sortUser = new UserIDSortDescending();
 
     public UserMenuController(WMS wms) {
         this.wms = wms;

@@ -52,12 +52,13 @@
 
                   <Label alignment="BASELINE_LEFT" text="SORTING">
                   </Label>
-                  <Button  onAction="#userIDDown" fx:id="" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="UserID DOWN">
+
+                  <Button  onAction="#userIDUp" fx:id="" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="UserID Up">
                      <font>
                         <Font size="12.0" />
                      </font>
                   </Button>
-                  <Button  onAction="#userIDUp" fx:id="" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="UserID Up">
+                  <Button  onAction="#userIDDown" fx:id="" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="UserID Down">
                      <font>
                         <Font size="12.0" />
                      </font>
@@ -75,17 +76,12 @@
                   </Button>
                   <Button  onAction="#sortLastNameUp" fx:id="" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="Lastname Up">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="12.0" />
                      </font>
                   </Button>
                   <Button  onAction="#sortLastNameDown" fx:id="" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="Lastname Down">
                      <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button  fx:id="" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="Back">
-                     <font>
-                        <Font size="18.0" />
+                        <Font size="12.0" />
                      </font>
                   </Button>
                </children>

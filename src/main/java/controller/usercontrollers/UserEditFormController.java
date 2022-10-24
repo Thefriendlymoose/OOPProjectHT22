@@ -1,6 +1,8 @@
 package controller.usercontrollers;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -56,6 +58,7 @@ public class UserEditFormController {
 
 
         Platform.runLater(() -> {
+
             userIDTextField.setText(String.valueOf(user.getUserId()));
             firstNameField.setText(user.getFirstName(user.getName()));
             lastNameField.setText(user.getLastName(user.getName()));
@@ -63,25 +66,33 @@ public class UserEditFormController {
             passwordField.setText(user.getPassword());
             statusBox.setValue(user.isStatus());
             statusBox.getItems().addAll(user.getAllStatus());
-            roleBox.setValue(user.getPermissions());
-            // tmp
+            roleBox.setValue(user.getRole());
             roleBox.getItems().addAll(
-                    user.getPermissions().getAdmin(),
-                    user.getPermissions().getManager(),
-                    user.getPermissions().getSalesPerson()
+                    user.getRole().getAdmin(),
+                    user.getRole().getManager(),
+                    user.getRole().getSalesPerson()
                     );
+            descriptionTextArea.setText(roleBox.getValue().getDescription());
+            roleBox.valueProperty().addListener(new ChangeListener<Role>() {
+                @Override
+                public void changed(ObservableValue<? extends Role> observableValue, Role role, Role t1) {
+                    if (!(t1 == null)){
+                        descriptionTextArea.setText(roleBox.getValue().getDescription());
+                    }
+
+                }
+            });
 
         });
 
     }
     public void onSave(ActionEvent e) throws IOException {
-        // temp
 
         user.setName(firstNameField.getText() + " " + lastNameField.getText());
         user.setUserName((userNameField.getText()));
         user.setPassword(passwordField.getText());
         user.setStatus(statusBox.getValue());
-        user.setPermissions(roleBox.getValue());
+        user.setRole(roleBox.getValue());
 
         users.updateUser();
         ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
