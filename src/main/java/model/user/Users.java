@@ -12,7 +12,6 @@ import java.util.*;
 
 public class Users implements Observable {
 
-
     private Map<Long, User> users;
     private Long nextUserID;
     private List<Observer> observers;

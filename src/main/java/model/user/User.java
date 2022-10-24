@@ -1,11 +1,5 @@
 package model.user;
 
-import model.observer.Observable;
-import model.observer.Observer;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 /**
  * User class
  * @author Alexander Hyyppä

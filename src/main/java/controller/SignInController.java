@@ -11,9 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.authentication.AuthenticationStatus;
-import model.authentication.UserAuthentication;
 import model.WMS;
-import model.user.Users;
 
 /**
  * Controller for the view which shows the login screen

@@ -9,13 +9,11 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import model.user.Permission;
 import model.user.Role;
 import model.user.User;
 import model.user.Users;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Controller viewing a users detalis
