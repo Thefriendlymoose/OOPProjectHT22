@@ -200,10 +200,12 @@ public class Order {
     }
 
     /**
+     * Adds Site article and an amount of that site article to an OrderRow,
+     * if possible.
      *
-     * @param sa
-     * @param amount
-     * @return
+     * @param sa is Site Article to be added
+     * @param amount number of the Site article sa which is added
+     * @return true if possible to add, other false
      */
 
     public boolean addOrderRow(SiteArticle sa, int amount){
@@ -215,11 +217,18 @@ public class Order {
             }
             sa.decreaseAmount(amount);
             return true;
-
         } else {
             return false;
         }
     }
+
+    /**
+     * Reduces the amount of an Article in an Order Row, if possible.
+     *
+     * @param or is the Order Row to be reduced
+     * @param amount number of the  sa which is added
+     * @return true if possible to reduce, otherwise false
+     */
 
     public boolean reduceOrderRow(OrderRow or, int amount) {
         Article art = or.getArticle();

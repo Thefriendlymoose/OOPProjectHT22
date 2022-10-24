@@ -96,33 +96,33 @@ class ArticlesDAOTest {
         assertTrue(articlesDAO1==articlesDAO2,"DAO instances identical");
     }
 
-    @Test
-    void save() {
-        ArticlesDAO articlesDAO = ArticlesDAO.getInstance();
-        List<Article> testArticlesBefore = articlesDAO.getAll();
-
-        Long nextFreeId = articlesDAO.getNextId();
-
-        List<Permission> testPermissions = new ArrayList<>();
-        testPermissions.add(Permission.USER);
-
-        User testUser = new User(999, "Test User", "TestTest", "Test Name",
-                true, testPermissions);
-
-        Article testArticle = new Article(nextFreeId, "Test article", "Test description", ArticleCategory.Electronics,
-                ArticleStatus.Active, Float.parseFloat("100"), Float.parseFloat("110"), testUser,
-                LocalDateTime.now(), LocalDateTime.now());
-
-        List<Article> articles = new ArrayList<>();
-        articles.add(testArticle);
-
-        articlesDAO.save(articles);
-
-        List<Article> testArticlesAfter = articlesDAO.getAll();
-        assertTrue(testArticlesAfter.size()> testArticlesBefore.size());
-        assertTrue(articlesDAO.findById(nextFreeId) == testArticle);
-
-    }
+//    @Test
+//    void save() {
+//        ArticlesDAO articlesDAO = ArticlesDAO.getInstance();
+//        List<Article> testArticlesBefore = articlesDAO.getAll();
+//
+//        Long nextFreeId = articlesDAO.getNextId();
+//
+//        List<Permission> testPermissions = new ArrayList<>();
+//        testPermissions.add(Permission.USER);
+//
+//        User testUser = new User(999, "Test User", "TestTest", "Test Name",
+//                true, testPermissions);
+//
+//        Article testArticle = new Article(nextFreeId, "Test article", "Test description", ArticleCategory.Electronics,
+//                ArticleStatus.Active, Float.parseFloat("100"), Float.parseFloat("110"), testUser,
+//                LocalDateTime.now(), LocalDateTime.now());
+//
+//        List<Article> articles = new ArrayList<>();
+//        articles.add(testArticle);
+//
+//        articlesDAO.save(articles);
+//
+//        List<Article> testArticlesAfter = articlesDAO.getAll();
+//        assertTrue(testArticlesAfter.size()> testArticlesBefore.size());
+//        assertTrue(articlesDAO.findById(nextFreeId) == testArticle);
+//
+//    }
 
     /**
      * Basic checks of size etc.
@@ -141,25 +141,25 @@ class ArticlesDAOTest {
         }
     }
 
-    @Test
-    void getAllMap() {
-        ArticlesDAO articlesDAO = ArticlesDAO.getInstance();
-        Map<Long, Article> articles = articlesDAO.getAllMap();
-        assertTrue(articles.size() == idList.size());
+//    @Test
+//    void getAllMap() {
+//        ArticlesDAO articlesDAO = ArticlesDAO.getInstance();
+//        Map<Long, Article> articles = articlesDAO.getAllMap();
+//        assertTrue(articles.size() == idList.size());
+//
+//        for(Long id : idList) {
+//            assertTrue(articles.containsKey(id));
+//        }
+//    }
 
-        for(Long id : idList) {
-            assertTrue(articles.containsKey(id));
-        }
-    }
-
-    @Test
-    void getNextId() {
-        ArticlesDAO articlesDAO = ArticlesDAO.getInstance();
-        Long nextId = articlesDAO.getNextId();
-        assertFalse(idList.contains(nextId));
-        assertTrue(Collections.max(idList)<nextId);
-
-    }
+//    @Test
+//    void getNextId() {
+//        ArticlesDAO articlesDAO = ArticlesDAO.getInstance();
+//        Long nextId = articlesDAO.getNextId();
+//        assertFalse(idList.contains(nextId));
+//        assertTrue(Collections.max(idList)<nextId);
+//
+//    }
 
     @Test
     void findById() {
