@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Controller viewing a users detalis
  */
-public class userDetailsController {
+public class UserDetailsController {
 
     @FXML
     private Button editButton,cancelButton;

@@ -52,10 +52,6 @@ public class Users implements Observable {
         notifyObservers();
     }
 
-
-
-
-
     /**
      * removes a user from users
      * @param user the user to be removed
@@ -68,6 +64,9 @@ public class Users implements Observable {
         return nextUserID;
     }
 
+    public User getUserById(Long id) {
+        return users.get(id);
+    }
 
     public List<User> getInList() {
         return new ArrayList<>(users.values());
