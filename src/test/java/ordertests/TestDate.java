@@ -4,8 +4,6 @@ import model.order.DateFunctions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestDate {

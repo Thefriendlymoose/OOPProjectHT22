@@ -1,10 +1,6 @@
 package persistencetests;
 
 import model.article.Article;
-import model.article.ArticleCategory;
-import model.article.ArticleStatus;
-import model.user.Permission;
-import model.user.User;
 import org.junit.jupiter.api.*;
 import persistence.dataaccessobjects.ArticlesDAO;
 
@@ -13,18 +9,15 @@ import java.io.FileReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static java.lang.Long.valueOf;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArticlesDAOTest {
     private final static String jsonFile="src/main/resources/articles.json";
-    private ArrayList<Long> idList;
+    private List<Long> idList;
 
     /**
      * Create backup copy of json file before tests commence to preserve business data

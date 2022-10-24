@@ -30,25 +30,18 @@ public final class OrderDAO implements IPersistence<Order> {
     private static OrderDAO instance;
     private final String file = "src/main/resources/order.json";
 
-    private Map<Long, Order> orders;
-
-    private Gson gson;
-
-    private Map<Long, User> users;
-    private Map<Long, Customer> customer;
-    private Map<Long, Site> sites;
-    private Map<Long, Article> articles;
+    private final Map<Long, Order> orders;
 
     private OrderDAO(){
 
         this.orders = new HashMap<>();
 
-        this.users = UserDAO.getInstance().getAllMap();
-        this.articles = ArticlesDAO.getInstance().getAllMap();
-        this.customer = CustomersDAO.getInstance().getAllMap();
-        this.sites = SitesDAO.getInstance().getAllMap();
+        Map<Long, User> users = UserDAO.getInstance().getAllMap();
+        Map<Long, Article> articles = ArticlesDAO.getInstance().getAllMap();
+        Map<Long, Customer> customer = CustomersDAO.getInstance().getAllMap();
+        Map<Long, Site> sites = SitesDAO.getInstance().getAllMap();
 
-        gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
+        Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
             @Override
             public LocalDateTime deserialize(JsonElement json, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 
@@ -73,6 +66,7 @@ public final class OrderDAO implements IPersistence<Order> {
 
                 orders.put(order.getOrderNumber(), order);
             }
+            reader.close();
         } catch (Exception e){
             System.out.println(e);
         }

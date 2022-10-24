@@ -4,8 +4,6 @@ import model.customer.Customer;
 import model.customer.CustomerModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import persistence.dataaccessobjects.CustomersDAO;
-import persistence.IPersistence;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,11 +1,5 @@
 package model.user;
 
-import model.observer.Observable;
-import model.observer.Observer;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 public class User {
 
     private long userId;
@@ -95,7 +89,7 @@ public class User {
 
         String firstOrLastName =nameList[i];
         return firstOrLastName;
-    };
+    }
 
 
     public boolean isPasswordCorrect(User user){

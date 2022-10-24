@@ -9,27 +9,19 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import model.user.Permission;
 import model.user.Role;
 import model.user.User;
 import model.user.Users;
 
 import java.io.IOException;
-import java.util.List;
 
-public class userDetailsController {
-
-    @FXML
-    private Button editButton,cancelButton;
+public class UserDetailsController {
 
     @FXML
     private TextField userIDTextField, firstNameField, lastNameField, userNameField, passwordField;
 
     @FXML
     private TextArea descriptionTextArea;
-
-    @FXML
-    private Label userIDLabel, firstNameLabel,lastNameLabel,userNameLabel,passwordLabel,StatusLabel, roleLabel;
 
     @FXML
     private ComboBox<Role> roleBox;

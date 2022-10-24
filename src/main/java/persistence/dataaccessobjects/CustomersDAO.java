@@ -20,7 +20,7 @@ import persistence.pojos.CustomerJSON;
 public final class CustomersDAO implements IPersistence<Customer> {
     private static CustomersDAO instance = null;
     private  String customersFile = "src/main/resources/customers.json";
-    private Map<Long, Customer> customers = new HashMap<>();
+    private final Map<Long, Customer> customers = new HashMap<>();
     private Gson gson = new Gson();
 
 
@@ -40,6 +40,7 @@ public final class CustomersDAO implements IPersistence<Customer> {
                         cj.getCustomerId(), cj.getCompanyOrgNumber(), cj.getCompanyName());
                 customers.put(cj.getCustomerId(), customer);
             }
+            reader.close();
         } catch (Exception e){
             System.out.println(e);
         }

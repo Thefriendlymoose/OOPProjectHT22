@@ -24,18 +24,16 @@ public final class SitesDAO implements IPersistence<Site> {
 
     private static SitesDAO instance;
     private final String sitesFile="src/main/resources/sites.json";
-    private Map<Long, Site> sites;
-    private Gson gson = new Gson();
-    private Map<Long, User> users;
-    private Map<Long, Article> articles;
+    private final Map<Long, Site> sites;
 
     private SitesDAO(){
         this.sites  = new HashMap<>();
-        this.users = UserDAO.getInstance().getAllMap();
-        this.articles = ArticlesDAO.getInstance().getAllMap();
+        Map<Long, User> users = UserDAO.getInstance().getAllMap();
+        Map<Long, Article> articles = ArticlesDAO.getInstance().getAllMap();
 
         try {
             Reader reader = Files.newBufferedReader(Path.of(sitesFile));
+            Gson gson = new Gson();
             List<SiteJSON> siteJSONS = Arrays.asList(gson.fromJson(reader, SiteJSON[].class));
 
             for (SiteJSON sj : siteJSONS){
@@ -58,6 +56,7 @@ public final class SitesDAO implements IPersistence<Site> {
 
 
             }
+            reader.close();
 
         } catch (IOException e) {
             throw new RuntimeException(e);

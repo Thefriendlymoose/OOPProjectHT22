@@ -15,7 +15,6 @@ import model.order.Orders;
 import model.site.Site;
 import model.site.SiteArticle;
 import model.site.Sites;
-import model.user.Permission;
 import model.user.Role;
 import model.user.User;
 import model.user.Users;

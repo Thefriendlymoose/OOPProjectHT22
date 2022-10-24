@@ -16,25 +16,25 @@ import java.util.*;
 /**
  * Data Access Object which handles loading/saving user data from/to JSON
  */
-public class UserDAO implements IPersistence<User> {
+public final class UserDAO implements IPersistence<User> {
 
     private static UserDAO instance;
     private final String file = "src/main/resources/users.json";
-    private Map<Long, User> users;
-    private Gson gson = new Gson();
+    private final Map<Long, User> users;
 
     private UserDAO(){
         this.users = new HashMap<>();
 
         try {
             Reader reader = Files.newBufferedReader(Path.of(file));
+            Gson gson = new Gson();
             List<UserJSON> userJSONS = Arrays.asList(gson.fromJson(reader, UserJSON[].class));
 
             for (UserJSON uj : userJSONS){
                 User user = new User(uj.getUserId(), uj.getUserName(), uj.getPassword(), uj.getName(), uj.isStatus(), uj.getRole());
                 users.put(uj.getUserId(), user);
             }
-
+            reader.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
