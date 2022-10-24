@@ -96,51 +96,6 @@ class ArticlesDAOTest {
         assertTrue(articlesDAO1==articlesDAO2,"DAO instances identical");
     }
 
-<<<<<<< HEAD
-    @Test
-    void save() {
-
-
-    }
-=======
-//    @Test
-//    void save() {
-//        ArticlesDAO articlesDAO = ArticlesDAO.getInstance();
-//        List<Article> testArticlesBefore = articlesDAO.getAll();
-//
-//        Long nextFreeId = articlesDAO.getNextId();
-//
-//        List<Permission> testPermissions = new ArrayList<>();
-//        testPermissions.add(Permission.USER);
-//
-//        User testUser = new User(999, "Test User", "TestTest", "Test Name",
-//                true, testPermissions);
-//
-//        Article testArticle = new Article(nextFreeId, "Test article", "Test description", ArticleCategory.Electronics,
-//                ArticleStatus.Active, Float.parseFloat("100"), Float.parseFloat("110"), testUser,
-//                LocalDateTime.now(), LocalDateTime.now());
-//
-//        List<Article> articles = new ArrayList<>();
-//        articles.add(testArticle);
-//
-//        articlesDAO.save(articles);
-//
-//        List<Article> testArticlesAfter = articlesDAO.getAll();
-//        assertTrue(testArticlesAfter.size()> testArticlesBefore.size());
-//        assertTrue(articlesDAO.findById(nextFreeId) == testArticle);
-//
-//    }
->>>>>>> 4925fe2f5214064cfbbec8b42c154b8339de2316
-
-    /**
-     * Basic checks of size etc.
-     */
-    @Test
-    void getAll() {
-
-    }
-
-<<<<<<< HEAD
     @Test
     void getAllMap() {
         ArticlesDAO articlesDAO = ArticlesDAO.getInstance();
@@ -155,30 +110,7 @@ class ArticlesDAOTest {
     @Test
     void getNextId() {
 
-
     }
-=======
-//    @Test
-//    void getAllMap() {
-//        ArticlesDAO articlesDAO = ArticlesDAO.getInstance();
-//        Map<Long, Article> articles = articlesDAO.getAllMap();
-//        assertTrue(articles.size() == idList.size());
-//
-//        for(Long id : idList) {
-//            assertTrue(articles.containsKey(id));
-//        }
-//    }
-
-//    @Test
-//    void getNextId() {
-//        ArticlesDAO articlesDAO = ArticlesDAO.getInstance();
-//        Long nextId = articlesDAO.getNextId();
-//        assertFalse(idList.contains(nextId));
-//        assertTrue(Collections.max(idList)<nextId);
-//
-//    }
->>>>>>> 4925fe2f5214064cfbbec8b42c154b8339de2316
-
     @Test
     void findById() {
     }
