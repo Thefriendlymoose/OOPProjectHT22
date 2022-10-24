@@ -1,12 +1,16 @@
 package controller.usercontrollers;
 
 
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.user.Permission;
+import model.user.Role;
 import model.user.User;
 import model.user.Users;
 import persistence.dataaccessobjects.UserDAO;
@@ -14,15 +18,25 @@ import persistence.dataaccessobjects.UserDAO;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class CreateUserController {
 
     @FXML
+    private Button saveButton,cancelButton;
+
+    @FXML
     private TextField userIDTextField, firstNameField, lastNameField, userNameField, passwordField;
 
     @FXML
-    private ComboBox <List<Permission>> roleBox;
+    private TextArea descriptionTextArea;
+
+    @FXML
+    private Label userIDLabel, firstNameLabel,lastNameLabel,userNameLabel,passwordLabel,StatusLabel, roleLabel;
+
+    @FXML
+    private ComboBox <Role> roleBox;
 
     @FXML
     private ComboBox<Boolean> statusBox;
@@ -32,12 +46,35 @@ public class CreateUserController {
     public void setUsers(Users users) {
         this.users = users;
     }
+
+    public void initialize(){
+        Platform.runLater(() -> {
+
+            statusBox.getItems().setAll(true, false);
+            roleBox.getItems().addAll(Role.getManager(), Role.getSalesPerson(), Role.getAdmin());
+            roleBox.valueProperty().addListener(new ChangeListener<Role>() {
+                @Override
+                public void changed(ObservableValue<? extends Role> observableValue, Role role, Role t1) {
+                    if (!(t1 == null)) {
+                        descriptionTextArea.setText(roleBox.getValue().getDescription());
+                    }
+
+                }
+            });
+
+            userIDTextField.setText(Long.toString(users.getNextUserID()));
+        }
+        );}
+
+
+
+
     public void onSave(ActionEvent e) throws IOException {
         User newUser = new User(users.getNextUserID(), userNameField.getText(), passwordField.getText(),firstNameField.getText() + " " + lastNameField.getText()
         , statusBox.getValue(), roleBox.getValue());
-
         users.addUser(newUser);
         users.updateUser();
+        ((Stage) ((Node) e.getSource()).getScene().getWindow()).close();
 
     }
     public void onCancel(ActionEvent e){
@@ -55,13 +92,8 @@ public class CreateUserController {
     }
 
 
-    public void initialize(){
-        statusBox.getItems().setAll(true, false);
-        List<Permission> perms = new ArrayList<>(){
-            {add(Permission.ARTICLE);add(Permission.SITE);}};
-        roleBox.getItems().addAll(perms);
-        userIDTextField.setText(Long.toString(users.getNextUserID()));
-    }
+
+
 
 
 

@@ -49,6 +49,41 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
+
+                  <Label alignment="BASELINE_LEFT" text="SORTING">
+                  </Label>
+
+                  <Button  onAction="#userIDUp" fx:id="" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="UserID Up">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Button>
+                  <Button  onAction="#userIDDown" fx:id="" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="UserID Down">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Button>
+
+                  <Button  onAction="#sortFirstNameUp" fx:id="" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="Firstname Up">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Button>
+                  <Button  onAction="#sortFirstNameDown" fx:id="sortFirstNameDown" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="Firstname Down">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Button>
+                  <Button  onAction="#sortLastNameUp" fx:id="" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="Lastname Up">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Button>
+                  <Button  onAction="#sortLastNameDown" fx:id="" maxWidth="150.0" mnemonicParsing="false" styleClass="generic-button" text="Lastname Down">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Button>
                </children>
                <padding>
                   <Insets top="10.0" />

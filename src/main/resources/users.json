@@ -5,13 +5,13 @@
     "password": "1234",
     "name": "Olof Persson",
     "status": true,
-    "permissions": [
-      "ORDER",
-      "USER",
-      "SITE",
-      "CUSTOMER",
-      "ARTICLE"
-    ]
+    "role": {
+      "description": "Access to all parts of the program",
+      "name": "admin",
+      "permissions": [
+        "ALL"
+      ]
+    }
   },
   {
     "userId": 2,
@@ -19,11 +19,15 @@
     "password": "1234",
     "name": "Ulla Ullman",
     "status": true,
-    "permissions": [
-      "ORDER",
-      "USER",
-      "SITE"
-    ]
+    "role": {
+      "description": "Access to Orders, Users and Sites",
+      "name": "manager",
+      "permissions": [
+        "ORDER",
+        "USER",
+        "SITE"
+      ]
+    }
   },
   {
     "userId": 3,
@@ -31,11 +35,15 @@
     "password": "HelanGarHoppfallera",
     "name": "Elof Testman",
     "status": true,
-    "permissions": [
-      "ORDER",
-      "USER",
-      "SITE"
-    ]
+    "role": {
+      "description": "Access to Orders, Users and Sites",
+      "name": "manager",
+      "permissions": [
+        "USER",
+        "ORDER",
+        "SITE"
+      ]
+    }
   },
   {
     "userId": 4,
@@ -43,11 +51,15 @@
     "password": "IronMaiden666",
     "name": "Saleh Sala",
     "status": true,
-    "permissions": [
-      "ORDER",
-      "USER",
-      "SITE"
-    ]
+    "role": {
+      "description": "Access to Orders, Users and Sites",
+      "name": "manager",
+      "permissions": [
+        "USER",
+        "ORDER",
+        "SITE"
+      ]
+    }
   },
   {
     "userId": 5,
@@ -55,10 +67,14 @@
     "password": "AIKAIKAIK",
     "name": "Per Provman",
     "status": true,
-    "permissions": [
-      "ORDER",
-      "CUSTOMER",
-      "ARTICLE"
-    ]
+    "role": {
+      "description": "Access to Articles, Orders and Customers",
+      "name": "salesperson",
+      "permissions": [
+        "ORDER",
+        "CUSTOMER",
+        "ARTICLE"
+      ]
+    }
   }
 ]

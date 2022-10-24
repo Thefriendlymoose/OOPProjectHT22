@@ -10,6 +10,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import model.user.Permission;
+import model.user.Role;
 import model.user.User;
 import model.user.Users;
 
@@ -19,10 +20,19 @@ import java.util.List;
 public class userDetailsController {
 
     @FXML
+    private Button editButton,cancelButton;
+
+    @FXML
     private TextField userIDTextField, firstNameField, lastNameField, userNameField, passwordField;
 
     @FXML
-    private ComboBox<List<Permission>> roleBox;
+    private TextArea descriptionTextArea;
+
+    @FXML
+    private Label userIDLabel, firstNameLabel,lastNameLabel,userNameLabel,passwordLabel,StatusLabel, roleLabel;
+
+    @FXML
+    private ComboBox<Role> roleBox;
 
     @FXML
     private ComboBox<Boolean> statusBox;
@@ -52,8 +62,8 @@ public class userDetailsController {
             passwordField.setText(user.getPassword());
             statusBox.setValue(user.isStatus());
             statusBox.getItems().addAll(user.getAllStatus());
-            roleBox.setValue(user.getPermissions());
-            roleBox.getItems().setAll(user.getPermissions());
+            roleBox.setValue(user.getRole());
+            descriptionTextArea.setText(roleBox.getValue().getDescription());
         });
 
     }

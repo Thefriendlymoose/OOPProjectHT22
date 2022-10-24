@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import model.article.Article;
 import model.customer.Customer;
 import model.site.Site;
+import model.user.Role;
 import model.user.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,7 +55,7 @@ public class SerializeBuilderTest {
     public void serializeUser() {
         sb.addUserSerializer();
         Gson gson = sb.getGson();
-        User user = new User(1, "testuser", "1234", "test name", true, new ArrayList<>());
+        User user = new User(1, "testuser", "1234", "test name", true, Role.getAdmin());
         String serialized = gson.toJson(user);
         assertEquals("1", serialized);
     }
