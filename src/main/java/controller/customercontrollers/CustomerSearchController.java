@@ -1,6 +1,5 @@
 package controller.customercontrollers;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +11,11 @@ import model.customer.Customer;
 import model.customer.CustomerModel;
 
 import java.io.IOException;
+
+/**
+ * Controller for the search window, where the user can search for customers by id
+ * @author Simon Porsgaard / doktorjevksy
+ */
 
 public class CustomerSearchController {
 
@@ -25,6 +29,12 @@ public class CustomerSearchController {
     public void setModel(CustomerModel model){
         this.model = model;
     }
+
+    /**
+     * Opens the Customer Info view if the customer is found
+     * @param actionEvent open button is pressed
+     * @throws IOException throws exception if FXML fails to load
+     */
 
     public void openCustomerHandler(ActionEvent actionEvent) throws IOException {
         try {
@@ -45,7 +55,7 @@ public class CustomerSearchController {
             stage.show();
 
         } catch (Exception e) {
-            idtextField.setText("ID is not valid");
+            idtextField.setText("ID is not valid / Customer is not found");
         }
     }
 
