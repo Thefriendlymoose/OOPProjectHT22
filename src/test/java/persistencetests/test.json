@@ -1,0 +1,14 @@
+[
+  {
+    "articleId": 1,
+    "articleName": "test name",
+    "description": "test description",
+    "category": "Office",
+    "status": "Active",
+    "cost": 25.0,
+    "sellPrice": 50.0,
+    "createdBy": null,
+    "createdOn": "2022-10-24T17:09:03.451643900",
+    "lastEdited": "2022-10-24T17:09:03.452644700"
+  }
+]
