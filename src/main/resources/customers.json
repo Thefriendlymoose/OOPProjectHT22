@@ -10,6 +10,16 @@
         "contactPerson": "Sten Grus",
         "phoneNumber": "+46 420 69 69",
         "email": "bossman@foo.com"
+      },
+      {
+        "contactPerson": "knasbollen",
+        "phoneNumber": "+46 420 69 69",
+        "email": "jbro@sovietskijsoiuz.sssr"
+      },
+      {
+        "contactPerson": "hey my man",
+        "phoneNumber": "+46 420 69 69",
+        "email": "jbro@sovietskijsoiuz.sssr"
       }
     ],
     "billingAddress": {
@@ -21,7 +31,7 @@
     },
     "shippingAddress": {
       "streetName": "Göteborgsgatan",
-      "streetNumber": "1",
+      "streetNumber": "3",
       "postalCode": "666",
       "cityName": "Götelaborg",
       "country": "Inte sverige ;)"
@@ -29,37 +39,6 @@
     "customerId": 1,
     "companyOrgNumber": 55603434,
     "companyName": "Foo Bar and Sons"
-  },
-  {
-    "customerContacts": [
-      {
-        "contactPerson": "Joseph Steelman",
-        "phoneNumber": "+46 420 69 69",
-        "email": "jbro@sovietskijsoiuz.sssr"
-      },
-      {
-        "contactPerson": "Joseph Steelman",
-        "phoneNumber": "+46 420 69 69",
-        "email": "jbro@sovietskijsoiuz.sssr"
-      }
-    ],
-    "billingAddress": {
-      "streetName": "dfgadfg",
-      "streetNumber": "1231",
-      "postalCode": "123123",
-      "cityName": "afdgdfg",
-      "country": "adfgfg"
-    },
-    "shippingAddress": {
-      "streetName": "egerg",
-      "streetNumber": "1231",
-      "postalCode": "1231",
-      "cityName": "dgdfg",
-      "country": "sdfgsdfg"
-    },
-    "customerId": 2,
-    "companyOrgNumber": 123123,
-    "companyName": "Hi"
   },
   {
     "customerContacts": [],
@@ -80,5 +59,62 @@
     "customerId": 3,
     "companyOrgNumber": 123,
     "companyName": "testnulls"
+  },
+  {
+    "customerContacts": [
+      {
+        "contactPerson": "Joseph Steelman",
+        "phoneNumber": "+46 420 69 69",
+        "email": "jbro@sovietskijsoiuz.sssr"
+      }
+    ],
+    "billingAddress": {
+      "streetName": null,
+      "streetNumber": null,
+      "postalCode": null,
+      "cityName": null,
+      "country": null
+    },
+    "shippingAddress": {
+      "streetName": "mystreet",
+      "streetNumber": "69",
+      "postalCode": "420 69",
+      "cityName": "gbg",
+      "country": "månen"
+    },
+    "customerId": 4,
+    "companyOrgNumber": 345345,
+    "companyName": "my company"
+  },
+  {
+    "customerContacts": [
+      {
+        "contactPerson": "Joseph Steelman",
+        "phoneNumber": "+46 420 69 69",
+        "email": "jbro@sovietskijsoiuz.sssr"
+      },
+      {
+        "contactPerson": "cool guy",
+        "phoneNumber": "112",
+        "email": "coolguy@myadress.com"
+      }
+    ],
+    "billingAddress": {
+      "streetName": null,
+      "streetNumber": null,
+      "postalCode": null,
+      "cityName": null,
+      "country": null
+    },
+    "shippingAddress": {
+      "streetName": "Heystreet",
+      "streetNumber": "4",
+      "postalCode": "4444",
+      "cityName": "gbg",
+      "country": "sweden"
+    },
+    "customerId": 5,
+    "companyOrgNumber": 123332,
+    "companyName": "My company 4"
   }
 ]

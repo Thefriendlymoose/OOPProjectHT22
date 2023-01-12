@@ -59,6 +59,10 @@
       {
         "article": 1,
         "amount": 2
+      },
+      {
+        "article": 6,
+        "amount": 9
       }
     ],
     "site": 2
@@ -98,7 +102,7 @@
   {
     "user": 1,
     "orderNumber": 7,
-    "customer": 2,
+    "customer": null,
     "orderStatus": "ACTIVE",
     "priority": false,
     "orderDate": "2022-10-24T14:48:56.595697942",
@@ -122,7 +126,7 @@
   {
     "user": 1,
     "orderNumber": 8,
-    "customer": 2,
+    "customer": null,
     "orderStatus": "CANCELED",
     "priority": false,
     "orderDate": "2022-10-24T14:54:14.059009389",

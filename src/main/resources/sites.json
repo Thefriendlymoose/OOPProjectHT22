@@ -34,7 +34,7 @@
     "siteArticles": [
       {
         "article": 6,
-        "amount": 9
+        "amount": 0
       }
     ],
     "siteUsers": [
@@ -54,6 +54,26 @@
     ],
     "siteUsers": [
       3
+    ]
+  },
+  {
+    "siteId": 4,
+    "siteName": "Kärna",
+    "siteAddress": "123 hey",
+    "maxCapacity": 100,
+    "siteArticles": [
+      {
+        "article": 4,
+        "amount": 10
+      },
+      {
+        "article": 5,
+        "amount": 5
+      }
+    ],
+    "siteUsers": [
+      3,
+      1
     ]
   }
 ]
