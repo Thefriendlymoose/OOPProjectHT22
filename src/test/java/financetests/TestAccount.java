@@ -31,4 +31,20 @@ public class TestAccount {
         double after = account.getBalance();
         Assertions.assertEquals(before - amount, after);
     }
+
+    @Test
+    public void testNotMalleable(){
+        double before = account.getBalance();
+        Account copy = account.getCopy();
+        copy.debit(100);
+        Assertions.assertEquals(before, account.getBalance());
+    }
+
+    @Test
+    public void testNotMalleable2(){
+        Account copy = account.getCopy();
+        double before = copy.getBalance();
+        account.debit(100);
+        Assertions.assertEquals(before, copy.getBalance());
+    }
 }

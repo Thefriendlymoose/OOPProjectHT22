@@ -8,6 +8,7 @@ public class Account {
 
     private final long id;
     private double balance;
+    private String description;
 
     public Account(long id, double balance){
         this.id = id;
@@ -33,5 +34,11 @@ public class Account {
      * */
 
     public void credit(double amount){ balance -= amount; }
+
+    /**
+     * Returns a copy of the object.
+     * Ensures: changes on this object does not affect the copy and vice versa
+     * */
+    public Account getCopy(){ return new Account(id, balance); }
 
 }
