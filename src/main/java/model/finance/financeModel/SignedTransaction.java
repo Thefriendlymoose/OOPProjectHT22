@@ -4,6 +4,10 @@ import model.user.User;
 
 import java.time.LocalDate;
 
+/**
+ * Decorator class for Transaction
+ *
+ * */
 public class SignedTransaction {
 
     private final Transaction transaction;

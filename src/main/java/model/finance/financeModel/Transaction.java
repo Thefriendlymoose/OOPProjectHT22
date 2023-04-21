@@ -32,11 +32,11 @@ public class Transaction {
     }
 
     public double getDebitSum(){
-        return debits.stream().mapToDouble(TransactionRow::amount).sum();
+        return debits.stream().mapToDouble(TransactionRow::getAmount).sum();
     }
 
     public double getCreditSum(){
-        return credits.stream().mapToDouble(TransactionRow::amount).sum();
+        return credits.stream().mapToDouble(TransactionRow::getAmount).sum();
     }
 
     public boolean hasEqualSums(){
@@ -44,15 +44,7 @@ public class Transaction {
     }
 
     public Transaction getCopy(){
-        return new Transaction(
-                debits
-                        .stream()
-                        .map(t -> new TransactionRow(t.accountID(), t.amount()))
-                        .collect(Collectors.toList()),
-                credits
-                        .stream()
-                        .map(t -> new TransactionRow(t.accountID(), t.amount()))
-                        .collect(Collectors.toList()));
+        return new Transaction(new ArrayList<>(debits), new ArrayList<>(credits));
     }
 
 }

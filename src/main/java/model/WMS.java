@@ -6,22 +6,29 @@ import model.authentication.Session;
 import model.article.Articles;
 import model.authentication.UserAuthentication;
 import model.customer.CustomerModel;
+import model.finance.financeModel.FinanceModel;
+import model.finance.financeModel.SiteFinanceModel;
 import model.observer.Observable;
 import model.observer.Observer;
 import model.order.Order;
 import model.order.Orders;
 import model.site.Site;
 import model.site.Sites;
+import model.user.Permission;
+import model.user.User;
 import model.user.Users;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class WMS implements Observable {
     private Articles articles;
     private Orders orders;
     private Sites sites;
     private Users users;
+    private FinanceModel financeModel;
 
     private CustomerModel customerModel;
     private UserAuthentication userAuthentication;
@@ -52,7 +59,6 @@ public class WMS implements Observable {
         notifyObservers();
     }
 
-
     public Orders getOrders() {
         return orders;
     }
@@ -82,6 +88,7 @@ public class WMS implements Observable {
     public Users getUsers() {
         return users;
     }
+
     public CustomerModel getCustomerModel(){ return customerModel; }
 
     public UserAuthentication getUserAuthentication() {
@@ -94,6 +101,40 @@ public class WMS implements Observable {
 
     public AuthenticationStatus login(String user, String password){
         return userAuthentication.logIn(user, password, users);
+    }
+
+    public Map<Long, SiteFinanceModel> getFinanceModels() throws Exception {
+        if (!getSession().hasAccess(Permission.FINANCE) || getSession().hasAccess(Permission.ALL)) {
+            throw new Exception("Permission denied");
+        }
+        User user = getSession().getUser();
+        Map<Long, SiteFinanceModel> out = new HashMap<>();
+        sites
+                .getInList()
+                .stream()
+                .filter(s -> s.getSiteUsers().contains(user) || user.getRole().hasPermission(Permission.ALL))
+                .map(Site::getSiteId)
+                .toList()
+                .forEach(siteId -> {
+                    try {
+                        out.put(siteId, financeModel.getSiteFinanceModel(siteId));
+                    } catch (Exception ignore) {}
+                });
+
+        return out;
+    }
+
+    public void addNewSiteFinanceModel(long id) throws Exception {
+        if (!getSession().hasAccess(Permission.FINANCE) || !getSession().hasAccess(Permission.ALL)){
+            throw new Exception("Permission denied");
+        }
+        else if (!sites.getById(id).getSiteUsers().contains(getSession().getUser())) {
+            throw new Exception("Permission denied");
+        } else {
+            financeModel.addNewSiteFinanceModel(id);
+            notifyObservers();
+        }
+
     }
 
     @Override

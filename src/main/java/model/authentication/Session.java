@@ -9,6 +9,7 @@ import model.user.User;
  * @author David al Amiri
  */
 public class Session {
+
     private User user;
 
     public Session(User user){

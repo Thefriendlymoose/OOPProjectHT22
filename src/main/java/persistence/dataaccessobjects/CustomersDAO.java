@@ -42,7 +42,7 @@ public final class CustomersDAO implements IPersistence<Customer> {
             }
             reader.close();
         } catch (Exception e){
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 

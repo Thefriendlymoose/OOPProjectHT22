@@ -9,5 +9,6 @@ public enum Permission {
     SITE,
     CUSTOMER,
     ARTICLE,
+    FINANCE,
     ALL
 }
