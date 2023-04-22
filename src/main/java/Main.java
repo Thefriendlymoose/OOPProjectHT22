@@ -1,3 +1,4 @@
+import controller.financecontrollers.FinanceMainController;
 import controller.menucontrollers.MainMenuController;
 import controller.menucontrollers.MenuController;
 import controller.SignInController;
@@ -114,6 +115,7 @@ public class Main extends Application {
         Callback<Class<?>, Object> orderMenuController = param -> new OrderMenuController(wms);
         Callback<Class<?>, Object> customerMenuController = param -> new CustomerMenuController(wms);
         Callback<Class<?>, Object> userMenuController = param -> new UserMenuController(wms);
+        Callback<Class<?>, Object> financeMenuController = p -> new FinanceMainController(wms);
 
 
         //Saving Factories
@@ -148,6 +150,8 @@ public class Main extends Application {
         ParentDependencyInjection.addInjectionMethod(
                 UserMenuController.class, userMenuController
         );
+
+        ParentDependencyInjection.addInjectionMethod(FinanceMainController.class, financeMenuController);
     }
 
     /**

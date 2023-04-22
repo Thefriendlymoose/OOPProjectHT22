@@ -54,7 +54,7 @@
                    <font>
                        <Font size="24.0" />
                    </font></Button>
-               <Button disable="true" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="main-menu-button" text="Finance" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <Button onAction="#financeBtnHandler" fx:id="financeButton" disable="false" maxHeight="Infinity" maxWidth="Infinity" mnemonicParsing="false" styleClass="main-menu-button" text="Finance" GridPane.columnIndex="2" GridPane.rowIndex="1">
                    <font>
                        <Font size="24.0" />
                    </font></Button>

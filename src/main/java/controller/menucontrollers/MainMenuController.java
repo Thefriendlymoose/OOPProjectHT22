@@ -2,6 +2,7 @@ package controller.menucontrollers;
 
 
 import controller.dpi.ParentDependencyInjection;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,6 +28,8 @@ public class MainMenuController {
     private Button menuUserButton;
     @FXML
     private Button menuOrderButton;
+    @FXML
+    private Button financeButton;
 
     private WMS wms;
     private Session session;
@@ -58,6 +61,8 @@ public class MainMenuController {
             if (!session.hasAccess(Permission.USER)){
                 menuUserButton.setDisable(true);
             }
+            if (!session.hasAccess(Permission.FINANCE))
+                financeButton.setDisable(true);
         }
     }
 
@@ -87,4 +92,7 @@ public class MainMenuController {
         window.setScene(new Scene(root));
     }
 
+    public void financeBtnHandler() throws Exception {
+        changeScene("financeViews/financeMainView", financeButton);
+    }
 }
