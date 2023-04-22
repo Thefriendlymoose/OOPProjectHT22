@@ -131,10 +131,13 @@ public class WMS implements Observable {
 
     public void addNewSiteFinanceModel(long id) throws Exception {
         if (!getSession().hasAccess(Permission.FINANCE) || !getSession().hasAccess(Permission.ALL)){
-            throw new Exception("Permission denied");
+            throw new Exception("Permission denied: Wrong permissions of user");
         }
-        else if (!sites.getById(id).getSiteUsers().contains(getSession().getUser())) {
-            throw new Exception("Permission denied");
+        else if (!sites.getById(id).getSiteUsers().contains(getSession().getUser()) || !getSession().hasAccess(Permission.ALL)) { // not employed by site
+            throw new Exception("Permission denied: User not employed on site");
+        }
+        else if (sites.getById(id) == null){
+            throw new Exception("Site doesn't exist");
         }
         else {
             financeModel.addNewSiteFinanceModel(id);
