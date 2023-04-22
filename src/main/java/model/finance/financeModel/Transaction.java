@@ -51,7 +51,6 @@ public class Transaction {
         return getCreditSum() == getDebitSum();
     }
 
-    // TODO: make immutable
     public Transaction getCopy(){
         return new Transaction(new ArrayList<>(debits), new ArrayList<>(credits));
     }

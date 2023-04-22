@@ -23,17 +23,11 @@ public class TransactionRow {
         return accountID;
     }
 
-    public void setAccountID(long accountID) {
-        this.accountID = accountID;
-    }
 
     public double getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
 
 }
 
