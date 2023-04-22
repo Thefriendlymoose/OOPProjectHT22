@@ -35,13 +35,14 @@ public class WMS implements Observable {
 
     private List<Observer> observers;
 
-    public WMS(Articles articles, Orders orders, Sites sites, CustomerModel customerModel, Users users, UserAuthentication ua) {
+    public WMS(Articles articles, Orders orders, Sites sites, CustomerModel customerModel, Users users, UserAuthentication ua, FinanceModel financeModel) {
         this.articles = articles;
         this.orders = orders;
         this.sites = sites;
         this.customerModel = customerModel;
         this.users = users;
         this.userAuthentication = ua;
+        this.financeModel = financeModel;
         this.observers = new ArrayList<>();
     }
 
@@ -104,7 +105,7 @@ public class WMS implements Observable {
     }
 
     public Map<Long, SiteFinanceModel> getFinanceModels() throws Exception {
-        if (!getSession().hasAccess(Permission.FINANCE) || getSession().hasAccess(Permission.ALL)) {
+        if (!getSession().hasAccess(Permission.FINANCE) || !getSession().hasAccess(Permission.ALL)) {
             throw new Exception("Permission denied");
         }
         User user = getSession().getUser();
@@ -124,13 +125,18 @@ public class WMS implements Observable {
         return out;
     }
 
+    public List<SiteFinanceModel> getFinanceList(){
+        return financeModel.getAsList();
+    }
+
     public void addNewSiteFinanceModel(long id) throws Exception {
         if (!getSession().hasAccess(Permission.FINANCE) || !getSession().hasAccess(Permission.ALL)){
             throw new Exception("Permission denied");
         }
         else if (!sites.getById(id).getSiteUsers().contains(getSession().getUser())) {
             throw new Exception("Permission denied");
-        } else {
+        }
+        else {
             financeModel.addNewSiteFinanceModel(id);
             notifyObservers();
         }

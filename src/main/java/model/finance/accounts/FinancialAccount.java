@@ -2,6 +2,12 @@ package model.finance.accounts;
 
 import java.util.Objects;
 
+/**
+ * Responsibility: Abstraction of a bookkeeping account
+ * Used by: AssetAccount, LiabilityAccount, Transaction
+ *
+ * @author Simon Porsgaard / doktorjevsky
+ * */
 public abstract class FinancialAccount {
 
     private final String name;

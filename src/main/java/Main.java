@@ -22,10 +22,15 @@ import model.WMS;
 import model.article.Articles;
 import model.authentication.UserAuthentication;
 import model.customer.CustomerModel;
+import model.finance.financeModel.FinanceModel;
+import model.finance.financeModel.SiteFinanceModel;
 import model.order.Orders;
 import model.site.Sites;
 import model.user.Users;
+import persistence.IPersistence;
 import persistence.dataaccessobjects.*;
+
+import java.util.Map;
 
 /**
  * The main class which is run when the application is started.
@@ -38,6 +43,7 @@ import persistence.dataaccessobjects.*;
 public class Main extends Application {
 
     private WMS wms;
+    private IPersistence<SiteFinanceModel> financeDao;
 
     public static void main(String[] args){
         launch(args);
@@ -52,13 +58,18 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
+
+        financeDao = new FinanceModelDAO("src/main/resources/finance.json");
+        Map<Long, SiteFinanceModel> financeMap = financeDao.getAllMap();
+
+        FinanceModel financeModel = new FinanceModel(financeMap);
         Articles articles = new Articles(ArticlesDAO.getInstance().getAllMap());
         Orders orders = new Orders(OrderDAO.getInstance().getAllMap());
         Sites sites = new Sites(SitesDAO.getInstance().getAllMap());
         CustomerModel customers = new CustomerModel(CustomersDAO.getInstance().getAllMap());
         Users users = new Users(UserDAO.getInstance().getAllMap());
         UserAuthentication ua = new UserAuthentication();
-        this.wms = new WMS(articles, orders, sites, customers, users, ua);
+        this.wms = new WMS(articles, orders, sites, customers, users, ua, financeModel);
 
 
         setUpSceneDependencyInjector();
@@ -84,6 +95,9 @@ public class Main extends Application {
         OrderDAO.getInstance().save(wms.getOrders().getInList());
         UserDAO.getInstance().save(wms.getUsers().getInList());
         CustomersDAO.getInstance().save(wms.getCustomerModel().getCustomerList());
+        try {
+            financeDao.save(wms.getFinanceModels().values().stream().toList());
+        } catch (Exception ignore) {} // it throws and exception if we're not authorized, in which case the finance model is empty
     }
 
     /**

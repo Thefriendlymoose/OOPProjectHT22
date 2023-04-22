@@ -2,7 +2,15 @@ package model.finance.financeModel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
+
+/**
+ * Responsibility: Store entered by the user transaction rows
+ * Uses: TransactionRow
+ * Used by: SiteFinancialModel, SignedTransaction
+ *
+ * @author Simon Porsgaard / doktorjevsky
+ * */
 
 public class Transaction {
 
@@ -43,6 +51,7 @@ public class Transaction {
         return getCreditSum() == getDebitSum();
     }
 
+    // TODO: make immutable
     public Transaction getCopy(){
         return new Transaction(new ArrayList<>(debits), new ArrayList<>(credits));
     }

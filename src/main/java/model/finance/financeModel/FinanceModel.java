@@ -2,8 +2,18 @@ package model.finance.financeModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+/**
+ * Responsibility: Store all bookkeeping data of all the sites
+ *
+ * Uses: SiteFinanceModel
+ * Used by: WMS
+ *
+ * @author Simon Porsgaard / doktorjevsky
+ *
+ * */
 public class FinanceModel {
 
     private Map<Long, SiteFinanceModel> financeModels;
@@ -25,4 +35,9 @@ public class FinanceModel {
         }
         financeModels.put(id, new SiteFinanceModel(id, new HashMap<>(), new ArrayList<>()));
     }
+
+    public List<SiteFinanceModel> getAsList(){
+        return financeModels.values().stream().toList();
+    }
+
 }

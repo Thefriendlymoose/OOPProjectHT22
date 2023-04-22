@@ -11,7 +11,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-
+/**
+ * Responsibility: Hold and alter bookkeeping data for a site
+ * Uses: FinancialAccount, User, Transaction, SignedTransaction, Observer
+ * Used by: FinanceModel
+ *
+ * @author Simon Porsgaard / doktorjevsky
+ * */
 public class SiteFinanceModel implements Observable {
 
     private Map<Long, FinancialAccount> accounts;
@@ -44,6 +50,11 @@ public class SiteFinanceModel implements Observable {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * @param account: new FinancialAccount to add to the books
+     * @throws Exception: if another account with the same id is taken
+     *
+     * */
     public void addNewAccount(FinancialAccount account) throws Exception {
         if (accounts.containsKey(account.getId())){
             throw new Exception("Account already exists");
@@ -52,6 +63,14 @@ public class SiteFinanceModel implements Observable {
         notifyObservers();
     }
 
+    /**
+     * Makes the transactions and signes with the user
+     * @param transaction: the transactions to be make
+     * @param signer: the user who signs the transaction
+     * @throws Exception: if the transaction contains non-existant accounts
+     *                   OR if the debit side isn't equal to the credit side
+     *                   OR the transaction is empty
+     * */
     public void signAndMakeTransaction(Transaction transaction, User signer) throws Exception {
         if (!transaction.getDebits().stream().allMatch(t -> accounts.containsKey(t.getAccountID()))){
             throw new Exception("Account doesn't exist");

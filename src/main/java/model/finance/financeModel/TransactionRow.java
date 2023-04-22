@@ -1,6 +1,13 @@
 package model.finance.financeModel;
 
-import model.finance.accounts.FinancialAccount;
+
+/**
+ * Responsibility: Store the accountID and amount to be drawn from the account with the corresponding ID
+ * Uses: -
+ * Used by: Transaction
+ *
+ * @author Simon Porsgaard / doktorjevsky
+ * */
 
 public class TransactionRow {
     private long accountID;

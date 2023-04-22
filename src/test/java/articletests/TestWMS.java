@@ -8,6 +8,7 @@ import model.article.Articles;
 import model.authentication.UserAuthentication;
 import model.customer.Customer;
 import model.customer.CustomerModel;
+import model.finance.financeModel.FinanceModel;
 import model.order.Order;
 import model.order.OrderRow;
 import model.order.OrderStatus;
@@ -63,7 +64,7 @@ public class TestWMS {
 
         UserAuthentication ua = new UserAuthentication();
 
-        this.wms = new WMS(articles, orders, sites, customers, users, ua);
+        this.wms = new WMS(articles, orders, sites, customers, users, ua, new FinanceModel(new HashMap<>()));
     }
 
     public WMS getWMS(){

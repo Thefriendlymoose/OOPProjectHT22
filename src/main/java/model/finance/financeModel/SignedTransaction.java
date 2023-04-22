@@ -5,7 +5,12 @@ import model.user.User;
 import java.time.LocalDate;
 
 /**
- * Decorator class for Transaction
+ * Responsibility: Decorating a transaction with a time stamp and a signature
+ *
+ * Uses: Transaction, User, LocalDate
+ * Used by: SiteFinancialModel
+ *
+ * @author Simon Porsgaard / doktorjevsky
  *
  * */
 public class SignedTransaction {
