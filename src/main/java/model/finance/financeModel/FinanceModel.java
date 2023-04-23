@@ -19,6 +19,7 @@ public class FinanceModel {
     private Map<Long, SiteFinanceModel> financeModels;
 
     public FinanceModel(Map<Long, SiteFinanceModel> financeModels){
+
         this.financeModels = financeModels;
     }
 

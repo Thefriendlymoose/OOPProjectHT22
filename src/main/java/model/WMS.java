@@ -107,7 +107,7 @@ public class WMS implements Observable {
     }
 
     public Map<Long, SiteFinanceModel> getFinanceModels() throws Exception {
-        if (!getSession().hasAccess(Permission.FINANCE) || !getSession().hasAccess(Permission.ALL)) {
+        if (!getSession().hasAccess(Permission.FINANCE) && !getSession().hasAccess(Permission.ALL)) {
             throw new Exception("Permission denied");
         }
         User user = getSession().getUser();
@@ -160,6 +160,10 @@ public class WMS implements Observable {
                         .checkEmployeeInSite(getSession()
                                 .getUser()))
                 .toList();
+    }
+
+    public boolean isAdminSession(){
+        return getSession().getUser().getRole().getPermissions().contains(Permission.ALL);
     }
 
     @Override

@@ -97,7 +97,7 @@ public class FinanceModelDAO implements IPersistence<SiteFinanceModel> {
         } catch (Exception e){
             e.printStackTrace();
         }
-        return null;
+        return new HashMap<>();
     }
 
 }
