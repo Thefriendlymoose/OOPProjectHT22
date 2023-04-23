@@ -47,7 +47,7 @@ public class CreateUserController {
         Platform.runLater(() -> {
 
             statusBox.getItems().setAll(true, false);
-            roleBox.getItems().addAll(Role.getManager(), Role.getSalesPerson(), Role.getAdmin());
+            roleBox.getItems().addAll(Role.getManager(), Role.getSalesPerson(), Role.getAdmin(), Role.getFinanceManager());
                     /**
                      * Listener for when combobox Changes role and gives the right role Description
                      */

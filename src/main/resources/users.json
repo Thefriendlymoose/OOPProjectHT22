@@ -76,5 +76,21 @@
         "ARTICLE"
       ]
     }
+  },
+  {
+    "userId": 6,
+    "userName": "s",
+    "password": "s",
+    "name": "s s",
+    "status": true,
+    "role": {
+      "description": "Access to Customers, Finance and Sites",
+      "name": "Financial manager",
+      "permissions": [
+        "CUSTOMER",
+        "SITE",
+        "FINANCE"
+      ]
+    }
   }
 ]

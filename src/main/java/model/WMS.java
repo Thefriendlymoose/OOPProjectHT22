@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class WMS implements Observable {
     private Articles articles;
@@ -144,6 +146,20 @@ public class WMS implements Observable {
             notifyObservers();
         }
 
+    }
+
+    /**
+     * Returns a list of siteID's where the USER is employed
+     * */
+    public List<Long> getUserSiteIDs(){
+        return sites
+                .getInList()
+                .stream()
+                .map(Site::getSiteId)
+                .filter(id -> sites.getById(id)
+                        .checkEmployeeInSite(getSession()
+                                .getUser()))
+                .toList();
     }
 
     @Override

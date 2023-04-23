@@ -69,6 +69,16 @@ public class Role {
         return role;
     }
 
+    public static Role getFinanceManager(){
+        Role role = new Role();
+        role.name = "Financial manager";
+        role.description = "Access to Customers, Finance and Sites";
+        role.permissions.add(Permission.CUSTOMER);
+        role.permissions.add(Permission.SITE);
+        role.permissions.add(Permission.FINANCE);
+        return role;
+    }
+
 
     /**
      * Checks if the role has the rquired permission

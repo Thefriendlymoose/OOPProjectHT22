@@ -3,6 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -18,11 +20,11 @@
                <font>
                   <Font size="24.0" />
                </font></Label>
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="143.0" styleClass="generic-button" text="Add new Book" onAction="#addBookHandler">
+            <Button fx:id="newBookButton" mnemonicParsing="false" onAction="#addBookHandler" prefHeight="27.0" prefWidth="143.0" styleClass="generic-button" text="Add new Book">
                <font>
                   <Font size="18.0" />
                </font></Button>
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" styleClass="generic-button" text="Back" onAction="#backButtonHandler" fx:id="backButton">
+            <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonHandler" prefHeight="27.0" prefWidth="155.0" styleClass="generic-button" text="Back">
                <font>
                   <Font size="18.0" />
                </font></Button>
@@ -32,4 +34,15 @@
          </BorderPane.margin>
       </VBox>
    </left>
+   <center>
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <VBox fx:id="cardBox" prefHeight="201.0" prefWidth="100.0" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+   </center>
 </BorderPane>
