@@ -1,6 +1,8 @@
 package model.finance.financeModel;
 
 import model.WMS;
+import model.finance.accounts.AccountFactory;
+import model.finance.accounts.FinancialAccount;
 import model.site.Sites;
 import model.user.User;
 
@@ -24,7 +26,6 @@ public class FinanceModel {
     private Map<Long, SiteFinanceModel> financeModels;
 
     public FinanceModel(Map<Long, SiteFinanceModel> financeModels){
-
         this.financeModels = financeModels;
     }
 
@@ -35,11 +36,17 @@ public class FinanceModel {
         return financeModels.get(id);
     }
 
+    /**
+     * If the siteFinanceModel doesn't exist, the method will create a new SiteFinanceModel
+     * with the BasicBASAccountPlan
+     * */
     public void addNewSiteFinanceModel(long id) throws Exception {
         if (financeModels.containsKey(id)){
             throw new Exception("Finance model with site id " + id + " is already exists");
         }
-        financeModels.put(id, new SiteFinanceModel(id, new HashMap<>(), new ArrayList<>()));
+        Map<Long, FinancialAccount> out = new HashMap<>();
+        AccountFactory.getBasicSwedishBASAccountPlan().forEach(acc -> out.put(acc.getId(), acc));
+        financeModels.put(id, new SiteFinanceModel(id, out, new ArrayList<>()));
     }
 
     /**

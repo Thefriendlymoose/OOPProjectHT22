@@ -115,6 +115,7 @@ public class WMS implements Observable {
         return financeModel.getAsList();
     }
 
+    // TODO: move to finance model?
     public void addNewSiteFinanceModel(long id) throws Exception {
         if (!getSession().hasAccess(Permission.FINANCE) && !isAdminSession()){
             throw new Exception("Permission denied: Wrong permissions of user");

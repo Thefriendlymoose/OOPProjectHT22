@@ -2,6 +2,7 @@ package controller.financecontrollers;
 
 import com.sun.javafx.collections.ObservableListWrapper;
 import controller.dpi.ParentDependencyInjection;
+
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -54,7 +55,6 @@ public class FinanceMainController implements Observer {
 
     public void backButtonHandler(ActionEvent actionEvent) throws IOException {
         Parent root = ParentDependencyInjection.load("fxml/mainMenu.fxml");
-
         Stage window = (Stage) backButton.getScene().getWindow();
         window.setScene(new Scene(root));
     }
@@ -135,7 +135,7 @@ public class FinanceMainController implements Observer {
     * box will contain all non-instantiated sites that the financial manager is
     * employed at.
     * */
-    private void loadChoiceBox() throws Exception {
+    private void loadChoiceBox() {
         Map<Long, SiteFinanceModel> financeModels = wms.getFinanceModels();
         List<Long> userSiteIds = wms.isAdminSession()
                 ? wms.getSites()
@@ -152,11 +152,7 @@ public class FinanceMainController implements Observer {
     @Override
     public void update() {
         if (!choiceBox.isShowing()){
-            try {
-                loadChoiceBox();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            loadChoiceBox();
         }
         paintCardBox();
 

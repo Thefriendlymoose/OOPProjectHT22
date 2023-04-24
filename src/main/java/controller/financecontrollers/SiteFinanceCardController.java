@@ -1,8 +1,12 @@
 package controller.financecontrollers;
 
+import controller.dpi.StageDependencyInjection;
+import controller.sitecontrollers.SiteDetailsController;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import model.WMS;
 import model.finance.financeModel.SiteFinanceModel;
 
@@ -26,4 +30,7 @@ public class SiteFinanceCardController {
         nameLabel.setText(wms.getSites().getById(siteFinanceModel.getId()).getSiteName());
     }
 
+    public void openSiteFinanceHandler(ActionEvent actionEvent) {
+
+    }
 }

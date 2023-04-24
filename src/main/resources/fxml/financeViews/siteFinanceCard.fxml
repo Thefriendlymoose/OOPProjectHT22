@@ -29,7 +29,7 @@
                   </Label>
                </children>
             </VBox>
-            <Button mnemonicParsing="false" prefHeight="103.0" prefWidth="134.0" styleClass="generic-button" text="Open">
+            <Button onAction="#openSiteFinanceHandler" mnemonicParsing="false" prefHeight="103.0" prefWidth="134.0" styleClass="generic-button" text="Open">
                <font>
                   <Font size="24.0" />
                </font>

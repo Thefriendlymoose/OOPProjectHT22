@@ -55,5 +55,15 @@
     "siteUsers": [
       3
     ]
+  },
+  {
+    "siteId": 4,
+    "siteName": "Las Vegas",
+    "siteAddress": ":)",
+    "maxCapacity": 1000,
+    "siteArticles": [],
+    "siteUsers": [
+      6
+    ]
   }
 ]

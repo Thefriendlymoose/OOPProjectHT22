@@ -89,13 +89,14 @@ public class FinanceModelDAO implements IPersistence<SiteFinanceModel> {
 
     @Override
     public Map<Long, SiteFinanceModel> getAllMap() {
+        Map<Long, SiteFinanceModel> out = new HashMap<>();
         try {
             String json = new String(Files.readAllBytes(Path.of(filePath)));
-            return gson.fromJson(json, new TypeToken<Map<Long, SiteFinanceModel>>() {}.getType());
+            out = gson.fromJson(json, new TypeToken<Map<Long, SiteFinanceModel>>() {}.getType());
         } catch (Exception e){
             e.printStackTrace();
         }
-        return new HashMap<>();
+        return out == null ? new HashMap<>() : out;
     }
 
 }
