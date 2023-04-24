@@ -7,6 +7,7 @@ import model.article.Articles;
 import model.authentication.UserAuthentication;
 import model.customer.CustomerModel;
 import model.finance.financeModel.FinanceModel;
+import model.finance.financeModel.FinanceModelFilter;
 import model.finance.financeModel.SiteFinanceModel;
 import model.observer.Observable;
 import model.observer.Observer;
@@ -106,25 +107,8 @@ public class WMS implements Observable {
         return userAuthentication.logIn(user, password, users);
     }
 
-    public Map<Long, SiteFinanceModel> getFinanceModels() throws Exception {
-        if (!getSession().hasAccess(Permission.FINANCE) && !getSession().hasAccess(Permission.ALL)) {
-            throw new Exception("Permission denied");
-        }
-        User user = getSession().getUser();
-        Map<Long, SiteFinanceModel> out = new HashMap<>();
-        sites
-                .getInList()
-                .stream()
-                .filter(s -> s.getSiteUsers().contains(user) || user.getRole().hasPermission(Permission.ALL))
-                .map(Site::getSiteId)
-                .toList()
-                .forEach(siteId -> {
-                    try {
-                        out.put(siteId, financeModel.getSiteFinanceModel(siteId));
-                    } catch (Exception ignore) {}
-                });
-
-        return out;
+    public Map<Long, SiteFinanceModel> getFinanceModels()  {
+        return financeModel.getFilteredSiteFinanceModels(new FinanceModelFilter(sites, this));
     }
 
     public List<SiteFinanceModel> getFinanceList(){
@@ -132,10 +116,10 @@ public class WMS implements Observable {
     }
 
     public void addNewSiteFinanceModel(long id) throws Exception {
-        if (!getSession().hasAccess(Permission.FINANCE) || !getSession().hasAccess(Permission.ALL)){
+        if (!getSession().hasAccess(Permission.FINANCE) && !isAdminSession()){
             throw new Exception("Permission denied: Wrong permissions of user");
         }
-        else if (!sites.getById(id).getSiteUsers().contains(getSession().getUser()) || !getSession().hasAccess(Permission.ALL)) { // not employed by site
+        else if (!sites.getById(id).getSiteUsers().contains(getSession().getUser()) && !isAdminSession()) { // not employed by site
             throw new Exception("Permission denied: User not employed on site");
         }
         else if (sites.getById(id) == null){

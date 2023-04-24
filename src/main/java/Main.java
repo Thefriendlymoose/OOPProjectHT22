@@ -96,9 +96,9 @@ public class Main extends Application {
         OrderDAO.getInstance().save(wms.getOrders().getInList());
         UserDAO.getInstance().save(wms.getUsers().getInList());
         CustomersDAO.getInstance().save(wms.getCustomerModel().getCustomerList());
-        try {
-            financeDao.save(wms.getFinanceModels().values().stream().toList());
-        } catch (Exception ignore) {} // it throws and exception if we're not authorized, in which case the finance model is empty
+        financeDao.save(wms.getFinanceList());
+
+
     }
 
     /**

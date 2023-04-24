@@ -1,9 +1,14 @@
 package model.finance.financeModel;
 
+import model.WMS;
+import model.site.Sites;
+import model.user.User;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 /**
  * Responsibility: Store all bookkeeping data of all the sites
@@ -37,8 +42,19 @@ public class FinanceModel {
         financeModels.put(id, new SiteFinanceModel(id, new HashMap<>(), new ArrayList<>()));
     }
 
+    public Map<Long, SiteFinanceModel> getFilteredSiteFinanceModels(Predicate<SiteFinanceModel> predicate) {
+        Map<Long, SiteFinanceModel> out = new HashMap<>();
+        financeModels
+                .values()
+                .stream()
+                .filter(predicate)
+                .forEach(filtered -> out.put(filtered.getId(), filtered));
+        return out;
+    }
+
     public List<SiteFinanceModel> getAsList(){
         return financeModels.values().stream().toList();
     }
+
 
 }

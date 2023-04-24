@@ -17,12 +17,12 @@
                   <Insets />
                </opaqueInsets>
                <children>
-                  <Label alignment="CENTER" styleClass="generic-form-label" text="SITE_ID">
+                  <Label alignment="CENTER" styleClass="generic-form-label" text="Site:">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label styleClass="generic-form-label" text="NAME">
+                  <Label styleClass="generic-form-label" text="NAME" fx:id="nameLabel">
                      <font>
                         <Font size="18.0" />
                      </font>
