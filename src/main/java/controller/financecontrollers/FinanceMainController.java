@@ -1,6 +1,7 @@
 package controller.financecontrollers;
 
 import com.sun.javafx.collections.ObservableListWrapper;
+import controller.buttonEventHandlers.OpenMainMenu;
 import controller.dpi.ParentDependencyInjection;
 
 import javafx.application.Platform;
@@ -12,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -28,6 +30,10 @@ import java.util.Map;
 public class FinanceMainController implements Observer {
 
     @FXML
+    private VBox buttonBox;
+    @FXML
+    private BorderPane borderPane;
+    @FXML
     private VBox cardBox;
     @FXML
     private Button newBookButton;
@@ -42,16 +48,29 @@ public class FinanceMainController implements Observer {
         this.wms = wms;
         wms.registerObserver(this);
 
+
+    }
+
+    public BorderPane getBorderPane(){
+        return borderPane;
+    }
+
+    public Button getNewBookButton(){
+        return newBookButton;
+    }
+
+    public Button getBackButton(){
+        return backButton;
     }
 
     public void initialize(){
         Platform.runLater(() -> {
             choiceBox.setDisable(true);
             choiceBox.setVisible(false);
+            backButton.setOnAction(new OpenMainMenu());
             update();
         });
     }
-
 
     public void backButtonHandler(ActionEvent actionEvent) throws IOException {
         Parent root = ParentDependencyInjection.load("fxml/mainMenu.fxml");
@@ -86,14 +105,8 @@ public class FinanceMainController implements Observer {
         newBookButton.setText("Confirm");
     }
 
-    private void setButtonsToMainSetting(){
-        backButton.setOnAction(actionEvent -> {
-            try {
-                backButtonHandler(actionEvent);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+    public void setButtonsToMainSetting(){
+        backButton.setOnAction(new OpenMainMenu());
         backButton.setText("Back");
         newBookButton.setOnAction(actionEvent -> {
             try {
@@ -114,7 +127,7 @@ public class FinanceMainController implements Observer {
             // existing financeModels for the user
             Map<Long, SiteFinanceModel> financeModels = wms.getFinanceModels();
             financeModels.values().forEach(fm -> {
-                ParentDependencyInjection.addInjectionMethod(SiteFinanceCardController.class, p -> new SiteFinanceCardController(wms, fm));
+                ParentDependencyInjection.addInjectionMethod(SiteFinanceCardController.class, p -> new SiteFinanceCardController(wms, fm, this));
                 Parent pane = null;
                 try {
                     pane = ParentDependencyInjection.load("fxml/financeViews/siteFinanceCard.fxml");
@@ -155,6 +168,7 @@ public class FinanceMainController implements Observer {
             loadChoiceBox();
         }
         paintCardBox();
+
 
     }
 }

@@ -133,6 +133,10 @@ public class WMS implements Observable {
 
     }
 
+    public SiteFinanceModel getSiteFinanceModel(long id) throws Exception {
+        return financeModel.getSiteFinanceModel(id);
+    }
+
     /**
      * Returns a list of siteID's where the USER is employed
      * */
