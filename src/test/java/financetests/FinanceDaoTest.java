@@ -1,8 +1,8 @@
 package financetests;
 
-import model.finance.accounts.AssetAccount;
+import model.finance.accounts.DebitAccount;
 import model.finance.accounts.FinancialAccount;
-import model.finance.accounts.LiabilityAccount;
+import model.finance.accounts.CreditAccount;
 import model.finance.financeModel.SignedTransaction;
 import model.finance.financeModel.SiteFinanceModel;
 import model.finance.financeModel.Transaction;
@@ -15,9 +15,6 @@ import org.junit.jupiter.api.Test;
 import persistence.IPersistence;
 import persistence.dataaccessobjects.FinanceModelDAO;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -36,8 +33,8 @@ public class FinanceDaoTest {
     public void init(){
         dao = new FinanceModelDAO(path);
         a1 = new HashMap<>();
-        a1.put(1L, new LiabilityAccount("liabilities", 1, 0));
-        a1.put(2L, new AssetAccount("assets", 2, 0));
+        a1.put(1L, new CreditAccount("liabilities", 1, 0));
+        a1.put(2L, new DebitAccount("assets", 2, 0));
         book = List.of(new SignedTransaction(
                 new Transaction(List.of(new TransactionRow(1, 100)), List.of(new TransactionRow(2,100))),
                 new User(1,"name", "a", "namee", true, Role.getAdmin()),

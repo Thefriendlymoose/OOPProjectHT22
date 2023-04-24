@@ -9,10 +9,14 @@ package model.finance.accounts;
  *
  * @author Simon Porsgaard / doktorjevsky
  * */
-public class LiabilityAccount extends FinancialAccount {
+public class CreditAccount extends FinancialAccount {
 
-    public LiabilityAccount(String name, long id, double balance){
+    public CreditAccount(String name, long id, double balance){
         super(name, id, balance);
+    }
+
+    public CreditAccount(String name, long id){
+        super(name, id, 0);
     }
 
     /**
@@ -33,6 +37,6 @@ public class LiabilityAccount extends FinancialAccount {
 
     @Override
     public FinancialAccount getCopy() {
-        return new LiabilityAccount(getName(), getId(), balance);
+        return new CreditAccount(getName(), getId(), balance);
     }
 }

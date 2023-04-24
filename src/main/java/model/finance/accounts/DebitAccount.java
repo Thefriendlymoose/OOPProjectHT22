@@ -8,11 +8,15 @@ package model.finance.accounts;
  *
  * @author Simon Porsgaard / doktorjevsky
  * */
-public class AssetAccount extends FinancialAccount {
+public class DebitAccount extends FinancialAccount {
 
-    public AssetAccount(String name, long id, double balance){
+    public DebitAccount(String name, long id, double balance){
         super(name, id, balance);
 
+    }
+
+    public DebitAccount(String name, long id){
+        super(name, id, 0);
     }
 
     /**
@@ -33,6 +37,6 @@ public class AssetAccount extends FinancialAccount {
 
     @Override
     public FinancialAccount getCopy() {
-        return new AssetAccount(getName(), getId(), balance);
+        return new DebitAccount(getName(), getId(), balance);
     }
 }

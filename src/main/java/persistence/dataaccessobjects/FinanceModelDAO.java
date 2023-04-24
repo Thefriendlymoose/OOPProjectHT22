@@ -2,12 +2,10 @@ package persistence.dataaccessobjects;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import model.finance.accounts.AssetAccount;
+import model.finance.accounts.DebitAccount;
 import model.finance.accounts.FinancialAccount;
-import model.finance.accounts.LiabilityAccount;
-import model.finance.financeModel.FinanceModel;
+import model.finance.accounts.CreditAccount;
 import model.finance.financeModel.SiteFinanceModel;
-import org.bson.json.JsonReader;
 import persistence.IPersistence;
 
 import java.io.*;
@@ -48,12 +46,12 @@ public class FinanceModelDAO implements IPersistence<SiteFinanceModel> {
         }).registerTypeAdapter(FinancialAccount.class, new JsonSerializer<FinancialAccount>() {
             @Override
             public JsonElement serialize(FinancialAccount account, Type type, JsonSerializationContext jsonSerializationContext) {
-                if (account instanceof LiabilityAccount liabilityAccount){
-                    JsonObject e = gson.toJsonTree(liabilityAccount).getAsJsonObject();
+                if (account instanceof CreditAccount creditAccount){
+                    JsonObject e = gson.toJsonTree(creditAccount).getAsJsonObject();
                     e.addProperty("type", 2);
                     return e;
-                } else if (account instanceof AssetAccount assetAccount){
-                    JsonObject e = gson.toJsonTree(assetAccount).getAsJsonObject();
+                } else if (account instanceof DebitAccount debitAccount){
+                    JsonObject e = gson.toJsonTree(debitAccount).getAsJsonObject();
                     e.addProperty("type", 1);
                     return e;
                 }
@@ -65,8 +63,8 @@ public class FinanceModelDAO implements IPersistence<SiteFinanceModel> {
                 JsonObject jsonObject = json.getAsJsonObject();
                 int type = jsonObject.get("type").getAsInt();
                 switch (type) {
-                    case 1 -> {return context.deserialize(jsonObject, AssetAccount.class); }
-                    case 2 -> {return context.deserialize(jsonObject, LiabilityAccount.class); }
+                    case 1 -> {return context.deserialize(jsonObject, DebitAccount.class); }
+                    case 2 -> {return context.deserialize(jsonObject, CreditAccount.class); }
                     default -> {throw new JsonParseException("Invalid FinancialAccount type: " + type); }
                     }
                 }

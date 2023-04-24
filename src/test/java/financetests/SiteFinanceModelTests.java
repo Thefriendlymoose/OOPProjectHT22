@@ -1,8 +1,8 @@
 package financetests;
 
-import model.finance.accounts.AssetAccount;
+import model.finance.accounts.DebitAccount;
 import model.finance.accounts.FinancialAccount;
-import model.finance.accounts.LiabilityAccount;
+import model.finance.accounts.CreditAccount;
 import model.finance.financeModel.SiteFinanceModel;
 import model.finance.financeModel.Transaction;
 import model.finance.financeModel.TransactionRow;
@@ -32,7 +32,7 @@ public class SiteFinanceModelTests {
         issuer = new User(1, "baby", "abc", "Simon", true, Role.getAdmin());
         m1 = new SiteFinanceModel(1,new HashMap<>(), new ArrayList<>());
         Map<Long, FinancialAccount> map2 = new HashMap<>();
-        map2.put(1L, new AssetAccount("Assets", 1, 0));
+        map2.put(1L, new DebitAccount("Assets", 1, 0));
         m2 = new SiteFinanceModel(1, map2, new ArrayList<>());
         nullTransaction = new Transaction();
         t1 = new Transaction(List.of(new TransactionRow(2, 100)), List.of(new TransactionRow(1, 100)));
@@ -43,9 +43,9 @@ public class SiteFinanceModelTests {
     public void createAccountTest(){
         Assertions.assertThrows(Exception.class, () -> m1.getAccount(1));
         Assertions.assertDoesNotThrow(() -> {
-            m1.addNewAccount(new LiabilityAccount("Debt", 2, 0));
+            m1.addNewAccount(new CreditAccount("Debt", 2, 0));
             FinancialAccount acc = m1.getAccount(2);
-            Assertions.assertEquals(acc, new LiabilityAccount("Debt", 2, 0));
+            Assertions.assertEquals(acc, new CreditAccount("Debt", 2, 0));
         });
     }
 
@@ -60,7 +60,7 @@ public class SiteFinanceModelTests {
 
     @Test
     public void accountDoesntExistTest(){
-        Assertions.assertDoesNotThrow(() -> m1.addNewAccount(new LiabilityAccount("", 1, 100)));
+        Assertions.assertDoesNotThrow(() -> m1.addNewAccount(new CreditAccount("", 1, 100)));
         Assertions.assertThrows(Exception.class, () -> {
             m1.signAndMakeTransaction(t1, issuer);
         });
@@ -68,7 +68,7 @@ public class SiteFinanceModelTests {
 
     @Test
     public void accountDoesntExistTest2(){
-        Assertions.assertDoesNotThrow(() -> m1.addNewAccount(new LiabilityAccount("", 2, 100)));
+        Assertions.assertDoesNotThrow(() -> m1.addNewAccount(new CreditAccount("", 2, 100)));
         Assertions.assertThrows(Exception.class, () -> {
             m1.signAndMakeTransaction(t1, issuer);
         });
@@ -82,7 +82,7 @@ public class SiteFinanceModelTests {
 
     @Test
     public void amountsDontMatchTest(){
-        Assertions.assertDoesNotThrow(() -> m2.addNewAccount(new AssetAccount("Asset", 2, 0)));
+        Assertions.assertDoesNotThrow(() -> m2.addNewAccount(new DebitAccount("Asset", 2, 0)));
         Assertions.assertThrows(Exception.class, () -> m2.signAndMakeTransaction(t2, issuer));
     }
 
