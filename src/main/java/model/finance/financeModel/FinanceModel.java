@@ -42,6 +42,10 @@ public class FinanceModel {
         financeModels.put(id, new SiteFinanceModel(id, new HashMap<>(), new ArrayList<>()));
     }
 
+    /**
+     * Precondition: -
+     * Ensures: Returns a filtered by the predicate map of references to the SiteFinanceModels
+     * */
     public Map<Long, SiteFinanceModel> getFilteredSiteFinanceModels(Predicate<SiteFinanceModel> predicate) {
         Map<Long, SiteFinanceModel> out = new HashMap<>();
         financeModels

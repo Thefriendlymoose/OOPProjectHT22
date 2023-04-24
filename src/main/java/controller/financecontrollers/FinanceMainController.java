@@ -127,6 +127,14 @@ public class FinanceMainController implements Observer {
         } catch (Exception ignore) {}
     }
 
+    /*
+    * Loads the choiceBox after being triggered by the "addNewBook" button.
+    * The choice box contains the names of the sites that has not yet had
+    * their financial book created. If the session is an admin session, then
+    * this box will contain all non-instantiated sites; in any other case, the
+    * box will contain all non-instantiated sites that the financial manager is
+    * employed at.
+    * */
     private void loadChoiceBox() throws Exception {
         Map<Long, SiteFinanceModel> financeModels = wms.getFinanceModels();
         List<Long> userSiteIds = wms.isAdminSession()
