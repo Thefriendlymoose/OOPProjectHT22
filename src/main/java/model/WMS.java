@@ -16,15 +16,12 @@ import model.order.Orders;
 import model.site.Site;
 import model.site.Sites;
 import model.user.Permission;
-import model.user.User;
 import model.user.Users;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+
 
 public class WMS implements Observable {
     private Articles articles;
@@ -120,7 +117,6 @@ public class WMS implements Observable {
         return financeModel.getAsList();
     }
 
-    // TODO: move to finance model?
     public void addNewSiteFinanceModel(long id) throws Exception {
         if (!getSession().hasAccess(Permission.FINANCE) && !isAdminSession()){
             throw new Exception("Permission denied: Wrong permissions of user");
