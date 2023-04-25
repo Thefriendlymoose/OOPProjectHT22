@@ -10,6 +10,13 @@ import model.finance.financeModel.SiteFinanceModel;
 
 import java.io.IOException;
 
+/**
+ * Responsibility: provide functionality to open a selected SiteFinanceModel
+ * Uses: Label, WMS, SiteFinanceModel, BorderPaneController, ParentDependencyInjection
+ * Used by: FinanceMainController
+ *
+ * @author Simon Porsgaard / doktorjevsky
+ * */
 
 public class SiteFinanceCardController {
 
@@ -28,12 +35,9 @@ public class SiteFinanceCardController {
     }
 
     public void initialize(){
-        initCard();
-    }
-
-    private void initCard(){
         nameLabel.setText(wms.getSites().getById(siteFinanceModel.getId()).getSiteName());
     }
+
 
     public void openSiteFinanceHandler(ActionEvent actionEvent) throws IOException {
         ParentDependencyInjection.addInjectionMethod(SiteFinanceController.class,

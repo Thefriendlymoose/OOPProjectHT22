@@ -20,6 +20,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
+/**
+ * Responsibility: provide functionality to perform actions on the selected SiteFinanceModel
+ * Uses: WMS, SiteFinanceModel, BorderPaneController, Label, Button, VBox, GridPane, ScrollPane
+ *       List
+ * Used by: SiteFinanceCardController
+ *
+ * */
+
 public class SiteFinanceController {
 
     private WMS wms;
@@ -30,8 +38,6 @@ public class SiteFinanceController {
 
     private Button makeTransactionButton;
     private Button backButton;
-    //private Button addRowButton;
-
     private VBox centerBox;
     private GridPane transactionPane;
 
