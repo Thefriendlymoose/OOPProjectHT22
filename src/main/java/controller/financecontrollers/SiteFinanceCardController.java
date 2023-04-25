@@ -25,16 +25,16 @@ public class SiteFinanceCardController {
     private Label nameLabel;
     private WMS wms;
     private SiteFinanceModel siteFinanceModel;
-    private FinanceMainController financeMainController;
+    private BorderPaneController financeMainController;
 
-    public SiteFinanceCardController(WMS wms, SiteFinanceModel siteFinanceModel, FinanceMainController mainController){
+    public SiteFinanceCardController(WMS wms, SiteFinanceModel siteFinanceModel, BorderPaneController mainController){
         this.wms = wms;
         this.siteFinanceModel = siteFinanceModel;
         this.financeMainController = mainController;
     }
 
     public void initialize(){
-        Platform.runLater(this::initCard);
+        initCard();
     }
 
     private void initCard(){

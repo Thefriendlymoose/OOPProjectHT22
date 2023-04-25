@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" minHeight="720.0" minWidth="1280.0" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.financecontrollers.FinanceMainController">
+<BorderPane fx:id="borderPane" minHeight="720.0" minWidth="1280.0" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.financecontrollers.BorderPaneController">
    <top>
       <fx:include source="../menu.fxml" />
    </top>
@@ -21,11 +21,11 @@
                <font>
                   <Font size="24.0" />
                </font></Label>
-            <Button fx:id="newBookButton" mnemonicParsing="false" onAction="#addBookHandler" prefHeight="27.0" prefWidth="143.0" styleClass="generic-button" text="Add new Book">
+            <Button fx:id="newBookButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="143.0" styleClass="generic-button" text="Add new Book">
                <font>
                   <Font size="18.0" />
                </font></Button>
-            <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonHandler" prefHeight="27.0" prefWidth="155.0" styleClass="generic-button" text="Back">
+            <Button fx:id="backButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" styleClass="generic-button" text="Back">
                <font>
                   <Font size="18.0" />
                </font></Button>
@@ -37,9 +37,9 @@
       </VBox>
    </left>
    <center>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="scrollPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+          <AnchorPane fx:id="centerPane" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                <children>
                   <VBox fx:id="cardBox" prefHeight="201.0" prefWidth="100.0" />
                </children>

@@ -1,6 +1,7 @@
 package controller.financecontrollers;
 
 import com.sun.javafx.collections.ObservableListWrapper;
+import controller.buttonEventHandlers.OpenFinanceMainController;
 import controller.buttonEventHandlers.OpenMainMenu;
 import controller.dpi.ParentDependencyInjection;
 
@@ -13,6 +14,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -24,102 +27,79 @@ import model.site.Site;
 import model.user.Permission;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class FinanceMainController implements Observer {
+public class FinanceMainController extends BorderPaneController implements Observer {
 
-    @FXML
-    private VBox buttonBox;
-    @FXML
-    private BorderPane borderPane;
-    @FXML
+    //private VBox buttonBox;
     private VBox cardBox;
-    @FXML
     private Button newBookButton;
-    @FXML
     private Button backButton;
-    @FXML
+    private Label leftLabel;
+
     private ChoiceBox<Long> choiceBox;
+
+    private List<Node> nodes = new ArrayList<>();
 
     private WMS wms;
 
+
     public FinanceMainController(WMS wms) {
+        super(wms);
         this.wms = wms;
         wms.registerObserver(this);
 
-
     }
 
-    public BorderPane getBorderPane(){
-        return borderPane;
+    private void reloadLeftBox(){
+        VBox leftBox = getButtonBox();
+        leftBox.getChildren().clear();
+        leftBox.getChildren().addAll(nodes);
     }
 
-    public Button getNewBookButton(){
-        return newBookButton;
+
+    private void initMenuButtons(){
+        leftLabel.setText("Finance");
+        newBookButton.setText("Add new Book");
+        backButton.setText("Back");
+        choiceBox.setDisable(true);
+        choiceBox.setVisible(false);
+
+
+        backButton.setOnAction(new OpenMainMenu());
+        newBookButton.setOnAction(e -> initChoiceMenuButtons());
+        reloadLeftBox();
     }
 
-    public Button getBackButton(){
-        return backButton;
+    private void initChoiceMenuButtons(){
+        newBookButton.setText("Confirm");
+        backButton.setText("Cancel");
+        choiceBox.setVisible(true);
+        choiceBox.setDisable(false);
+        backButton.setOnAction(e -> initMenuButtons());
+        reloadLeftBox();
     }
+
 
     public void initialize(){
+        super.initialize();
         Platform.runLater(() -> {
-            choiceBox.setDisable(true);
-            choiceBox.setVisible(false);
-            backButton.setOnAction(new OpenMainMenu());
+            leftLabel = new Label("Finance");
+            cardBox = new VBox();
+            newBookButton = new Button("Add new Book");
+            backButton = new Button("Back");
+            choiceBox = new ChoiceBox<>();
+            nodes.add(leftLabel);
+            nodes.add(newBookButton);
+            nodes.add(backButton);
+            nodes.add(choiceBox);
+            initMenuButtons();
             update();
         });
     }
 
-    public void backButtonHandler(ActionEvent actionEvent) throws IOException {
-        Parent root = ParentDependencyInjection.load("fxml/mainMenu.fxml");
-        Stage window = (Stage) backButton.getScene().getWindow();
-        window.setScene(new Scene(root));
-    }
-
-    public void addBookHandler(ActionEvent actionEvent) throws Exception {
-        loadChoiceBox();
-        choiceBox.setVisible(true);
-        choiceBox.setDisable(false);
-        update();
-        setButtonsToChoiceMenu();
-    }
-
-    public void confirmChoiceHandler(ActionEvent e) {
-        Long choice = choiceBox.getValue();
-        try {
-            wms.addNewSiteFinanceModel(choice);
-        } catch (Exception ignore) {}
-        setButtonsToMainSetting();
-    }
-
-    public void cancelChoiceHandler(ActionEvent e){
-        setButtonsToMainSetting();
-    }
-
-    private void setButtonsToChoiceMenu(){
-        backButton.setOnAction(this::cancelChoiceHandler);
-        backButton.setText("Cancel");
-        newBookButton.setOnAction(this::confirmChoiceHandler);
-        newBookButton.setText("Confirm");
-    }
-
-    public void setButtonsToMainSetting(){
-        backButton.setOnAction(new OpenMainMenu());
-        backButton.setText("Back");
-        newBookButton.setOnAction(actionEvent -> {
-            try {
-                addBookHandler(actionEvent);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-        newBookButton.setText("Add new Book");
-        choiceBox.setDisable(true);
-        choiceBox.setVisible(false);
-
-    }
 
     private void paintCardBox() {
         try {
@@ -135,40 +115,19 @@ public class FinanceMainController implements Observer {
                     e.printStackTrace();
                 }
                 cardBox.getChildren().add(pane);
-                cardBox.setVisible(true);
             });
         } catch (Exception ignore) {}
+
+        cardBox.setVisible(true);
+        AnchorPane centerPane = getCenter();
+        centerPane.getChildren().clear();
+        centerPane.getChildren().add(cardBox);
+        centerPane.setVisible(true);
     }
 
-    /*
-    * Loads the choiceBox after being triggered by the "addNewBook" button.
-    * The choice box contains the names of the sites that has not yet had
-    * their financial book created. If the session is an admin session, then
-    * this box will contain all non-instantiated sites; in any other case, the
-    * box will contain all non-instantiated sites that the financial manager is
-    * employed at.
-    * */
-    private void loadChoiceBox() {
-        Map<Long, SiteFinanceModel> financeModels = wms.getFinanceModels();
-        List<Long> userSiteIds = wms.isAdminSession()
-                ? wms.getSites()
-                .getInList()
-                .stream()
-                .map(Site::getSiteId)
-                .toList()
-                : wms.getUserSiteIDs();
-
-        choiceBox.getItems().clear();
-        userSiteIds.stream().filter(id -> !financeModels.containsKey(id)).forEach(choiceBox.getItems()::add);
-    }
 
     @Override
     public void update() {
-        if (!choiceBox.isShowing()){
-            loadChoiceBox();
-        }
-        paintCardBox();
-
-
+       paintCardBox();
     }
 }

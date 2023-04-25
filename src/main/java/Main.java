@@ -1,3 +1,4 @@
+import controller.financecontrollers.BorderPaneController;
 import controller.financecontrollers.FinanceMainController;
 import controller.menucontrollers.MainMenuController;
 import controller.menucontrollers.MenuController;
@@ -151,7 +152,7 @@ public class Main extends Application {
                 UserMenuController.class, userMenuController
         );
 
-        ParentDependencyInjection.addInjectionMethod(FinanceMainController.class, financeMenuController);
+        ParentDependencyInjection.addInjectionMethod(BorderPaneController.class, financeMenuController);
     }
 
     /**
