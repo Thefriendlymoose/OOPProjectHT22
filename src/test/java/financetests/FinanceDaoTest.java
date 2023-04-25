@@ -30,7 +30,7 @@ public class FinanceDaoTest {
     private String path = "src/test/testResources/testfinance.json";
 
     @BeforeEach
-    public void init(){
+    public void init() throws Exception {
         dao = new FinanceModelDAO(path);
         a1 = new HashMap<>();
         a1.put(1L, new CreditAccount("liabilities", 1, 0));

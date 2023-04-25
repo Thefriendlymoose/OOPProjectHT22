@@ -5,27 +5,27 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane fx:controller="controller.financecontrollers.FinancialAccountCardController" stylesheets="@../stylesheet.css" styleClass="generic-card" prefHeight="101.0" prefWidth="545.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="101.0" prefWidth="657.0" stylesheets="@../stylesheet.css" styleClass="generic-card" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.financecontrollers.FinancialAccountCardController">
    <children>
-      <HBox styleClass="sub-menu-box" alignment="CENTER" layoutX="83.0" layoutY="100.0" prefHeight="346.0" prefWidth="545.0" spacing="40.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER" layoutX="83.0" layoutY="100.0" prefHeight="346.0" prefWidth="545.0" spacing="40.0" styleClass="sub-menu-box" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox styleClass="sub-menu-box" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="sub-menu-box">
                <children>
-                  <Label styleClass="generic-form-label" text="ID" />
-                  <Label styleClass="generic-form-label" fx:id="idLabel" text="ID_LABEL" />
+                  <Label styleClass="generic-form-label" text="ID" style="-fx-font-weight: bold;"/>
+                  <Label fx:id="idLabel" styleClass="generic-form-label" text="ID_LABEL" />
                </children>
             </VBox>
-            <VBox styleClass="sub-menu-box" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="CENTER" prefHeight="84.0" prefWidth="313.0" styleClass="sub-menu-box">
                <children>
-                  <Label styleClass="generic-form-label" text="Name" />
-                  <Label styleClass="generic-form-label" fx:id="nameLabel" text="NAME_LABEL" />
+                  <Label styleClass="generic-form-label" text="Name" style="-fx-font-weight: bold;"/>
+                  <Label fx:id="nameLabel" styleClass="generic-form-label" text="NAME_LABEL" />
                </children>
             </VBox>
-            <VBox styleClass="sub-menu-box" alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="sub-menu-box">
                <children>
-                  <Label styleClass="generic-form-label" text="Balance" />
-                  <Label styleClass="generic-form-label" fx:id="balanceLabel" text="BALANCE_LABEL" />
+                  <Label styleClass="generic-form-label" text="Balance" style="-fx-font-weight: bold;"/>
+                  <Label fx:id="balanceLabel" styleClass="generic-form-label" text="BALANCE_LABEL" />
                </children>
             </VBox>
          </children>

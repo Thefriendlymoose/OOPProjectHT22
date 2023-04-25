@@ -14,7 +14,10 @@ public class TransactionRow {
     private double amount;
 
 
-    public TransactionRow(long accountID, double amount) {
+    public TransactionRow(long accountID, double amount) throws Exception {
+        if (amount < 0){
+            throw new Exception("negative amount");
+        }
         this.accountID = accountID;
         this.amount = amount;
     }

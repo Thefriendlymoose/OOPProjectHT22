@@ -28,7 +28,7 @@ public class SiteFinanceModelTests {
     private User issuer;
 
     @BeforeEach
-    public void init(){
+    public void init() throws Exception {
         issuer = new User(1, "baby", "abc", "Simon", true, Role.getAdmin());
         m1 = new SiteFinanceModel(1,new HashMap<>(), new ArrayList<>());
         Map<Long, FinancialAccount> map2 = new HashMap<>();

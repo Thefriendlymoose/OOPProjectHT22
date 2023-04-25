@@ -55,6 +55,7 @@ public class BorderPaneController {
     public void loadCenter(List<Node> nodes){
         centerPane.getChildren().clear();
         centerPane.getChildren().addAll(nodes);
+        scrollPane.setContent(centerPane);
     }
 
     public void loadCenter(Node n){

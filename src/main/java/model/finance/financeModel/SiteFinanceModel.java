@@ -1,5 +1,6 @@
 package model.finance.financeModel;
 
+import com.google.gson.annotations.Expose;
 import model.finance.accounts.FinancialAccount;
 import model.observer.Observable;
 import model.observer.Observer;
@@ -20,15 +21,21 @@ import java.util.stream.Collectors;
  * */
 public class SiteFinanceModel implements Observable {
 
+    @Expose
     private Map<Long, FinancialAccount> accounts;
-    private transient List<Observer> observers = new ArrayList<>();
+
+    private List<Observer> observers;
+
+    @Expose
     private List<SignedTransaction> book;
+    @Expose
     private final long SITE_ID;
 
     public SiteFinanceModel(long SITE_ID, Map<Long, FinancialAccount> accounts, List<SignedTransaction> book){
         this.SITE_ID = SITE_ID;
         this.accounts = accounts;
         this.book = book;
+        observers = new ArrayList<>();
     }
 
     public long getId(){
@@ -95,12 +102,19 @@ public class SiteFinanceModel implements Observable {
 
     @Override
     public void registerObserver(Observer o) {
+        if (observers == null){
+            unregisterAll();
+        }
         observers.add(o);
     }
 
     @Override
     public void unregisterObserver(Observer o) {
-        observers.remove(o);
+        if (observers == null){
+            unregisterAll();
+        } else {
+            observers.remove(o);
+        }
     }
 
     @Override
@@ -110,6 +124,10 @@ public class SiteFinanceModel implements Observable {
 
     @Override
     public void notifyObservers() {
-        observers.forEach(Observer::update);
+        if (observers != null){
+            observers.forEach(Observer::update);
+        } else {
+            unregisterAll();
+        }
     }
 }

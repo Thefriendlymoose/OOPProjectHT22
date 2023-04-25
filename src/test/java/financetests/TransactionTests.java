@@ -16,14 +16,14 @@ public class TransactionTests {
     }
 
     @Test
-    public void copyTest(){
+    public void copyTest() throws Exception {
         Transaction copy = t1.getCopy();
         t1.addCredit(new TransactionRow(1, 100));
         Assertions.assertEquals(0, copy.getDebits().size());
     }
 
     @Test
-    public void checkSumTest1(){
+    public void checkSumTest1() throws Exception {
         t1.addCredit(new TransactionRow(1, 100));
         t1.addDebit(new TransactionRow(2, 100));
         Assertions.assertTrue(t1.hasEqualSums());
@@ -31,7 +31,7 @@ public class TransactionTests {
     }
 
     @Test
-    public void checkSumTest2(){
+    public void checkSumTest2() throws Exception {
         t1.addDebit(new TransactionRow(1, 100));
         t1.addCredit(new TransactionRow(2, 50));
         t1.addCredit(new TransactionRow(3, 50));
