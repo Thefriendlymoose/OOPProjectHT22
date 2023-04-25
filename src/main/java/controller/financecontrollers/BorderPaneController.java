@@ -36,6 +36,8 @@ public class BorderPaneController {
         Platform.runLater(() -> {
             stage = (Stage) borderPane.getScene().getWindow();
             scene = stage.getScene();
+            buttonBox.getStyleClass().add("sub-menu-box");
+           // scene.getStylesheets().add("fxml/stylesheet.css");
         });
 
     }
