@@ -9,8 +9,8 @@ import java.util.function.Predicate;
 
 /**
  * Responsibility: Used to filter SiteFinanceModels such that only an authorized user gets them
- * Uses: Sites, WMS
- * Used by: FinanceModel
+ * Uses: Sites, WMS, Permission, User, Predicate
+ * Used by: WMS
  *
  * @author Simon Porsgaard / doktorjevsky
  * */

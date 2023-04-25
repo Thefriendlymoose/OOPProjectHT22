@@ -1,6 +1,6 @@
 package controller.buttonEventHandlers;
 
-import controller.customercontrollers.command.ICommand;
+
 import controller.dpi.ParentDependencyInjection;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,9 +8,17 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.WMS;
+
 
 import java.io.IOException;
+
+/**
+ * Responsibility: Opens the financeMainView
+ * Uses: EventHandler, ActionEvent, Node, Parent, Scene, Stage
+ * Used by: SiteFinanceController, MainMenuController
+ *
+ * @author Simon Porsgaard / doktorjevsky
+ * */
 
 public class OpenFinanceMainController implements EventHandler<ActionEvent> {
 

@@ -3,7 +3,7 @@ package model.finance.accounts;
 /**
  * Responsibility: Concrete implementation of one of the major types of accounts in bookkeeping.
  *                 It has the responsibility to hold and manipulate the account balance of an Asset Account
- * Used by: -
+ * Used by: AccountFactory
  * Uses: FinancialAccount
  *
  * @author Simon Porsgaard / doktorjevsky

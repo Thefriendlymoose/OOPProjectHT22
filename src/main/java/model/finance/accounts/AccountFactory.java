@@ -3,6 +3,15 @@ package model.finance.accounts;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Responsibility: provide a predefined collection of FinancialAccounts
+ * Uses: ArrayList, List, FinancialAccount, DebitAccount, CreditAccount
+ * Used by: FinanceModel
+ *
+ * @author Simon Porsgaard
+ *
+ * */
+
 public class AccountFactory {
 
 
@@ -16,6 +25,10 @@ public class AccountFactory {
     8xxx: Finansiella poster (exempelvis ränte-/valutaintäkter/-utgifter), bokslutsdispositioner, skatt och årets resultat.
     0xxx och 9xxx: Interna konton
     * */
+
+    /**
+     * Returns a list of a handful accounts from the Swedish BAS kontoplan
+     * */
     public static List<FinancialAccount> getBasicSwedishBASAccountPlan(){
         List<FinancialAccount> accs = new ArrayList<>();
         // BALANCE SHEET

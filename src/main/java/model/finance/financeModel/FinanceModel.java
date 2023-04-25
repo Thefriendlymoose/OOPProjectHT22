@@ -1,10 +1,7 @@
 package model.finance.financeModel;
 
-import model.WMS;
 import model.finance.accounts.AccountFactory;
 import model.finance.accounts.FinancialAccount;
-import model.site.Sites;
-import model.user.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,8 +12,9 @@ import java.util.function.Predicate;
 /**
  * Responsibility: Store all bookkeeping data of all the sites
  *
- * Uses: SiteFinanceModel
- * Used by: WMS
+ * Uses: SteFinanceModel, AccountFactory, FinancialAccount, ArrayList, HashMap, List,
+ *       Map, Predicate
+ * Used by: WMS, Main
  *
  * @author Simon Porsgaard / doktorjevsky
  *
@@ -63,6 +61,9 @@ public class FinanceModel {
         return out;
     }
 
+    /**
+     * Get all SiteFinanceModels as a list
+     * */
     public List<SiteFinanceModel> getAsList(){
         return financeModels.values().stream().toList();
     }

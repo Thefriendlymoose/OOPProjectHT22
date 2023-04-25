@@ -10,6 +10,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Responsibility: open the mainMenu
+ * Uses: EventHandler, ActionEvent, Node, Parent, Scene, Stage
+ * Used by: FinanceMainController
+ *
+ * @author Simon Porsgaard / doktorjevsky
+ * */
+
 public class OpenMainMenu implements EventHandler<ActionEvent> {
 
     @Override

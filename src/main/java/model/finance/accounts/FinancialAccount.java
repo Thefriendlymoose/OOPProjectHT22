@@ -4,7 +4,8 @@ import java.util.Objects;
 
 /**
  * Responsibility: Abstraction of a bookkeeping account
- * Used by: AssetAccount, LiabilityAccount, Transaction
+ * Used by: AssetAccount, LiabilityAccount, Transaction, FinanceModel
+ * Uses: Objects
  *
  * @author Simon Porsgaard / doktorjevsky
  * */

@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 /**
  * Responsibility: Hold and alter bookkeeping data for a site
  * Uses: FinancialAccount, User, Transaction, SignedTransaction, Observer
- * Used by: FinanceModel
+ * Used by: FinanceModel, SiteFinanceCardController, SiteFinanceController
  *
  * @author Simon Porsgaard / doktorjevsky
  * */
