@@ -1,33 +1,31 @@
 package controller.financecontrollers;
 
-import com.sun.javafx.collections.ObservableListWrapper;
-import controller.buttonEventHandlers.OpenFinanceMainController;
 import controller.buttonEventHandlers.OpenMainMenu;
 import controller.dpi.ParentDependencyInjection;
 
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import model.WMS;
 import model.finance.financeModel.SiteFinanceModel;
 import model.observer.Observer;
 import model.site.Site;
-import model.user.Permission;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+/**
+ * Responsibility: provide functionality to the main window of the finance model
+ * Uses: VBox, Button, Label, ChoiceBox, List, WMS, EventHandler
+ * Used by: Main
+ *
+ * @author Simon Porsgaard / doktorjevsky
+ * */
 
 public class FinanceMainController extends BorderPaneController implements Observer {
 
@@ -68,6 +66,10 @@ public class FinanceMainController extends BorderPaneController implements Obser
     }
 
 
+    /*
+    * Reloades the nodes in "nodes" to the VBOX that is
+    * located to the left in the parent's BorderPane
+    * */
     private void reloadLeftBox(){
         VBox leftBox = getButtonBox();
         leftBox.getChildren().clear();
@@ -75,6 +77,10 @@ public class FinanceMainController extends BorderPaneController implements Obser
     }
 
 
+    /*
+    * Initializes the menu buttons, i.e., the default mode
+    * is set.
+    * */
     private void initMenuButtons(){
         leftLabel.setText("Finance");
         newBookButton.setText("Add new Book");
@@ -88,6 +94,10 @@ public class FinanceMainController extends BorderPaneController implements Obser
         loadLeft(nodes);
     }
 
+    /*
+    * Sets the behavior of the buttons to "Confirm (choice)" and "Cancel"
+    * after "Add new Book" has been pressed.
+    * */
     private void initChoiceMenuButtons(){
         newBookButton.setText("Confirm");
         backButton.setText("Cancel");
@@ -132,8 +142,10 @@ public class FinanceMainController extends BorderPaneController implements Obser
 
 
 
-
-    // TODO: use inherited method for managing the center pane
+    /*
+    * Paints a clickable icon for all siteFinanceModels that are available
+    * to the user to the screen
+    * */
     private void paintCardBox() {
         try {
             cardBox.getChildren().clear();

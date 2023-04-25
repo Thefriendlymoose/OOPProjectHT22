@@ -4,6 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import model.finance.accounts.FinancialAccount;
 
+/**
+ * Responsibility: A visual representation of a FinancialAccount
+ * Uses: FinancialAccount, Label
+ * Used by: SiteFinanceController
+ *
+ * @author Simon Porsgaard / doktorjevsky
+ * */
+
 public class FinancialAccountCardController {
 
 

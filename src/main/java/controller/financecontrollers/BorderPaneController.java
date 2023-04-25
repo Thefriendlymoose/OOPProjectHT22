@@ -3,16 +3,21 @@ package controller.financecontrollers;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import model.WMS;
 
 import java.util.List;
 
+/**
+ * Responsibility: provide basic functionality for controllers that alter the same BorderPane
+ * Uses: WMS, BorderPane, ScrollPane, VBox, AnchorPane
+ * Used by: FinanceMainController, SiteFinanceCardController, SiteFinanceController
+ *
+ * @author Simon Porsgaard / doktorjevksy
+ * */
 public class BorderPaneController {
 
     @FXML
@@ -24,11 +29,6 @@ public class BorderPaneController {
     @FXML
     private VBox buttonBox;
 
-    private Stage stage;
-
-    private Scene scene;
-
-
     private WMS wms;
 
     public BorderPaneController(WMS wms){
@@ -37,57 +37,41 @@ public class BorderPaneController {
 
     public void initialize(){
         Platform.runLater(() -> {
-            stage = (Stage) borderPane.getScene().getWindow();
-            scene = stage.getScene();
             buttonBox.getStyleClass().add("sub-menu-box");
             scrollPane.setFitToHeight(true);
             scrollPane.setFitToWidth(true);
-
         });
 
     }
 
+    // TODO make method accept Node only
+
+    /**
+     * Loads a list of nodes to a VBox, located to the left in the BorderPane
+     * @param nodes list of nodes
+     * */
     public void loadLeft(List<Node> nodes){
         buttonBox.getChildren().clear();
         buttonBox.getChildren().addAll(nodes);
     }
 
-    public void loadCenter(List<Node> nodes){
-        centerPane.getChildren().clear();
-        centerPane.getChildren().addAll(nodes);
-        scrollPane.setContent(centerPane);
-    }
-
+    /**
+     * Loads a node to the center of the BorderPane
+     * @param n the node
+     * */
     public void loadCenter(Node n){
         scrollPane.setContent(n);
     }
 
 
+    // TODO refactor such that only loadLeft is used
     public VBox getButtonBox(){
         return buttonBox;
-    }
-
-    public BorderPane getBorderPane(){
-        return borderPane;
     }
 
     public WMS getWms(){
         return wms;
     }
 
-    public AnchorPane getCenter(){
-        return centerPane;
-    }
-
-    public Stage getStage(){
-        return stage;
-    }
-
-    public Scene getScene() {
-        return scene;
-    }
-    public ScrollPane getScrollPane(){
-        return scrollPane;
-    }
 
 }
