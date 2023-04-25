@@ -90,7 +90,11 @@ public class SiteFinanceModel implements Observable {
         }
         else if (transaction.getDebits().isEmpty() || transaction.getCredits().isEmpty()){
             throw new Exception("Transactions can't have empty rows");
-        } else {
+        }
+        else if (transaction.getCreditSum() == 0) {
+            throw new Exception("Transactions can't be null");
+        }
+        else {
             transaction.getCredits().forEach(cr -> accounts.get(cr.getAccountID()).credit(cr.getAmount()));
             transaction.getDebits().forEach(db -> accounts.get(db.getAccountID()).debit(db.getAmount()));
             SignedTransaction signedTransaction = new SignedTransaction(transaction.getCopy(), signer, LocalDate.now());

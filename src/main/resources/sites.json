@@ -68,7 +68,7 @@
   },
   {
     "siteId": 5,
-    "siteName": "dsa",
+    "siteName": "Borås",
     "siteAddress": "",
     "maxCapacity": 1,
     "siteArticles": [],
@@ -76,7 +76,7 @@
   },
   {
     "siteId": 6,
-    "siteName": "asdklsdjf",
+    "siteName": "Paris",
     "siteAddress": "asd",
     "maxCapacity": 10,
     "siteArticles": [],
@@ -84,7 +84,7 @@
   },
   {
     "siteId": 7,
-    "siteName": "dsalkfj",
+    "siteName": "Kungälv",
     "siteAddress": "",
     "maxCapacity": 100,
     "siteArticles": [],
