@@ -1,10 +1,12 @@
 package controller.financecontrollers;
 
+import controller.dpi.ParentDependencyInjection;
 import controller.dpi.StageDependencyInjection;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,6 +18,7 @@ import model.finance.financeModel.FinanceModel;
 import model.finance.financeModel.SiteFinanceModel;
 
 import java.io.IOException;
+import java.util.List;
 
 public class SiteFinanceCardController {
 
@@ -42,14 +45,12 @@ public class SiteFinanceCardController {
     }
 
     public void openSiteFinanceHandler(ActionEvent actionEvent) throws IOException {
-        StageDependencyInjection.addInjectionMethod(
-                SiteFinanceController.class, params -> new SiteFinanceController(wms, siteFinanceModel.getId(), financeMainController)
-        );
+        ParentDependencyInjection.addInjectionMethod(SiteFinanceController.class,
+                p -> new SiteFinanceController(wms, siteFinanceModel.getId(), financeMainController));
 
-        Stage s = StageDependencyInjection.load("fxml/financeViews/siteFinanceView.fxml");
-        Scene ss = s.getScene();
-        Pane p = (Pane) ss.getRoot();
-        financeMainController.getBorderPane().setCenter(p);
+
+        ParentDependencyInjection.load("fxml/financeViews/siteFinanceView.fxml");
+
 
 
     }

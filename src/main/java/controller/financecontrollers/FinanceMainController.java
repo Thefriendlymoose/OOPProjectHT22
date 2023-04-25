@@ -12,10 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -86,9 +83,9 @@ public class FinanceMainController extends BorderPaneController implements Obser
         choiceBox.setVisible(false);
 
 
-        backButton.setOnAction(new OpenMainMenu());
+        backButton.setOnAction(e -> {wms.unregisterObserver(this); new OpenMainMenu().handle(e);});
         newBookButton.setOnAction(e -> {initChoiceMenuButtons(); loadChoiceBox();});
-        reloadLeftBox();
+        loadLeft(nodes);
     }
 
     private void initChoiceMenuButtons(){
@@ -108,7 +105,7 @@ public class FinanceMainController extends BorderPaneController implements Obser
             initMenuButtons();
             update();
         });
-        reloadLeftBox();
+        loadLeft(nodes);
     }
 
     /*
@@ -136,6 +133,7 @@ public class FinanceMainController extends BorderPaneController implements Obser
 
 
 
+    // TODO: use inherited method for managing the center pane
     private void paintCardBox() {
         try {
             cardBox.getChildren().clear();
@@ -154,10 +152,8 @@ public class FinanceMainController extends BorderPaneController implements Obser
         } catch (Exception ignore) {}
 
         cardBox.setVisible(true);
-        AnchorPane centerPane = getCenter();
-        centerPane.getChildren().clear();
-        centerPane.getChildren().add(cardBox);
-        centerPane.setVisible(true);
+        loadCenter(cardBox);
+
     }
 
 

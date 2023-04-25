@@ -80,6 +80,11 @@ public class WMS implements Observable {
         return sites;
     }
 
+    public String getSiteName(long id){
+        Site s = sites.getById(id);
+        return s.getSiteName();
+    }
+
     public void addSite(Site site) {
         sites.addSite(site);
         notifyObservers();

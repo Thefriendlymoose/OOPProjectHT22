@@ -65,5 +65,29 @@
     "siteUsers": [
       6
     ]
+  },
+  {
+    "siteId": 5,
+    "siteName": "dsa",
+    "siteAddress": "",
+    "maxCapacity": 1,
+    "siteArticles": [],
+    "siteUsers": []
+  },
+  {
+    "siteId": 6,
+    "siteName": "asdklsdjf",
+    "siteAddress": "asd",
+    "maxCapacity": 10,
+    "siteArticles": [],
+    "siteUsers": []
+  },
+  {
+    "siteId": 7,
+    "siteName": "dsalkfj",
+    "siteAddress": "",
+    "maxCapacity": 100,
+    "siteArticles": [],
+    "siteUsers": []
   }
 ]
